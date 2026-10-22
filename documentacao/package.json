@@ -1,0 +1,11 @@
+{
+  "name": "portal-irmen-jarvis-prototipo-vendor",
+  "private": true,
+  "description": "Origem e versões das bibliotecas copiadas para site/vendor/. Não é preciso instalar nada para abrir o protótipo.",
+  "dependencies": {
+    "echarts": "5.5.0",
+    "@fontsource/chakra-petch": "5.1.0",
+    "@fontsource/ibm-plex-sans": "5.1.0",
+    "@fontsource/jetbrains-mono": "5.1.0"
+  }
+}
