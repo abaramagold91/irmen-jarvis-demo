@@ -113,7 +113,12 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stro
 .radar .sweep{transform-origin:150px 150px;animation:spin 6s linear infinite}
 .radar text{font:600 10px var(--f-display);letter-spacing:.16em;fill:var(--fg-3)}
 .radar .node{fill:var(--bg-2);stroke:var(--arc);stroke-width:1.5}
-.radar .node.hot{stroke:var(--brand)}
+.radar .node{animation:hit 6s linear infinite}
+.radar .n-crm{animation-delay:5.26s}
+.radar .n-cred{animation-delay:.76s}
+.radar .n-op{animation-delay:2.26s}
+.radar .n-int{animation-delay:3.76s}
+@keyframes hit{0%,12.3%{stroke:var(--brand);fill:var(--brand);stroke-width:2.5}13.8%,100%{stroke:var(--arc);fill:var(--bg-2);stroke-width:1.5}}
 .radar .core{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
 .radar .core .orb{width:74px;height:74px}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -164,6 +169,13 @@ form{display:flex;flex-direction:column;gap:14px}
 .sep::before,.sep::after{content:"";flex:1;height:1px;background:var(--line)}
 .note{display:flex;gap:10px;padding:12px;border:1px dashed var(--line-2);border-radius:8px;font-size:12.5px;color:var(--fg-2)}
 .note svg.i{color:var(--brand);margin-top:1px}
+.note .spam{display:block;margin-top:6px;font-weight:500;color:var(--fg)}
+.ghost-req{margin-top:10px;border-color:var(--line-2);font-weight:600}
+.ghost-req:hover{border-color:var(--brand);color:var(--brand)}
+.ctl select,.ctl textarea{width:100%;min-height:46px;padding:11px 14px 11px 40px;border-radius:8px;border:1px solid var(--line-2);background:var(--bg-2);font:inherit;font-size:14.5px;color:var(--fg)}
+.ctl textarea{min-height:76px;resize:vertical;padding-left:14px}
+.ctl select:focus,.ctl textarea:focus{outline:none;border-color:var(--arc);box-shadow:0 0 0 3px var(--arc-soft)}
+.ctl select[aria-invalid="true"]{border-color:var(--crit);box-shadow:0 0 0 3px var(--crit-soft)}
 .steps{display:flex;gap:6px;margin:2px 0 14px}
 .steps i{flex:1;height:3px;border-radius:2px;background:var(--line-2)}
 .steps i.on{background:var(--brand)}
@@ -256,26 +268,24 @@ form{display:flex;flex-direction:column;gap:14px}
           <circle class="arc2" cx="150" cy="150" r="92"/>
           <g class="sweep"><path d="M150 150 L150 10 A140 140 0 0 1 248 50 Z" fill="url(#sw)" opacity=".35"/></g>
           <defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--arc)" stop-opacity=".5"/><stop offset="1" stop-color="var(--arc)" stop-opacity="0"/></linearGradient></defs>
-          <circle class="node" cx="150" cy="10" r="5"/><text x="150" y="-4" text-anchor="middle">CRM</text>
-          <circle class="node hot" cx="290" cy="150" r="5"/><text x="300" y="138" text-anchor="end">CRÉDITO</text>
-          <circle class="node" cx="150" cy="290" r="5"/><text x="150" y="312" text-anchor="middle">OPERAÇÃO</text>
-          <circle class="node" cx="10" cy="150" r="5"/><text x="0" y="138">INTERAÇÕES</text>
+          <circle class="node n-crm" cx="150" cy="10" r="5"/><text x="150" y="-4" text-anchor="middle">CRM</text>
+          <circle class="node n-cred" cx="290" cy="150" r="5"/><text x="300" y="138" text-anchor="end">CRÉDITO</text>
+          <circle class="node n-op" cx="150" cy="290" r="5"/><text x="150" y="312" text-anchor="middle">OPERAÇÃO</text>
+          <circle class="node n-int" cx="10" cy="150" r="5"/><text x="0" y="138">INTERAÇÕES</text>
         </svg>
         <div class="core"><span class="orb"></span></div>
       </div>
       <div class="pillars">
-        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></svg>Funil</span><b>8 fases</b><span>Da oportunidade à faturada, com histórico de cada movimento</span></div>
-        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg>Crédito</span><b>5 bancos</b><span>Esteira da Mesa com SLA em horas úteis</span></div>
+        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></svg>Funil</span><b>Oportunidade → faturamento</b><span>Com histórico de cada etapa do funil</span></div>
+        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg>Crédito</span><b>Principais bancos</b><span>Do mercado, com esteira da Mesa e SLA em horas úteis</span></div>
         <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M6 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 13V9a4 4 0 0 1 4-4h5M18 11v4a4 4 0 0 1-4 4H9"/></svg>Rastreio</span><b>OPP → OP → PED</b><span>Códigos únicos do lead ao pedido</span></div>
         <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 6-7"/></svg>Gestão</span><b>Metas e BI</b><span>Números que descem até a operação de origem</span></div>
       </div>
     </div>
 
     <div class="trust hero-trust">
-      <span><svg class="i" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4"/></svg>Acesso somente por convite</span>
-      <span><svg class="i" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg>Permissões por função</span>
-      <span><svg class="i" viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 6v6l4 2"/></svg>Sessão encerrada por inatividade</span>
       <span><svg class="i" viewBox="0 0 24 24"><path d="M9 11l3 3 8-8M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Tratamento de dados conforme a LGPD</span>
+      <span><svg class="i" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg>Conexão criptografada de ponta a ponta</span>
     </div>
   </section>
 
@@ -311,7 +321,50 @@ form{display:flex;flex-direction:column;gap:14px}
             <button class="btn pri block" type="submit" id="b-login"><span class="spin" aria-hidden="true"></span><span class="lbl">Entrar</span><svg class="i lbl-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
           </form>
           <div class="sep" style="margin-top:16px">primeiro acesso</div>
-          <div class="note"><svg class="i" viewBox="0 0 24 24"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 20v-2a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 1 0 7.8"/></svg><span>O acesso é criado pela administração. Abra o link do convite que chegou no seu e-mail para definir a senha.</span></div>
+          <div class="note"><svg class="i" viewBox="0 0 24 24"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 20v-2a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 1 0 7.8"/></svg><span>O acesso é criado pela administração. Abra o link do convite que chegou no seu e-mail para definir a senha.<br><b class="spam">Não encontrou? Confira também a caixa de spam.</b></span></div>
+          <button class="btn block ghost-req" type="button" data-to="v-req">Solicitar primeiro acesso<svg class="i" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+        </div>
+
+        <!-- SOLICITAR PRIMEIRO ACESSO -->
+        <div class="view" id="v-req" aria-labelledby="t-req">
+          <button class="link" type="button" data-to="v-login" style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-bottom:10px"><svg class="i" viewBox="0 0 24 24" style="width:15px;height:15px"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar ao login</button>
+          <div class="eyebrow">Primeiro acesso</div>
+          <h1 id="t-req">Solicitar acesso</h1>
+          <p class="intro">Envie seus dados para a administração. Depois da aprovação, o convite chega no seu e-mail.</p>
+          <form id="f-req" novalidate>
+            <div class="field">
+              <label for="q-nome">Nome completo</label>
+              <div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg><input id="q-nome" autocomplete="name" placeholder="Seu nome" aria-describedby="q-nome-err"></div>
+              <span class="err" id="q-nome-err"></span>
+            </div>
+            <div class="field">
+              <label for="q-email">E-mail corporativo</label>
+              <div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg><input id="q-email" type="email" autocomplete="email" inputmode="email" placeholder="nome@empresa.com.br" aria-describedby="q-email-err"></div>
+              <span class="err" id="q-email-err"></span>
+            </div>
+            <div class="field">
+              <label for="q-area">Área</label>
+              <div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg><select id="q-area" aria-describedby="q-area-err"><option value="">Selecione</option><option>Comercial</option><option>Mesa de Crédito</option><option>Operação</option><option>Gestão e Diretoria</option><option>Outra</option></select></div>
+              <span class="err" id="q-area-err"></span>
+            </div>
+            <div class="field">
+              <label for="q-gestor"><span>Gestor responsável</span><span class="dim">opcional</span></label>
+              <div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg><input id="q-gestor" placeholder="Quem aprova seu acesso"></div>
+            </div>
+            <button class="btn pri block" type="submit" id="b-req"><span class="spin" aria-hidden="true"></span><span class="lbl">Enviar solicitação</span><svg class="i lbl-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </form>
+        </div>
+
+        <!-- SOLICITAÇÃO ENVIADA -->
+        <div class="view" id="v-req-ok" aria-labelledby="t-req-ok">
+          <div class="done">
+            <span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span>
+            <div class="eyebrow" style="color:var(--good)">Solicitação enviada</div>
+            <h1 id="t-req-ok" style="margin:0">Pedido recebido</h1>
+            <p class="intro" style="margin:0">A administração vai analisar e enviar o convite para <b id="q-echo" class="mono" style="color:var(--fg);font-weight:500"></b>.</p>
+            <div class="note" style="text-align:left;width:100%"><svg class="i" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg><span>O e-mail de convite costuma cair no spam. Se não aparecer na caixa de entrada, confira lá.</span></div>
+            <button class="btn pri block" type="button" data-to="v-login"><span class="lbl">Voltar ao login</span><svg class="i lbl-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </div>
         </div>
 
         <!-- RECUPERAÇÃO 1: e-mail -->
@@ -403,6 +456,7 @@ form{display:flex;flex-direction:column;gap:14px}
           <li>Entrar: qualquer e-mail válido e senha com 8 ou mais caracteres.</li>
           <li>Senha incorreta: use uma senha que contenha <code>errada</code>. Na 3ª tentativa o acesso fica bloqueado.</li>
           <li>Recuperação: qualquer código de 6 dígitos funciona, exceto <code>000000</code> (código inválido).</li>
+          <li>Solicitar primeiro acesso: preencha nome, e-mail e área; a confirmação é simulada.</li>
           <li>Não digite senhas reais: esta página não tem servidor e não guarda nada.</li>
         </ul>
       </details>
@@ -500,10 +554,25 @@ form{display:flex;flex-direction:column;gap:14px}
     const eb = e.target.closest('[data-eye]');
     if (eb) { const inp = document.getElementById(eb.dataset.eye); const vis = inp.type === 'password'; inp.type = vis ? 'text' : 'password'; eb.innerHTML = icon(vis ? 'eyeoff' : 'eye'); eb.setAttribute('aria-pressed', vis); eb.setAttribute('aria-label', vis ? 'Ocultar senha' : 'Mostrar senha'); inp.focus(); return; }
     const to = e.target.closest('[data-to]');
-    if (to) { if (to.dataset.to === 'v-rec1' && validEmail($('#email').value)) $('#r-email').value = $('#email').value; show(to.dataset.to); return; }
+    if (to) { if (validEmail($('#email').value)) { if (to.dataset.to === 'v-rec1') $('#r-email').value = $('#email').value; if (to.dataset.to === 'v-req' && !$('#q-email').value) $('#q-email').value = $('#email').value; } show(to.dataset.to); return; }
     if (e.target.closest('[data-help]')) { e.preventDefault(); return; }
     if (e.target.closest('[data-theme-toggle]')) { document.documentElement.setAttribute('data-theme', isDark() ? 'light' : 'dark'); paintTheme(); net.recolor(); }
   });
+
+  /* SOLICITAR PRIMEIRO ACESSO */
+  $('#f-req').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nm = $('#q-nome'), em = $('#q-email'), ar = $('#q-area'), btn = $('#b-req');
+    let first = null;
+    const chk = (el, errEl, msg) => { fieldErr(el, errEl, msg); if (msg && !first) first = el; };
+    chk(nm, $('#q-nome-err'), nm.value.trim().length < 3 ? 'Informe seu nome completo.' : '');
+    chk(em, $('#q-email-err'), !em.value.trim() ? 'Informe seu e-mail.' : !validEmail(em.value) ? 'Formato de e-mail inválido.' : '');
+    chk(ar, $('#q-area-err'), !ar.value ? 'Selecione sua área.' : '');
+    if (first) { first.focus(); return; }
+    busy(btn, true, 'Enviando…');
+    setTimeout(() => { busy(btn, false, 'Enviar solicitação'); $('#q-echo').textContent = em.value.trim(); $('#f-req').reset(); show('v-req-ok'); }, 900);
+  });
+  ['#q-nome', '#q-email', '#q-area'].forEach((id) => $(id).addEventListener('input', () => fieldErr($(id), $(id + '-err'), '')));
 
   /* RECUPERAÇÃO 1 */
   $('#f-rec1').addEventListener('submit', (e) => {
