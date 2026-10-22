@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Portal IRMEN · Catálogo de componentes</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23ef3f4f%22/%3E%3Ctext x=%2216%22 y=%2221%22 font-size=%2213%22 font-family=%22Arial%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22%3EIR%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<!-- Componentes reais: gerados a partir de index.html e login/index.html por catalogo/gerar.py -->
+<link rel="stylesheet" href="sistema.css">
+<link rel="stylesheet" href="login-partes.css">
+<style>
+/* Só a moldura do catálogo. Nenhum componente é redesenhado aqui. */
+.cat{position:relative;z-index:1;display:grid;grid-template-columns:230px minmax(0,1fr);min-height:100vh}
+.cat-nav{position:sticky;top:0;height:100vh;overflow:auto;border-right:1px solid var(--line);background:var(--panel);backdrop-filter:blur(14px);padding:16px 10px}
+.cat-nav a{display:block;padding:6px 10px;border-radius:6px;color:var(--fg-2);text-decoration:none;font-size:13px}
+.cat-nav a:hover{background:var(--arc-soft);color:var(--fg)}
+.cat-main{padding:20px clamp(16px,3vw,36px) 120px;display:flex;flex-direction:column;gap:28px;min-width:0;max-width:1320px}
+.cat-sec{display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+.cat-sec>h2{margin:0;font:700 22px var(--f-display);letter-spacing:.01em}
+.cat-sec>p{margin:0;color:var(--fg-2);max-width:90ch}
+.tag{align-self:flex-start;display:inline-block;font:600 9.5px var(--f-display);letter-spacing:.14em;text-transform:uppercase;padding:2px 7px;border-radius:4px;vertical-align:middle;margin-left:6px}
+.tag.fato{color:var(--good);border:1px solid var(--good)}
+.tag.prop{color:var(--warn);border:1px solid var(--warn)}
+.tag.ajuste{color:var(--crit);border:1px solid var(--crit)}
+.demo-box{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.src{font:400 11.5px var(--f-mono);color:var(--fg-3)}
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.sw div{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel-solid)}
+.sw i{display:block;height:44px}
+.sw span{display:block;padding:6px 8px;font:500 11px var(--f-mono);color:var(--fg-2)}
+.sw b{display:block;padding:6px 8px 0;font:600 11.5px var(--f-body);color:var(--fg)}
+.typo>div{display:flex;gap:16px;align-items:baseline;border-bottom:1px solid var(--line);padding:8px 0;flex-wrap:wrap}
+.typo .src{min-width:260px}
+.static-pos{position:static!important;transform:none!important;left:auto!important;bottom:auto!important;width:100%!important}
+.skel{background:linear-gradient(90deg,var(--line) 25%,var(--line-2) 37%,var(--line) 63%);background-size:400% 100%;animation:sk 1.4s ease infinite;border-radius:6px}
+@keyframes sk{0%{background-position:100% 50%}100%{background-position:0 50%}}
+.state{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:28px 18px}
+.state .ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center}
+.state h4{margin:0;font:600 16px var(--f-display)}
+.state p{margin:0;color:var(--fg-2);max-width:52ch;font-size:13px}
+/* PROPOSTA: anel de foco que o recorte (clip-path) não corta */
+.btn.pri.foco-proposto{outline:none}
+.focus-ring{display:inline-block;padding:3px;margin:-3px}
+.focus-ring:focus-within{background:var(--arc);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))}
+.btn[aria-disabled="true"],.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.pri:disabled::after{display:none}
+@media (max-width:860px){.cat{grid-template-columns:minmax(0,1fr)}.cat-nav{position:static;height:auto;display:flex;flex-wrap:wrap;gap:4px;border-right:0;border-bottom:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<canvas id="neural" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+
+<div class="cat">
+  <nav class="cat-nav" aria-label="Seções do catálogo">
+    <div class="brand"><span class="logo">IR</span><div><b>CATÁLOGO</b><small>Design system · DS-01</small></div></div>
+    <a href="#tokens">Tokens de cor</a><a href="#tipo">Tipografia</a><a href="#medidas">Medidas, raios e chanfros</a>
+    <a href="#superficies">Painéis e camadas</a><a href="#botoes">Botões e laser</a><a href="#badges">Badges e chips</a>
+    <a href="#kpi">KPI</a><a href="#tabelas">Tabelas e listas</a><a href="#forms">Formulários</a>
+    <a href="#nav">Navegação</a><a href="#funil">Fases e Kanban</a><a href="#chat">Conversas</a>
+    <a href="#graficos">Gráficos</a><a href="#overlay">Diálogos e avisos</a><a href="#game">Metas e XP</a>
+    <a href="#login">Login</a><a href="#estados">Estados</a><a href="#efeitos">Rede neural e movimento</a>
+    <a href="#resp">Responsivo</a>
+  </nav>
+
+  <main class="cat-main">
+    <header class="head">
+      <div class="grow">
+        <div class="eyebrow">Portal IRMEN · referência homologada</div>
+        <h1>Catálogo de componentes</h1>
+        <p>Tudo aqui usa o CSS publicado do protótipo, gerado dos arquivos reais por <span class="mono">catalogo/gerar.py</span>. Marcação: <span class="tag fato">fato</span> existe no protótipo aprovado · <span class="tag prop">proposta</span> estado que faltava, desenhado no mesmo padrão · <span class="tag ajuste">ajuste</span> correção recomendada de acessibilidade.</p>
+      </div>
+      <button class="ibtn" type="button" id="tema" aria-label="Alternar tema claro e escuro"></button>
+    </header>
+
+    <!-- TOKENS -->
+    <section class="cat-sec" id="tokens">
+      <h2>Tokens de cor <span class="tag fato">fato</span></h2>
+      <p>Valores lidos ao vivo das variáveis CSS do tema ativo. O número ao lado é o contraste do token sobre <span class="mono">--bg</span> (texto pequeno precisa de 4,5:1).</p>
+      <div class="sw" id="swatches"></div>
+    </section>
+
+    <!-- TIPOGRAFIA -->
+    <section class="cat-sec" id="tipo">
+      <h2>Tipografia <span class="tag fato">fato</span></h2>
+      <div class="panel typo">
+        <div><span class="src">h1 da tela · Chakra Petch 700 · clamp(22–30px)</span><span style="font:700 30px/1.1 var(--f-display)">Funil & Kanban</span></div>
+        <div><span class="src">h1 do login · Chakra Petch 700 · 26px</span><span style="font:700 26px/1.15 var(--f-display)">Entrar no portal</span></div>
+        <div><span class="src">título de painel (.ph h3) · 600 13px · .1em · caixa alta</span><span class="ph"><h3>Precisa de ação hoje</h3></span></div>
+        <div><span class="src">eyebrow · 600 10.5px · .18em</span><span class="eyebrow">Comercial · Crédito</span></div>
+        <div><span class="src">valor de KPI · 700 clamp(20–26px) · tabular</span><span class="k-val" style="font:700 26px/1.1 var(--f-display);font-variant-numeric:tabular-nums">R$ 438,7 mi</span></div>
+        <div><span class="src">corpo · IBM Plex Sans 400 · 14px/1.45</span><span>Pipeline, crédito, interações e metas em tempo real.</span></div>
+        <div><span class="src">apoio · 12px · --fg-3</span><span class="dim" style="font-size:12px">Atualizado há 3 min</span></div>
+        <div><span class="src">código · JetBrains Mono 500</span><span class="mono">OP-DS-20261022-A</span></div>
+      </div>
+    </section>
+
+    <!-- MEDIDAS -->
+    <section class="cat-sec" id="medidas">
+      <h2>Medidas, raios e chanfros <span class="tag fato">fato</span></h2>
+      <div class="panel tbl-wrap">
+        <table class="tbl">
+          <thead><tr><th>Item</th><th>Valor</th><th>Onde</th></tr></thead>
+          <tbody>
+            <tr><td>Raio de painel</td><td class="mono">--r: 10px</td><td>.panel, .kcol, .badge</td></tr>
+            <tr><td>Raio de controle</td><td class="mono">8px</td><td>.btn, .field input, .ibtn, .seg</td></tr>
+            <tr><td>Raio de diálogo</td><td class="mono">14px</td><td>.dlg, .pal, .tour</td></tr>
+            <tr><td>Chanfro do botão principal</td><td class="mono">10px (sistema) · 12px (login)</td><td>.btn.pri clip-path</td></tr>
+            <tr><td>Chanfro do logo</td><td class="mono">22% dos cantos</td><td>.logo</td></tr>
+            <tr><td>Cantoneira HUD</td><td class="mono">14px, borda 2px, opacidade .7 (login: 16px, .75)</td><td>.panel.hud</td></tr>
+            <tr><td>Largura da barra lateral</td><td class="mono">--side: 252px</td><td>.shell</td></tr>
+            <tr><td>Espaço entre blocos</td><td class="mono">16px (grid/view) · 10px (row/col) · 8px (fases)</td><td>.grid, .row, .phases</td></tr>
+            <tr><td>Altura mínima de toque</td><td class="mono">38px (.btn, .nav a) · 30px (.btn.sm, .seg) · 42px (login)</td><td>controles</td></tr>
+            <tr><td>Desfoque de vidro</td><td class="mono">14px (barras) · 10px (painéis) · 4px (scrim)</td><td>backdrop-filter</td></tr>
+            <tr><td>Sombra</td><td class="mono">--shadow</td><td>cartões em hover, diálogos, toasts</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SUPERFÍCIES -->
+    <section class="cat-sec" id="superficies">
+      <h2>Painéis e camadas <span class="tag fato">fato</span></h2>
+      <p>Ordem de camadas: rede neural (z 0) → brilho radial (z 0) → shell (z 1) → barra superior (z 20) → tour (50) → menu móvel (55) → scrim e diálogos (60) → toasts (70).</p>
+      <div class="grid g3">
+        <div class="panel"><div class="ph"><h3>.panel</h3></div><p class="muted" style="margin:0">Vidro: <span class="mono">--panel</span> + borda <span class="mono">--line</span> + desfoque 10px.</p></div>
+        <div class="panel hud"><div class="ph"><h3>.panel.hud</h3></div><p class="muted" style="margin:0">Cantoneiras em <span class="mono">--arc</span> no sistema; no login, em <span class="mono">--brand</span>.</p></div>
+        <div class="panel brief"><span class="orb"></span><div><b>.brief</b><p>Faixa da Ava: gradiente arc-soft → panel e orbe pulsante.</p></div></div>
+      </div>
+    </section>
+
+    <!-- BOTÕES -->
+    <section class="cat-sec" id="botoes">
+      <h2>Botões e laser</h2>
+      <div class="panel col">
+        <div class="demo-box"><span class="tag fato">fato</span>
+          <button class="btn pri" type="button">Primário (passe o mouse)</button>
+          <button class="btn" type="button">Padrão</button>
+          <button class="btn arc" type="button">Arc</button>
+          <button class="btn ghost" type="button">Fantasma</button>
+          <button class="btn sm" type="button">Pequeno</button>
+          <button class="ibtn" type="button" aria-label="Notificações"><svg class="i" viewBox="0 0 24 24"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/></svg><span class="pip"></span></button>
+          <div class="seg" role="group" aria-label="Período"><button class="on" type="button">30 dias</button><button type="button">Trimestre</button><button type="button">Ano</button></div>
+          <div class="seg arc" role="group" aria-label="Visão"><button class="on" type="button">Kanban</button><button type="button">Tabela</button></div>
+        </div>
+        <div class="demo-box lg"><span class="tag fato">fato · login</span>
+          <button class="btn pri busy" type="button" disabled style="clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))"><span class="spin" aria-hidden="true"></span><span class="lbl">Entrando…</span></button>
+          <span class="src">carregando: spinner + rótulo + disabled (usado no login)</span>
+        </div>
+        <div class="demo-box"><span class="tag prop">proposta</span>
+          <button class="btn pri" type="button" disabled>Primário desabilitado</button>
+          <button class="btn" type="button" disabled>Padrão desabilitado</button>
+          <span class="src">opacidade .5, cursor not-allowed, sem laser</span>
+        </div>
+        <div class="demo-box"><span class="tag ajuste">ajuste</span>
+          <button class="btn pri" type="button" id="foco-atual">Foco atual (Tab aqui)</button>
+          <span class="focus-ring"><button class="btn pri foco-proposto" type="button">Foco proposto (Tab aqui)</button></span>
+          <span class="src">o clip-path corta o outline de foco do botão chanfrado; a proposta desenha o anel por fora, no mesmo chanfro</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="cat-sec" id="badges">
+      <h2>Badges e chips <span class="tag fato">fato</span></h2>
+      <div class="panel demo-box">
+        <span class="pill good">Aprovada</span><span class="pill warn">Pendente</span><span class="pill crit">Atrasada</span><span class="pill arc">Em análise</span><span class="pill brand">Prioridade</span><span class="pill neutral">Rascunho</span><span class="pill good nodot">sem ponto</span>
+        <button class="chip on" type="button">Minha carteira</button><button class="chip" type="button">Docs pendentes</button>
+        <span class="sample">dado de exemplo</span>
+        <span class="delta up">▲ 12,4%</span><span class="delta down">▼ 3,1%</span>
+        <span style="display:inline-flex;gap:6px;align-items:center" class="nav"><a class="on" href="#badges" style="min-width:150px">Funil<span class="cnt">18</span></a></span>
+      </div>
+    </section>
+
+    <!-- KPI -->
+    <section class="cat-sec" id="kpi">
+      <h2>KPI <span class="tag fato">fato</span></h2>
+      <div class="grid g4">
+        <div class="panel kpi"><div class="k-top"><span class="k-ico"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 6-7"/></svg></span><span class="k-lbl">Faturado no mês</span></div><div class="k-val">R$ 6,84 mi</div><svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline fill="none" stroke="var(--brand)" stroke-width="1.6" points="0,24 15,20 30,22 45,14 60,16 75,9 100,6"/></svg><div class="k-foot"><span class="delta up">▲ 8,2%</span>vs. mês anterior</div></div>
+        <div class="panel kpi"><div class="k-top"><span class="k-ico arc"><svg class="i" viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 6v6l4 2"/></svg></span><span class="k-lbl">SLA da Mesa</span></div><div class="k-val">2,4 h</div><svg class="spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline fill="none" stroke="var(--arc)" stroke-width="1.6" points="0,10 20,14 40,12 60,18 80,15 100,20"/></svg><div class="k-foot"><span class="delta down">▼ 0,3 h</span>úteis</div></div>
+        <div class="panel kpi"><div class="k-top"><span class="k-ico"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/></svg></span><span class="k-lbl">Carteira aberta</span></div><div class="k-val">18</div><div class="k-foot">oportunidades</div></div>
+        <div class="panel kpi"><div class="k-top"><span class="k-ico arc"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span><span class="k-lbl">Meta individual</span></div><div class="k-val">114%</div><div class="bar good"><i style="width:100%"></i></div><div class="k-foot">R$ 6,84 de 6,00 mi</div></div>
+      </div>
+    </section>
+
+    <!-- TABELAS -->
+    <section class="cat-sec" id="tabelas">
+      <h2>Tabelas e listas <span class="tag fato">fato</span></h2>
+      <p>Abaixo de 640 px a tabela vira cartões (mobile.js rotula cada célula pelo cabeçalho).</p>
+      <div class="grid g2">
+        <div class="panel tbl-wrap">
+          <table class="tbl"><thead><tr><th>Operação</th><th>Organização</th><th>Status</th><th class="r">Valor</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">OP-DS-20261022-A</td><td>Construtora Terra Brasilis</td><td><span class="pill arc">Em análise</span></td><td class="r">R$ 1.380.000</td></tr>
+              <tr><td class="mono">OP-CE-20261021-B</td><td>Mineração Serra Azul</td><td><span class="pill warn">Docs pendentes</span></td><td class="r">R$ 3.825.000</td></tr>
+              <tr><td class="mono">OP-MS-20261020-A</td><td>Pavimenta Centro-Oeste</td><td><span class="pill good">Aprovada</span></td><td class="r">R$ 550.000</td></tr>
+            </tbody></table>
+        </div>
+        <div class="panel"><div class="ph"><h3>Precisa de ação hoje</h3></div><div class="list">
+          <div class="li"><span class="sev crit"></span><div><div class="t">SLA estourado no comitê</div><div class="s">OP-CE-20261021-B · 22 h úteis</div></div><div class="end"><span class="pill crit">Atrasada</span></div></div>
+          <div class="li"><span class="sev warn"></span><div><div class="t">Balanço 2025 pendente</div><div class="s">Mineração Serra Azul</div></div><div class="end"><button class="btn sm" type="button">Cobrar</button></div></div>
+          <div class="li"><span class="sev good"></span><div><div class="t">PED emitido</div><div class="s">Pavimenta Centro-Oeste</div></div><div class="end"><span class="dim" style="font-size:12px">há 2 h</span></div></div>
+        </div></div>
+      </div>
+    </section>
+
+    <!-- FORMULÁRIOS -->
+    <section class="cat-sec" id="forms">
+      <h2>Formulários</h2>
+      <div class="grid g2">
+        <div class="panel col"><span><span class="tag fato">fato · sistema</span></span>
+          <div class="field"><label for="f1">Equipamento</label><select id="f1"><option>SY215C · Escavadeira 21,5 t</option></select></div>
+          <div class="field"><label for="f2">Entrada (%)</label><input id="f2" type="range" min="0" max="50" value="20"></div>
+          <div class="steps"><span class="step done"><i>1</i>Cliente</span><span class="step done"><i>2</i>Equipamento</span><span class="step on"><i>3</i>Condições</span><span class="step"><i>4</i>Documentos</span></div>
+        </div>
+        <div class="panel col lg"><span><span class="tag fato">fato · login</span> validação, alerta e Caps Lock</span>
+          <div class="alert crit on" role="alert"><svg class="i" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><p><b>E-mail ou senha incorretos.</b> Restam 2 tentativas.</p></div>
+          <div class="field"><label for="f3">E-mail</label><div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg><input id="f3" value="ana@irmen" aria-invalid="true" aria-describedby="f3e"></div><span class="err" id="f3e">Formato de e-mail inválido.</span></div>
+          <div class="field"><label for="f4">Nova senha</label><div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg><input id="f4" type="password" value="Irmen@2026x"></div>
+            <div class="meter" data-s="3"><i></i><i></i><i></i></div>
+            <ul class="rules"><li class="ok">10 caracteres ou mais</li><li class="ok">Letra maiúscula</li><li class="ok">Número</li><li>Símbolo</li></ul></div>
+          <label class="check"><input type="checkbox" checked>Manter conectado neste dispositivo</label>
+          <div class="note"><svg class="i" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg><span>Nota de orientação com ícone em <span class="mono">--brand</span>.<b class="spam" style="display:block">Linha de destaque.</b></span></div>
+        </div>
+      </div>
+      <div class="panel lg" style="max-width:420px"><span class="tag fato">fato · login</span> código de 6 dígitos
+        <div class="otp" style="margin-top:10px"><input value="4" aria-label="Dígito 1"><input value="8" aria-label="Dígito 2"><input value="1" aria-label="Dígito 3"><input aria-label="Dígito 4"><input aria-label="Dígito 5"><input aria-label="Dígito 6"></div>
+      </div>
+    </section>
+
+    <!-- NAVEGAÇÃO -->
+    <section class="cat-sec" id="nav">
+      <h2>Navegação <span class="tag fato">fato</span></h2>
+      <div class="grid g2">
+        <div class="panel" style="padding:10px"><nav class="nav" aria-label="Exemplo de menu">
+          <h6>Comercial</h6>
+          <a href="#nav" class="on"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5"/></svg>Funil & Kanban<span class="cnt">18</span></a>
+          <a href="#nav"><svg class="i" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14"/></svg>Organizações & Contatos</a>
+          <a href="#nav"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Tarefas & Agenda<span class="tagnew">NOVO</span></a>
+          <h6>Conversas</h6>
+          <a href="#nav"><svg class="i" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-12 7l-6 2 2-5a8 8 0 1 1 16-4z"/></svg>Inbox compartilhado<span class="cnt arc">5</span></a>
+        </nav></div>
+        <div class="col">
+          <div class="top" style="position:static;border:1px solid var(--line);border-radius:10px">
+            <div class="crumb"><small>Comercial</small><b>Funil & Kanban</b></div>
+            <button class="ava-bar" type="button"><span class="orb"></span><span>Pergunte à Ava ou navegue…</span><kbd>Ctrl K</kbd></button>
+            <label class="role"><span class="dim" style="font-size:12px">Ver como</span><select aria-label="Ver o portal como"><option>Vendedor</option><option>Mesa de Crédito</option></select></label>
+          </div>
+          <div class="me panel"><span class="av lvl" data-l="7">DS</span><div class="xp"><b>Douglas Souza</b><div class="bar"><i style="width:85%"></i></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUNIL -->
+    <section class="cat-sec" id="funil">
+      <h2>Fases e Kanban <span class="tag fato">fato</span></h2>
+      <div class="phases" style="grid-template-columns:repeat(4,minmax(118px,1fr))">
+        <button class="phase" type="button"><small>FASE 1</small><b>Oportunidade</b><span class="n">7</span><span class="v">R$ 6,1 mi</span></button>
+        <button class="phase hot" type="button"><small>FASE 6</small><b>Análise de Crédito</b><span class="n">4</span><span class="v">R$ 5,3 mi</span></button>
+        <button class="phase" type="button"><small>FASE 7</small><b>Formalização</b><span class="n">2</span><span class="v">R$ 1,9 mi</span></button>
+        <button class="phase win" type="button"><small>FASE 8</small><b>Faturada</b><span class="n">9</span><span class="v">R$ 6,8 mi</span></button>
+      </div>
+      <div class="kanban" style="grid-auto-columns:minmax(250px,320px)">
+        <div class="kcol"><header><b>Proposta</b><span class="pill neutral nodot mono">3</span><span class="sum">R$ 2,9 mi</span></header>
+          <div class="kcard" draggable="true"><span class="org">Construtora Terra Brasilis</span><span class="eq">2× SY215C · Escavadeira 21,5 t</span><div class="meta"><span class="mono">OPP-DS-0142</span><span>·</span><span>há 2 dias</span></div><span class="val">R$ 2.760.000</span></div>
+        </div>
+        <div class="kcol drop"><header><b>Negociação</b><span class="pill neutral nodot mono">2</span><span class="sum">R$ 1,4 mi</span></header><span class="src" style="padding:8px">estado .drop ao arrastar</span></div>
+      </div>
+    </section>
+
+    <!-- CHAT -->
+    <section class="cat-sec" id="chat">
+      <h2>Conversas <span class="tag fato">fato</span></h2>
+      <div class="panel" style="padding:0;overflow:hidden;max-width:640px">
+        <div class="msgs" style="min-height:0">
+          <div class="msg">Bom dia! Conseguem a proposta da SY215C ainda hoje?<time>09:12</time></div>
+          <div class="msg me">Sim, envio até as 11h com duas opções de banco.<time>09:14</time></div>
+          <div class="msg note">Nota interna: cliente com balanço 2025 pendente.<time>09:15</time></div>
+        </div>
+        <div class="suggest"><button type="button">Enviar checklist de documentos</button><button type="button">Agendar visita</button></div>
+        <div class="composer"><input placeholder="Escreva uma mensagem" aria-label="Mensagem"><button class="btn pri sm" type="button">Enviar</button></div>
+      </div>
+    </section>
+
+    <!-- GRÁFICOS -->
+    <section class="cat-sec" id="graficos">
+      <h2>Gráficos, tooltips, legendas e detalhamento <span class="tag fato">fato</span></h2>
+      <p>ECharts 5.5.0 com o tema montado pela função <span class="mono">base()</span> de app.js: paleta <span class="mono">--c1…--c5</span>, tooltip em <span class="mono">--panel-solid</span>, eixos em <span class="mono">--line</span>. Clique numa barra para ver o detalhamento.</p>
+      <div class="grid g2">
+        <div class="panel"><div class="ph"><h3>Faturamento por mês</h3><span class="sub">clique na barra para detalhar</span></div><div class="chart sm" id="ch-bar"></div>
+          <div id="drill" class="contract" style="display:none"></div>
+          <details class="contract"><summary>Contrato da métrica</summary><dl><dt>Pergunta</dt><dd>Quanto foi faturado por mês?</dd><dt>Fórmula</dt><dd>Σ valor dos PED faturados no mês</dd><dt>Fonte</dt><dd>inspeção pendente no sistema real</dd></dl></details></div>
+        <div class="panel"><div class="ph"><h3>Distribuição por banco</h3></div><div class="chart sm" id="ch-donut"></div></div>
+        <div class="panel"><div class="ph"><h3>Evolução 2025 × 2026</h3></div><div class="chart sm" id="ch-line"></div></div>
+        <div class="panel"><div class="ph"><h3>Funil</h3></div><div class="chart sm" id="ch-funnel"></div></div>
+      </div>
+    </section>
+
+    <!-- OVERLAYS -->
+    <section class="cat-sec" id="overlay">
+      <h2>Diálogos e avisos</h2>
+      <div class="grid g2">
+        <div class="col"><span class="tag fato">fato · diálogo</span>
+          <div class="dlg" role="dialog" aria-label="Exemplo"><div class="row" style="justify-content:space-between"><h2>Convidar usuário</h2><button class="ibtn" type="button" aria-label="Fechar"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="field"><label for="d1">E-mail</label><input id="d1" placeholder="nome@empresa.com.br"></div><div class="row" style="justify-content:flex-end"><button class="btn ghost" type="button">Cancelar</button><button class="btn pri" type="button">Enviar convite</button></div></div>
+          <span class="src"><span class="tag ajuste">ajuste</span> prender o foco dentro do diálogo e devolvê-lo ao botão de origem ao fechar</span>
+        </div>
+        <div class="col"><span class="tag fato">fato · paleta Ctrl+K</span>
+          <div class="pal"><div class="q"><span class="orb"></span><input placeholder="Pergunte à Ava ou navegue" aria-label="Busca"></div><div class="sec"><h6>Navegar</h6><button class="opt on" type="button">Funil & Kanban<kbd>↵</kbd></button><button class="opt" type="button">Mesa de Crédito</button></div></div>
+        </div>
+      </div>
+      <div class="col"><span class="tag fato">fato · toast e tour</span>
+        <div class="toast static-pos" style="pointer-events:auto"><div>Oportunidade movida para Negociação</div><div class="xp">+40 XP · faturamento validado</div><div style="border-left-color:var(--crit)"><span class="tag prop">proposta</span> Não foi possível salvar. Tente de novo.</div></div>
+        <div class="tour static-pos"><div class="tx"><b>Do lead ao faturamento · 3/7</b><p>Arraste o card entre as fases: cada movimento grava histórico.</p></div><div class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><div class="row"><button class="btn ghost sm" type="button">Sair</button><button class="btn pri sm" type="button">Próximo</button></div></div>
+      </div>
+    </section>
+
+    <!-- GAMIFICAÇÃO -->
+    <section class="cat-sec" id="game">
+      <h2>Metas e XP <span class="tag fato">fato</span></h2>
+      <p>Componentes visuais apenas. Regras de XP, metas e desafios dependem de contrato aprovado (ver DECISIONS_REQUIRED).</p>
+      <div class="grid g3">
+        <div class="challenge"><b>Fichas limpas</b><span class="dim" style="font-size:12px">Zerar documentos pendentes da carteira até sexta.</span><div class="bar"><i style="width:75%"></i></div><div class="row" style="font-size:12px"><span class="pill arc nodot">Individual</span><span class="mono">3/4</span><span class="dim" style="margin-left:auto">+300 XP</span></div></div>
+        <div class="badges"><div class="badge"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="var(--brand-soft)" stroke="var(--brand)"/></svg><b>Primeira máquina</b><span>Primeiro PED faturado</span></div><div class="badge locked"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="var(--line)" stroke="var(--line-2)"/></svg><b>Clube do Milhão</b><span>bloqueada</span></div></div>
+        <div class="panel league"><div class="list"><div class="li top"><span class="pos">1</span><div><div class="t">Gerência Centro-Oeste</div><div class="s">92% da meta</div></div></div><div class="li"><span class="pos">2</span><div><div class="t">Gerência Sudeste</div><div class="s">84% da meta</div></div></div></div></div>
+      </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section class="cat-sec" id="login">
+      <h2>Login <span class="tag fato">fato</span></h2>
+      <p>Componentes exclusivos da tela de entrada. A tela completa está em <a href="../login/">/login/</a>. No login, destaques usam <span class="mono">--brand</span>; rede neural, orbe e radar ficam em <span class="mono">--arc</span>.</p>
+      <div class="lg grid g2" style="align-items:center">
+        <div class="radar" aria-hidden="true" style="width:260px;margin:24px auto">
+          <svg viewBox="0 0 300 300"><circle class="ring" cx="150" cy="150" r="140"/><circle class="ring" cx="150" cy="150" r="108" stroke-dasharray="2 6"/><circle class="ring" cx="150" cy="150" r="74"/><circle class="arc1" cx="150" cy="150" r="124"/><circle class="arc2" cx="150" cy="150" r="92"/><g class="sweep"><path d="M150 150 L150 10 A140 140 0 0 1 248 50 Z" fill="url(#sw)" opacity=".35"/></g><defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--arc)" stop-opacity=".5"/><stop offset="1" stop-color="var(--arc)" stop-opacity="0"/></linearGradient></defs>
+            <circle class="node n-crm" cx="150" cy="10" r="5"/><text x="150" y="-4" text-anchor="middle">CRM</text><circle class="node n-cred" cx="290" cy="150" r="5"/><text x="300" y="138" text-anchor="end">CRÉDITO</text><circle class="node n-op" cx="150" cy="290" r="5"/><text x="150" y="312" text-anchor="middle">OPERAÇÃO</text><circle class="node n-int" cx="10" cy="150" r="5"/><text x="0" y="138">INTERAÇÕES</text></svg>
+          <div class="core" style="position:absolute;inset:0;display:grid;place-items:center"><span class="orb" style="width:74px;height:74px"></span></div>
+        </div>
+        <div class="col">
+          <div class="pillars" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+            <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/></svg>Funil</span><b>Da oportunidade até o faturamento</b><span>Com histórico de cada etapa no funil</span></div>
+            <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M3 21h18"/></svg>Crédito</span><b>Principais players do mercado</b><span>Esteira da Mesa de Crédito e SLA em toda a operação</span></div>
+          </div>
+          <div class="trust"><span><svg class="i" viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/></svg>Tratamento de dados conforme a LGPD</span><span><svg class="i" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg>Conexão criptografada de ponta a ponta</span></div>
+          <span class="src">radar: feixe 6 s; cada nó acende em --brand enquanto o feixe passa (atrasos 0,76 / 2,26 / 3,76 / 5,26 s)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESTADOS -->
+    <section class="cat-sec" id="estados">
+      <h2>Estados de tela</h2>
+      <div class="grid g2">
+        <div class="panel"><span class="tag fato">fato · vazio</span><div class="empty" style="margin-top:10px">Nenhuma oportunidade nesta fase. Crie uma nova ou ajuste os filtros.</div></div>
+        <div class="panel"><span class="tag prop">proposta · carregando</span>
+          <div class="col" style="margin-top:10px" aria-busy="true" aria-label="Carregando">
+            <div class="skel" style="height:14px;width:40%"></div><div class="skel" style="height:28px;width:60%"></div><div class="skel" style="height:60px"></div>
+            <span class="src">esqueleto no formato final; após 100 ms sem resposta; respeita redução de movimento</span>
+          </div></div>
+        <div class="panel"><span class="tag prop">proposta · erro</span>
+          <div class="state" role="alert"><span class="ic" style="background:var(--crit-soft);color:var(--crit)"><svg class="i" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><h4>Não foi possível carregar o funil</h4><p>Nada foi alterado. Tente de novo; se continuar, informe o código abaixo ao suporte.</p><span class="mono dim" style="font-size:11.5px">Ref. 7F3A-21C9</span><div class="row"><button class="btn pri sm" type="button">Tentar de novo</button><button class="btn ghost sm" type="button">Abrir chamado</button></div></div></div>
+        <div class="panel"><span class="tag prop">proposta · acesso negado</span>
+          <div class="state"><span class="ic" style="background:var(--warn-soft);color:var(--warn)"><svg class="i" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg></span><h4>Você não tem acesso à Mesa de Crédito</h4><p>Seu perfil não inclui esta área. Se precisar, peça à administração; o pedido fica registrado.</p><div class="row"><button class="btn sm" type="button">Voltar ao painel</button><button class="btn arc sm" type="button">Solicitar acesso</button></div></div></div>
+        <div class="panel"><span class="tag prop">proposta · métrica indisponível</span>
+          <div class="state"><span class="ic" style="background:var(--line);color:var(--fg-3)"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4"/></svg></span><h4>Meta ainda não cadastrada</h4><p>Este indicador depende do cadastro de metas. Nenhum número é exibido até existir fonte.</p></div></div>
+        <div class="panel lg"><span class="tag fato">fato · sucesso (login)</span>
+          <div class="done" style="margin-top:10px"><span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span><b>Senha atualizada</b><span class="dim" style="font-size:13px">As sessões abertas foram encerradas.</span></div></div>
+      </div>
+    </section>
+
+    <!-- EFEITOS -->
+    <section class="cat-sec" id="efeitos">
+      <h2>Rede neural e movimento <span class="tag fato">fato</span></h2>
+      <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Efeito</th><th>Regra no código publicado</th></tr></thead><tbody>
+        <tr><td>Rede neural (fundo desta página)</td><td>Um canvas fixo global; até 110 pontos (área/16000); 8% "quentes" em --net-2; ligações até 130 px; reage ao ponteiro em 170 px; DPR máx. 2; pausa quando a aba fica oculta; com redução de movimento desenha um quadro estático.</td></tr>
+        <tr><td>Laser do botão principal</td><td>::after com gradiente 100°, desliza 0,7 s no hover (login: também no foco).</td></tr>
+        <tr><td>Orbe da Ava</td><td>pulso 3,2 s (sombra + escala 1,06).</td></tr>
+        <tr><td>Entrada de toast</td><td>0,25 s (sobe 8 px e aparece).</td></tr>
+        <tr><td>Redução de movimento</td><td><span class="mono">prefers-reduced-motion: reduce</span> desliga todas as animações e transições.</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <!-- RESPONSIVO -->
+    <section class="cat-sec" id="resp">
+      <h2>Responsivo <span class="tag fato">fato</span></h2>
+      <div class="panel tbl-wrap"><table class="tbl"><thead><tr><th>Faixa</th><th>Comportamento</th><th>Arquivo</th></tr></thead><tbody>
+        <tr><td>≤ 1280 px</td><td>KPIs de 6 viram 3 colunas; Inbox esconde o painel de contexto; telas de toque travam a rolagem lateral</td><td>index.html, mobile.css</td></tr>
+        <tr><td>≤ 1024 px</td><td>grades de 3 e 4 colunas viram 2</td><td>index.html</td></tr>
+        <tr><td>≤ 860 px</td><td>menu lateral vira gaveta; barra superior em duas linhas; grades empilham (KPIs em 2); fases, Kanban, organizações e conversas viram carrosséis com encaixe e indicadores; Kanban por toque abre "Mover para…" com a mesma regra do arrastar</td><td>index.html, mobile.css, mobile.js</td></tr>
+        <tr><td>≤ 640 px</td><td>tabelas viram cartões rotulados; Kanban com coluna de 86%</td><td>mobile.css, mobile.js</td></tr>
+        <tr><td>≤ 420 px</td><td>KPIs em 1 coluna</td><td>index.html</td></tr>
+        <tr><td>Login</td><td>≤ 1380 px reduz radar e títulos; ≤ 1100 px some o radar; ≤ 900 px uma coluna; 641–900 px cartões em 4 colunas</td><td>login/index.html</td></tr>
+      </tbody></table></div>
+    </section>
+  </main>
+</div>
+
+<script src="../vendor/echarts/echarts.min.js"></script>
+<script>
+(function () {
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const $ = (s) => document.querySelector(s);
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const SUN = 'M12 4V2M12 22v-2M4 12H2M22 12h-2M5 5 3.6 3.6M20.4 20.4 19 19M5 19l-1.4 1.4M20.4 3.6 19 5M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z';
+  const MOON = 'M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z';
+  const dark = () => document.documentElement.getAttribute('data-theme') !== 'light';
+  const paint = () => { $('#tema').innerHTML = `<svg class="i" viewBox="0 0 24 24"><path d="${dark() ? SUN : MOON}"/></svg>`; };
+
+  /* contraste WCAG */
+  function hex(v) { const c = document.createElement('canvas').getContext('2d'); c.fillStyle = v; return c.fillStyle; }
+  function lum(h) { if (!/^#/.test(h)) return null; const n = [1, 3, 5].map((i) => parseInt(h.substr(i, 2), 16) / 255).map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4)); return 0.2126 * n[0] + 0.7152 * n[1] + 0.0722 * n[2]; }
+  const TOK = ['--bg', '--bg-2', '--panel-solid', '--fg', '--fg-2', '--fg-3', '--brand', '--arc', '--good', '--warn', '--crit', '--violet', '--c1', '--c2', '--c3', '--c4', '--c5', '--panel', '--line', '--line-2', '--brand-soft', '--arc-soft'];
+  function swatches() {
+    const bg = lum(hex(css('--bg')));
+    $('#swatches').innerHTML = TOK.map((t) => { const v = css(t), h = hex(v), l = lum(h); const r = l == null || /rgba/.test(v) ? '' : ' · ' + ((Math.max(l, bg) + 0.05) / (Math.min(l, bg) + 0.05)).toFixed(2) + ':1'; return `<div><i style="background:var(${t})"></i><b>${t}</b><span>${v}${r}</span></div>`; }).join('');
+  }
+
+  /* gráficos com o mesmo base() de app.js */
+  const charts = [];
+  function base() {
+    const fg2 = css('--fg-2'), fg3 = css('--fg-3'), line = css('--line');
+    return { color: [css('--c1'), css('--c2'), css('--c3'), css('--c4'), css('--c5')], textStyle: { fontFamily: 'IBM Plex Sans, system-ui, sans-serif', color: fg2 }, grid: { left: 8, right: 16, top: 30, bottom: 8, containLabel: true },
+      tooltip: { trigger: 'axis', backgroundColor: css('--panel-solid'), borderColor: css('--line-2'), textStyle: { color: css('--fg'), fontSize: 12 }, axisPointer: { type: 'shadow', shadowStyle: { color: css('--arc-soft') } } },
+      legend: { top: 0, right: 0, textStyle: { color: fg2, fontSize: 11.5 }, icon: 'roundRect', itemWidth: 10, itemHeight: 10 },
+      _ax: { axisLine: { lineStyle: { color: line } }, axisTick: { show: false }, axisLabel: { color: fg3, fontSize: 11 }, splitLine: { lineStyle: { color: line } } } };
+  }
+  const ax = (b, o) => Object.assign({}, b._ax, o);
+  const M = ['Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out'];
+  function draw() {
+    charts.forEach((c) => c.dispose()); charts.length = 0;
+    if (!window.echarts) return;
+    const mk = (id, fn) => { const c = echarts.init(document.getElementById(id)); const b = base(); c.setOption(Object.assign({ animationDuration: reduce ? 0 : 700 }, b, fn(b))); charts.push(c); return c; };
+    const bar = mk('ch-bar', (b) => ({ xAxis: ax(b, { type: 'category', data: M, splitLine: { show: false } }), yAxis: ax(b, { type: 'value' }), tooltip: Object.assign({}, b.tooltip, { valueFormatter: (v) => 'R$ ' + v.toLocaleString('pt-BR') + ' mi' }), series: [{ name: 'Faturado', type: 'bar', data: [4.1, 5.2, 4.8, 6.0, 5.6, 6.8], itemStyle: { borderRadius: [4, 4, 0, 0] } }] }));
+    bar.on('click', (p) => { const d = $('#drill'); d.style.display = 'block'; d.innerHTML = `<b style="color:var(--fg)">Detalhamento · ${p.name}</b><div class="list"><div class="li"><span class="mono">PED-DS-0091</span><span class="dim" style="margin-left:auto">R$ 1,38 mi</span></div><div class="li"><span class="mono">PED-CE-0088</span><span class="dim" style="margin-left:auto">R$ 0,92 mi</span></div></div><span class="sample">dado de exemplo</span>`; });
+    mk('ch-donut', (b) => ({ tooltip: { trigger: 'item', backgroundColor: css('--panel-solid'), borderColor: css('--line-2'), textStyle: { color: css('--fg') } }, legend: Object.assign({}, b.legend, { orient: 'vertical', top: 'middle' }), series: [{ type: 'pie', radius: ['52%', '72%'], center: ['35%', '52%'], label: { show: false }, itemStyle: { borderColor: css('--panel-solid'), borderWidth: 2 }, data: [{ n: 'Player A', v: 42 }, { n: 'Player B', v: 28 }, { n: 'Player C', v: 21 }, { n: 'Player D', v: 14 }, { n: 'Player E', v: 12 }].map((x) => ({ name: x.n, value: x.v })) }] }));
+    mk('ch-line', (b) => ({ xAxis: ax(b, { type: 'category', data: M, boundaryGap: false, splitLine: { show: false } }), yAxis: ax(b, { type: 'value' }), series: [{ name: '2025', type: 'line', smooth: true, symbol: 'none', data: [3.2, 3.9, 4.1, 4.4, 4.6, 5.0], lineStyle: { type: 'dashed' } }, { name: '2026', type: 'line', smooth: true, symbol: 'none', data: [4.1, 5.2, 4.8, 6.0, 5.6, 6.8], areaStyle: { opacity: 0.12 } }] }));
+    mk('ch-funnel', () => ({ tooltip: { trigger: 'item', backgroundColor: css('--panel-solid'), borderColor: css('--line-2'), textStyle: { color: css('--fg') } }, legend: { show: false }, series: [{ type: 'funnel', left: '4%', right: '36%', top: 10, bottom: 10, sort: 'descending', gap: 2, label: { position: 'right', color: css('--fg-2'), fontSize: 11 }, itemStyle: { borderColor: css('--panel-solid') }, data: [['Oportunidade', 40], ['Proposta', 26], ['Negociação', 18], ['Análise de Crédito', 12], ['Faturada', 9]].map(([n, v]) => ({ name: n, value: v })) }] }));
+  }
+  addEventListener('resize', () => charts.forEach((c) => c.resize()));
+
+  /* rede neural: mesmo algoritmo de app.js */
+  const net = (function () {
+    const cv = $('#neural'), ctx = cv.getContext('2d');
+    let W = 0, H = 0, pts = [], mouse = { x: -999, y: -999 }, c1 = '63,208,255', c2 = '239,63,79', raf = 0;
+    function recolor() { c1 = css('--net') || c1; c2 = css('--net-2') || c2; if (reduce) frame(); }
+    function size() { const dpr = Math.min(2, devicePixelRatio || 1); W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); const n = Math.min(110, Math.round(W * H / 16000)); pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25, r: Math.random() * 1.4 + 0.6, hot: Math.random() < 0.08 })); }
+    function frame() {
+      ctx.clearRect(0, 0, W, H); const L = 130;
+      for (let i = 0; i < pts.length; i++) { const p = pts[i];
+        if (!reduce) { const dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy; if (d2 < 22000) { const f = (1 - d2 / 22000) * 0.6; p.vx += (dx / Math.sqrt(d2 + 1)) * f * 0.06; p.vy += (dy / Math.sqrt(d2 + 1)) * f * 0.06; } p.vx *= 0.985; p.vy *= 0.985; p.vx += (Math.random() - 0.5) * 0.01; p.vy += (Math.random() - 0.5) * 0.01; p.x += p.vx; p.y += p.vy; if (p.x < -20) p.x = W + 20; if (p.x > W + 20) p.x = -20; if (p.y < -20) p.y = H + 20; if (p.y > H + 20) p.y = -20; }
+        for (let j = i + 1; j < pts.length; j++) { const q = pts[j], dx = p.x - q.x, dy = p.y - q.y, d = dx * dx + dy * dy; if (d < L * L) { ctx.strokeStyle = `rgba(${p.hot || q.hot ? c2 : c1},${(1 - Math.sqrt(d) / L) * 0.22})`; ctx.lineWidth = 0.7; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); } }
+        const md = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        if (md < 170) { ctx.strokeStyle = `rgba(${c1},${(1 - md / 170) * 0.45})`; ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+        ctx.fillStyle = `rgba(${p.hot ? c2 : c1},${p.hot ? 0.9 : 0.6})`; ctx.beginPath(); ctx.arc(p.x, p.y, p.r + (md < 120 ? 1 : 0), 0, Math.PI * 2); ctx.fill(); }
+    }
+    function loop() { frame(); raf = requestAnimationFrame(loop); }
+    size(); recolor();
+    addEventListener('resize', () => { size(); if (reduce) frame(); });
+    addEventListener('pointermove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(raf); else if (!reduce) loop(); });
+    if (reduce) frame(); else loop();
+    return { recolor };
+  })();
+
+  $('#tema').addEventListener('click', () => { document.documentElement.setAttribute('data-theme', dark() ? 'light' : 'dark'); paint(); swatches(); draw(); net.recolor(); });
+  paint(); swatches(); draw();
+})();
+</script>
+</body>
+</html>
