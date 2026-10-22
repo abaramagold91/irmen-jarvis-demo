@@ -548,7 +548,7 @@ form{display:flex;flex-direction:column;gap:14px}
       pw.value = '';
       show('v-ok');
       requestAnimationFrame(() => ($('#ok-bar').style.width = '100%'));
-      setTimeout(() => { location.href = '../previa-mobile/'; }, reduce ? 600 : 1600);
+      setTimeout(() => { location.href = '../'; }, reduce ? 600 : 1600);
     }, 1100);
   });
   ['email', 'senha'].forEach((id) => $('#' + id).addEventListener('input', (e) => { if (e.target.getAttribute('aria-invalid') === 'true') fieldErr(e.target, $('#' + id + '-err'), ''); }));
