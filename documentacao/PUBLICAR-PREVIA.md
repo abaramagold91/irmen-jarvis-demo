@@ -1,6 +1,6 @@
 # Como publicar a prévia numa URL pública
 
-**Situação**: a prévia pública **não foi publicada**. O ambiente em que este pacote foi preparado não tem conta em nenhum serviço de hospedagem pública, e criar uma conta em nome de alguém está fora do que posso fazer. As páginas do Claude (Artifacts) exigem login no Claude, então não atendem ao requisito de acesso sem conta.
+**Situação**: publicada em <https://abaramagold91.github.io/irmen-jarvis-demo/> pelo GitHub Pages, a partir da branch `main` deste repositório separado (`abaramagold91/irmen-jarvis-demo`). Nada do sistema oficial foi usado. As opções abaixo ficam como referência para publicar em outro serviço.
 
 A pasta `site/` está pronta para qualquer hospedagem estática: não tem build, não tem variáveis de ambiente, não tem segredos e não faz requisições externas. Basta enviar o **conteúdo** de `site/` (o `index.html` precisa ficar na raiz).
 
