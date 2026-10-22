@@ -97,7 +97,7 @@ svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stro
 .pillars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .pillar{padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
 .pillar .k{display:flex;align-items:center;gap:8px;color:var(--brand);font:600 11px var(--f-display);letter-spacing:.14em;text-transform:uppercase}
-.pillar b{font:600 20px var(--f-display);letter-spacing:.01em}
+.pillar b{font:600 16px/1.25 var(--f-display);letter-spacing:.01em;min-height:2.5em}
 .pillar span{font-size:12.5px;color:var(--fg-2)}
 .trust{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--fg-3);font-size:12px}
 .trust span{display:inline-flex;align-items:center;gap:6px}
@@ -208,6 +208,13 @@ form{display:flex;flex-direction:column;gap:14px}
 .demo code{font-family:var(--f-mono);color:var(--fg-2)}
 
 /* ---------- tablet e celular ---------- */
+@media (min-width:1101px) and (max-width:1380px){
+  .radar{width:clamp(190px,17vw,230px)}
+  .stage{gap:22px}
+  .pillar{padding:12px}
+  .pillar b{font-size:14.5px}
+  .pillar span{font-size:12px}
+}
 @media (max-width:1100px){
   .stage{grid-template-columns:minmax(0,1fr)}
   .radar{display:none}
@@ -276,9 +283,9 @@ form{display:flex;flex-direction:column;gap:14px}
         <div class="core"><span class="orb"></span></div>
       </div>
       <div class="pillars">
-        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></svg>Funil</span><b>Oportunidade → faturamento</b><span>Com histórico de cada etapa do funil</span></div>
-        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg>Crédito</span><b>Principais bancos</b><span>Do mercado, com esteira da Mesa e SLA em horas úteis</span></div>
-        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M6 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 13V9a4 4 0 0 1 4-4h5M18 11v4a4 4 0 0 1-4 4H9"/></svg>Rastreio</span><b>OPP → OP → PED</b><span>Códigos únicos do lead ao pedido</span></div>
+        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></svg>Funil</span><b>Da oportunidade até o faturamento</b><span>Com histórico de cada etapa no funil</span></div>
+        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg>Crédito</span><b>Principais players do mercado</b><span>Esteira da Mesa de Crédito e SLA em toda a operação</span></div>
+        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M6 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 13V9a4 4 0 0 1 4-4h5M18 11v4a4 4 0 0 1-4 4H9"/></svg>Rastreio</span><b>OPP → OP → PED</b><span>Códigos únicos rastreáveis do lead, da operação e do pedido</span></div>
         <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 6-7"/></svg>Gestão</span><b>Metas e BI</b><span>Números que descem até a operação de origem</span></div>
       </div>
     </div>
