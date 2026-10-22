@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portal IRMEN · Entrar</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22%3E%3Crect width=%2232%22 height=%2232%22 rx=%226%22 fill=%22%23ef3f4f%22/%3E%3Ctext x=%2216%22 y=%2221%22 font-size=%2213%22 font-family=%22Arial%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22%3EIR%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../vendor/fonts/fonts.css">
+<style>
+/* Login e recuperação de acesso. Mesmos tokens do protótipo Jarvis: escuro por padrão, Slate claro pelo seletor. */
+:root{
+  color-scheme: dark;
+  --bg:#06080c; --bg-2:#0a0e14; --panel:rgba(13,18,26,.78); --panel-solid:#0d121a;
+  --line:rgba(140,190,220,.13); --line-2:rgba(140,190,220,.24);
+  --fg:#e8eef4; --fg-2:#a3b0bd; --fg-3:#8592a0;
+  --brand:#ef3f4f; --brand-ink:#ffffff; --brand-soft:rgba(239,63,79,.14);
+  --arc:#3fd0ff; --arc-soft:rgba(63,208,255,.12); --arc-glow:rgba(63,208,255,.35);
+  --good:#34c38f; --good-soft:rgba(52,195,143,.14);
+  --warn:#f2b84b; --warn-soft:rgba(242,184,75,.14);
+  --crit:#ff6b7a; --crit-soft:rgba(255,107,122,.14);
+  --violet:#a594ff;
+  --shadow:0 10px 40px rgba(0,0,0,.45);
+  --net:63,208,255; --net-2:239,63,79;
+  --f-display:"Chakra Petch", "Rajdhani", "Segoe UI", system-ui, sans-serif;
+  --f-body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --r:10px;
+}
+:root[data-theme="light"]{
+  color-scheme: light;
+  --bg:#e6eaf0; --bg-2:#dde3ea; --panel:rgba(255,255,255,.86); --panel-solid:#ffffff;
+  --line:rgba(30,50,70,.12); --line-2:rgba(30,50,70,.22);
+  --fg:#0f1722; --fg-2:#3f4b58; --fg-3:#5a6673;
+  --brand:#d42a3a; --brand-soft:rgba(212,42,58,.10);
+  --arc:#0a7aa8; --arc-soft:rgba(10,122,168,.10); --arc-glow:rgba(10,122,168,.25);
+  --good:#137a50; --good-soft:rgba(19,122,80,.10);
+  --warn:#94600a; --warn-soft:rgba(178,116,10,.12);
+  --crit:#c01f33; --crit-soft:rgba(192,31,51,.10);
+  --violet:#5b4bd6;
+  --shadow:0 8px 30px rgba(20,40,60,.10);
+  --net:10,122,168; --net-2:212,42,58;
+}
+
+*{box-sizing:border-box}
+html{overflow-x:hidden}
+html,body{min-height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased;overflow-x:clip}
+#neural{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:
+  radial-gradient(900px 520px at 20% -10%, var(--arc-soft), transparent 60%),
+  radial-gradient(700px 420px at 95% 110%, var(--brand-soft), transparent 60%)}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:var(--arc);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--arc);outline-offset:2px;border-radius:4px}
+.mono{font-family:var(--f-mono)}
+.muted{color:var(--fg-2)} .dim{color:var(--fg-3)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+svg.i{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ---------- componentes do design system ---------- */
+.logo{width:40px;height:40px;display:grid;place-items:center;background:var(--brand);color:var(--brand-ink);font:700 15px var(--f-display);clip-path:polygon(0 0,78% 0,100% 22%,100% 100%,22% 100%,0 78%);flex:none}
+.eyebrow{font:600 10.5px var(--f-display);letter-spacing:.18em;text-transform:uppercase;color:var(--arc)}
+.panel{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.hud::before,.hud::after{content:"";position:absolute;width:16px;height:16px;border:2px solid var(--arc);opacity:.75;pointer-events:none}
+.hud::before{top:-1px;left:-1px;border-right:0;border-bottom:0;border-top-left-radius:var(--r)}
+.hud::after{bottom:-1px;right:-1px;border-left:0;border-top:0;border-bottom-right-radius:var(--r)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;min-height:42px;border-radius:8px;border:1px solid var(--line-2);background:var(--bg-2);font-size:13.5px;font-weight:500;position:relative;overflow:hidden;color:var(--fg)}
+.btn:hover{border-color:var(--arc)}
+.btn.pri{background:var(--brand);border-color:transparent;color:var(--brand-ink);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));border-radius:0;font-weight:600;letter-spacing:.02em}
+.btn.pri::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%)}
+.btn.pri:hover::after,.btn.pri:focus-visible::after{transform:translateX(120%);transition:transform .7s ease}
+.btn.pri[disabled]{opacity:.75;cursor:progress}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--fg-2)}
+.btn.ghost:hover{color:var(--fg);border-color:var(--line-2)}
+.btn.block{width:100%}
+.ibtn{width:40px;height:40px;display:grid;place-items:center;border-radius:8px;border:1px solid var(--line-2);background:var(--panel);color:var(--fg-2)}
+.ibtn:hover{color:var(--fg);border-color:var(--arc)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:3px 9px;border-radius:999px;font-size:11.5px;font-weight:500;white-space:nowrap}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.pill.good{color:var(--good);background:var(--good-soft)} .pill.warn{color:var(--warn);background:var(--warn-soft)} .pill.arc{color:var(--arc);background:var(--arc-soft)}
+.orb{width:22px;height:22px;border-radius:50%;flex:none;background:radial-gradient(circle at 35% 35%,#fff 0 8%,var(--arc) 30%,transparent 72%);box-shadow:0 0 14px var(--arc-glow);animation:pulse 3.2s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 22px var(--arc-glow);transform:scale(1.06)}}
+
+/* ---------- layout ---------- */
+.auth{position:relative;z-index:1;min-height:100vh;min-height:100dvh;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(440px,.85fr)}
+.hero{display:flex;flex-direction:column;justify-content:space-between;gap:36px;padding:36px clamp(28px,4vw,64px);border-right:1px solid var(--line);min-width:0}
+.brand{display:flex;align-items:center;gap:12px}
+.brand b{display:block;font:700 15px var(--f-display);letter-spacing:.12em}
+.brand small{display:block;font-size:11.5px;color:var(--fg-3);letter-spacing:.04em}
+.hero h2{margin:10px 0 12px;font:700 clamp(30px,3.4vw,46px)/1.08 var(--f-display);letter-spacing:.005em;max-width:15ch;text-wrap:balance}
+.hero h2 em{font-style:normal;color:var(--arc)}
+.hero .lead{margin:0;color:var(--fg-2);font-size:15px;max-width:52ch}
+.stage{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,3vw,48px);align-items:center}
+.pillars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.pillar{padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.pillar .k{display:flex;align-items:center;gap:8px;color:var(--arc);font:600 11px var(--f-display);letter-spacing:.14em;text-transform:uppercase}
+.pillar b{font:600 20px var(--f-display);letter-spacing:.01em}
+.pillar span{font-size:12.5px;color:var(--fg-2)}
+.trust{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--fg-3);font-size:12px}
+.trust span{display:inline-flex;align-items:center;gap:6px}
+.trust svg.i{width:15px;height:15px;color:var(--arc)}
+
+/* HUD radial */
+.radar{width:clamp(220px,22vw,300px);aspect-ratio:1;position:relative;flex:none}
+.radar svg{width:100%;height:100%;overflow:visible}
+.radar .ring{fill:none;stroke:var(--line-2);stroke-width:1}
+.radar .arc1{fill:none;stroke:var(--arc);stroke-width:2;stroke-dasharray:120 420;stroke-linecap:round;transform-origin:150px 150px;animation:spin 14s linear infinite}
+.radar .arc2{fill:none;stroke:var(--brand);stroke-width:2;stroke-dasharray:60 300;stroke-linecap:round;transform-origin:150px 150px;animation:spin 9s linear infinite reverse}
+.radar .ticks{stroke:var(--line-2);stroke-width:1.2;transform-origin:150px 150px;animation:spin 60s linear infinite}
+.radar .sweep{transform-origin:150px 150px;animation:spin 6s linear infinite}
+.radar text{font:600 10px var(--f-display);letter-spacing:.16em;fill:var(--fg-3)}
+.radar .node{fill:var(--bg-2);stroke:var(--arc);stroke-width:1.5}
+.radar .node.hot{stroke:var(--brand)}
+.radar .core{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+.radar .core .orb{width:74px;height:74px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* lado do formulário */
+.side{display:flex;flex-direction:column;min-width:0;padding:24px clamp(20px,3vw,40px)}
+.side-top{display:flex;justify-content:flex-end;align-items:center;gap:10px}
+.side-mid{flex:1;display:grid;place-items:center;padding:24px 0}
+.card{width:min(440px,100%);padding:28px;box-shadow:var(--shadow)}
+.card h1{margin:8px 0 6px;font:700 26px/1.15 var(--f-display);letter-spacing:.01em}
+.card .intro{margin:0 0 20px;color:var(--fg-2)}
+.view{display:none;flex-direction:column}
+.view.on{display:flex;animation:vin .35s ease-out}
+@keyframes vin{from{opacity:0;transform:translateY(6px)}}
+form{display:flex;flex-direction:column;gap:14px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:12.5px;color:var(--fg-2);display:flex;justify-content:space-between;gap:8px}
+.ctl{position:relative;display:flex;align-items:center}
+.ctl>svg.i{position:absolute;left:12px;color:var(--fg-3);pointer-events:none}
+.ctl input{width:100%;min-height:46px;padding:11px 44px 11px 40px;border-radius:8px;border:1px solid var(--line-2);background:var(--bg-2);font-size:14.5px;transition:border-color .15s, box-shadow .15s}
+.ctl input::placeholder{color:var(--fg-3)}
+.ctl input:focus{outline:none;border-color:var(--arc);box-shadow:0 0 0 3px var(--arc-soft)}
+.ctl input[aria-invalid="true"]{border-color:var(--crit);box-shadow:0 0 0 3px var(--crit-soft)}
+.ctl .eye{position:absolute;right:4px;width:38px;height:38px;border:0;background:transparent;color:var(--fg-3);display:grid;place-items:center;border-radius:6px}
+.ctl .eye:hover{color:var(--fg)}
+.err{font-size:12px;color:var(--crit);min-height:0}
+.err:empty{display:none}
+.hint{font-size:12px;color:var(--fg-3)}
+.caps{font-size:12px;color:var(--warn);display:none;align-items:center;gap:6px}
+.caps.on{display:flex}
+.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.check{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--fg-2);cursor:pointer}
+.check input{width:16px;height:16px;accent-color:var(--brand);margin:0}
+.link{background:none;border:0;padding:0;color:var(--arc);font-size:13px}
+.link:hover{text-decoration:underline}
+.alert{display:none;gap:10px;align-items:flex-start;padding:11px 12px;border-radius:8px;font-size:13px;border:1px solid}
+.alert.on{display:flex}
+#login-alert.on{margin-bottom:12px}
+.alert.crit{color:var(--crit);background:var(--crit-soft);border-color:color-mix(in srgb, var(--crit) 35%, transparent)}
+.alert.good{color:var(--good);background:var(--good-soft);border-color:color-mix(in srgb, var(--good) 35%, transparent)}
+.alert.warn{color:var(--warn);background:var(--warn-soft);border-color:color-mix(in srgb, var(--warn) 35%, transparent)}
+.alert p{margin:0;color:var(--fg)}
+.alert b{display:block;margin-bottom:2px}
+.spin{width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .8s linear infinite;display:none}
+.busy .spin{display:inline-block}
+.busy .lbl-arrow{display:none}
+.sep{display:flex;align-items:center;gap:10px;color:var(--fg-3);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;margin:4px 0}
+.sep::before,.sep::after{content:"";flex:1;height:1px;background:var(--line)}
+.note{display:flex;gap:10px;padding:12px;border:1px dashed var(--line-2);border-radius:8px;font-size:12.5px;color:var(--fg-2)}
+.note svg.i{color:var(--arc);margin-top:1px}
+.steps{display:flex;gap:6px;margin:2px 0 14px}
+.steps i{flex:1;height:3px;border-radius:2px;background:var(--line-2)}
+.steps i.on{background:var(--arc)}
+.otp{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.otp input{min-height:54px;text-align:center;font:600 22px var(--f-mono);border-radius:8px;border:1px solid var(--line-2);background:var(--bg-2);width:100%;padding:0}
+.otp input:focus{outline:none;border-color:var(--arc);box-shadow:0 0 0 3px var(--arc-soft)}
+.otp.bad input{border-color:var(--crit)}
+.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:2px}
+.meter i{height:4px;border-radius:2px;background:var(--line-2);transition:background .2s}
+.meter[data-s="1"] i:nth-child(-n+1){background:var(--crit)}
+.meter[data-s="2"] i:nth-child(-n+2){background:var(--warn)}
+.meter[data-s="3"] i:nth-child(-n+3){background:var(--arc)}
+.meter[data-s="4"] i{background:var(--good)}
+.rules{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:12px;color:var(--fg-3)}
+.rules li{display:flex;align-items:center;gap:6px}
+.rules li::before{content:"";width:6px;height:6px;border-radius:50%;border:1px solid currentColor}
+.rules li.ok{color:var(--good)}
+.rules li.ok::before{background:currentColor}
+.done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;padding:8px 0}
+.done .badge{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;color:var(--good);background:var(--good-soft);box-shadow:0 0 0 8px color-mix(in srgb, var(--good) 8%, transparent)}
+.done .badge svg.i{width:30px;height:30px}
+.card-foot{margin-top:18px;padding-top:14px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--fg-3)}
+.side-bot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--fg-3)}
+.side-bot nav{display:flex;gap:14px}
+.side-bot a{color:var(--fg-3)}
+.demo{width:min(440px,100%);margin-top:12px;font-size:12px;color:var(--fg-3)}
+.demo summary{cursor:pointer;color:var(--fg-2);list-style:none;display:flex;align-items:center;gap:6px}
+.demo summary::-webkit-details-marker{display:none}
+.demo ul{margin:8px 0 0;padding-left:18px;display:grid;gap:3px}
+.demo code{font-family:var(--f-mono);color:var(--fg-2)}
+
+/* ---------- tablet e celular ---------- */
+@media (max-width:1100px){
+  .stage{grid-template-columns:minmax(0,1fr)}
+  .radar{display:none}
+}
+@media (max-width:900px){
+  .auth{grid-template-columns:minmax(0,1fr)}
+  .hero{border-right:0;border-bottom:1px solid var(--line);padding:20px 20px 22px;gap:14px}
+  .hero h2{font-size:26px;margin:6px 0 6px;max-width:none}
+  .hero .lead{font-size:13.5px}
+  .stage,.trust.hero-trust{display:none}
+  .brand-row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+  .side{padding:18px 16px 20px}
+  .side-top{display:none}
+  .side-mid{padding:0 0 18px;place-items:start center}
+  .card{padding:22px 18px}
+  .card h1{font-size:23px}
+}
+@media (min-width:901px){ .hero .ibtn{display:none} }
+@media (min-width:641px) and (max-width:900px){
+  .hero{padding:28px 32px 26px}
+  .hero h2{font-size:34px}
+  .stage{display:grid}
+  .pillars{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .side{padding:36px 32px 28px}
+  .side-mid{place-items:center}
+  .card{padding:30px 28px}
+}
+@media (max-width:380px){ .otp{gap:5px} .otp input{min-height:48px;font-size:19px} .rules{grid-template-columns:1fr} }
+@media (prefers-reduced-motion: reduce){ *{animation:none!important;transition:none!important} }
+</style>
+</head>
+<body>
+<canvas id="neural" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+
+<div class="auth">
+  <!-- Apresentação: só informação institucional, nada de dado operacional antes do login -->
+  <section class="hero" aria-label="Portal IRMEN">
+    <div class="brand-row">
+      <div class="brand"><span class="logo">IR</span><div><b>PORTAL IRMEN</b><small>Plataforma operacional</small></div></div>
+      <button class="ibtn" type="button" data-theme-toggle aria-label="Alternar tema claro e escuro"></button>
+    </div>
+
+    <div>
+      <div class="eyebrow">Comercial · Crédito · Operação</div>
+      <h2>Da oportunidade ao <em>faturamento</em>, num só comando.</h2>
+      <p class="lead">Funil comercial, Mesa de Crédito, conversas e metas da equipe no mesmo lugar, com cada decisão registrada.</p>
+    </div>
+
+    <div class="stage">
+      <div class="radar" aria-hidden="true">
+        <svg viewBox="0 0 300 300">
+          <circle class="ring" cx="150" cy="150" r="140"/>
+          <circle class="ring" cx="150" cy="150" r="108" stroke-dasharray="2 6"/>
+          <circle class="ring" cx="150" cy="150" r="74"/>
+          <g class="ticks" id="ticks"></g>
+          <circle class="arc1" cx="150" cy="150" r="124"/>
+          <circle class="arc2" cx="150" cy="150" r="92"/>
+          <g class="sweep"><path d="M150 150 L150 10 A140 140 0 0 1 248 50 Z" fill="url(#sw)" opacity=".35"/></g>
+          <defs><linearGradient id="sw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--arc)" stop-opacity=".5"/><stop offset="1" stop-color="var(--arc)" stop-opacity="0"/></linearGradient></defs>
+          <circle class="node" cx="150" cy="10" r="5"/><text x="150" y="-4" text-anchor="middle">CRM</text>
+          <circle class="node hot" cx="290" cy="150" r="5"/><text x="300" y="138" text-anchor="end">CRÉDITO</text>
+          <circle class="node" cx="150" cy="290" r="5"/><text x="150" y="312" text-anchor="middle">OPERAÇÃO</text>
+          <circle class="node" cx="10" cy="150" r="5"/><text x="0" y="138">CONVERSAS</text>
+        </svg>
+        <div class="core"><span class="orb"></span></div>
+      </div>
+      <div class="pillars">
+        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5zM3 13l9 5 9-5M3 17l9 5 9-5"/></svg>Funil</span><b>8 fases</b><span>Da oportunidade à faturada, com histórico de cada movimento</span></div>
+        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6M5 10v8M9 10v8M15 10v8M19 10v8M3 21h18"/></svg>Crédito</span><b>5 bancos</b><span>Esteira da Mesa com SLA em horas úteis</span></div>
+        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M6 19a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM6 13V9a4 4 0 0 1 4-4h5M18 11v4a4 4 0 0 1-4 4H9"/></svg>Rastreio</span><b>OPP → OP → PED</b><span>Códigos únicos do lead ao pedido</span></div>
+        <div class="panel pillar"><span class="k"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18M7 15l4-4 3 3 6-7"/></svg>Gestão</span><b>Metas e BI</b><span>Números que descem até a operação de origem</span></div>
+      </div>
+    </div>
+
+    <div class="trust hero-trust">
+      <span><svg class="i" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zM9 12l2 2 4-4"/></svg>Acesso somente por convite</span>
+      <span><svg class="i" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg>Permissões por função</span>
+      <span><svg class="i" viewBox="0 0 24 24"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM12 6v6l4 2"/></svg>Sessão encerrada por inatividade</span>
+      <span><svg class="i" viewBox="0 0 24 24"><path d="M9 11l3 3 8-8M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Tratamento de dados conforme a LGPD</span>
+    </div>
+  </section>
+
+  <section class="side">
+    <div class="side-top"><button class="ibtn" type="button" data-theme-toggle aria-label="Alternar tema claro e escuro"></button></div>
+
+    <div class="side-mid">
+      <div style="width:min(440px,100%)">
+      <div class="panel hud card">
+
+        <!-- ENTRAR -->
+        <div class="view on" id="v-login" aria-labelledby="t-login">
+          <div class="eyebrow">Acesso seguro</div>
+          <h1 id="t-login">Entrar no portal</h1>
+          <p class="intro">Use o e-mail corporativo do seu convite.</p>
+          <div class="alert crit" id="login-alert" role="alert"></div>
+          <form id="f-login" novalidate>
+            <div class="field">
+              <label for="email">E-mail</label>
+              <div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg><input id="email" name="email" type="email" autocomplete="username" inputmode="email" placeholder="nome@empresa.com.br" aria-describedby="email-err"></div>
+              <span class="err" id="email-err"></span>
+            </div>
+            <div class="field">
+              <label for="senha"><span>Senha</span></label>
+              <div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg><input id="senha" name="senha" type="password" autocomplete="current-password" placeholder="Sua senha" aria-describedby="senha-err caps"><button class="eye" type="button" data-eye="senha" aria-label="Mostrar senha" aria-pressed="false"></button></div>
+              <span class="caps" id="caps">Caps Lock ativado</span>
+              <span class="err" id="senha-err"></span>
+            </div>
+            <div class="row">
+              <label class="check"><input type="checkbox" id="lembrar">Manter conectado neste dispositivo</label>
+              <button class="link" type="button" data-to="v-rec1">Esqueci minha senha</button>
+            </div>
+            <button class="btn pri block" type="submit" id="b-login"><span class="spin" aria-hidden="true"></span><span class="lbl">Entrar</span><svg class="i lbl-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </form>
+          <div class="sep" style="margin-top:16px">primeiro acesso</div>
+          <div class="note"><svg class="i" viewBox="0 0 24 24"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 20v-2a4 4 0 0 0-3-3.9M16 2.1a4 4 0 0 1 0 7.8"/></svg><span>O acesso é criado pela administração. Abra o link do convite que chegou no seu e-mail para definir a senha.</span></div>
+        </div>
+
+        <!-- RECUPERAÇÃO 1: e-mail -->
+        <div class="view" id="v-rec1" aria-labelledby="t-rec1">
+          <button class="link" type="button" data-to="v-login" style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-bottom:10px"><svg class="i" viewBox="0 0 24 24" style="width:15px;height:15px"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Voltar ao login</button>
+          <div class="steps" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+          <div class="eyebrow">Recuperar acesso · 1 de 3</div>
+          <h1 id="t-rec1">Esqueceu a senha?</h1>
+          <p class="intro">Informe o e-mail do seu acesso. Enviaremos um código de 6 dígitos válido por 10 minutos.</p>
+          <form id="f-rec1" novalidate>
+            <div class="field">
+              <label for="r-email">E-mail</label>
+              <div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M3 5h18v14H3zM3 6l9 7 9-7"/></svg><input id="r-email" type="email" autocomplete="username" inputmode="email" placeholder="nome@empresa.com.br" aria-describedby="r-email-err"></div>
+              <span class="err" id="r-email-err"></span>
+            </div>
+            <button class="btn pri block" type="submit" id="b-rec1"><span class="spin" aria-hidden="true"></span><span class="lbl">Enviar código</span><svg class="i lbl-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </form>
+          <p class="hint" style="margin:14px 0 0">Por segurança, a resposta é a mesma exista ou não uma conta com esse e-mail.</p>
+        </div>
+
+        <!-- RECUPERAÇÃO 2: código -->
+        <div class="view" id="v-rec2" aria-labelledby="t-rec2">
+          <button class="link" type="button" data-to="v-rec1" style="align-self:flex-start;display:inline-flex;align-items:center;gap:6px;margin-bottom:10px"><svg class="i" viewBox="0 0 24 24" style="width:15px;height:15px"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>Trocar e-mail</button>
+          <div class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i></div>
+          <div class="eyebrow">Recuperar acesso · 2 de 3</div>
+          <h1 id="t-rec2">Digite o código</h1>
+          <p class="intro">Se houver uma conta para <b id="r-email-echo" class="mono" style="color:var(--fg);font-weight:500"></b>, o código chegou agora.</p>
+          <div class="alert crit" id="otp-alert" role="alert"></div>
+          <form id="f-rec2" novalidate>
+            <fieldset style="border:0;padding:0;margin:0"><legend class="sr">Código de 6 dígitos</legend>
+              <div class="otp" id="otp"></div>
+            </fieldset>
+            <div class="row" style="font-size:12.5px"><span class="dim" id="otp-timer">Reenviar código em <span class="mono">0:45</span></span><button class="link" type="button" id="b-resend" hidden>Reenviar código</button></div>
+            <button class="btn pri block" type="submit" id="b-rec2"><span class="spin" aria-hidden="true"></span><span class="lbl">Validar código</span><svg class="i lbl-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </form>
+          <p class="hint" style="margin:14px 0 0">Não chegou? Confira o spam ou fale com a administração do portal.</p>
+        </div>
+
+        <!-- RECUPERAÇÃO 3: nova senha -->
+        <div class="view" id="v-rec3" aria-labelledby="t-rec3">
+          <div class="steps" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+          <div class="eyebrow">Recuperar acesso · 3 de 3</div>
+          <h1 id="t-rec3">Crie uma nova senha</h1>
+          <p class="intro">Ao salvar, todas as sessões abertas com a senha antiga são encerradas.</p>
+          <form id="f-rec3" novalidate>
+            <div class="field">
+              <label for="n1"><span>Nova senha</span><span class="dim" id="n1-lvl"></span></label>
+              <div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg><input id="n1" type="password" autocomplete="new-password" placeholder="Mínimo de 10 caracteres" aria-describedby="rules"><button class="eye" type="button" data-eye="n1" aria-label="Mostrar senha" aria-pressed="false"></button></div>
+              <div class="meter" id="meter" data-s="0" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+              <ul class="rules" id="rules"><li data-r="len">10 caracteres ou mais</li><li data-r="up">Letra maiúscula</li><li data-r="num">Número</li><li data-r="sym">Símbolo</li></ul>
+            </div>
+            <div class="field">
+              <label for="n2">Confirmar nova senha</label>
+              <div class="ctl"><svg class="i" viewBox="0 0 24 24"><path d="M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4"/></svg><input id="n2" type="password" autocomplete="new-password" placeholder="Repita a senha" aria-describedby="n2-err"><button class="eye" type="button" data-eye="n2" aria-label="Mostrar senha" aria-pressed="false"></button></div>
+              <span class="err" id="n2-err"></span>
+            </div>
+            <button class="btn pri block" type="submit" id="b-rec3"><span class="spin" aria-hidden="true"></span><span class="lbl">Salvar nova senha</span><svg class="i lbl-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </form>
+        </div>
+
+        <!-- RECUPERAÇÃO 4: sucesso -->
+        <div class="view" id="v-rec4" aria-labelledby="t-rec4">
+          <div class="done">
+            <span class="badge"><svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></span>
+            <div class="eyebrow" style="color:var(--good)">Acesso recuperado</div>
+            <h1 id="t-rec4" style="margin:0">Senha atualizada</h1>
+            <p class="intro" style="margin:0 0 6px">As sessões abertas em outros dispositivos foram encerradas. Entre de novo com a nova senha.</p>
+            <button class="btn pri block" type="button" data-to="v-login"><span class="lbl">Ir para o login</span><svg class="i lbl-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+
+        <!-- ENTRADA LIBERADA -->
+        <div class="view" id="v-ok" aria-labelledby="t-ok">
+          <div class="done">
+            <span class="badge" style="color:var(--arc);background:var(--arc-soft)"><span class="orb" style="width:34px;height:34px"></span></span>
+            <div class="eyebrow">Acesso liberado</div>
+            <h1 id="t-ok" style="margin:0">Bem-vindo de volta</h1>
+            <p class="intro" style="margin:0">Carregando seu painel…</p>
+            <div style="width:100%;height:4px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:6px"><i id="ok-bar" style="display:block;height:100%;width:0;background:linear-gradient(90deg,var(--arc),var(--violet));transition:width 1.4s ease"></i></div>
+          </div>
+        </div>
+
+        <div class="card-foot"><span>Problemas para entrar? <a href="#" data-help>Fale com a administração</a></span><span class="mono">v3 · demo</span></div>
+      </div>
+
+      <details class="demo">
+        <summary><span class="pill warn" style="font-size:11px">Protótipo</span>Nenhum dado é enviado. Como testar os estados</summary>
+        <ul>
+          <li>Entrar: qualquer e-mail válido e senha com 8 ou mais caracteres.</li>
+          <li>Senha incorreta: use uma senha que contenha <code>errada</code>. Na 3ª tentativa o acesso fica bloqueado.</li>
+          <li>Recuperação: qualquer código de 6 dígitos funciona, exceto <code>000000</code> (código inválido).</li>
+          <li>Não digite senhas reais: esta página não tem servidor e não guarda nada.</li>
+        </ul>
+      </details>
+      </div>
+    </div>
+
+    <div class="side-bot"><span>© 2026 IRMEN · Uso restrito a pessoas autorizadas</span><nav><a href="#" data-help>Privacidade</a><a href="#" data-help>Termos</a><a href="#" data-help>Suporte</a></nav></div>
+  </section>
+</div>
+
+<script>
+(function () {
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ICON = {
+    sun: 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4',
+    moon: 'M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z',
+    eye: 'M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z',
+    eyeoff: 'M3 3l18 18M10.6 10.6a3 3 0 0 0 4.2 4.2M9.9 5.1A10.4 10.4 0 0 1 12 5c7 0 11 7 11 7a18 18 0 0 1-3.2 4M6.1 6.1A18 18 0 0 0 1 12s4 7 11 7a10.7 10.7 0 0 0 5.9-1.9',
+    alert: 'M12 9v4M12 17h.01M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z',
+    lock: 'M5 11h14v10H5zM8 11V7a4 4 0 0 1 8 0v4'
+  };
+  const icon = (n, st) => `<svg class="i" viewBox="0 0 24 24" aria-hidden="true"${st ? ` style="${st}"` : ''}><path d="${ICON[n]}"/></svg>`;
+  const isDark = () => document.documentElement.getAttribute('data-theme') !== 'light';
+  const paintTheme = () => $$('[data-theme-toggle]').forEach((b) => (b.innerHTML = icon(isDark() ? 'sun' : 'moon')));
+  paintTheme();
+  $$('[data-eye]').forEach((b) => (b.innerHTML = icon('eye')));
+
+  /* marcas do radar */
+  const tk = $('#ticks');
+  if (tk) for (let i = 0; i < 60; i++) { const a = i * 6 * Math.PI / 180, r1 = i % 5 ? 132 : 128, r2 = 138; tk.insertAdjacentHTML('beforeend', `<line x1="${150 + r1 * Math.sin(a)}" y1="${150 - r1 * Math.cos(a)}" x2="${150 + r2 * Math.sin(a)}" y2="${150 - r2 * Math.cos(a)}"/>`); }
+
+  /* campos do código */
+  const otp = $('#otp');
+  otp.innerHTML = Array.from({ length: 6 }, (_, i) => `<input inputmode="numeric" pattern="[0-9]*" maxlength="1" ${i === 0 ? 'autocomplete="one-time-code"' : 'autocomplete="off"'} aria-label="Dígito ${i + 1} de 6">`).join('');
+  const boxes = $$('input', otp);
+
+  /* navegação entre telas do cartão */
+  function show(id) {
+    $$('.view').forEach((v) => v.classList.toggle('on', v.id === id));
+    const v = document.getElementById(id);
+    const f = v.querySelector('input:not([type=checkbox]), .btn.pri');
+    if (f) setTimeout(() => f.focus({ preventScroll: true }), 30);
+    if (id === 'v-rec2') startTimer();
+    if (id === 'v-login') { $('#login-alert').classList.remove('on'); }
+    if (matchMedia('(max-width:900px)').matches) $('.card').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  /* utilidades de estado */
+  const validEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+  function fieldErr(input, msgEl, msg) { input.setAttribute('aria-invalid', msg ? 'true' : 'false'); msgEl.textContent = msg || ''; }
+  function busy(btn, on, label) { btn.classList.toggle('busy', on); btn.disabled = on; if (label) $('.lbl', btn).textContent = label; }
+  function alertBox(el, kind, title, text) { el.className = 'alert ' + kind + ' on'; el.innerHTML = `${icon(kind === 'crit' ? 'alert' : 'lock')}<p><b>${title}</b>${text}</p>`; }
+
+  /* ENTRAR */
+  let fails = 0, lockedUntil = 0;
+  $('#f-login').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const em = $('#email'), pw = $('#senha'), btn = $('#b-login'), al = $('#login-alert');
+    al.classList.remove('on');
+    if (Date.now() < lockedUntil) { alertBox(al, 'warn', 'Acesso bloqueado temporariamente.', ' Aguarde 15 minutos ou recupere a senha.'); return; }
+    let ok = true;
+    if (!em.value.trim()) { fieldErr(em, $('#email-err'), 'Informe seu e-mail.'); ok = false; }
+    else if (!validEmail(em.value)) { fieldErr(em, $('#email-err'), 'Formato de e-mail inválido.'); ok = false; }
+    else fieldErr(em, $('#email-err'), '');
+    if (!pw.value) { fieldErr(pw, $('#senha-err'), 'Informe sua senha.'); ok = false; }
+    else if (pw.value.length < 8) { fieldErr(pw, $('#senha-err'), 'A senha tem pelo menos 8 caracteres.'); ok = false; }
+    else fieldErr(pw, $('#senha-err'), '');
+    if (!ok) { (em.getAttribute('aria-invalid') === 'true' ? em : pw).focus(); return; }
+    busy(btn, true, 'Verificando…');
+    setTimeout(() => {
+      busy(btn, false, 'Entrar');
+      if (/errada/i.test(pw.value)) {
+        fails++;
+        pw.value = ''; pw.focus();
+        if (fails >= 3) { lockedUntil = Date.now() + 15 * 60 * 1000; alertBox(al, 'warn', 'Acesso bloqueado por 15 minutos.', ' Foram 3 tentativas sem sucesso. Use "Esqueci minha senha" para liberar agora.'); }
+        else alertBox(al, 'crit', 'E-mail ou senha incorretos.', ` Restam ${3 - fails} tentativa${3 - fails > 1 ? 's' : ''} antes do bloqueio temporário.`);
+        return;
+      }
+      fails = 0;
+      pw.value = '';
+      show('v-ok');
+      requestAnimationFrame(() => ($('#ok-bar').style.width = '100%'));
+      setTimeout(() => { location.href = '../previa-mobile/'; }, reduce ? 600 : 1600);
+    }, 1100);
+  });
+  ['email', 'senha'].forEach((id) => $('#' + id).addEventListener('input', (e) => { if (e.target.getAttribute('aria-invalid') === 'true') fieldErr(e.target, $('#' + id + '-err'), ''); }));
+
+  /* Caps Lock */
+  ['senha', 'n1', 'n2'].forEach((id) => $('#' + id).addEventListener('keyup', (e) => { if (id === 'senha' && e.getModifierState) $('#caps').classList.toggle('on', e.getModifierState('CapsLock')); }));
+
+  /* mostrar/ocultar senha */
+  document.addEventListener('click', (e) => {
+    const eb = e.target.closest('[data-eye]');
+    if (eb) { const inp = document.getElementById(eb.dataset.eye); const vis = inp.type === 'password'; inp.type = vis ? 'text' : 'password'; eb.innerHTML = icon(vis ? 'eyeoff' : 'eye'); eb.setAttribute('aria-pressed', vis); eb.setAttribute('aria-label', vis ? 'Ocultar senha' : 'Mostrar senha'); inp.focus(); return; }
+    const to = e.target.closest('[data-to]');
+    if (to) { if (to.dataset.to === 'v-rec1' && validEmail($('#email').value)) $('#r-email').value = $('#email').value; show(to.dataset.to); return; }
+    if (e.target.closest('[data-help]')) { e.preventDefault(); return; }
+    if (e.target.closest('[data-theme-toggle]')) { document.documentElement.setAttribute('data-theme', isDark() ? 'light' : 'dark'); paintTheme(); net.recolor(); }
+  });
+
+  /* RECUPERAÇÃO 1 */
+  $('#f-rec1').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const em = $('#r-email'), btn = $('#b-rec1');
+    if (!validEmail(em.value)) { fieldErr(em, $('#r-email-err'), em.value.trim() ? 'Formato de e-mail inválido.' : 'Informe seu e-mail.'); em.focus(); return; }
+    fieldErr(em, $('#r-email-err'), '');
+    busy(btn, true, 'Enviando…');
+    setTimeout(() => { busy(btn, false, 'Enviar código'); $('#r-email-echo').textContent = em.value.trim(); boxes.forEach((b) => (b.value = '')); $('#otp-alert').classList.remove('on'); show('v-rec2'); }, 900);
+  });
+
+  /* RECUPERAÇÃO 2: código */
+  let timer = 0;
+  function startTimer() {
+    clearInterval(timer);
+    let s = 45; const t = $('#otp-timer'), r = $('#b-resend');
+    t.hidden = false; r.hidden = true;
+    const tick = () => { t.innerHTML = `Reenviar código em <span class="mono">0:${String(s).padStart(2, '0')}</span>`; if (s-- <= 0) { clearInterval(timer); t.hidden = true; r.hidden = false; } };
+    tick(); timer = setInterval(tick, 1000);
+  }
+  $('#b-resend').addEventListener('click', () => { startTimer(); alertBox($('#otp-alert'), 'good', 'Novo código enviado.', ' O anterior deixou de valer.'); boxes[0].focus(); });
+  boxes.forEach((b, i) => {
+    b.addEventListener('input', () => { b.value = b.value.replace(/\D/g, '').slice(-1); otp.classList.remove('bad'); if (b.value && boxes[i + 1]) boxes[i + 1].focus(); if (boxes.every((x) => x.value)) $('#f-rec2').requestSubmit(); });
+    b.addEventListener('keydown', (e) => { if (e.key === 'Backspace' && !b.value && boxes[i - 1]) { boxes[i - 1].focus(); boxes[i - 1].value = ''; } if (e.key === 'ArrowLeft' && boxes[i - 1]) boxes[i - 1].focus(); if (e.key === 'ArrowRight' && boxes[i + 1]) boxes[i + 1].focus(); });
+    b.addEventListener('paste', (e) => { const d = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6); if (!d) return; e.preventDefault(); d.split('').forEach((c, k) => { if (boxes[k]) boxes[k].value = c; }); (boxes[d.length] || boxes[5]).focus(); if (d.length === 6) $('#f-rec2').requestSubmit(); });
+  });
+  $('#f-rec2').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const code = boxes.map((x) => x.value).join(''), btn = $('#b-rec2'), al = $('#otp-alert');
+    if (code.length < 6) { otp.classList.add('bad'); alertBox(al, 'crit', 'Código incompleto.', ' Digite os 6 dígitos.'); (boxes.find((x) => !x.value) || boxes[0]).focus(); return; }
+    busy(btn, true, 'Validando…');
+    setTimeout(() => {
+      busy(btn, false, 'Validar código');
+      if (code === '000000') { otp.classList.add('bad'); alertBox(al, 'crit', 'Código inválido ou expirado.', ' Confira os números ou peça um novo código.'); boxes.forEach((x) => (x.value = '')); boxes[0].focus(); return; }
+      clearInterval(timer); al.classList.remove('on'); show('v-rec3');
+    }, 800);
+  });
+
+  /* RECUPERAÇÃO 3: nova senha */
+  const rules = { len: (v) => v.length >= 10, up: (v) => /[A-Z]/.test(v), num: (v) => /\d/.test(v), sym: (v) => /[^A-Za-z0-9]/.test(v) };
+  const LVL = ['', 'Fraca', 'Razoável', 'Boa', 'Forte'];
+  $('#n1').addEventListener('input', (e) => {
+    const v = e.target.value; let s = 0;
+    $$('#rules li').forEach((li) => { const ok = rules[li.dataset.r](v); li.classList.toggle('ok', ok); if (ok) s++; });
+    $('#meter').dataset.s = v ? Math.max(1, s) : 0;
+    $('#n1-lvl').textContent = v ? LVL[Math.max(1, s)] : '';
+  });
+  $('#f-rec3').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const a = $('#n1'), b = $('#n2'), btn = $('#b-rec3');
+    const allOk = Object.values(rules).every((f) => f(a.value));
+    if (!allOk) { a.setAttribute('aria-invalid', 'true'); a.focus(); $('#rules').animate && !reduce && $('#rules').animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-4px)' }, { transform: 'translateX(4px)' }, { transform: 'translateX(0)' }], { duration: 240 }); return; }
+    a.setAttribute('aria-invalid', 'false');
+    if (a.value !== b.value) { fieldErr(b, $('#n2-err'), 'As senhas não são iguais.'); b.focus(); return; }
+    fieldErr(b, $('#n2-err'), '');
+    busy(btn, true, 'Salvando…');
+    setTimeout(() => { busy(btn, false, 'Salvar nova senha'); a.value = b.value = ''; $('#n1').dispatchEvent(new Event('input')); fails = 0; lockedUntil = 0; show('v-rec4'); }, 1000);
+  });
+
+  /* rede neural (mesma do protótipo) */
+  const net = (function () {
+    const cv = $('#neural'), ctx = cv.getContext('2d');
+    const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+    let W = 0, H = 0, pts = [], mouse = { x: -999, y: -999 }, c1 = '63,208,255', c2 = '239,63,79', raf = 0;
+    function recolor() { c1 = css('--net') || c1; c2 = css('--net-2') || c2; if (reduce) draw(); }
+    function size() {
+      const dpr = Math.min(2, window.devicePixelRatio || 1); W = innerWidth; H = innerHeight;
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const n = Math.min(110, Math.round(W * H / 16000));
+      pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - 0.5) * 0.25, vy: (Math.random() - 0.5) * 0.25, r: Math.random() * 1.4 + 0.6, hot: Math.random() < 0.08 }));
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      const L = 130;
+      for (let i = 0; i < pts.length; i++) {
+        const p = pts[i];
+        if (!reduce) {
+          const dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy;
+          if (d2 < 22000) { const f = (1 - d2 / 22000) * 0.6; p.vx += (dx / Math.sqrt(d2 + 1)) * f * 0.06; p.vy += (dy / Math.sqrt(d2 + 1)) * f * 0.06; }
+          p.vx *= 0.985; p.vy *= 0.985; p.vx += (Math.random() - 0.5) * 0.01; p.vy += (Math.random() - 0.5) * 0.01;
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -20) p.x = W + 20; if (p.x > W + 20) p.x = -20; if (p.y < -20) p.y = H + 20; if (p.y > H + 20) p.y = -20;
+        }
+        for (let j = i + 1; j < pts.length; j++) {
+          const q = pts[j], dx = p.x - q.x, dy = p.y - q.y, d = dx * dx + dy * dy;
+          if (d < L * L) { ctx.strokeStyle = `rgba(${p.hot || q.hot ? c2 : c1},${(1 - Math.sqrt(d) / L) * 0.22})`; ctx.lineWidth = 0.7; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+        }
+        const md = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+        if (md < 170) { ctx.strokeStyle = `rgba(${c1},${(1 - md / 170) * 0.45})`; ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+        ctx.fillStyle = `rgba(${p.hot ? c2 : c1},${p.hot ? 0.9 : 0.6})`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r + (md < 120 ? 1 : 0), 0, Math.PI * 2); ctx.fill();
+      }
+    }
+    function loop() { draw(); raf = requestAnimationFrame(loop); }
+    size(); recolor();
+    addEventListener('resize', () => { size(); if (reduce) draw(); });
+    addEventListener('pointermove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; }, { passive: true });
+    addEventListener('pointerleave', () => { mouse.x = mouse.y = -999; });
+    document.addEventListener('visibilitychange', () => { if (document.hidden) cancelAnimationFrame(raf); else if (!reduce) loop(); });
+    if (reduce) draw(); else loop();
+    return { recolor };
+  })();
+
+  setTimeout(() => $('#email').focus({ preventScroll: true }), 50);
+})();
+</script>
+</body>
+</html>
