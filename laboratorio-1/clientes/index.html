@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Central de Clientes</title>
+<link rel="stylesheet" href="app.css?r=4">
+<style>html, body { margin: 0; background: #06080c; }</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="app.js?r=4"></script>
+<script>
+  // Keep only the two Portal themes on <html>; the header toggle switches between them.
+  (function () {
+    var last = document.documentElement.dataset.theme;
+    new MutationObserver(function () {
+      var t = document.documentElement.dataset.theme;
+      if (t === 'irmen-executive-light' || t === 'irmen-industrial-dark') last = t;
+      else if (last) document.documentElement.dataset.theme = last;
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  })();
+</script>
+</body>
+</html>
