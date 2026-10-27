@@ -14346,7 +14346,7 @@
 
   // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-lab1/entry.tsx
   init_define_process_env();
-  var import_react38 = __toESM(require_react());
+  var import_react40 = __toESM(require_react());
   var import_client2 = __toESM(require_client());
 
   // src/components/layout/app-shell.tsx
@@ -14439,6 +14439,15 @@
     ["rect", { width: "20", height: "5", x: "2", y: "3", rx: "1", key: "1wp1u1" }],
     ["path", { d: "M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8", key: "1s80jp" }],
     ["path", { d: "M10 12h4", key: "a56b0p" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/arrow-left-right.js
+  init_define_process_env();
+  var ArrowLeftRight = createLucideIcon("ArrowLeftRight", [
+    ["path", { d: "M8 3 4 7l4 4", key: "9rb6wj" }],
+    ["path", { d: "M4 7h16", key: "6tx8e3" }],
+    ["path", { d: "m16 21 4-4-4-4", key: "siv7j2" }],
+    ["path", { d: "M20 17H4", key: "h6l3hr" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/arrow-left.js
@@ -14543,6 +14552,21 @@
     ["path", { d: "M16 14h.01", key: "1gbofw" }],
     ["path", { d: "M8 10h.01", key: "19clt8" }],
     ["path", { d: "M8 14h.01", key: "6423bh" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/calculator.js
+  init_define_process_env();
+  var Calculator = createLucideIcon("Calculator", [
+    ["rect", { width: "16", height: "20", x: "4", y: "2", rx: "2", key: "1nb95v" }],
+    ["line", { x1: "8", x2: "16", y1: "6", y2: "6", key: "x4nwl0" }],
+    ["line", { x1: "16", x2: "16", y1: "14", y2: "18", key: "wjye3r" }],
+    ["path", { d: "M16 10h.01", key: "1m94wz" }],
+    ["path", { d: "M12 10h.01", key: "1nrarc" }],
+    ["path", { d: "M8 10h.01", key: "19clt8" }],
+    ["path", { d: "M12 14h.01", key: "1etili" }],
+    ["path", { d: "M8 14h.01", key: "6423bh" }],
+    ["path", { d: "M12 18h.01", key: "mhygvu" }],
+    ["path", { d: "M8 18h.01", key: "lrp35t" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/calendar-days.js
@@ -15119,6 +15143,9 @@
   }
   function usePathname() {
     return window.__route?.() ?? "/operations";
+  }
+  function useSearchParams() {
+    return new URLSearchParams(location.search);
   }
 
   // src/components/ui/button.tsx
@@ -18531,6 +18558,7 @@
   var commercialDeskQueueAction = (...a) => window.__act("commercialDeskQueueAction", a);
   var commercialDeskDecisionAction = (...a) => window.__act("commercialDeskDecisionAction", a);
   var commercialAuthorityAction = (...a) => window.__act("commercialAuthorityAction", a);
+  var commercialClientRelationshipsAction = (...a) => window.__act("commercialClientRelationshipsAction", a);
 
   // src/components/layout/coverage-map-link.tsx
   init_define_process_env();
@@ -41308,7 +41336,7 @@ ${suffix}`;
   }
 
   // src/modules/operation/components/detail-v2/operation-detail-cockpit.tsx
-  var import_react37 = __toESM(require_react());
+  var import_react38 = __toESM(require_react());
 
   // src/modules/client/components/relationship-interactions.tsx
   init_define_process_env();
@@ -42898,7 +42926,7 @@ ${suffix}`;
                       ] })
                     ] })
                   ] }),
-                  editable && bank.availableActions.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", { className: "border-t border-ui-850 pt-1.5 flex flex-wrap justify-end gap-1.5", children: bank.availableActions.map((action) => /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(
+                  editable && bank.availableActions.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", { className: "od-bank__acts border-t border-ui-850 pt-1.5 flex flex-wrap justify-end gap-1.5", children: bank.availableActions.map((action) => /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(
                     "button",
                     {
                       className: "rounded-md border border-ui-700 bg-ui-900 px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-ui-300 transition hover:border-ui-500 hover:bg-ui-800 hover:text-foreground",
@@ -43677,7 +43705,63 @@ ${suffix}`;
 
   // src/modules/operation/components/detail-v2/cockpit-parts.tsx
   init_define_process_env();
+  var import_react32 = __toESM(require_react());
+
+  // src/modules/operation/components/detail-v2/cockpit-commercial-link.tsx
+  init_define_process_env();
   var import_react31 = __toESM(require_react());
+
+  // src/core/domain/commercial/commercial-workflow.ts
+  init_define_process_env();
+
+  // src/core/domain/commercial/commercial-money.ts
+  init_define_process_env();
+
+  // src/core/domain/commercial/commercial-workflow.ts
+  function currentOperationLink(opportunity) {
+    return opportunity.operationLink?.cycle === opportunity.cycle ? opportunity.operationLink : null;
+  }
+
+  // src/modules/operation/components/detail-v2/cockpit-commercial-link.tsx
+  var commercialOrderHref = (opportunityId) => `/sales-funnel/orders/new?opportunity=${encodeURIComponent(opportunityId)}`;
+  var commercialOpportunityHref = (opportunityId) => `/sales-funnel/${encodeURIComponent(opportunityId)}`;
+  function useLinkedOpportunity(operationId, clientId) {
+    const [state, setState] = (0, import_react31.useState)({ kind: "loading" });
+    (0, import_react31.useEffect)(() => {
+      let alive = true;
+      if (!clientId) {
+        setState({ kind: "none" });
+        return;
+      }
+      setState({ kind: "loading" });
+      void (async () => {
+        try {
+          const result = await commercialClientRelationshipsAction(clientId);
+          if (!alive) return;
+          if (!result.success) {
+            setState({ kind: "unavailable" });
+            return;
+          }
+          const row = result.data.find((record3) => currentOperationLink(record3.opportunity)?.operationId === operationId);
+          if (!row) {
+            setState({ kind: "none" });
+            return;
+          }
+          const print = await commercialAuthorityAction("commercial_order.print", row.opportunity.sellerId);
+          if (!alive) return;
+          setState({ kind: "linked", opportunity: { id: row.opportunity.id, humanIdentifier: row.opportunity.humanIdentifier, canPrintOrder: print.success } });
+        } catch {
+          if (alive) setState({ kind: "unavailable" });
+        }
+      })();
+      return () => {
+        alive = false;
+      };
+    }, [operationId, clientId]);
+    return state;
+  }
+
+  // src/modules/operation/components/detail-v2/cockpit-parts.tsx
   var import_jsx_runtime37 = __toESM(require_jsx_runtime());
   var brl = (value) => value === null ? "N\xE3o informado" : new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
   var dateLabel = (iso3) => iso3 ? new Date(iso3).toLocaleDateString("pt-BR") : "";
@@ -43701,7 +43785,7 @@ ${suffix}`;
     ] });
   }
   function CockpitHero(props) {
-    const { readModel } = props;
+    const { readModel, opportunity } = props;
     const seller = readModel.ownership.seller?.displayName || "Vendedor n\xE3o informado";
     const opened = dateLabel(readModel.identity.openedAt);
     return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("header", { className: "odx-hero", id: "odx-resumo", children: [
@@ -43711,6 +43795,10 @@ ${suffix}`;
           /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-hero__titleRow", children: [
             /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("h1", { className: "odx-hero__title", children: operationIdentifier(null, readModel.identity.operationNumber, "OPERA\xC7\xC3O #") }),
             /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(OperationalLifecycleIndicator, { value: readModel.lifecycle?.state ?? "received" })
+          ] }),
+          opportunity.kind === "linked" && /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("p", { className: "odx-hero__opp", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("span", { className: "odx-meta-k", children: "Oportunidade" }),
+            /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Link, { className: "odx-link odx-mono", href: commercialOpportunityHref(opportunity.opportunity.id), children: opportunity.opportunity.humanIdentifier })
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("ul", { className: "odx-hero__meta", "aria-label": "Contexto da opera\xE7\xE3o", children: [
             /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("li", { children: [
@@ -43806,9 +43894,15 @@ ${suffix}`;
       ] })
     ] }, item.k)) });
   }
-  function CockpitToolbar({ sections, onBack, onPrint, onFocusCommunication }) {
-    const [active, setActive] = (0, import_react31.useState)(sections[0]?.id ?? "");
-    (0, import_react31.useEffect)(() => {
+  function CockpitBackLink({ onBack }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("button", { className: "odx-back", onClick: onBack, type: "button", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(ArrowLeft, { "aria-hidden": "true", size: 14 }),
+      "Centro de Opera\xE7\xF5es"
+    ] });
+  }
+  function CockpitToolbar({ sections, onPrintOrder, printOrderBlocked, onFocusCommunication }) {
+    const [active, setActive] = (0, import_react32.useState)(sections[0]?.id ?? "");
+    (0, import_react32.useEffect)(() => {
       const targets = sections.map((section) => document.getElementById(section.id)).filter((element) => Boolean(element));
       if (!("IntersectionObserver" in window) || targets.length === 0) return;
       const observer = new IntersectionObserver((entries) => {
@@ -43819,23 +43913,21 @@ ${suffix}`;
       return () => observer.disconnect();
     }, [sections]);
     return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-bar", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { "aria-label": "Voltar ao Centro de Opera\xE7\xF5es", className: "ds-button ds-button--secondary odx-bar__back", onClick: onBack, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(ArrowLeft, { "aria-hidden": "true", size: 15 }),
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("span", { className: "odx-bar__lbl", children: "Centro" })
-      ] }) }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("nav", { "aria-label": "Se\xE7\xF5es da opera\xE7\xE3o", className: "odx-nav", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("ul", { children: sections.map((section) => /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("a", { "aria-current": active === section.id ? "location" : void 0, href: `#${section.id}`, onClick: (event2) => {
         event2.preventDefault();
         jumpTo(section.id);
         setActive(section.id);
       }, children: section.label }) }, section.id)) }) }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-bar__acts", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { "aria-label": "Imprimir opera\xE7\xE3o", className: "ds-button ds-button--secondary odx-bar__print", onClick: onPrint, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { "aria-disabled": printOrderBlocked ? true : void 0, "aria-label": "Imprimir pedido", className: "ds-button ds-button--secondary odx-bar__print", onClick: () => {
+          if (!printOrderBlocked) onPrintOrder();
+        }, title: printOrderBlocked ?? "Abrir o pedido comercial para imprimir", type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
           /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Printer, { "aria-hidden": "true", size: 15 }),
           /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("span", { className: "odx-bar__lbl", children: "Imprimir" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { className: "ds-button ds-button--primary odx-bar__chat", onClick: onFocusCommunication, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { "aria-label": "Comunica\xE7\xE3o", className: "ds-button ds-button--primary odx-bar__chat", onClick: onFocusCommunication, title: "Escrever na comunica\xE7\xE3o", type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
           /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(MessageSquare, { "aria-hidden": "true", size: 15 }),
-          "Comunica\xE7\xE3o"
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("span", { className: "odx-bar__lbl", children: "Comunica\xE7\xE3o" })
         ] }) })
       ] })
     ] });
@@ -44015,8 +44107,8 @@ ${suffix}`;
     ] }) });
   }
   function TimelineFeed({ readModel }) {
-    const history3 = (0, import_react31.useMemo)(() => readModel.timeline.filter((item) => !["Mensagem", "Coment\xE1rio", "Coment\xE1rio humano"].includes(item.action)), [readModel.timeline]);
-    const [showAll, setShowAll] = (0, import_react31.useState)(false);
+    const history3 = (0, import_react32.useMemo)(() => readModel.timeline.filter((item) => !["Mensagem", "Coment\xE1rio", "Coment\xE1rio humano"].includes(item.action)), [readModel.timeline]);
+    const [showAll, setShowAll] = (0, import_react32.useState)(false);
     const visible = showAll ? history3 : history3.slice(0, 6);
     const unavailable = readModel.unavailableSections.includes("timeline");
     return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CockpitPanel, { aside: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "odx-chip", children: [
@@ -44050,11 +44142,11 @@ ${suffix}`;
 
   // src/modules/operation/components/detail-v2/cockpit-pending.tsx
   init_define_process_env();
-  var import_react35 = __toESM(require_react());
+  var import_react36 = __toESM(require_react());
 
   // src/modules/operation/components/detail-v2/cockpit-pending-commands.tsx
   init_define_process_env();
-  var import_react32 = __toESM(require_react());
+  var import_react33 = __toESM(require_react());
   var import_react_dom3 = __toESM(require_react_dom());
 
   // act:/home/user/portal-irmen-v2/src/app/actions/operation-pending-items.actions.ts
@@ -44126,15 +44218,15 @@ ${suffix}`;
   // src/modules/operation/components/detail-v2/cockpit-pending-commands.tsx
   var import_jsx_runtime38 = __toESM(require_jsx_runtime());
   function useCommandId() {
-    const ref = (0, import_react32.useRef)(null);
+    const ref = (0, import_react33.useRef)(null);
     return (payload) => {
       if (ref.current?.payload !== payload) ref.current = { payload, id: crypto.randomUUID() };
       return ref.current.id;
     };
   }
   function Sheet({ title, eyebrow, onClose, busy, children }) {
-    const panel = (0, import_react32.useRef)(null);
-    (0, import_react32.useEffect)(() => {
+    const panel = (0, import_react33.useRef)(null);
+    (0, import_react33.useEffect)(() => {
       const previous = document.activeElement;
       const overflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
@@ -44187,8 +44279,8 @@ ${suffix}`;
     ] });
   }
   function useOwnerOptions(operationId, readModel, current) {
-    const [options, setOptions] = (0, import_react32.useState)([]);
-    (0, import_react32.useEffect)(() => {
+    const [options, setOptions] = (0, import_react33.useState)([]);
+    (0, import_react33.useEffect)(() => {
       let active = true;
       const base = [];
       const add2 = (person) => {
@@ -44213,18 +44305,18 @@ ${suffix}`;
   var dueIso = (value) => value ? (/* @__PURE__ */ new Date(`${value}T23:59:00`)).toISOString() : void 0;
   function PendingItemForm({ operationId, readModel, item, onClose, onDone, notify }) {
     const editing = Boolean(item);
-    const [type, setType] = (0, import_react32.useState)(item?.type ?? "");
-    const [title, setTitle] = (0, import_react32.useState)(item?.title ?? "");
-    const [description, setDescription] = (0, import_react32.useState)(item?.description ?? "");
-    const [party, setParty] = (0, import_react32.useState)(item?.actionParty ?? "INTERNAL");
-    const [bankId, setBankId] = (0, import_react32.useState)(item?.bank?.id ?? "");
-    const [ownerId, setOwnerId] = (0, import_react32.useState)(item?.internalOwner?.id ?? "");
-    const [due, setDue] = (0, import_react32.useState)(dateInput(item?.dueAt ?? null));
-    const [busy, setBusy] = (0, import_react32.useState)(false);
-    const [error, setError] = (0, import_react32.useState)("");
+    const [type, setType] = (0, import_react33.useState)(item?.type ?? "");
+    const [title, setTitle] = (0, import_react33.useState)(item?.title ?? "");
+    const [description, setDescription] = (0, import_react33.useState)(item?.description ?? "");
+    const [party, setParty] = (0, import_react33.useState)(item?.actionParty ?? "INTERNAL");
+    const [bankId, setBankId] = (0, import_react33.useState)(item?.bank?.id ?? "");
+    const [ownerId, setOwnerId] = (0, import_react33.useState)(item?.internalOwner?.id ?? "");
+    const [due, setDue] = (0, import_react33.useState)(dateInput(item?.dueAt ?? null));
+    const [busy, setBusy] = (0, import_react33.useState)(false);
+    const [error, setError] = (0, import_react33.useState)("");
     const commandId = useCommandId();
     const owners = useOwnerOptions(operationId, readModel, item?.internalOwner ?? null);
-    (0, import_react32.useEffect)(() => {
+    (0, import_react33.useEffect)(() => {
       setError("");
     }, [type, title, description, party, bankId, ownerId, due]);
     const bankApplies = type === "BANK" || party === "BANK";
@@ -44331,11 +44423,11 @@ ${suffix}`;
   };
   function PendingTransitionForm({ operationId, item, command, opNumber, onClose, onDone, notify }) {
     const spec = TRANSITION[command];
-    const [reason, setReason] = (0, import_react32.useState)("");
-    const [busy, setBusy] = (0, import_react32.useState)(false);
-    const [error, setError] = (0, import_react32.useState)("");
+    const [reason, setReason] = (0, import_react33.useState)("");
+    const [busy, setBusy] = (0, import_react33.useState)(false);
+    const [error, setError] = (0, import_react33.useState)("");
     const commandId = useCommandId();
-    (0, import_react32.useEffect)(() => {
+    (0, import_react33.useEffect)(() => {
       setError("");
     }, [reason]);
     async function submit(event2) {
@@ -44400,11 +44492,11 @@ ${suffix}`;
 
   // src/modules/operation/components/detail-v2/cockpit-checklist.tsx
   init_define_process_env();
-  var import_react34 = __toESM(require_react());
+  var import_react35 = __toESM(require_react());
 
   // src/modules/operation/components/detail/bank-checklist-detail-dialog.tsx
   init_define_process_env();
-  var import_react33 = __toESM(require_react());
+  var import_react34 = __toESM(require_react());
   var import_jsx_runtime39 = __toESM(require_jsx_runtime());
   var filterLabels = { ALL: "Todos", RECEIVED: "Recebidos", PENDING: "Pend\xEAncias" };
   function matchesFilter(requirement, filter) {
@@ -44426,8 +44518,8 @@ ${suffix}`;
     return null;
   }
   function BankChecklistDetailDialog({ bank, checklist, eligibilityState, filter, mode, onClose, onFilterChange, onReload, canReview = false, open }) {
-    const [viewer, setViewer] = (0, import_react33.useState)(null);
-    const [viewerMessage, setViewerMessage] = (0, import_react33.useState)(null);
+    const [viewer, setViewer] = (0, import_react34.useState)(null);
+    const [viewerMessage, setViewerMessage] = (0, import_react34.useState)(null);
     const openDocument = async (documentId) => {
       const result = await createAvaDocumentViewerAction(documentId);
       if (!result.success) {
@@ -44537,7 +44629,7 @@ ${suffix}`;
     INELIGIBLE_CHANNEL_UNAVAILABLE: "crit"
   };
   function ChecklistBoard({ checklists: checklists2, banks, userRole, onReload, bankingApplicable }) {
-    const [open, setOpen] = (0, import_react34.useState)(null);
+    const [open, setOpen] = (0, import_react35.useState)(null);
     const active = open ? checklists2.find((item) => item.bankId === open.bankId) : void 0;
     const activeBank = active ? banks.find((item) => item.id === active.bankId) : void 0;
     const tally = checklists2.reduce((acc, checklist) => {
@@ -44669,8 +44761,8 @@ ${suffix}`;
     return [...byCode.values()].sort((a, b) => Number(b.rejected) - Number(a.rejected) || Number(b.required) - Number(a.required) || b.banks.length - a.banks.length || a.label.localeCompare(b.label, "pt-BR"));
   }
   function PendingCard({ readModel, bankingApplicable, operationId, userRole, onReload, notify }) {
-    const [form, setForm] = (0, import_react35.useState)(null);
-    const [transition, setTransition] = (0, import_react35.useState)(null);
+    const [form, setForm] = (0, import_react36.useState)(null);
+    const [transition, setTransition] = (0, import_react36.useState)(null);
     const can = {
       create: canPending(userRole, "createPendingItem"),
       edit: canPending(userRole, "editPendingItem"),
@@ -44806,7 +44898,7 @@ ${suffix}`;
 
   // src/modules/operation/components/detail-v2/cockpit-simulation.tsx
   init_define_process_env();
-  var import_react36 = __toESM(require_react());
+  var import_react37 = __toESM(require_react());
   var import_jsx_runtime42 = __toESM(require_jsx_runtime());
   var brl2 = (value) => value === null ? "N\xE3o informado" : new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
   var brlShort = (value) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", notation: "compact", maximumFractionDigits: 1 }).format(value);
@@ -44823,11 +44915,11 @@ ${suffix}`;
     const simulation = financial.officialSimulation;
     const scenarios = simulation.scenarios;
     const initial = scenarios.find((item) => item.term === simulation.baseTerm)?.term ?? scenarios[scenarios.length - 1]?.term ?? null;
-    const [term, setTerm] = (0, import_react36.useState)(initial);
-    const [hover, setHover] = (0, import_react36.useState)(null);
+    const [term, setTerm] = (0, import_react37.useState)(initial);
+    const [hover, setHover] = (0, import_react37.useState)(null);
     const selected = scenarios.find((item) => item.term === term);
-    const top = (0, import_react36.useMemo)(() => Math.max(1, ...scenarios.map((item) => item.chart[0]?.balance ?? 0)), [scenarios]);
-    const curves = (0, import_react36.useMemo)(() => scenarios.map((item) => ({ term: item.term, values: resample(item) })), [scenarios]);
+    const top = (0, import_react37.useMemo)(() => Math.max(1, ...scenarios.map((item) => item.chart[0]?.balance ?? 0)), [scenarios]);
+    const curves = (0, import_react37.useMemo)(() => scenarios.map((item) => ({ term: item.term, values: resample(item) })), [scenarios]);
     const values = curves.find((item) => item.term === term)?.values ?? resample(void 0);
     const hasCurve = Boolean(selected?.chart.length);
     const rate = simulation.commercialRate ? `${(simulation.commercialRate.value * 100).toFixed(2).replace(".", ",")}% ${simulation.commercialRate.period === "MONTHLY" ? "a.m." : "a.a."}` : null;
@@ -44978,24 +45070,24 @@ ${suffix}`;
   }
   function OperationDetailCockpit({ id: id2 }) {
     const router2 = useRouter();
-    const isMountedRef = (0, import_react37.useRef)(true);
-    const currentIdRef = (0, import_react37.useRef)(id2);
-    const requestSequenceRef = (0, import_react37.useRef)(0);
-    (0, import_react37.useEffect)(() => {
+    const isMountedRef = (0, import_react38.useRef)(true);
+    const currentIdRef = (0, import_react38.useRef)(id2);
+    const requestSequenceRef = (0, import_react38.useRef)(0);
+    (0, import_react38.useEffect)(() => {
       isMountedRef.current = true;
       currentIdRef.current = id2;
       return () => {
         isMountedRef.current = false;
       };
     }, [id2]);
-    const [avaModel, setAvaModel] = (0, import_react37.useState)(null);
-    const [op, setOp] = (0, import_react37.useState)(null);
-    const [loading, setLoading] = (0, import_react37.useState)(true);
-    const [detailError, setDetailError] = (0, import_react37.useState)("");
-    const [userRole, setUserRole] = (0, import_react37.useState)(null);
-    const [userName, setUserName] = (0, import_react37.useState)("");
-    const [enterDirection] = (0, import_react37.useState)(() => typeof window === "undefined" ? null : consumeOperationDetailEnter());
-    const [activeNotification, setActiveNotification] = (0, import_react37.useState)(null);
+    const [avaModel, setAvaModel] = (0, import_react38.useState)(null);
+    const [op, setOp] = (0, import_react38.useState)(null);
+    const [loading, setLoading] = (0, import_react38.useState)(true);
+    const [detailError, setDetailError] = (0, import_react38.useState)("");
+    const [userRole, setUserRole] = (0, import_react38.useState)(null);
+    const [userName, setUserName] = (0, import_react38.useState)("");
+    const [enterDirection] = (0, import_react38.useState)(() => typeof window === "undefined" ? null : consumeOperationDetailEnter());
+    const [activeNotification, setActiveNotification] = (0, import_react38.useState)(null);
     const uploadDocument = async (file) => {
       const result = await uploadConfiguredDocument(`/api/operations/${id2}/documents`, file, crypto.randomUUID());
       if (!result.success) throw new DocumentUploadError(result.safeMessage || "N\xE3o foi poss\xEDvel enviar o documento.", result.errorCode);
@@ -45006,9 +45098,9 @@ ${suffix}`;
       setActiveNotification({ title, message, opNumber });
       setTimeout(() => setActiveNotification(null), 6e3);
     };
-    const fileInputRef = (0, import_react37.useRef)(null);
-    const [uploadingDoc, setUploadingDoc] = (0, import_react37.useState)(false);
-    const loadOperationData = (0, import_react37.useCallback)(async () => {
+    const fileInputRef = (0, import_react38.useRef)(null);
+    const [uploadingDoc, setUploadingDoc] = (0, import_react38.useState)(false);
+    const loadOperationData = (0, import_react38.useCallback)(async () => {
       const requestSequence = ++requestSequenceRef.current;
       try {
         setLoading(true);
@@ -45031,7 +45123,7 @@ ${suffix}`;
         if (isMountedRef.current && currentIdRef.current === id2 && requestSequenceRef.current === requestSequence) setLoading(false);
       }
     }, [id2, router2]);
-    (0, import_react37.useEffect)(() => {
+    (0, import_react38.useEffect)(() => {
       loadOperationData();
     }, [loadOperationData]);
     const equipmentItems = op?.equipmentItems ?? [];
@@ -45045,6 +45137,35 @@ ${suffix}`;
     };
     const isBankingModality = operationUsesBanking(op?.modality.key ?? null, Boolean(op?.banks.length));
     const bankingApplicable = op?.modality.key === "bank_financing";
+    const opportunity = useLinkedOpportunity(id2, op?.identity.operationId === id2 ? op.identity.clientId : null);
+    const printOrderBlocked = printOrderBlockedReason(opportunity);
+    const printOrder = (0, import_react38.useCallback)(() => {
+      if (opportunity.kind === "linked" && opportunity.opportunity.canPrintOrder) router2.push(commercialOrderHref(opportunity.opportunity.id));
+    }, [opportunity, router2]);
+    const [workflowHeight, setWorkflowHeight] = (0, import_react38.useState)(null);
+    const hasOperation = Boolean(op);
+    (0, import_react38.useLayoutEffect)(() => {
+      const target = document.querySelector("#odx-workflow > :first-child");
+      if (!target) return;
+      const measure = () => setWorkflowHeight(Math.round(target.getBoundingClientRect().height));
+      measure();
+      if (!("ResizeObserver" in window)) return;
+      const observer = new ResizeObserver(measure);
+      observer.observe(target);
+      return () => observer.disconnect();
+    }, [hasOperation]);
+    const rootRef = (0, import_react38.useRef)(null);
+    (0, import_react38.useLayoutEffect)(() => {
+      const header2 = document.querySelector(".jv-top");
+      const root = rootRef.current;
+      if (!header2 || !root) return;
+      const measure = () => root.style.setProperty("--odx-top", `${Math.round(header2.getBoundingClientRect().height)}px`);
+      measure();
+      if (!("ResizeObserver" in window)) return;
+      const observer = new ResizeObserver(measure);
+      observer.observe(header2);
+      return () => observer.disconnect();
+    }, [hasOperation]);
     const handleDownload = async (documentId) => {
       try {
         const result = await createOperationDocumentDownloadUrlAction({ operationId: id2, documentId });
@@ -45071,16 +45192,16 @@ ${suffix}`;
         setUploadingDoc(false);
       }
     };
-    const returnToCenter = (0, import_react37.useCallback)(() => {
+    const returnToCenter = (0, import_react38.useCallback)(() => {
       markOperationCenterReturn(id2);
       router2.push(buildOperationCenterReturnHref(id2, op?.navigation.returnPath));
     }, [id2, op?.navigation.returnPath, router2]);
-    const focusCommunication = (0, import_react37.useCallback)(() => {
+    const focusCommunication = (0, import_react38.useCallback)(() => {
       const el = document.getElementById("chat-input");
       el?.scrollIntoView({ behavior: "smooth", block: "center" });
       el?.focus();
     }, []);
-    const sections = (0, import_react37.useMemo)(() => [
+    const sections = (0, import_react38.useMemo)(() => [
       { id: "odx-resumo", label: "Resumo" },
       { id: "odx-workflow", label: "Workflow" },
       { id: "odx-credito", label: isBankingModality ? "Cr\xE9dito e bancos" : "Cr\xE9dito" },
@@ -45091,16 +45212,16 @@ ${suffix}`;
       { id: "odx-comunicacao", label: "Comunica\xE7\xE3o" },
       { id: "odx-simulacao", label: "Simula\xE7\xE3o" }
     ], [isBankingModality]);
-    const commands = (0, import_react37.useMemo)(() => [
+    const commands = (0, import_react38.useMemo)(() => [
       ...sections.map((section) => ({ id: `go-${section.id}`, label: `Ir para ${section.label}`, hint: "Se\xE7\xE3o", run: () => jumpTo(section.id) })),
       { id: "go-cliente", label: "Ir para Dados do cliente", hint: "Se\xE7\xE3o", run: () => jumpTo("odx-cliente") },
       { id: "go-pendencias", label: "Ir para Pend\xEAncias", hint: "Se\xE7\xE3o", run: () => jumpTo("odx-pendencias") },
       { id: "go-relato", label: "Ir para Relato inicial", hint: "Se\xE7\xE3o", run: () => jumpTo("odx-relato") },
       { id: "go-contatos", label: "Ir para Contatos e tentativas", hint: "Se\xE7\xE3o", run: () => jumpTo("odx-contatos") },
       { id: "act-chat", label: "Escrever na comunica\xE7\xE3o", hint: "A\xE7\xE3o", run: focusCommunication },
-      { id: "act-print", label: "Imprimir opera\xE7\xE3o", hint: "A\xE7\xE3o", run: () => window.print() },
+      { id: "act-print", label: "Imprimir pedido", hint: "A\xE7\xE3o", run: printOrder },
       { id: "act-back", label: "Voltar ao Centro de Opera\xE7\xF5es", hint: "A\xE7\xE3o", run: returnToCenter }
-    ], [focusCommunication, returnToCenter, sections]);
+    ], [focusCommunication, printOrder, returnToCenter, sections]);
     useAvaPageCommands(commands);
     const currentOp = op && op.identity.operationId === id2 ? op : null;
     if (!currentOp && (loading || op && !detailError)) return /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(CockpitLoading, {});
@@ -45111,19 +45232,28 @@ ${suffix}`;
         /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("button", { className: "ds-button ds-button--primary", onClick: () => router2.push(buildOperationCenterReturnHref(null)), type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { className: "ds-button__content", children: "Voltar para Opera\xE7\xF5es" }) })
       ] });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx", "data-enter": enterDirection ?? "load", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx", "data-enter": enterDirection ?? "load", ref: rootRef, children: [
       detailError && /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("p", { className: "odx-warning", role: "status", children: [
         detailError,
         " Os \xFAltimos dados carregados permanecem vis\xEDveis."
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(CockpitHero, { creditSummaryInput, isBankingModality, readModel: currentOp }),
-      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(CockpitToolbar, { onBack: returnToCenter, onFocusCommunication: focusCommunication, onPrint: () => window.print(), sections }),
+      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(CockpitBackLink, { onBack: returnToCenter }),
+      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(CockpitHero, { creditSummaryInput, isBankingModality, opportunity, readModel: currentOp }),
+      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(CockpitToolbar, { onFocusCommunication: focusCommunication, onPrintOrder: printOrder, printOrderBlocked, sections }),
       /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-grid", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-row", "data-row": "status", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-row", "data-row": "status", style: workflowHeight ? { "--odx-relato-h": `${workflowHeight}px` } : void 0, children: [
           /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-col", children: [
             /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-anchor", id: "odx-workflow", children: [
               /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(OperationLifecycleSection, { hideSteps: true, notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userRole }),
-              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(OperationModalityControl, { onReload: loadOperationData, operationId: id2, revision: currentOp })
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("details", { className: "odx-fold odx-modality", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("summary", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(ArrowLeftRight, { "aria-hidden": "true", size: 14 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { children: "Modalidade e valida\xE7\xE3o comercial" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("b", { className: "odx-modality__cur", children: currentOp.modality.displayName }),
+                  /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(ChevronDown, { "aria-hidden": "true", className: "odx-fold__chev", size: 14 })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "odx-modality__body", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(OperationModalityControl, { onReload: loadOperationData, operationId: id2, revision: currentOp }) })
+              ] })
             ] }),
             /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-anchor", id: "odx-credito", children: [
               /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(OperationInternalCreditSection, { notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userRole }),
@@ -45140,7 +45270,10 @@ ${suffix}`;
             /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(EquipmentList, { items: equipmentItems, totalOperationValue: currentOp.financial.totalOperationValue }),
             /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(ChecklistBoard, { bankingApplicable, banks: currentOp.banks, checklists: currentOp.bankDocumentChecklists, onReload: loadOperationData, userRole })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("aside", { "aria-label": "Hist\xF3rico", className: "odx-side", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "odx-side__fill", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(TimelineFeed, { readModel: currentOp }) }) })
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("aside", { "aria-label": "Contatos e hist\xF3rico", className: "odx-side", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-side__fill", "data-split": "", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("section", { "aria-label": "Contatos e tentativas", className: "odx-panel odx-contacts", id: "odx-contatos", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(RelationshipInteractions, { query: { origin: { kind: "OP", id: id2 } } }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(TimelineFeed, { readModel: currentOp })
+          ] }) })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-row", "data-row": "documents", children: [
           /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-col", children: [
@@ -45169,10 +45302,7 @@ ${suffix}`;
               }
             ) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("aside", { "aria-label": "Contatos e comunica\xE7\xE3o", className: "odx-side", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "odx-side__fill", "data-split": "", id: "odx-comunicacao", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("section", { "aria-label": "Contatos e tentativas", className: "odx-panel odx-contacts", id: "odx-contatos", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(RelationshipInteractions, { query: { origin: { kind: "OP", id: id2 } } }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(OperationCommunicationSection, { hideInteractions: true, notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userName })
-          ] }) })
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("aside", { "aria-label": "Comunica\xE7\xE3o", className: "odx-side", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "odx-side__fill", id: "odx-comunicacao", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(OperationCommunicationSection, { hideInteractions: true, notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userName }) }) })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(SimulationPanel, { financial: currentOp.financial, isBankingModality, modalityKey: currentOp.modality.key, operationId: id2 })
       ] }),
@@ -45194,6 +45324,12 @@ ${suffix}`;
         /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("button", { "aria-label": "Fechar aviso", className: "odx-icon-btn", onClick: () => setActiveNotification(null), type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(X, { "aria-hidden": "true", size: 14 }) })
       ] }) })
     ] });
+  }
+  function printOrderBlockedReason(state) {
+    if (state.kind === "loading") return "Consultando a oportunidade vinculada\u2026";
+    if (state.kind === "none") return "Nenhuma oportunidade (OPP) vinculada a esta opera\xE7\xE3o.";
+    if (state.kind === "unavailable") return "A oportunidade vinculada n\xE3o est\xE1 dispon\xEDvel no seu acesso.";
+    return state.opportunity.canPrintOrder ? null : "Seu perfil n\xE3o pode imprimir o pedido desta oportunidade.";
   }
   function CockpitLoading() {
     return /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { "aria-busy": "true", className: "odx odx-loading", role: "status", children: [
@@ -45218,39 +45354,9 @@ ${suffix}`;
     ] });
   }
 
-  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-lab1/ops-data.ts
+  // src/modules/operation/components/simulator-page.tsx
   init_define_process_env();
-
-  // src/modules/operation/view-models/operation-center-drawer.view-model.ts
-  init_define_process_env();
-  function buildOperationCenterDrawerReadModel(operation, history3, pendingItems = { items: [], openCount: 0 }, financialInstitutions = [], unavailableSections = [], canonicalClientPhone) {
-    const sellerName = operation.ownership.sellerId && typeof operation.ownership.teamId === "string" ? operation.ownership.teamId : null;
-    const timeline = projectHumanHistory(history3).map((entry) => {
-      const presented = presentHistoryEntry(entry, financialInstitutions, { sellerName });
-      return {
-        id: String(entry.id),
-        title: presented.title,
-        description: presented.description,
-        actorName: entry.userName,
-        actorRole: entry.userRole,
-        createdAt: String(entry.createdAt)
-      };
-    }).sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt));
-    const operationItem = toOperationCenterItemWithFinancialInstitutions(operation, financialInstitutions);
-    return {
-      operation: canonicalClientPhone === void 0 ? operationItem : { ...operationItem, clientPhone: canonicalClientPhone ?? "" },
-      timeline,
-      lastMovementAt: timeline[0]?.createdAt ?? null,
-      pendingItems,
-      unavailableSections
-    };
-  }
-
-  // src/modules/operation/view-models/operation-detail-premium.view-model.ts
-  init_define_process_env();
-
-  // src/modules/operation/view-models/operation-official-simulation.view-model.ts
-  init_define_process_env();
+  var import_react39 = __toESM(require_react());
 
   // src/core/domain/simulation/index.ts
   init_define_process_env();
@@ -47682,7 +47788,955 @@ ${suffix}`;
     }
   };
 
+  // act:/home/user/portal-irmen-v2/src/app/actions/simulation.actions.ts
+  init_define_process_env();
+  var loadDefaultCommercialRateAction = (...a) => window.__act("loadDefaultCommercialRateAction", a);
+  var setDefaultCommercialRateAction = (...a) => window.__act("setDefaultCommercialRateAction", a);
+  var saveCanonicalSimulationAction = (...a) => window.__act("saveCanonicalSimulationAction", a);
+
+  // src/modules/operation/components/simulator-page.tsx
+  var import_jsx_runtime44 = __toESM(require_jsx_runtime());
+  function buildPdfHtml(simulation, nominalRate, selectedTerm, simplified = false) {
+    const today = (/* @__PURE__ */ new Date()).toLocaleDateString("pt-BR");
+    const currency3 = (val) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(val);
+    const pct = (val) => `${val.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
+    if (simplified) {
+      const rowsHtml = simulation.rows.map(
+        (r2) => `
+        <tr>
+          <td><b>${r2.t}x</b></td>
+          <td>${currency3(r2.iof)}</td>
+          <td>${currency3(simulation.tac)}</td>
+          <td>${currency3(r2.financed)}</td>
+          <td><b>${currency3(r2.installment)}</b></td>
+          <td>${currency3(r2.total)}</td>
+        </tr>`
+      ).join("");
+      return `
+      <!doctype html>
+      <html>
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Simula\xE7\xE3o de Cr\xE9dito - Simulador IRMEN</title>
+        <style>
+          * { box-sizing: border-box; }
+          body { font-family: Arial, sans-serif; margin: 30px; color: #111; line-height: 1.4; }
+          .head { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 4px solid #ed1c24; padding-bottom: 15px; margin-bottom: 20px; }
+          .brand { font-weight: 900; font-size: 28px; letter-spacing: -1px; }
+          .brand span { color: #ed1c24; display: block; font-size: 32px; }
+          .muted { color: #555; font-size: 12px; margin-top: 4px; }
+          
+          .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; width: 100%; }
+          .card { border: 1px solid #ddd; border-radius: 6px; padding: 12px; background: #fafafa; min-height: 84px; display: flex; flex-direction: column; justify-content: space-between; }
+          .card span { display: block; font-size: 10px; text-transform: uppercase; color: #666; font-weight: bold; }
+          .card b { display: block; font-size: 17px; margin-top: auto; color: #000; white-space: nowrap; }
+          
+          table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+          th { background: #111; color: #fff; font-size: 11px; text-transform: uppercase; padding: 10px; }
+          td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 11px; }
+          tr:nth-child(even) { background: #f9f9f9; }
+          
+          .footer { margin-top: 40px; border-top: 2px solid #ed1c24; padding-top: 10px; font-size: 11px; color: #666; display: flex; justify-content: space-between; width: 100%; }
+          .obs { font-size: 11px; color: #555; margin-top: 25px; border-left: 3px solid #ccc; padding-left: 10px; }
+        </style>
+      </head>
+      <body>
+        <div class="head">
+          <div>
+            <div class="brand">SIMULADOR<span>IRMEN</span></div>
+            <div class="muted">Plataforma Operacional de Cr\xE9dito</div>
+          </div>
+          <div style="text-align: right">
+            <h2 style="margin: 0; color: #111;">Simula\xE7\xE3o Comercial</h2>
+            <div class="muted">Gerado em ${today}</div>
+          </div>
+        </div>
+        
+        <div style="font-size: 12px; margin-bottom: 20px; color: #444;">
+          <b>Equipamento:</b> Proposta comercial para m\xFAltiplos prazos &nbsp;|&nbsp; 
+          <b>Taxa Mensal Base:</b> ${pct(parsePercent(nominalRate))}
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <span>Valor do Equipamento</span>
+            <b>${currency3(simulation.val)}</b>
+          </div>
+          <div class="card">
+            <span>Entrada (${pct(simulation.entryPercent)})</span>
+            <b>${currency3(simulation.entry)}</b>
+          </div>
+          <div class="card">
+            <span>Saldo Base</span>
+            <b>${currency3(simulation.principal)}</b>
+          </div>
+          <div class="card">
+            <span>Taxa Nominal Mensal</span>
+            <b>${pct(parsePercent(nominalRate))}</b>
+          </div>
+        </div>
+        
+        <div style="font-weight: bold; font-size: 12px; margin-top: 20px; color: #111;">
+          Proje\xE7\xF5es por Prazo Estimadas (Tabela Comparativa)
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Prazo</th>
+              <th>IOF Estimado (PJ)</th>
+              <th>TAC</th>
+              <th>Total Financiado</th>
+              <th>Parcela Mensal (PMT)</th>
+              <th>Total Geral Pago</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rowsHtml}
+          </tbody>
+        </table>
+        
+        <p class="obs">
+          <b>Aten\xE7\xE3o:</b> Esta simula\xE7\xE3o comercial \xE9 de car\xE1ter meramente informativo e n\xE3o constitui proposta de cr\xE9dito vinculante. 
+          Os valores reais est\xE3o sujeitos \xE0 an\xE1lise de cr\xE9dito cadastral, garantias requeridas, taxas de CET (Custo Efetivo Total), 
+          pol\xEDticas vigentes e flutua\xE7\xE3o das taxas dos bancos parceiros na data da contrata\xE7\xE3o.
+        </p>
+        
+        <div class="footer">
+          <span>IRMEN M\xE1quinas e Equipamentos Ltda. - CNPJ: 12.345.678/0001-90</span>
+          <span>P\xE1gina 1 de 1</span>
+        </div>
+      </body>
+      </html>
+    `;
+    }
+    const selectedRow = simulation.rows.find((r2) => r2.t === selectedTerm) || simulation.rows[2];
+    const t = selectedRow.t;
+    const iof = selectedRow.iof;
+    const financed = selectedRow.financed;
+    const installment = selectedRow.installment;
+    const total = selectedRow.total;
+    const cost = total - simulation.principal;
+    let saldo = financed;
+    const schedule = selectedRow.schedule.map((row) => {
+      saldo = Math.max(0, saldo - row.principal);
+      return { num: row.num, date: row.date, installment: row.installment, amortization: row.principal, interest: row.interest, balance: saldo };
+    });
+    const width = 600;
+    const height = 130;
+    const paddingLeft = 90;
+    const paddingRight = 10;
+    const paddingTop = 10;
+    const paddingBottom = 20;
+    const graphWidth = width - paddingLeft - paddingRight;
+    const graphHeight = height - paddingTop - paddingBottom;
+    const coordinates = [];
+    coordinates.push(`${paddingLeft},${paddingTop}`);
+    for (let i = 1; i <= t; i++) {
+      const x2 = paddingLeft + i / t * graphWidth;
+      const y = paddingTop + graphHeight - schedule[i - 1].balance / financed * graphHeight;
+      coordinates.push(`${x2},${y}`);
+    }
+    const linePath2 = `M ${coordinates.join(" L ")}`;
+    const areaPath = `${linePath2} L ${paddingLeft + graphWidth},${paddingTop + graphHeight} L ${paddingLeft},${paddingTop + graphHeight} Z`;
+    let scheduleHtml = "";
+    if (t > 5) {
+      for (let i = 0; i < 3; i++) {
+        const r2 = schedule[i];
+        scheduleHtml += `
+        <tr>
+          <td>${r2.num}</td>
+          <td>${r2.date}</td>
+          <td>${currency3(r2.installment)}</td>
+          <td>${currency3(r2.amortization)}</td>
+          <td>${currency3(r2.interest)}</td>
+          <td>${currency3(r2.balance)}</td>
+        </tr>`;
+      }
+      scheduleHtml += `
+      <tr style="color: #666; font-style: italic; background: #fafafa;">
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+      </tr>`;
+      const last = schedule[t - 1];
+      scheduleHtml += `
+      <tr>
+        <td>${last.num}</td>
+        <td>${last.date}</td>
+        <td>${currency3(last.installment)}</td>
+        <td>${currency3(last.amortization)}</td>
+        <td>${currency3(last.interest)}</td>
+        <td>${currency3(0)}</td>
+      </tr>`;
+    } else {
+      schedule.forEach((r2) => {
+        scheduleHtml += `
+        <tr>
+          <td>${r2.num}</td>
+          <td>${r2.date}</td>
+          <td>${currency3(r2.installment)}</td>
+          <td>${currency3(r2.amortization)}</td>
+          <td>${currency3(r2.interest)}</td>
+          <td>${currency3(r2.balance)}</td>
+        </tr>`;
+      });
+    }
+    return `
+    <!doctype html>
+    <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Simula\xE7\xE3o de Cr\xE9dito - Simulador IRMEN</title>
+      <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 30px; color: #111; line-height: 1.4; }
+        .head { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 4px solid #ed1c24; padding-bottom: 15px; margin-bottom: 20px; }
+        .brand { font-weight: 900; font-size: 28px; letter-spacing: -1px; }
+        .brand span { color: #ed1c24; display: block; font-size: 32px; }
+        .muted { color: #555; font-size: 12px; margin-top: 4px; }
+        
+        .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; width: 100%; }
+        .card { border: 1px solid #ddd; border-radius: 6px; padding: 12px; background: #fafafa; min-height: 84px; display: flex; flex-direction: column; justify-content: space-between; }
+        .card span { display: block; font-size: 10px; text-transform: uppercase; color: #666; font-weight: bold; }
+        .card b { display: block; font-size: 17px; margin-top: auto; color: #000; white-space: nowrap; }
+        
+        .chart-box { border: 1px solid #ddd; border-radius: 6px; padding: 12px; background: #fafafa; margin: 20px 0; }
+        .chart-box h4 { margin: 0 0 10px 0; font-size: 11px; text-transform: uppercase; color: #111; font-weight: bold; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+        th { background: #111; color: #fff; font-size: 11px; text-transform: uppercase; padding: 10px; }
+        td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 11px; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        
+        .footer { margin-top: 40px; border-top: 2px solid #ed1c24; padding-top: 10px; font-size: 11px; color: #666; display: flex; justify-content: space-between; width: 100%; }
+        .obs { font-size: 11px; color: #555; margin-top: 25px; border-left: 3px solid #ccc; padding-left: 10px; }
+      </style>
+    </head>
+    <body>
+      <div class="head">
+        <div>
+          <div class="brand">SIMULADOR<span>IRMEN</span></div>
+          <div class="muted">Plataforma Operacional de Cr\xE9dito</div>
+        </div>
+        <div style="text-align: right">
+          <h2 style="margin: 0; color: #111;">Simula\xE7\xE3o de Parcelamento</h2>
+          <div class="muted">Gerado em ${today}</div>
+        </div>
+      </div>
+      
+      <div style="font-size: 12px; margin-bottom: 20px; color: #444;">
+        <b>Valor do Equipamento:</b> ${currency3(simulation.val)} &nbsp;|&nbsp; 
+        <b>Entrada Comercial:</b> ${currency3(simulation.entry)} (${pct(simulation.entryPercent)}) &nbsp;|&nbsp; 
+        <b>Taxa Mensal:</b> ${pct(parsePercent(nominalRate))} &nbsp;|&nbsp;
+        <b>Prazo Ativo:</b> ${t} meses
+      </div>
+
+      <div class="card-grid">
+        <div class="card">
+          <span>Valor Financiado</span>
+          <b>${currency3(simulation.principal)}</b>
+        </div>
+        <div class="card">
+          <span>Valor da Parcela</span>
+          <b style="color: #ed1c24;">${currency3(installment)}</b>
+        </div>
+        <div class="card">
+          <span>Total a Pagar</span>
+          <b>${currency3(total)}</b>
+        </div>
+        <div class="card">
+          <span>Custo Total</span>
+          <b>${currency3(cost)}</b>
+        </div>
+      </div>
+      
+      <div style="font-weight: bold; font-size: 12px; margin-top: 20px; color: #111;">
+        Tabela de Parcelas (Valores Aproximados)
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Vencimento</th>
+            <th>Parcela</th>
+            <th>Amortiza\xE7\xE3o</th>
+            <th>Juros</th>
+            <th>Saldo Devedor</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${scheduleHtml}
+        </tbody>
+      </table>
+
+      <div class="chart-box">
+        <h4>Evolu\xE7\xE3o do Saldo Devedor (${t} meses)</h4>
+        <svg viewBox="0 0 ${width} ${height}" style="width: 100%; height: auto; overflow: visible;">
+          <!-- Grid Lines -->
+          <line x1="${paddingLeft}" y1="${paddingTop}" x2="${width - paddingRight}" y2="${paddingTop}" stroke="#eee" stroke-width="1" stroke-dasharray="3" />
+          <line x1="${paddingLeft}" y1="${paddingTop + graphHeight / 2}" x2="${width - paddingRight}" y2="${paddingTop + graphHeight / 2}" stroke="#eee" stroke-width="1" stroke-dasharray="3" />
+          <line x1="${paddingLeft}" y1="${paddingTop + graphHeight}" x2="${width - paddingRight}" y2="${paddingTop + graphHeight}" stroke="#ccc" stroke-width="1" />
+
+          <!-- Y Axis Labels -->
+          <text x="${paddingLeft - 8}" y="${paddingTop + 4}" fill="#666" font-size="8" text-anchor="end">${currency3(financed)}</text>
+          <text x="${paddingLeft - 8}" y="${paddingTop + graphHeight / 2 + 3}" fill="#666" font-size="8" text-anchor="end">${currency3(financed / 2)}</text>
+          <text x="${paddingLeft - 8}" y="${paddingTop + graphHeight + 3}" fill="#666" font-size="8" text-anchor="end">R$ 0,00</text>
+
+          <!-- X Axis Labels -->
+          <text x="${paddingLeft}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">0</text>
+          <text x="${paddingLeft + graphWidth / 4}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">${Math.round(t / 4)}</text>
+          <text x="${paddingLeft + graphWidth / 2}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">${Math.round(t / 2)}</text>
+          <text x="${paddingLeft + 3 * graphWidth / 4}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">${Math.round(3 * t / 4)}</text>
+          <text x="${paddingLeft + graphWidth}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">${t}</text>
+
+          <!-- Area -->
+          <path d="${areaPath}" fill="url(#gradPdf)" opacity="0.1" />
+
+          <!-- Line -->
+          <path d="${linePath2}" fill="none" stroke="#ed1c24" stroke-width="2" />
+
+          <defs>
+            <linearGradient id="gradPdf" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ed1c24" />
+              <stop offset="100%" stop-color="#ed1c24" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      
+      <p class="obs">
+        <b>Aten\xE7\xE3o:</b> Esta simula\xE7\xE3o comercial \xE9 de car\xE1ter meramente informativo e n\xE3o constitui proposta de cr\xE9dito vinculante. 
+        Os valores reais est\xE3o sujeitos \xE0 an\xE1lise de cr\xE9dito cadastral, garantias requeridas, taxas de CET (Custo Efetivo Total), 
+        pol\xEDticas vigentes e flutua\xE7\xE3o das taxas dos bancos parceiros na data da contrata\xE7\xE3o.
+      </p>
+      
+      <div class="footer">
+        <span>IRMEN M\xE1quinas e Equipamentos Ltda. - CNPJ: 12.345.678/0001-90</span>
+        <span>P\xE1gina 1 de 1</span>
+      </div>
+    </body>
+    </html>
+  `;
+  }
+  function parseMoney(value) {
+    const normalized = value.replace(/[^\d,.-]/g, "").replace(/\./g, "").replace(",", ".");
+    const parsed = Number(normalized);
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+  function parsePercent(value) {
+    const parsed = Number(value.replace(/[^\d,.-]/g, "").replace(",", "."));
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+  function validateSimulatorUiInput(input) {
+    if (![input.assetValue, input.downPayment, input.monthlyRate, input.tac].every(Number.isFinite)) return "Preencha os valores da simula\xE7\xE3o.";
+    if (input.assetValue <= 0) return "Informe um valor de equipamento maior que zero.";
+    if (input.downPayment < 0 || input.monthlyRate < 0 || input.tac < 0) return "Os valores da simula\xE7\xE3o n\xE3o podem ser negativos.";
+    if (input.downPayment > input.assetValue) return "A entrada n\xE3o pode ser maior que o valor do equipamento.";
+    return null;
+  }
+  function hasCompleteSimulatorNumericInput(value) {
+    return /\d/.test(value);
+  }
+  function formatCurrency(value) {
+    return new Intl.NumberFormat("pt-BR", {
+      currency: "BRL",
+      style: "currency"
+    }).format(Math.max(value, 0));
+  }
+  function formatMoneyInput(value) {
+    return value > 0 ? formatCurrency(value) : "";
+  }
+  function formatCurrencyFromDigits(value) {
+    const digits = value.replace(/\D/g, "");
+    if (!digits) return "";
+    return formatCurrency(Number(digits));
+  }
+  function formatCurrencyInput(value) {
+    const trimmed = value.trim();
+    if (!trimmed) return "";
+    if (trimmed.includes(",") || trimmed.includes("R$")) {
+      return formatMoneyInput(parseMoney(trimmed));
+    }
+    return formatCurrencyFromDigits(trimmed);
+  }
+  function currencyRawValue(value) {
+    const parsed = Math.round(parseMoney(value));
+    return parsed > 0 ? String(parsed) : "";
+  }
+  function applyCurrencyKey(event2, currentValue, onApply) {
+    if (event2.ctrlKey || event2.metaKey || event2.altKey) {
+      return;
+    }
+    const allowedKeys = ["Tab", "ArrowLeft", "ArrowRight", "Home", "End"];
+    if (allowedKeys.includes(event2.key)) {
+      return;
+    }
+    if (/^\d$/.test(event2.key)) {
+      event2.preventDefault();
+      const target = event2.currentTarget;
+      const allSelected = target.selectionStart === 0 && target.selectionEnd === target.value.length;
+      const raw = allSelected ? "" : currencyRawValue(currentValue);
+      onApply(`${raw}${event2.key}`);
+      return;
+    }
+    if (event2.key === "Backspace") {
+      event2.preventDefault();
+      onApply(currencyRawValue(currentValue).slice(0, -1));
+      return;
+    }
+    if (event2.key === "Delete") {
+      event2.preventDefault();
+      onApply("");
+      return;
+    }
+    if (event2.key.length === 1) {
+      event2.preventDefault();
+    }
+  }
+  function handleCurrencyPaste(event2, onApply) {
+    event2.preventDefault();
+    onApply(formatCurrencyInput(event2.clipboardData.getData("text")));
+  }
+  function getAdaptiveFontSize(value) {
+    const str = typeof value === "string" ? value : String(value);
+    const len = str.length;
+    if (len > 15) return "text-xs";
+    if (len > 12) return "text-sm";
+    if (len > 10) return "text-base";
+    return "text-lg";
+  }
+  function SimulatorPage({
+    initialEquipmentValue,
+    initialEntryValue,
+    isEmbedded = false,
+    onClose
+  }) {
+    const searchParams = useSearchParams();
+    const [equipmentValue, setEquipmentValue] = (0, import_react39.useState)(
+      formatCurrencyInput(initialEquipmentValue || (searchParams ? searchParams.get("equipmentValue") || "500000" : "500000"))
+    );
+    const [entryValue, setEntryValue] = (0, import_react39.useState)(
+      formatCurrencyInput(initialEntryValue || (searchParams ? searchParams.get("entryValue") || "100000" : "100000"))
+    );
+    const [nominalRate, setNominalRate] = (0, import_react39.useState)(() => {
+      const canonical = searchParams?.get("commercialRate");
+      return canonical ? (Number(canonical) * 100).toLocaleString("pt-BR", { maximumFractionDigits: 4 }) : "1,63";
+    });
+    const [tacValue, setTacValue] = (0, import_react39.useState)("R$ 2.300,00");
+    const [selectedTerm, setSelectedTerm] = (0, import_react39.useState)(() => {
+      const requestedTerm = Number(searchParams?.get("term"));
+      return [12, 24, 36, 48, 60].includes(requestedTerm) ? requestedTerm : 36;
+    });
+    const [simplifiedPdf, setSimplifiedPdf] = (0, import_react39.useState)(false);
+    const [saveState, setSaveState] = (0, import_react39.useState)({ pending: false });
+    const [defaultRateAdmin, setDefaultRateAdmin] = (0, import_react39.useState)(null);
+    const [defaultRateInput, setDefaultRateInput] = (0, import_react39.useState)("1,63");
+    const [defaultRateMessage, setDefaultRateMessage] = (0, import_react39.useState)("");
+    (0, import_react39.useEffect)(() => {
+      if (initialEquipmentValue) setEquipmentValue(formatCurrencyInput(initialEquipmentValue));
+      if (initialEntryValue) setEntryValue(formatCurrencyInput(initialEntryValue));
+    }, [initialEquipmentValue, initialEntryValue]);
+    (0, import_react39.useEffect)(() => {
+      if (!isEmbedded && searchParams) {
+        const eqVal = searchParams.get("equipmentValue");
+        const entVal = searchParams.get("entryValue");
+        const requestedTerm = Number(searchParams.get("term"));
+        if (eqVal) setEquipmentValue(formatCurrencyInput(eqVal));
+        if (entVal) setEntryValue(formatCurrencyInput(entVal));
+        if ([12, 24, 36, 48, 60].includes(requestedTerm)) setSelectedTerm(requestedTerm);
+      }
+    }, [searchParams, isEmbedded]);
+    (0, import_react39.useEffect)(() => {
+      if (isEmbedded) return;
+      void loadDefaultCommercialRateAction().then((result) => {
+        if (result.success) {
+          setDefaultRateAdmin(result.data);
+          setDefaultRateInput((result.data.current.value * 100).toLocaleString("pt-BR", { maximumFractionDigits: 4 }));
+        }
+      });
+    }, [isEmbedded]);
+    async function saveDefaultRate() {
+      const result = await setDefaultCommercialRateAction(defaultRateInput);
+      setDefaultRateMessage(result.safeMessage);
+      if (result.success) {
+        const refreshed = await loadDefaultCommercialRateAction();
+        if (refreshed.success) setDefaultRateAdmin(refreshed.data);
+      }
+    }
+    const simulation = (0, import_react39.useMemo)(() => {
+      const val = parseMoney(equipmentValue);
+      const entry = parseMoney(entryValue);
+      const inputRate = parsePercent(nominalRate) / 100;
+      const tac = parseMoney(tacValue);
+      const inputError = [equipmentValue, entryValue, nominalRate, tacValue].every(hasCompleteSimulatorNumericInput) ? validateSimulatorUiInput({ assetValue: val, downPayment: entry, monthlyRate: inputRate, tac }) : "Preencha os valores da simula\xE7\xE3o.";
+      if (inputError) {
+        return {
+          val,
+          entry,
+          entryPercent: val > 0 ? entry / val * 100 : 0,
+          rate: inputRate,
+          inputRate,
+          tac,
+          principal: 0,
+          engineVersion: "WAITING_FOR_VALID_INPUT",
+          disbursementDate: (/* @__PURE__ */ new Date()).toISOString().slice(0, 10),
+          inputError,
+          rows: [12, 24, 36, 48, 60].map((t) => ({ t, iof: 0, financed: 0, installment: 0, total: 0, result: null, selectedStrategy: "NOT_EVALUATED", schedule: [] }))
+        };
+      }
+      const principal = Math.max(0, val - entry);
+      const terms = [12, 24, 36, 48, 60];
+      const disbursementDate = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
+      const strategy = new IrmenSimulatorEngineV1();
+      const rows = terms.map((t) => {
+        const resolved = strategy.calculate({ modalityKey: "bank_financing", assetValue: val, downPayment: entry, monthlyRate: inputRate, term: t, disbursementDate, tac, financeTac: true, calendar: "CIVIL_MONTH" });
+        const scheduleResult = resolved.candidates.find((candidate) => candidate.strategyVersion === "SANY_PRICE_V1").result;
+        return {
+          t,
+          iof: Number(scheduleResult.financedIof),
+          financed: Number(scheduleResult.grossPrincipal),
+          installment: Number(resolved.selected.installmentAmount),
+          total: Number(resolved.selected.installmentAmount) * t,
+          result: resolved,
+          selectedStrategy: resolved.selection.selectedStrategy,
+          schedule: scheduleResult.schedule.map((row) => ({
+            num: row.installmentNumber,
+            date: (/* @__PURE__ */ new Date(`${row.dueDate}T00:00:00Z`)).toLocaleDateString("pt-BR", { timeZone: "UTC" }),
+            principal: Number(row.principal),
+            interest: Number(row.interest),
+            installment: Number(row.installment)
+          }))
+        };
+      });
+      const entryPercent = val ? entry / val * 100 : 0;
+      return {
+        val,
+        entry,
+        entryPercent,
+        rate: inputRate,
+        inputRate,
+        tac,
+        principal,
+        engineVersion: strategy.version,
+        disbursementDate,
+        inputError: null,
+        rows
+      };
+    }, [equipmentValue, entryValue, nominalRate, tacValue]);
+    function handlePrint() {
+      if (simulation.inputError) return alert(simulation.inputError);
+      const baseHtml = buildPdfHtml(simulation, nominalRate, selectedTerm, simplifiedPdf);
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+      if (isMobile) {
+        let iframe = document.getElementById("print-iframe");
+        if (!iframe) {
+          iframe = document.createElement("iframe");
+          iframe.id = "print-iframe";
+          iframe.style.position = "fixed";
+          iframe.style.right = "0";
+          iframe.style.bottom = "0";
+          iframe.style.width = "0";
+          iframe.style.height = "0";
+          iframe.style.border = "none";
+          iframe.style.opacity = "0";
+          document.body.appendChild(iframe);
+        }
+        const htmlWithPrint = baseHtml.replace(
+          "</body>",
+          `  <script>
+            window.onload = () => {
+              setTimeout(() => {
+                window.print();
+              }, 500);
+            };
+          <\/script>
+        </body>`
+        );
+        const doc = iframe.contentWindow?.document || iframe.contentDocument;
+        if (doc) {
+          doc.open();
+          doc.write(htmlWithPrint);
+          doc.close();
+        }
+      } else {
+        const printWindow = window.open("", "_blank");
+        if (!printWindow) return alert("Habilite pop-ups para imprimir a simula\xE7\xE3o.");
+        const htmlWithPrint = baseHtml.replace(
+          "</body>",
+          `  <script>
+            window.onload = () => {
+              window.print();
+              window.onafterprint = () => window.close();
+            };
+          <\/script>
+        </body>`
+        );
+        printWindow.document.open();
+        printWindow.document.write(htmlWithPrint);
+        printWindow.document.close();
+      }
+    }
+    async function handleSave() {
+      if (simulation.inputError) return setSaveState({ pending: false, message: simulation.inputError });
+      const operationId = searchParams?.get("operationId");
+      if (!operationId) return;
+      setSaveState({ pending: true });
+      const response = await saveCanonicalSimulationAction({
+        operationId,
+        bankId: searchParams?.get("bankId") ?? void 0,
+        simulation: { assetValue: simulation.val, downPayment: simulation.entry, monthlyRate: simulation.inputRate, term: selectedRow.t, disbursementDate: simulation.disbursementDate, tac: simulation.tac, financeTac: true, calendar: "CIVIL_MONTH" }
+      });
+      setSaveState({ pending: false, message: response.success ? `Simula\xE7\xE3o v${response.data.version} salva.` : response.safeMessage });
+    }
+    const currencyFormatter = (val) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(val);
+    const percentFormatter = (val) => `${val.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
+    const selectedRow = (0, import_react39.useMemo)(() => {
+      return simulation.rows.find((r2) => r2.t === selectedTerm) || simulation.rows[2];
+    }, [simulation.rows, selectedTerm]);
+    const detailedSchedule = (0, import_react39.useMemo)(() => {
+      let balance = selectedRow.financed;
+      return selectedRow.schedule.map((row) => {
+        balance = Math.max(0, balance - row.principal);
+        return { num: row.num, date: row.date, installment: row.installment, amortization: row.principal, interest: row.interest, balance };
+      });
+    }, [selectedRow]);
+    const chartPoints = (0, import_react39.useMemo)(() => {
+      const points = [];
+      points.push({ x: 0, y: selectedRow.financed });
+      detailedSchedule.forEach((item) => {
+        points.push({ x: item.num, y: item.balance });
+      });
+      return points;
+    }, [selectedRow, detailedSchedule]);
+    const svgPath = (0, import_react39.useMemo)(() => {
+      const width = 600;
+      const height = 150;
+      const paddingLeft = 85;
+      const paddingRight = 10;
+      const paddingTop = 10;
+      const paddingBottom = 20;
+      const graphWidth = width - paddingLeft - paddingRight;
+      const graphHeight = height - paddingTop - paddingBottom;
+      const t = selectedRow.t;
+      const maxVal = selectedRow.financed || 1e5;
+      const coordinates = chartPoints.map((p3) => {
+        const x2 = paddingLeft + p3.x / t * graphWidth;
+        const y = paddingTop + graphHeight - p3.y / maxVal * graphHeight;
+        return `${x2},${y}`;
+      });
+      const linePath2 = `M ${coordinates.join(" L ")}`;
+      const areaPath = `${linePath2} L ${paddingLeft + graphWidth},${paddingTop + graphHeight} L ${paddingLeft},${paddingTop + graphHeight} Z`;
+      return { linePath: linePath2, areaPath, width, height, paddingLeft, paddingRight, paddingTop, paddingBottom, graphWidth, graphHeight };
+    }, [chartPoints, selectedRow]);
+    return /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: `space-y-6 bg-ui-base text-foreground ${isEmbedded ? "p-2" : ""}`, children: [
+      !isEmbedded ? /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("header", { className: "rounded-md border border-ui-800 bg-ui-950 p-5 sm:p-6", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "text-xs font-semibold uppercase text-primary", children: "Cr\xE9dito" }),
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("h1", { className: "mt-1 text-2xl font-bold tracking-normal text-foreground sm:text-3xl", children: "Simula\xE7\xE3o de Parcelamento" }),
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "mt-1 max-w-3xl text-sm leading-6 text-ui-400", children: "Configure as condi\xE7\xF5es da opera\xE7\xE3o para visualizar as simula\xE7\xF5es em tempo real." })
+      ] }) }) : /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "flex items-center justify-between border-b border-ui-800 pb-4", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "text-xs font-semibold uppercase text-primary", children: "Simula\xE7\xE3o de Parcelamento" }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "text-xs text-ui-400", children: "Configure as condi\xE7\xF5es da opera\xE7\xE3o para visualizar as simula\xE7\xF5es" })
+        ] }),
+        onClose && /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+          "button",
+          {
+            onClick: onClose,
+            className: "rounded-md border border-ui-800 bg-ui-900 px-3 py-1.5 text-xs font-bold text-ui-400 hover:bg-ui-800 hover:text-foreground transition",
+            type: "button",
+            children: "Fechar"
+          }
+        )
+      ] }),
+      defaultRateAdmin && /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("section", { className: "rounded-md border border-ui-800 bg-ui-950 p-5", "aria-label": "Administra\xE7\xE3o da taxa padr\xE3o", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "text-xs font-bold uppercase tracking-wider text-primary", children: "Taxa padr\xE3o do Simulador IRMEN" }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "mt-1 text-xs text-ui-400", children: "Aplicada automaticamente \xE0s novas opera\xE7\xF5es de Financiamento Banc\xE1rio." }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("p", { className: "mt-2 text-[10px] text-ui-500", children: [
+              "Atualizada em ",
+              new Date(defaultRateAdmin.current.updatedAt).toLocaleString("pt-BR"),
+              " por ",
+              defaultRateAdmin.current.updatedByName,
+              "."
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "flex flex-wrap items-end gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("label", { className: "grid gap-1", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-[10px] text-ui-500", children: "Taxa mensal" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "flex h-10 items-center rounded border border-ui-700 bg-ui-base px-3", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("input", { className: "w-20 bg-transparent text-sm font-bold text-foreground outline-none", inputMode: "decimal", value: defaultRateInput, onChange: (event2) => setDefaultRateInput(event2.target.value.replace(/[^\d,.-]/g, "")) }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-xs text-ui-400", children: "% a.m." })
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("button", { type: "button", onClick: saveDefaultRate, className: "h-10 rounded bg-primary px-4 text-xs font-bold text-primary-foreground hover:bg-red-700", children: "Salvar taxa padr\xE3o" })
+          ] })
+        ] }),
+        defaultRateMessage && /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "mt-2 text-xs text-ui-400", role: "status", children: defaultRateMessage }),
+        defaultRateAdmin.history.length > 1 && /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("details", { className: "mt-3 text-xs text-ui-400", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("summary", { className: "cursor-pointer font-semibold text-ui-300", children: "Hist\xF3rico de altera\xE7\xF5es" }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("ul", { className: "mt-2 space-y-1", children: defaultRateAdmin.history.map((item) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("li", { children: [
+            (item.value * 100).toLocaleString("pt-BR", { maximumFractionDigits: 4 }),
+            "% a.m. \xB7 ",
+            new Date(item.updatedAt).toLocaleString("pt-BR"),
+            " \xB7 ",
+            item.updatedByName,
+            item.active ? " \xB7 vigente" : ""
+          ] }, item.id)) })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "grid gap-6 md:grid-cols-[1fr_2.2fr]", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "rounded-md border border-ui-800 bg-ui-950 p-5 space-y-4 h-fit", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("h3", { className: "text-sm font-bold uppercase text-primary border-b border-ui-900 pb-1.5 flex items-center gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Calculator, { size: 16 }),
+            "Dados da Simula\xE7\xE3o"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "space-y-3.5", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("label", { className: "grid gap-1.5", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-xs text-ui-400", children: "Valor do Equipamento (R$)" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+                "input",
+                {
+                  className: "h-10 rounded-[4px] border border-ui-800 bg-ui-base px-3 text-sm text-foreground outline-none focus:border-primary",
+                  type: "text",
+                  value: equipmentValue,
+                  onChange: (e) => setEquipmentValue(formatCurrencyInput(e.target.value)),
+                  onKeyDown: (e) => applyCurrencyKey(e, equipmentValue, (raw) => setEquipmentValue(raw ? formatCurrency(Number(raw)) : "")),
+                  onPaste: (e) => handleCurrencyPaste(e, (val) => setEquipmentValue(val)),
+                  placeholder: "R$ 500.000,00"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("label", { className: "grid gap-1.5", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-xs text-ui-400", children: "Entrada Comercial (R$)" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+                "input",
+                {
+                  className: "h-10 rounded-[4px] border border-ui-800 bg-ui-base px-3 text-sm text-foreground outline-none focus:border-primary",
+                  type: "text",
+                  value: entryValue,
+                  onChange: (e) => setEntryValue(formatCurrencyInput(e.target.value)),
+                  onKeyDown: (e) => applyCurrencyKey(e, entryValue, (raw) => setEntryValue(raw ? formatCurrency(Number(raw)) : "")),
+                  onPaste: (e) => handleCurrencyPaste(e, (val) => setEntryValue(val)),
+                  placeholder: "R$ 100.000,00"
+                }
+              ),
+              simulation.inputError?.includes("entrada") && /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-[11px] font-semibold text-tone-red-400", role: "alert", children: simulation.inputError })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("label", { className: "grid gap-1.5", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-xs text-ui-400", children: "Taxa Nominal Mensal (%)" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+                "input",
+                {
+                  className: "h-10 rounded-[4px] border border-ui-800 bg-ui-base px-3 text-sm text-foreground outline-none focus:border-primary",
+                  type: "text",
+                  value: nominalRate,
+                  onChange: (e) => setNominalRate(e.target.value.replace(/[^\d,.-]/g, "")),
+                  placeholder: "1,63"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("label", { className: "grid gap-1.5", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-xs text-ui-400", children: "Valor do TAC (R$)" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+                "input",
+                {
+                  className: "h-10 rounded-[4px] border border-ui-800 bg-ui-base px-3 text-sm text-foreground outline-none focus:border-primary",
+                  type: "text",
+                  value: tacValue,
+                  onChange: (e) => setTacValue(formatCurrencyInput(e.target.value)),
+                  onKeyDown: (e) => applyCurrencyKey(e, tacValue, (raw) => setTacValue(raw ? formatCurrency(Number(raw)) : "")),
+                  onPaste: (e) => handleCurrencyPaste(e, (val) => setTacValue(val)),
+                  placeholder: "R$ 2.300,00"
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "grid gap-1.5", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-xs text-ui-400", children: "Prazo de Simula\xE7\xE3o Ativo" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "grid grid-cols-5 gap-1", children: [12, 24, 36, 48, 60].map((t) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
+                "button",
+                {
+                  type: "button",
+                  onClick: () => setSelectedTerm(t),
+                  className: `h-9 text-xs font-bold rounded-[4px] border transition ${selectedTerm === t ? "bg-primary border-primary text-primary-foreground" : "bg-ui-base border-ui-800 text-ui-400 hover:bg-ui-900 hover:text-foreground"}`,
+                  children: [
+                    t,
+                    "x"
+                  ]
+                },
+                t
+              )) })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "pt-2 space-y-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
+              "button",
+              {
+                type: "button",
+                className: "h-10 w-full rounded-[4px] bg-primary text-xs font-bold text-primary-foreground hover:bg-red-700 flex items-center justify-center gap-2 shadow-md transition",
+                onClick: handlePrint,
+                disabled: Boolean(simulation.inputError),
+                children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Printer, { size: 14 }),
+                  "Imprimir / Proposta PDF"
+                ]
+              }
+            ),
+            simulation.inputError && /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("p", { className: "rounded border border-amber-900/70 bg-amber-950/20 px-3 py-2 text-[11px] text-tone-amber-300", role: "status", children: [
+              simulation.inputError,
+              " Os resultados ser\xE3o exibidos quando os dados estiverem v\xE1lidos."
+            ] }),
+            searchParams?.get("operationId") && /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(import_jsx_runtime44.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("button", { type: "button", disabled: saveState.pending, onClick: handleSave, className: "h-10 w-full rounded-[4px] border border-ui-700 bg-ui-950 text-xs font-bold text-foreground transition hover:border-primary disabled:opacity-50", children: saveState.pending ? "Salvando\u2026" : "Salvar simula\xE7\xE3o" }),
+              saveState.message && /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("p", { className: "text-[10px] text-ui-400", role: "status", children: saveState.message })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("label", { className: "flex items-center gap-2.5 cursor-pointer select-none", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+                "input",
+                {
+                  type: "checkbox",
+                  checked: simplifiedPdf,
+                  onChange: (e) => setSimplifiedPdf(e.target.checked),
+                  className: "w-4 h-4 rounded border-ui-800 bg-ui-base text-primary focus:ring-0 focus:ring-offset-0 accent-primary cursor-pointer"
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-[11px] text-ui-400 font-semibold hover:text-foreground transition", children: "Proposta Simplificada (M\xFAltiplos Prazos)" })
+            ] })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "space-y-5", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "rounded-md border border-ui-800 bg-ui-950 p-4 relative overflow-hidden", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-[10px] font-semibold uppercase text-ui-500 block", children: "Valor Financiado" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: `mt-1 font-bold text-foreground block ${getAdaptiveFontSize(currencyFormatter(simulation.principal))}`, children: currencyFormatter(simulation.principal) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "text-[9px] text-ui-500 block mt-0.5", children: [
+                "Entrada: ",
+                percentFormatter(simulation.entryPercent)
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "absolute right-3 bottom-3 text-primary/10", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Landmark, { size: 28 }) })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "rounded-md border border-ui-800 bg-ui-950 p-4 relative overflow-hidden", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-[10px] font-semibold uppercase text-ui-500 block", children: "Valor da Parcela" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: `mt-1 font-bold text-primary block ${getAdaptiveFontSize(currencyFormatter(selectedRow.installment))}`, children: currencyFormatter(selectedRow.installment) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("span", { className: "text-[9px] text-ui-500 block mt-0.5", children: [
+                "Prazo selecionado: ",
+                selectedRow.t,
+                "x"
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "absolute right-3 bottom-3 text-primary/10", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Calculator, { size: 28 }) })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "rounded-md border border-ui-800 bg-ui-950 p-4 relative overflow-hidden", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-[10px] font-semibold uppercase text-ui-500 block", children: "Total a Pagar" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: `mt-1 font-bold text-foreground block ${getAdaptiveFontSize(currencyFormatter(selectedRow.total))}`, children: currencyFormatter(selectedRow.total) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-[9px] text-ui-500 block mt-0.5", children: "Principal + IOF + TAC" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "absolute right-3 bottom-3 text-primary/10", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(FileText, { size: 28 }) })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "rounded-md border border-ui-800 bg-ui-950 p-4 relative overflow-hidden", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-[10px] font-semibold uppercase text-ui-500 block", children: "Custo Total" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: `mt-1 font-bold text-foreground block ${getAdaptiveFontSize(currencyFormatter(selectedRow.total - simulation.principal))}`, children: currencyFormatter(selectedRow.total - simulation.principal) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "text-[9px] text-ui-500 block mt-0.5", children: "Taxas + Juros do Per\xEDodo" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "absolute right-3 bottom-3 text-primary/10", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Calculator, { size: 28 }) })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "rounded-md border border-ui-800 bg-ui-950 p-4 overflow-hidden", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("h3", { className: "text-sm font-bold uppercase text-foreground pb-3 mb-2 flex items-center gap-2 border-b border-ui-900", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Landmark, { size: 16, className: "text-primary" }),
+              "Tabela de Parcelas (Valores Aproximados)"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "overflow-x-auto max-h-72", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("table", { className: "w-full text-left border-collapse text-xs", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("tr", { className: "border-b border-ui-900 font-bold text-ui-500 uppercase sticky top-0 bg-ui-950", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("th", { className: "py-2.5 px-3", children: "#" }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("th", { className: "py-2.5 px-3", children: "Vencimento" }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("th", { className: "py-2.5 px-3", children: "Parcela" }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("th", { className: "py-2.5 px-3 hidden sm:table-cell", children: "Amortiza\xE7\xE3o" }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("th", { className: "py-2.5 px-3 hidden sm:table-cell", children: "Juros" }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("th", { className: "py-2.5 px-3", children: "Saldo Devedor" })
+              ] }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("tbody", { className: "divide-y divide-ui-900", children: detailedSchedule.map((row) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("tr", { className: "hover:bg-ui-900/50", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("td", { className: "py-2.5 px-3 font-bold text-foreground", children: row.num }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("td", { className: "py-2.5 px-3 text-ui-400", children: row.date }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("td", { className: "py-2.5 px-3 text-ui-300", children: currencyFormatter(row.installment) }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("td", { className: "py-2.5 px-3 text-tone-emerald-400 hidden sm:table-cell", children: currencyFormatter(row.amortization) }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("td", { className: "py-2.5 px-3 text-tone-red-400 hidden sm:table-cell", children: currencyFormatter(row.interest) }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("td", { className: "py-2.5 px-3 text-ui-300 font-semibold", children: currencyFormatter(row.balance) })
+              ] }, row.num)) })
+            ] }) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "rounded-md border border-ui-800 bg-ui-950 p-4 space-y-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("h4", { className: "text-xs font-bold uppercase text-foreground flex items-center gap-1.5", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { className: "w-1.5 h-1.5 bg-primary rounded-full animate-pulse" }),
+              "Evolu\xE7\xE3o do Saldo Devedor (",
+              selectedRow.t,
+              "x)"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "w-full bg-ui-base/40 rounded border border-ui-900 p-2", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("svg", { viewBox: `0 0 ${svgPath.width} ${svgPath.height}`, className: "w-full h-auto overflow-visible", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("line", { x1: svgPath.paddingLeft, y1: svgPath.paddingTop, x2: svgPath.width - svgPath.paddingRight, y2: svgPath.paddingTop, stroke: "#18181b", strokeWidth: "1", strokeDasharray: "3" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("line", { x1: svgPath.paddingLeft, y1: svgPath.paddingTop + svgPath.graphHeight / 2, x2: svgPath.width - svgPath.paddingRight, y2: svgPath.paddingTop + svgPath.graphHeight / 2, stroke: "#18181b", strokeWidth: "1", strokeDasharray: "3" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("line", { x1: svgPath.paddingLeft, y1: svgPath.paddingTop + svgPath.graphHeight, x2: svgPath.width - svgPath.paddingRight, y2: svgPath.paddingTop + svgPath.graphHeight, stroke: "#27272a", strokeWidth: "1" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("text", { x: svgPath.paddingLeft - 8, y: svgPath.paddingTop + 4, fill: "#52525b", fontSize: "8", textAnchor: "end", children: currencyFormatter(selectedRow.financed) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("text", { x: svgPath.paddingLeft - 8, y: svgPath.paddingTop + svgPath.graphHeight / 2 + 3, fill: "#52525b", fontSize: "8", textAnchor: "end", children: currencyFormatter(selectedRow.financed / 2) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("text", { x: svgPath.paddingLeft - 8, y: svgPath.paddingTop + svgPath.graphHeight + 3, fill: "#52525b", fontSize: "8", textAnchor: "end", children: "R$ 0,00" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("text", { x: svgPath.paddingLeft, y: svgPath.paddingTop + svgPath.graphHeight + 12, fill: "#52525b", fontSize: "8", textAnchor: "middle", children: "0" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("text", { x: svgPath.paddingLeft + svgPath.graphWidth / 4, y: svgPath.paddingTop + svgPath.graphHeight + 12, fill: "#52525b", fontSize: "8", textAnchor: "middle", children: Math.round(selectedRow.t / 4) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("text", { x: svgPath.paddingLeft + svgPath.graphWidth / 2, y: svgPath.paddingTop + svgPath.graphHeight + 12, fill: "#52525b", fontSize: "8", textAnchor: "middle", children: Math.round(selectedRow.t / 2) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("text", { x: svgPath.paddingLeft + 3 * svgPath.graphWidth / 4, y: svgPath.paddingTop + svgPath.graphHeight + 12, fill: "#52525b", fontSize: "8", textAnchor: "middle", children: Math.round(3 * selectedRow.t / 4) }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("text", { x: svgPath.paddingLeft + svgPath.graphWidth, y: svgPath.paddingTop + svgPath.graphHeight + 12, fill: "#52525b", fontSize: "8", textAnchor: "middle", children: selectedRow.t }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("text", { x: svgPath.paddingLeft + svgPath.graphWidth / 2, y: svgPath.paddingTop + svgPath.graphHeight + 20, fill: "#71717a", fontSize: "8", textAnchor: "middle", fontWeight: "bold", children: "Meses da Opera\xE7\xE3o" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("path", { d: svgPath.areaPath, fill: "url(#gradSany)", opacity: "0.12" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("path", { d: svgPath.linePath, fill: "none", stroke: "#ed1c24", strokeWidth: "2.2" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("linearGradient", { id: "gradSany", x1: "0%", y1: "0%", x2: "0%", y2: "100%", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("stop", { offset: "0%", stopColor: "#ed1c24" }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("stop", { offset: "100%", stopColor: "#ed1c24", stopOpacity: "0" })
+              ] }) })
+            ] }) })
+          ] })
+        ] })
+      ] })
+    ] });
+  }
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-lab1/ops-data.ts
+  init_define_process_env();
+
+  // src/modules/operation/view-models/operation-center-drawer.view-model.ts
+  init_define_process_env();
+  function buildOperationCenterDrawerReadModel(operation, history3, pendingItems = { items: [], openCount: 0 }, financialInstitutions = [], unavailableSections = [], canonicalClientPhone) {
+    const sellerName = operation.ownership.sellerId && typeof operation.ownership.teamId === "string" ? operation.ownership.teamId : null;
+    const timeline = projectHumanHistory(history3).map((entry) => {
+      const presented = presentHistoryEntry(entry, financialInstitutions, { sellerName });
+      return {
+        id: String(entry.id),
+        title: presented.title,
+        description: presented.description,
+        actorName: entry.userName,
+        actorRole: entry.userRole,
+        createdAt: String(entry.createdAt)
+      };
+    }).sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt));
+    const operationItem = toOperationCenterItemWithFinancialInstitutions(operation, financialInstitutions);
+    return {
+      operation: canonicalClientPhone === void 0 ? operationItem : { ...operationItem, clientPhone: canonicalClientPhone ?? "" },
+      timeline,
+      lastMovementAt: timeline[0]?.createdAt ?? null,
+      pendingItems,
+      unavailableSections
+    };
+  }
+
+  // src/modules/operation/view-models/operation-detail-premium.view-model.ts
+  init_define_process_env();
+
   // src/modules/operation/view-models/operation-official-simulation.view-model.ts
+  init_define_process_env();
   var supportedTerms = [12, 24, 36, 48, 60];
   var isSchedule = (value) => typeof value === "object" && value !== null && "schedule" in value;
   var reportedTotal = (value) => {
@@ -48117,6 +49171,15 @@ ${suffix}`;
       return later(340, { success: true, data: { revision: 3, approved: false, disbursed: false, canValidate: role !== "vendedor", canUpdateInternal: false, priorFormalization: false, priorBilling: false, internalAssessmentStatus: null, formalizationCompleted: false, billingCompleted: false, internalAssessmentId: null, banks, history: [] } });
     },
     listOperationModalityRequestsAction: () => later(300, { success: true, data: [] }),
+    // OPP linked to the operation (commercial presentation record shape); operation index 3 has none, to show the disabled print.
+    commercialClientRelationshipsAction: (clientId) => {
+      const k = entities.findIndex((e2) => e2.clientId === clientId);
+      const e = entities[k];
+      if (!e || k === 3) return later(300, { success: true, data: [] });
+      const oppId = id(900 + k);
+      return later(300, { success: true, data: [{ opportunity: { id: oppId, sellerId: id(700), clientId, humanIdentifier: `OPP-SINT-2026-${String(100 + k).padStart(4, "0")}`, cycle: 1, operationLink: { operationId: e.id, cycle: 1, lifecycle: e.operationalLifecycle.state, disposition: "ACTIVE" } } }] });
+    },
+    commercialAuthorityAction: (capability) => later(200, capability === "commercial_order.print" && role === "assistente_credito" ? fail("Sem permiss\xE3o.") : { success: true, data: true }),
     listEligibleOperationalAssigneesAction: () => later(250, { success: true, data: [{ userId: id(800), displayName: "Analista Sint\xE9tica da Mesa", role: "assistente_credito", eligible: true }, { userId: id(802), displayName: "Coordena\xE7\xE3o Sint\xE9tica de Cr\xE9dito", role: "coordenador_credito", eligible: true }].map((x2) => {
       people[x2.userId] = { id: x2.userId, name: x2.displayName, role: x2.role };
       return x2;
@@ -48167,7 +49230,7 @@ ${suffix}`;
   };
 
   // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-lab1/entry.tsx
-  var import_jsx_runtime44 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime45 = __toESM(require_jsx_runtime());
   var p2 = new URLSearchParams(location.search);
   var slate = p2.get("theme") === "slate";
   var theme = slate ? "irmen-executive-light" : "irmen-industrial-dark";
@@ -48189,8 +49252,8 @@ ${suffix}`;
   };
   window.addEventListener("popstate", () => listeners2.forEach((l) => l()));
   function Routes() {
-    const [, force] = import_react38.default.useReducer((n) => n + 1, 0);
-    import_react38.default.useEffect(() => {
+    const [, force] = import_react40.default.useReducer((n) => n + 1, 0);
+    import_react40.default.useEffect(() => {
       listeners2.add(force);
       return () => {
         listeners2.delete(force);
@@ -48198,11 +49261,31 @@ ${suffix}`;
     }, []);
     const r2 = route();
     const m = r2.match(/^\/operations\/([^/]+)$/);
-    if (m && m[1] !== "new") return p2.get("nokey") ? /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(OperationDetailCockpit, { id: m[1] }) : /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(OperationDetailCockpit, { id: m[1] }, m[1]);
-    return /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(OperationsList, {});
+    if (m && m[1] !== "new") return p2.get("nokey") ? /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(OperationDetailCockpit, { id: m[1] }) : /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(OperationDetailCockpit, { id: m[1] }, m[1]);
+    if (r2 === "/simulator") return /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(SimulatorPage, {});
+    if (r2.startsWith("/sales-funnel/")) return /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(LabElsewhere, { route: r2 });
+    return /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(OperationsList, {});
+  }
+  function LabElsewhere({ route: route2 }) {
+    const q = new URLSearchParams(location.search);
+    const order = route2.startsWith("/sales-funnel/orders/new");
+    return /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("div", { className: "odx", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("div", { className: "odx-panel", style: { maxWidth: 640 }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("p", { className: "odx-eyebrow", children: "Laborat\xF3rio" }),
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("h2", { className: "odx-panel__title", children: order ? "Pedido comercial da oportunidade" : "Oportunidade comercial" }),
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("p", { style: { marginTop: 10, fontSize: 14 }, children: [
+        "No sistema oficial, este bot\xE3o abre ",
+        /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)("code", { children: [
+          route2,
+          order ? `?opportunity=${q.get("opportunity") ?? ""}` : ""
+        ] }),
+        order ? ', a mesma tela do bot\xE3o "Pedido" do funil Kanban, onde o pedido \xE9 emitido e impresso.' : ", o detalhe da oportunidade no funil.",
+        " Essa tela n\xE3o faz parte deste laborat\xF3rio."
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("button", { className: "ds-button ds-button--secondary", style: { marginTop: 16 }, onClick: () => history.back(), type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)("span", { className: "ds-button__content", children: "Voltar para a opera\xE7\xE3o" }) })
+    ] }) });
   }
   var header = { userName: "Pessoa Sint\xE9tica", email: "pessoa@exemplo.invalid", company: "IRMEN", role: p2.get("role") || "coordenador_credito" };
-  (0, import_client2.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime44.jsx)(AppShell, { initialTheme: theme, headerContext: header, children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Routes, {}) }));
+  (0, import_client2.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime45.jsx)(AppShell, { initialTheme: theme, headerContext: header, children: /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(Routes, {}) }));
 })();
 /*! Bundled license information:
 
@@ -48266,6 +49349,7 @@ lucide-react/dist/esm/defaultAttributes.js:
 lucide-react/dist/esm/Icon.js:
 lucide-react/dist/esm/createLucideIcon.js:
 lucide-react/dist/esm/icons/archive.js:
+lucide-react/dist/esm/icons/arrow-left-right.js:
 lucide-react/dist/esm/icons/arrow-left.js:
 lucide-react/dist/esm/icons/arrow-right.js:
 lucide-react/dist/esm/icons/arrow-up-right.js:
@@ -48275,6 +49359,7 @@ lucide-react/dist/esm/icons/bot.js:
 lucide-react/dist/esm/icons/brain-circuit.js:
 lucide-react/dist/esm/icons/building-2.js:
 lucide-react/dist/esm/icons/building.js:
+lucide-react/dist/esm/icons/calculator.js:
 lucide-react/dist/esm/icons/calendar-days.js:
 lucide-react/dist/esm/icons/calendar.js:
 lucide-react/dist/esm/icons/chart-column.js:
