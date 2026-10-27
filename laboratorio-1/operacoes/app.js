@@ -43667,8 +43667,8 @@ ${suffix}`;
     if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   }
-  function CockpitPanel({ id: id2, eyebrow, title, aside, children, className }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("section", { "aria-labelledby": id2 ? `${id2}-title` : void 0, className: `odx-panel ${className ?? ""}`, id: id2, children: [
+  function CockpitPanel({ id: id2, eyebrow, title, aside, children, className, scroll = false }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("section", { "aria-labelledby": id2 ? `${id2}-title` : void 0, className: `odx-panel ${scroll ? "odx-panel--scroll " : ""}${className ?? ""}`, id: id2, children: [
       /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("header", { className: "odx-panel__head", children: [
         /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "min-w-0", children: [
           eyebrow && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { className: "odx-eyebrow", children: eyebrow }),
@@ -43676,7 +43676,7 @@ ${suffix}`;
         ] }),
         aside
       ] }),
-      children
+      scroll ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: "odx-panel__body", tabIndex: 0, children }) : children
     ] });
   }
   function CockpitHero(props) {
@@ -43714,20 +43714,7 @@ ${suffix}`;
           ] }),
           readModel.credit.source !== "NOT_APPLICABLE" && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: "odx-hero__credit", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CreditDecisionSummary, { className: "text-xs font-medium", input: props.creditSummaryInput }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: "odx-hero__actions", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-hero__buttons", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { className: "ds-button ds-button--secondary", onClick: props.onBack, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(ArrowLeft, { "aria-hidden": "true", size: 14 }),
-            "Voltar ao Centro"
-          ] }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { className: "ds-button ds-button--secondary", onClick: props.onPrint, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Printer, { "aria-hidden": "true", size: 14 }),
-            "Imprimir"
-          ] }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { className: "ds-button ds-button--primary", onClick: props.onFocusCommunication, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(MessageSquare, { "aria-hidden": "true", size: 14 }),
-            "Comunica\xE7\xE3o"
-          ] }) })
-        ] }) })
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(HeroClient, { readModel })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(LifecycleTrack, { lifecycle: readModel.lifecycle }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(FinancialStrip, { readModel, isBankingModality: props.isBankingModality })
@@ -43798,7 +43785,7 @@ ${suffix}`;
       ] })
     ] }, item.k)) });
   }
-  function CockpitSectionNav({ sections }) {
+  function CockpitToolbar({ sections, onBack, onPrint, onFocusCommunication }) {
     const [active, setActive] = (0, import_react31.useState)(sections[0]?.id ?? "");
     (0, import_react31.useEffect)(() => {
       const targets = sections.map((section) => document.getElementById(section.id)).filter((element) => Boolean(element));
@@ -43810,11 +43797,27 @@ ${suffix}`;
       targets.forEach((target) => observer.observe(target));
       return () => observer.disconnect();
     }, [sections]);
-    return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("nav", { "aria-label": "Se\xE7\xF5es da opera\xE7\xE3o", className: "odx-nav", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("ul", { children: sections.map((section) => /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("a", { "aria-current": active === section.id ? "location" : void 0, href: `#${section.id}`, onClick: (event2) => {
-      event2.preventDefault();
-      jumpTo(section.id);
-      setActive(section.id);
-    }, children: section.label }) }, section.id)) }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-bar", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { "aria-label": "Voltar ao Centro de Opera\xE7\xF5es", className: "ds-button ds-button--secondary odx-bar__back", onClick: onBack, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(ArrowLeft, { "aria-hidden": "true", size: 15 }),
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("span", { className: "odx-bar__lbl", children: "Centro" })
+      ] }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("nav", { "aria-label": "Se\xE7\xF5es da opera\xE7\xE3o", className: "odx-nav", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("ul", { children: sections.map((section) => /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("a", { "aria-current": active === section.id ? "location" : void 0, href: `#${section.id}`, onClick: (event2) => {
+        event2.preventDefault();
+        jumpTo(section.id);
+        setActive(section.id);
+      }, children: section.label }) }, section.id)) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-bar__acts", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { "aria-label": "Imprimir opera\xE7\xE3o", className: "ds-button ds-button--secondary odx-bar__print", onClick: onPrint, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Printer, { "aria-hidden": "true", size: 15 }),
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("span", { className: "odx-bar__lbl", children: "Imprimir" })
+        ] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { className: "ds-button ds-button--primary odx-bar__chat", onClick: onFocusCommunication, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "ds-button__content", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(MessageSquare, { "aria-hidden": "true", size: 15 }),
+          "Comunica\xE7\xE3o"
+        ] }) })
+      ] })
+    ] });
   }
   function jumpTo(id2) {
     const target = document.getElementById(id2);
@@ -43825,7 +43828,7 @@ ${suffix}`;
     focusable.setAttribute("tabindex", "-1");
     focusable.focus({ preventScroll: true });
   }
-  function ClientCard({ readModel }) {
+  function HeroClient({ readModel }) {
     const client = readModel.client;
     const current = client.current;
     const historical = client.historicalSnapshot;
@@ -43836,18 +43839,21 @@ ${suffix}`;
     const state = current?.state || historical.state || "";
     const address = current?.address || historical.address || "";
     const postalCode = current?.postalCode || historical.postalCode || "";
-    return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(CockpitPanel, { aside: client.sourceStatus === "CURRENT_MASTER" ? /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "odx-chip", "data-tone": "good", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CircleCheck, { "aria-hidden": "true", size: 11 }),
-      "Base cadastral"
-    ] }) : void 0, eyebrow: "Cliente", id: "odx-cliente", title: "Dados do cliente", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-client", children: [
+    const fullAddress = `${address || "\u2014"}${postalCode ? ` \xB7 CEP ${postalCode}` : ""}`;
+    return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("section", { "aria-labelledby": "odx-cliente-title", className: "odx-hero__client", id: "odx-cliente", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-hero__clientHead", children: [
         /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("span", { "aria-hidden": "true", className: "odx-avatar", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Building2, { size: 18 }) }),
         /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "min-w-0", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { className: "odx-client__name", title: name, children: name }),
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { className: "odx-eyebrow", children: "Dados do cliente" }),
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("h2", { className: "odx-client__name", id: "odx-cliente-title", title: name, children: name }),
           /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("p", { className: "odx-mono", children: [
             "CNPJ/CPF: ",
-            historical.document ? formatDocument(historical.document) : "\u2014"
+            historical.document ? formatDocument(historical.document) : "n\xE3o informado"
           ] })
+        ] }),
+        client.sourceStatus === "CURRENT_MASTER" && /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "odx-chip", "data-tone": "good", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CircleCheck, { "aria-hidden": "true", size: 11 }),
+          "Base cadastral"
         ] })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("dl", { className: "odx-facts", children: [
@@ -43860,13 +43866,6 @@ ${suffix}`;
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("dt", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Mail, { "aria-hidden": "true", size: 12 }),
-            "E-mail"
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("dd", { className: "truncate", title: email || "\u2014", children: email ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("a", { className: "odx-link", href: `mailto:${email}`, children: email }) : "\u2014" })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("dt", { children: [
             /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(MapPin, { "aria-hidden": "true", size: 12 }),
             "Cidade / UF"
           ] }),
@@ -43875,27 +43874,32 @@ ${suffix}`;
             state ? ` / ${state}` : ""
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-facts__wide", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("dt", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Mail, { "aria-hidden": "true", size: 12 }),
+            "E-mail"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("dd", { className: "odx-ellipsis", title: email || void 0, children: email ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("a", { className: "odx-link", href: `mailto:${email}`, children: email }) : "\u2014" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-facts__wide", children: [
           /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("dt", { children: [
             /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(MapPin, { "aria-hidden": "true", size: 12 }),
             "Endere\xE7o"
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("dd", { title: `${address || "\u2014"} ${postalCode ? `- CEP ${postalCode}` : ""}`, children: address || "\u2014" })
+          /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("dd", { className: "odx-ellipsis", title: fullAddress, children: fullAddress })
         ] })
       ] })
     ] });
   }
   function OpeningReportCard({ readModel }) {
-    const [expanded, setExpanded] = (0, import_react31.useState)(false);
     const text4 = readModel.initialReport;
     const opened = readModel.identity.openedAt ? dateLabel(readModel.identity.openedAt) : "N\xE3o informado";
     const author = readModel.ownership.seller?.displayName;
-    const long = (text4?.length ?? 0) > 420;
     return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CockpitPanel, { aside: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "odx-chip", children: [
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Calendar, { "aria-hidden": "true", size: 11 }),
       "Aberta em: ",
       opened
-    ] }), eyebrow: "Abertura", id: "odx-relato", title: "Relato inicial da abertura", children: text4 ? /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("figure", { className: "odx-quote", "data-expanded": expanded || !long || void 0, children: [
+    ] }), eyebrow: "Abertura", id: "odx-relato", scroll: true, title: "Relato inicial da abertura", children: text4 ? /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("figure", { className: "odx-quote", children: [
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("span", { "aria-hidden": "true", className: "odx-quote__mark", children: "\u201C" }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("blockquote", { className: "odx-quote__text", children: text4 }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("figcaption", { className: "odx-quote__by", children: [
@@ -43904,50 +43908,11 @@ ${suffix}`;
           "\xB7 registrado na abertura por ",
           /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("b", { children: author })
         ] })
-      ] }),
-      long && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { className: "odx-link odx-quote__more", onClick: () => setExpanded((value) => !value), type: "button", children: expanded ? "Mostrar menos" : "Ler relato completo" })
+      ] })
     ] }) : /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-empty", children: [
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(FileText, { "aria-hidden": "true", size: 18 }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { children: "Nenhum relato informado na abertura da opera\xE7\xE3o." })
     ] }) });
-  }
-  var PARTY = { INTERNAL: "Equipe interna", CLIENT: "Cliente", BANK: "Banco", OTHER_EXTERNAL: "Terceiro" };
-  function PendingCard({ readModel }) {
-    if (readModel.unavailableSections.includes("pendingItems")) {
-      return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CockpitPanel, { eyebrow: "Pend\xEAncias", id: "odx-pendencias", title: "Pend\xEAncias", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: "odx-empty", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { children: "Pend\xEAncias indispon\xEDveis no momento." }) }) });
-    }
-    const open = readModel.pendingItems.items.filter((item) => item.status === "OPEN");
-    return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CockpitPanel, { aside: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "odx-chip", "data-tone": readModel.pendingItems.openCount > 0 ? "warn" : "good", children: [
-      readModel.pendingItems.openCount,
-      " em aberto"
-    ] }), eyebrow: "Pend\xEAncias", id: "odx-pendencias", title: "O que falta", children: open.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-empty", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CircleCheck, { "aria-hidden": "true", size: 18 }),
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { children: "Nenhuma pend\xEAncia em aberto." })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("ul", { className: "odx-pending", children: open.map((item) => /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("li", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("span", { "aria-hidden": "true", className: "odx-pending__dot" }),
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "min-w-0", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { className: "odx-pending__title", children: item.title }),
-        item.description && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { className: "odx-muted", children: item.description }),
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("p", { className: "odx-pending__meta", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { children: [
-            "Com: ",
-            PARTY[item.actionParty] ?? item.actionParty
-          ] }),
-          item.bank && /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { children: [
-            "\xB7 ",
-            item.bank.name
-          ] }),
-          item.internalOwner && /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { children: [
-            "\xB7 Respons\xE1vel: ",
-            item.internalOwner.name
-          ] }),
-          item.dueAt && /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { children: [
-            "\xB7 Prazo: ",
-            dateLabel(item.dueAt)
-          ] })
-        ] })
-      ] })
-    ] }, item.id)) }) });
   }
   var masterText = (master, key) => typeof master[key] === "string" && master[key].trim() ? master[key].trim() : null;
   function equipmentView(item) {
@@ -44036,7 +44001,7 @@ ${suffix}`;
     return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CockpitPanel, { aside: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("span", { className: "odx-chip", children: [
       history3.length,
       " evento(s)"
-    ] }), eyebrow: "Hist\xF3rico", id: "odx-historico", title: "Timeline da opera\xE7\xE3o", children: unavailable ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: "odx-empty", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { children: "Hist\xF3rico indispon\xEDvel no momento." }) }) : history3.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-empty", children: [
+    ] }), eyebrow: "Hist\xF3rico", id: "odx-historico", scroll: true, title: "Timeline da opera\xE7\xE3o", children: unavailable ? /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: "odx-empty", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { children: "Hist\xF3rico indispon\xEDvel no momento." }) }) : history3.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "odx-empty", children: [
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Clock3, { "aria-hidden": "true", size: 18 }),
       /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { children: "Nenhum evento registrado nesta linha do tempo." })
     ] }) : /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(import_jsx_runtime37.Fragment, { children: [
@@ -44061,6 +44026,9 @@ ${suffix}`;
       history3.length > 6 && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("button", { className: "odx-link odx-feed__more", onClick: () => setShowAll((value) => !value), type: "button", children: showAll ? "Mostrar s\xF3 os recentes" : `Ver todos os ${history3.length} eventos` })
     ] }) });
   }
+
+  // src/modules/operation/components/detail-v2/cockpit-pending.tsx
+  init_define_process_env();
 
   // src/modules/operation/components/detail-v2/cockpit-checklist.tsx
   init_define_process_env();
@@ -44281,12 +44249,12 @@ ${suffix}`;
                       " recebidos"
                     ] })
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("button", { className: "odx-ck__pending", "data-zero": pending2 === 0 || void 0, onClick: () => setOpen({ bankId: checklist.bankId, filter: "PENDING" }), type: "button", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("button", { className: "odx-ck__act odx-ck__pending", "data-zero": pending2 === 0 || void 0, onClick: () => setOpen({ bankId: checklist.bankId, filter: "PENDING" }), type: "button", children: [
                     /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("b", { children: pending2 }),
                     " ",
                     pending2 === 1 ? "pend\xEAncia" : "pend\xEAncias"
                   ] }),
-                  /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("button", { "aria-label": `Ver checklist completo de ${checklist.bankName}`, className: "odx-ck__open", onClick: () => setOpen({ bankId: checklist.bankId, filter: "ALL" }), type: "button", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("button", { "aria-label": `Ver checklist completo de ${checklist.bankName}`, className: "odx-ck__act odx-ck__open", onClick: () => setOpen({ bankId: checklist.bankId, filter: "ALL" }), type: "button", children: [
                     "Checklist ",
                     /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(ChevronRight, { "aria-hidden": "true", size: 14 })
                   ] })
@@ -44314,10 +44282,108 @@ ${suffix}`;
     );
   }
 
+  // src/modules/operation/components/detail-v2/cockpit-pending.tsx
+  var import_jsx_runtime40 = __toESM(require_jsx_runtime());
+  var PARTY = { INTERNAL: "Equipe interna", CLIENT: "Cliente", BANK: "Banco", OTHER_EXTERNAL: "Terceiro" };
+  var dateLabel2 = (iso3) => iso3 ? new Date(iso3).toLocaleDateString("pt-BR") : "";
+  function missingDocuments(checklists2) {
+    const byCode = /* @__PURE__ */ new Map();
+    for (const checklist of checklists2) {
+      if (checklist.documentRequirementsMode === "NONE") continue;
+      for (const requirement of checklist.requirements ?? []) {
+        if (!isPending(requirement)) continue;
+        const entry = byCode.get(requirement.code) ?? { code: requirement.code, label: requirement.label, banks: [], rejected: false, required: false };
+        if (!entry.banks.includes(checklist.bankName)) entry.banks.push(checklist.bankName);
+        entry.rejected ||= requirement.state === "REJECTED";
+        entry.required ||= requirement.requiredness === "REQUIRED";
+        byCode.set(requirement.code, entry);
+      }
+    }
+    return [...byCode.values()].sort((a, b) => Number(b.rejected) - Number(a.rejected) || Number(b.required) - Number(a.required) || b.banks.length - a.banks.length || a.label.localeCompare(b.label, "pt-BR"));
+  }
+  function PendingCard({ readModel, bankingApplicable }) {
+    const checklistUnavailable = readModel.unavailableSections.includes("bankDocumentChecklists");
+    const itemsUnavailable = readModel.unavailableSections.includes("pendingItems");
+    const documents = bankingApplicable && !checklistUnavailable ? missingDocuments(readModel.bankDocumentChecklists) : [];
+    const banksWithChecklist = readModel.bankDocumentChecklists.filter((item) => item.documentRequirementsMode !== "NONE" && (item.requirements?.length ?? 0) > 0).length;
+    const open = itemsUnavailable ? [] : readModel.pendingItems.items.filter((item) => item.status === "OPEN");
+    const total = documents.length + open.length;
+    return /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(
+      CockpitPanel,
+      {
+        aside: /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("span", { className: "odx-chip", "data-tone": total > 0 ? "warn" : "good", children: [
+          total,
+          " em aberto"
+        ] }),
+        className: "odx-pend",
+        eyebrow: "Pend\xEAncias",
+        id: "odx-pendencias",
+        scroll: true,
+        title: "O que falta",
+        children: [
+          bankingApplicable && /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "odx-pend__group", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("p", { className: "odx-pend__head", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { children: "Documentos pendentes" }),
+              documents.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("button", { className: "odx-link", onClick: () => jumpTo("odx-checklist"), type: "button", children: [
+                "Checklist por banco ",
+                /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(ChevronRight, { "aria-hidden": "true", size: 12 })
+              ] })
+            ] }),
+            checklistUnavailable ? /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("p", { className: "odx-ck__note", children: "Checklist documental indispon\xEDvel no momento; nenhum documento foi presumido." }) : documents.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("p", { className: "odx-pend__ok", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(CircleCheck, { "aria-hidden": "true", size: 14 }),
+              banksWithChecklist > 0 ? "Nenhum documento pendente nos checklists dos bancos." : "Nenhum checklist documental aplicado a esta opera\xE7\xE3o."
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("ul", { className: "odx-pending", children: documents.map((document2) => /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("li", { "data-tone": document2.rejected ? "crit" : "warn", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { "aria-hidden": "true", className: "odx-pending__dot" }),
+              /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "min-w-0", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("p", { className: "odx-pending__title", children: document2.label }),
+                /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("p", { className: "odx-pending__meta", children: [
+                  document2.rejected && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { className: "odx-pending__flag", children: "Recusado" }),
+                  !document2.required && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { children: "Opcional \xB7" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { children: banksWithChecklist > 1 && document2.banks.length === banksWithChecklist ? "Todos os bancos" : document2.banks.join(", ") })
+                ] })
+              ] })
+            ] }, document2.code)) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "odx-pend__group", children: [
+            bankingApplicable && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("p", { className: "odx-pend__head", children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { children: "Pend\xEAncias da opera\xE7\xE3o" }) }),
+            itemsUnavailable ? /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("p", { className: "odx-ck__note", children: "Pend\xEAncias indispon\xEDveis no momento." }) : open.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("p", { className: "odx-pend__ok", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(CircleCheck, { "aria-hidden": "true", size: 14 }),
+              "Nenhuma pend\xEAncia operacional em aberto."
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("ul", { className: "odx-pending", children: open.map((item) => /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("li", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { "aria-hidden": "true", className: "odx-pending__dot" }),
+              /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "min-w-0", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("p", { className: "odx-pending__title", children: item.title }),
+                item.description && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("p", { className: "odx-muted", children: item.description }),
+                /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("p", { className: "odx-pending__meta", children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("span", { children: [
+                    "Com: ",
+                    PARTY[item.actionParty] ?? item.actionParty
+                  ] }),
+                  item.bank && /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("span", { children: [
+                    "\xB7 ",
+                    item.bank.name
+                  ] }),
+                  item.internalOwner && /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("span", { children: [
+                    "\xB7 Respons\xE1vel: ",
+                    item.internalOwner.name
+                  ] }),
+                  item.dueAt && /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("span", { children: [
+                    "\xB7 Prazo: ",
+                    dateLabel2(item.dueAt)
+                  ] })
+                ] })
+              ] })
+            ] }, item.id)) })
+          ] })
+        ]
+      }
+    );
+  }
+
   // src/modules/operation/components/detail-v2/cockpit-simulation.tsx
   init_define_process_env();
   var import_react34 = __toESM(require_react());
-  var import_jsx_runtime40 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime41 = __toESM(require_jsx_runtime());
   var brl2 = (value) => value === null ? "N\xE3o informado" : new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
   var brlShort = (value) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL", notation: "compact", maximumFractionDigits: 1 }).format(value);
   var W = 600;
@@ -44344,9 +44410,9 @@ ${suffix}`;
     const principal = selected?.chart[0]?.balance ?? null;
     const interestShare = selected?.totalInterest != null && selected.totalPaid ? Math.min(100, Math.max(0, selected.totalInterest / selected.totalPaid * 100)) : null;
     const simulatorHref = `/simulator?operationId=${encodeURIComponent(operationId)}&equipmentValue=${simulation.totalValue}&entryValue=${simulation.downPayment}${simulation.commercialRate === null ? "" : `&commercialRate=${simulation.commercialRate.value}`}${term ? `&term=${term}` : simulation.baseTerm ? `&term=${simulation.baseTerm}` : ""}`;
-    const openSimulator = /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(Link, { className: "odx-sim__open", href: simulatorHref, children: [
+    const openSimulator = /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Link, { className: "odx-sim__open", href: simulatorHref, children: [
       "Abrir simulador ",
-      /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(ExternalLink, { "aria-hidden": "true", size: 13 })
+      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(ExternalLink, { "aria-hidden": "true", size: 13 })
     ] });
     const onPointer = (event2) => {
       const box = event2.currentTarget.getBoundingClientRect();
@@ -44355,115 +44421,119 @@ ${suffix}`;
     };
     if (simulation.status !== "AVAILABLE" || !selected) {
       const reason = simulation.status === "NOT_APPLICABLE" ? isBankingModality ? "Simula\xE7\xE3o de financiamento indispon\xEDvel para esta opera\xE7\xE3o." : "A modalidade vigente n\xE3o usa financiamento banc\xE1rio." : simulation.status === "UNAVAILABLE_MISSING_OPERATION_VALUE" ? "Valor da opera\xE7\xE3o n\xE3o informado: sem c\xE1lculo fabricado." : "Taxa comercial n\xE3o informada: sem c\xE1lculo fabricado.";
-      return /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(CockpitPanel, { aside: openSimulator, className: "odx-sim", eyebrow: "Proposta", id: "odx-simulacao", title: "Simula\xE7\xE3o da opera\xE7\xE3o", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "odx-empty", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(Gauge, { "aria-hidden": "true", size: 18 }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("p", { children: reason })
+      return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(CockpitPanel, { aside: openSimulator, className: "odx-sim", eyebrow: "Proposta", id: "odx-simulacao", title: "Simula\xE7\xE3o da opera\xE7\xE3o", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-empty", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Gauge, { "aria-hidden": "true", size: 18 }),
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("p", { children: reason })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("dl", { className: "odx-sim__facts", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dt", { children: "Valor da opera\xE7\xE3o" }),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dd", { children: brl2(financial.totalOperationValue) })
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("dl", { className: "odx-sim__facts", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dt", { children: "Valor da opera\xE7\xE3o" }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dd", { children: brl2(financial.totalOperationValue) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dt", { children: "Entrada" }),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dd", { children: financial.downPaymentValue > 0 ? brl2(financial.downPaymentValue) : "Sem entrada" })
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dt", { children: "Entrada" }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dd", { children: financial.downPaymentValue > 0 ? brl2(financial.downPaymentValue) : "Sem entrada" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dt", { children: "Prazo pretendido" }),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dd", { children: isBankingModality || modalityKey === "internal_installment" ? `${financial.termLabel || "\u2014"} parcelas` : "Conforme condi\xE7\xE3o comercial" })
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dt", { children: "Prazo pretendido" }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dd", { children: isBankingModality || modalityKey === "internal_installment" ? `${financial.termLabel || "\u2014"} parcelas` : "Conforme condi\xE7\xE3o comercial" })
           ] })
         ] })
       ] });
     }
     const hoverValue = hover === null ? null : values[hover];
-    return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(CockpitPanel, { aside: openSimulator, className: "odx-sim", eyebrow: "Proposta", id: "odx-simulacao", title: "Simula\xE7\xE3o da opera\xE7\xE3o", children: /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "odx-sim__body", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("div", { "aria-label": "Prazo da simula\xE7\xE3o", className: "odx-sim__terms", role: "group", children: scenarios.map((item) => /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("button", { "aria-pressed": item.term === term, className: "odx-sim__term", onClick: () => {
+    return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(CockpitPanel, { aside: openSimulator, className: "odx-sim", eyebrow: "Proposta", id: "odx-simulacao", title: "Simula\xE7\xE3o da opera\xE7\xE3o", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-sim__body", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { "aria-label": "Prazo da simula\xE7\xE3o", className: "odx-sim__terms", role: "group", children: scenarios.map((item) => /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("button", { "aria-pressed": item.term === term, className: "odx-sim__term", onClick: () => {
         setTerm(item.term);
         setHover(null);
       }, type: "button", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("span", { className: "odx-sim__termN", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("span", { className: "odx-sim__termN", children: [
           item.term,
           "x"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { className: "odx-sim__termV", children: brl2(item.installment) }),
-        item.term === simulation.baseTerm && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { className: "odx-sim__tag", children: "Proposta" })
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "odx-sim__termV", children: brl2(item.installment) }),
+        item.term === simulation.baseTerm && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "odx-sim__tag", children: "Proposta" })
       ] }, item.term)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "odx-sim__readout", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "odx-sim__hero", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("p", { className: "odx-sim__k", children: [
-            "Parcela estimada \xB7 ",
-            term,
-            "x"
+      /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-sim__layout", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-sim__side", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-sim__readout", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-sim__hero", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("p", { className: "odx-sim__k", children: [
+                "Parcela estimada \xB7 ",
+                term,
+                "x"
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("p", { className: "odx-sim__v", "aria-live": "polite", children: [
+                brl2(selected.installment),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { children: "/m\xEAs" })
+              ] }),
+              rate && /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("p", { className: "odx-sim__rate", children: [
+                "Taxa comercial ",
+                rate
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("dl", { className: "odx-sim__kpis", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dt", { children: "Valor financiado" }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dd", { children: brl2(simulation.financedValue) })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dt", { children: "Total pago" }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dd", { children: brl2(selected.totalPaid) })
+              ] }),
+              selected.totalInterest !== null && /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dt", { children: "Juros no per\xEDodo" }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("dd", { children: brl2(selected.totalInterest) })
+              ] })
+            ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("p", { className: "odx-sim__v", "aria-live": "polite", children: [
-            brl2(selected.installment),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { children: "/m\xEAs" })
-          ] }),
-          rate && /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("p", { className: "odx-sim__rate", children: [
-            "Taxa comercial ",
-            rate
+          interestShare !== null && principal !== null && /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-sim__mix", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { "aria-hidden": "true", className: "odx-sim__mixbar", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("i", { style: { width: `${100 - interestShare}%` } }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("p", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("span", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("i", { "data-k": "p" }),
+                "Principal ",
+                brl2(principal)
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("span", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("i", { "data-k": "j" }),
+                "Juros ",
+                brl2(selected.totalInterest),
+                " (",
+                interestShare.toFixed(0),
+                "% do total)"
+              ] })
+            ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("dl", { className: "odx-sim__kpis", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dt", { children: "Valor financiado" }),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dd", { children: brl2(simulation.financedValue) })
+        hasCurve ? /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("figure", { className: "odx-sim__chart", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("figcaption", { className: "odx-sim__cap", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { children: "Saldo devedor ao longo do contrato" }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "odx-muted", children: hover === null ? "Toque ou passe o cursor no gr\xE1fico" : `M\xEAs ${hover}: ${brl2(hoverValue)}` })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dt", { children: "Total pago" }),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dd", { children: brl2(selected.totalPaid) })
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-sim__plot", onPointerLeave: () => setHover(null), onPointerMove: onPointer, onPointerDown: onPointer, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "odx-sim__y odx-sim__y--top", children: brlShort(top) }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "odx-sim__y odx-sim__y--mid", children: brlShort(top / 2) }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("svg", { "aria-label": `Saldo devedor em ${term} meses, de ${brl2(principal)} a zero`, preserveAspectRatio: "none", role: "img", viewBox: `0 0 ${W} ${H}`, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("linearGradient", { id: "odx-sim-fill", x1: "0", x2: "0", y1: "0", y2: "1", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("stop", { offset: "0%", stopColor: "var(--jv-arc)", stopOpacity: ".38" }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("stop", { offset: "100%", stopColor: "var(--jv-arc)", stopOpacity: "0" })
+              ] }) }),
+              [0.25, 0.5, 0.75].map((f) => /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("line", { className: "odx-sim__grid", x1: "0", x2: W, y1: H * f, y2: H * f }, f)),
+              [12, 24, 36, 48].map((m) => /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("line", { className: "odx-sim__grid odx-sim__grid--v", x1: x(m), x2: x(m), y1: "0", y2: H }, m)),
+              curves.filter((item) => item.term !== term).map((item) => /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("path", { className: "odx-sim__ghost", d: linePath(item.values, top) }, item.term)),
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("path", { className: "odx-sim__area", d: `${linePath(values, top)} L${W},${H} L0,${H} Z` }),
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("path", { className: "odx-sim__line", d: linePath(values, top) }),
+              hover !== null && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("line", { className: "odx-sim__cross", x1: x(hover), x2: x(hover), y1: "0", y2: H })
+            ] }),
+            term !== null && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { "aria-hidden": "true", className: "odx-sim__end", style: { left: `${term / MONTHS * 100}%` } }),
+            hover !== null && hoverValue !== null && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { "aria-hidden": "true", className: "odx-sim__dot", style: { left: `${hover / MONTHS * 100}%`, top: `${(1 - hoverValue / top * (H - 12) / H) * 100}%` } })
           ] }),
-          selected.totalInterest !== null && /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dt", { children: "Juros no per\xEDodo" }),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("dd", { children: brl2(selected.totalInterest) })
-          ] })
-        ] })
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { "aria-hidden": "true", className: "odx-sim__x", children: [0, 12, 24, 36, 48, 60].map((m) => /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { style: { left: `${m / MONTHS * 100}%` }, children: m === 0 ? "Hoje" : `${m}m` }, m)) })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("p", { className: "odx-ck__note", children: "Curva de quita\xE7\xE3o n\xE3o fornecida pela estrat\xE9gia de c\xE1lculo deste prazo." })
       ] }),
-      hasCurve ? /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("figure", { className: "odx-sim__chart", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("figcaption", { className: "odx-sim__cap", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { children: "Saldo devedor ao longo do contrato" }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { className: "odx-muted", children: hover === null ? "Toque ou passe o cursor no gr\xE1fico" : `M\xEAs ${hover}: ${brl2(hoverValue)}` })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "odx-sim__plot", onPointerLeave: () => setHover(null), onPointerMove: onPointer, onPointerDown: onPointer, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { className: "odx-sim__y odx-sim__y--top", children: brlShort(top) }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { className: "odx-sim__y odx-sim__y--mid", children: brlShort(top / 2) }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("svg", { "aria-label": `Saldo devedor em ${term} meses, de ${brl2(principal)} a zero`, preserveAspectRatio: "none", role: "img", viewBox: `0 0 ${W} ${H}`, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("defs", { children: /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("linearGradient", { id: "odx-sim-fill", x1: "0", x2: "0", y1: "0", y2: "1", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("stop", { offset: "0%", stopColor: "var(--jv-arc)", stopOpacity: ".38" }),
-              /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("stop", { offset: "100%", stopColor: "var(--jv-arc)", stopOpacity: "0" })
-            ] }) }),
-            [0.25, 0.5, 0.75].map((f) => /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("line", { className: "odx-sim__grid", x1: "0", x2: W, y1: H * f, y2: H * f }, f)),
-            [12, 24, 36, 48].map((m) => /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("line", { className: "odx-sim__grid odx-sim__grid--v", x1: x(m), x2: x(m), y1: "0", y2: H }, m)),
-            curves.filter((item) => item.term !== term).map((item) => /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("path", { className: "odx-sim__ghost", d: linePath(item.values, top) }, item.term)),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("path", { className: "odx-sim__area", d: `${linePath(values, top)} L${W},${H} L0,${H} Z` }),
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("path", { className: "odx-sim__line", d: linePath(values, top) }),
-            hover !== null && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("line", { className: "odx-sim__cross", x1: x(hover), x2: x(hover), y1: "0", y2: H })
-          ] }),
-          term !== null && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { "aria-hidden": "true", className: "odx-sim__end", style: { left: `${term / MONTHS * 100}%` } }),
-          hover !== null && hoverValue !== null && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { "aria-hidden": "true", className: "odx-sim__dot", style: { left: `${hover / MONTHS * 100}%`, top: `${(1 - hoverValue / top * (H - 12) / H) * 100}%` } })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("div", { "aria-hidden": "true", className: "odx-sim__x", children: [0, 12, 24, 36, 48, 60].map((m) => /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { style: { left: `${m / MONTHS * 100}%` }, children: m === 0 ? "Hoje" : `${m}m` }, m)) })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("p", { className: "odx-ck__note", children: "Curva de quita\xE7\xE3o n\xE3o fornecida pela estrat\xE9gia de c\xE1lculo deste prazo." }),
-      interestShare !== null && principal !== null && /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "odx-sim__mix", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("div", { "aria-hidden": "true", className: "odx-sim__mixbar", children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("i", { style: { width: `${100 - interestShare}%` } }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("p", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("i", { "data-k": "p" }),
-            "Principal ",
-            brl2(principal)
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("span", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("i", { "data-k": "j" }),
-            "Juros ",
-            brl2(selected.totalInterest),
-            " (",
-            interestShare.toFixed(0),
-            "% do total)"
-          ] })
-        ] })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("p", { className: "odx-sim__note", children: isBankingModality ? "Valores estimados. Condi\xE7\xF5es finais sujeitas \xE0 aprova\xE7\xE3o e formaliza\xE7\xE3o da institui\xE7\xE3o financeira." : "Valores estimados. Condi\xE7\xF5es finais sujeitas \xE0 valida\xE7\xE3o da Mesa e formaliza\xE7\xE3o da opera\xE7\xE3o." })
+      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("p", { className: "odx-sim__note", children: isBankingModality ? "Valores estimados. Condi\xE7\xF5es finais sujeitas \xE0 aprova\xE7\xE3o e formaliza\xE7\xE3o da institui\xE7\xE3o financeira." : "Valores estimados. Condi\xE7\xF5es finais sujeitas \xE0 valida\xE7\xE3o da Mesa e formaliza\xE7\xE3o da opera\xE7\xE3o." })
     ] }) });
   }
 
@@ -44471,7 +44541,7 @@ ${suffix}`;
   init_define_process_env();
 
   // src/modules/operation/components/detail-v2/operation-detail-cockpit.tsx
-  var import_jsx_runtime41 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime42 = __toESM(require_jsx_runtime());
   var DocumentUploadError = class extends Error {
     constructor(message, errorCode) {
       super(message);
@@ -44550,6 +44620,7 @@ ${suffix}`;
       conditionalApprovalCount: creditOutcome?.conditionalApprovalCount ?? 0
     };
     const isBankingModality = operationUsesBanking(op?.modality.key ?? null, Boolean(op?.banks.length));
+    const bankingApplicable = op?.modality.key === "bank_financing";
     const handleDownload = async (documentId) => {
       try {
         const result = await createOperationDocumentDownloadUrlAction({ operationId: id2, documentId });
@@ -44589,18 +44660,18 @@ ${suffix}`;
       { id: "odx-resumo", label: "Resumo" },
       { id: "odx-workflow", label: "Workflow" },
       { id: "odx-credito", label: isBankingModality ? "Cr\xE9dito e bancos" : "Cr\xE9dito" },
-      { id: "odx-documentos", label: "Documentos" },
       { id: "odx-equipamentos", label: "Equipamentos" },
-      { id: "odx-simulacao", label: "Simula\xE7\xE3o" },
+      { id: "odx-checklist", label: "Checklist" },
       { id: "odx-historico", label: "Hist\xF3rico" },
-      { id: "odx-comunicacao", label: "Comunica\xE7\xE3o" }
+      { id: "odx-documentos", label: "Documentos" },
+      { id: "odx-comunicacao", label: "Comunica\xE7\xE3o" },
+      { id: "odx-simulacao", label: "Simula\xE7\xE3o" }
     ], [isBankingModality]);
     const commands = (0, import_react35.useMemo)(() => [
       ...sections.map((section) => ({ id: `go-${section.id}`, label: `Ir para ${section.label}`, hint: "Se\xE7\xE3o", run: () => jumpTo(section.id) })),
       { id: "go-cliente", label: "Ir para Dados do cliente", hint: "Se\xE7\xE3o", run: () => jumpTo("odx-cliente") },
       { id: "go-pendencias", label: "Ir para Pend\xEAncias", hint: "Se\xE7\xE3o", run: () => jumpTo("odx-pendencias") },
       { id: "go-relato", label: "Ir para Relato inicial", hint: "Se\xE7\xE3o", run: () => jumpTo("odx-relato") },
-      { id: "go-checklist", label: "Ir para Checklist documental por banco", hint: "Se\xE7\xE3o", run: () => jumpTo("odx-checklist") },
       { id: "go-contatos", label: "Ir para Contatos e tentativas", hint: "Se\xE7\xE3o", run: () => jumpTo("odx-contatos") },
       { id: "act-chat", label: "Escrever na comunica\xE7\xE3o", hint: "A\xE7\xE3o", run: focusCommunication },
       { id: "act-print", label: "Imprimir opera\xE7\xE3o", hint: "A\xE7\xE3o", run: () => window.print() },
@@ -44608,43 +44679,59 @@ ${suffix}`;
     ], [focusCommunication, returnToCenter, sections]);
     useAvaPageCommands(commands);
     const currentOp = op && op.identity.operationId === id2 ? op : null;
-    if (!currentOp && (loading || op && !detailError)) return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(CockpitLoading, {});
+    if (!currentOp && (loading || op && !detailError)) return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(CockpitLoading, {});
     if (!currentOp) {
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx odx-state", role: "alert", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "odx-state__mark", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(TriangleAlert, { "aria-hidden": "true", size: 22 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("p", { className: "odx-state__title", children: detailError || "Opera\xE7\xE3o n\xE3o encontrada." }),
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("button", { className: "ds-button ds-button--primary", onClick: () => router2.push(buildOperationCenterReturnHref(null)), type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "ds-button__content", children: "Voltar para Opera\xE7\xF5es" }) })
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx odx-state", role: "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "odx-state__mark", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(TriangleAlert, { "aria-hidden": "true", size: 22 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("p", { className: "odx-state__title", children: detailError || "Opera\xE7\xE3o n\xE3o encontrada." }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("button", { className: "ds-button ds-button--primary", onClick: () => router2.push(buildOperationCenterReturnHref(null)), type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "ds-button__content", children: "Voltar para Opera\xE7\xF5es" }) })
       ] });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx", "data-enter": enterDirection ?? "load", children: [
-      detailError && /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("p", { className: "odx-warning", role: "status", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx", "data-enter": enterDirection ?? "load", children: [
+      detailError && /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("p", { className: "odx-warning", role: "status", children: [
         detailError,
         " Os \xFAltimos dados carregados permanecem vis\xEDveis."
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
-        CockpitHero,
-        {
-          creditSummaryInput,
-          isBankingModality,
-          onBack: returnToCenter,
-          onFocusCommunication: focusCommunication,
-          onPrint: () => window.print(),
-          readModel: currentOp
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(CockpitSectionNav, { sections }),
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-grid", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-main", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-anchor", id: "odx-workflow", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(OperationLifecycleSection, { hideSteps: true, notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userRole }),
-            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(OperationModalityControl, { onReload: loadOperationData, operationId: id2, revision: currentOp })
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(CockpitHero, { creditSummaryInput, isBankingModality, readModel: currentOp }),
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(CockpitToolbar, { onBack: returnToCenter, onFocusCommunication: focusCommunication, onPrint: () => window.print(), sections }),
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-grid", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-row", "data-row": "status", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-col", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-anchor", id: "odx-workflow", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OperationLifecycleSection, { hideSteps: true, notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userRole }),
+              /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OperationModalityControl, { onReload: loadOperationData, operationId: id2, revision: currentOp })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-anchor", id: "odx-credito", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OperationInternalCreditSection, { notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userRole }),
+              isBankingModality && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OperationBanksSection, { notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userRole })
+            ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-anchor", id: "odx-credito", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(OperationInternalCreditSection, { notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userRole }),
-            isBankingModality && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(OperationBanksSection, { notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userRole })
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("aside", { "aria-label": "Abertura e pend\xEAncias", className: "odx-side", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-side__fill", "data-split": "", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OpeningReportCard, { readModel: currentOp }),
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(PendingCard, { bankingApplicable, readModel: currentOp })
+          ] }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-row", "data-row": "proposal", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-col", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(EquipmentList, { items: equipmentItems, totalOperationValue: currentOp.financial.totalOperationValue }),
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(ChecklistBoard, { bankingApplicable, banks: currentOp.banks, checklists: currentOp.bankDocumentChecklists, onReload: loadOperationData, userRole })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-anchor", id: "odx-documentos", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("aside", { "aria-label": "Hist\xF3rico", className: "odx-side", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "odx-side__fill", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(TimelineFeed, { readModel: currentOp }) }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-row", "data-row": "documents", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-col", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-anchor", id: "odx-docintel", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("details", { className: "odx-fold", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("summary", { children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Sparkles, { "aria-hidden": "true", size: 14 }),
+                  /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { children: "Intelig\xEAncia documental da Ava" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(ChevronDown, { "aria-hidden": "true", className: "odx-fold__chev", size: 14 })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(AvaOperationContextPanel, { onModel: setAvaModel, onResolved: loadOperationData, operationId: id2, refreshKey: currentOp.documents.map((document2) => document2.documentId).join("|") })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(FinancialDossierPanel, { operationId: id2 })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "odx-anchor", id: "odx-documentos", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
               OperationDocumentsSection,
               {
                 avaModel,
@@ -44656,71 +44743,54 @@ ${suffix}`;
                 onUpload: handleFileUpload,
                 uploading: uploadingDoc
               }
-            ),
-            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(ChecklistBoard, { bankingApplicable: currentOp.modality.key === "bank_financing", banks: currentOp.banks, checklists: currentOp.bankDocumentChecklists, onReload: loadOperationData, userRole }),
-            /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("details", { className: "odx-fold", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("summary", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Sparkles, { "aria-hidden": "true", size: 14 }),
-                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { children: "Intelig\xEAncia documental da Ava" }),
-                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(ChevronDown, { "aria-hidden": "true", className: "odx-fold__chev", size: 14 })
-              ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(AvaOperationContextPanel, { onModel: setAvaModel, onResolved: loadOperationData, operationId: id2, refreshKey: currentOp.documents.map((document2) => document2.documentId).join("|") })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(FinancialDossierPanel, { operationId: id2 })
+            ) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(EquipmentList, { items: equipmentItems, totalOperationValue: currentOp.financial.totalOperationValue }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(SimulationPanel, { financial: currentOp.financial, isBankingModality, modalityKey: currentOp.modality.key, operationId: id2 })
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("aside", { "aria-label": "Contatos e comunica\xE7\xE3o", className: "odx-side", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-side__fill", "data-split": "", id: "odx-comunicacao", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("section", { "aria-label": "Contatos e tentativas", className: "odx-panel odx-contacts", id: "odx-contatos", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(RelationshipInteractions, { query: { origin: { kind: "OP", id: id2 } } }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OperationCommunicationSection, { hideInteractions: true, notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userName })
+          ] }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("aside", { "aria-label": "Contexto da opera\xE7\xE3o", className: "odx-aside", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(ClientCard, { readModel: currentOp }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(PendingCard, { readModel: currentOp }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(OpeningReportCard, { readModel: currentOp }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(TimelineFeed, { readModel: currentOp }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-anchor", id: "odx-comunicacao", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("section", { "aria-label": "Contatos e tentativas", className: "odx-panel odx-contacts", id: "odx-contatos", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(RelationshipInteractions, { query: { origin: { kind: "OP", id: id2 } } }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(OperationCommunicationSection, { hideInteractions: true, notify: triggerNotification, onReload: loadOperationData, operationId: id2, readModel: currentOp, userName })
-          ] })
-        ] })
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(SimulationPanel, { financial: currentOp.financial, isBankingModality, modalityKey: currentOp.modality.key, operationId: id2 })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(OperationDetailNavigation, { currentOperationId: id2, navigation: currentOp.navigation }),
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { className: "odx-dock", role: "toolbar", "aria-label": "A\xE7\xF5es r\xE1pidas", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("button", { className: "odx-dock__btn odx-dock__btn--primary", onClick: focusCommunication, type: "button", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(MessageSquare, { "aria-hidden": "true", size: 15 }),
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OperationDetailNavigation, { currentOperationId: id2, navigation: currentOp.navigation }),
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "odx-dock", role: "toolbar", "aria-label": "A\xE7\xF5es r\xE1pidas", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("button", { className: "odx-dock__btn odx-dock__btn--primary", onClick: focusCommunication, type: "button", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(MessageSquare, { "aria-hidden": "true", size: 15 }),
         "Comunica\xE7\xE3o"
       ] }) }),
-      activeNotification && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { className: "odx-toast", role: "status", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "flex items-start justify-between gap-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "min-w-0 space-y-1", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "odx-toast__eyebrow", children: "Nova Observa\xE7\xE3o Registrada" }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("p", { className: "text-xs font-bold leading-tight", children: activeNotification.title }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("p", { className: "mt-1 text-[11px] leading-relaxed odx-muted", children: activeNotification.message }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("p", { className: "mt-1 font-mono text-[9px] odx-muted", children: [
+      activeNotification && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "odx-toast", role: "status", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "flex items-start justify-between gap-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "min-w-0 space-y-1", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "odx-toast__eyebrow", children: "Nova Observa\xE7\xE3o Registrada" }),
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("p", { className: "text-xs font-bold leading-tight", children: activeNotification.title }),
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("p", { className: "mt-1 text-[11px] leading-relaxed odx-muted", children: activeNotification.message }),
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("p", { className: "mt-1 font-mono text-[9px] odx-muted", children: [
             "Opera\xE7\xE3o: ",
             activeNotification.opNumber
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("button", { "aria-label": "Fechar aviso", className: "odx-icon-btn", onClick: () => setActiveNotification(null), type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(X, { "aria-hidden": "true", size: 14 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("button", { "aria-label": "Fechar aviso", className: "odx-icon-btn", onClick: () => setActiveNotification(null), type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(X, { "aria-hidden": "true", size: 14 }) })
       ] }) })
     ] });
   }
   function CockpitLoading() {
-    return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { "aria-busy": "true", className: "odx odx-loading", role: "status", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "sr-only", children: "Carregando painel de comando..." }),
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { "aria-hidden": "true", className: "odx-hero", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "jv-skeleton block h-3 w-48" }),
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "jv-skeleton mt-3 block h-8 w-80 max-w-full" }),
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "jv-skeleton mt-4 block h-10 w-full" }),
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "jv-skeleton mt-4 block h-14 w-full" })
+    return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { "aria-busy": "true", className: "odx odx-loading", role: "status", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "sr-only", children: "Carregando painel de comando..." }),
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { "aria-hidden": "true", className: "odx-hero", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "jv-skeleton block h-3 w-48" }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "jv-skeleton mt-3 block h-8 w-80 max-w-full" }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "jv-skeleton mt-4 block h-10 w-full" }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "jv-skeleton mt-4 block h-14 w-full" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { "aria-hidden": "true", className: "odx-grid", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { className: "odx-main", children: [0, 1, 2].map((index) => /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-panel", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "jv-skeleton block h-3 w-40" }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "jv-skeleton mt-3 block h-24 w-full" })
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { "aria-hidden": "true", className: "odx-grid", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-row", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "odx-col", children: [0, 1].map((index) => /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-panel", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "jv-skeleton block h-3 w-40" }),
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "jv-skeleton mt-3 block h-24 w-full" })
         ] }, index)) }),
-        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { className: "odx-aside", children: [0, 1].map((index) => /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "odx-panel", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "jv-skeleton block h-3 w-32" }),
-          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "jv-skeleton mt-3 block h-16 w-full" })
-        ] }, index)) })
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("p", { "aria-hidden": "true", className: "odx-loading__label", children: "Carregando painel de comando..." })
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "odx-side", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "odx-side__fill", "data-split": "", children: [0, 1].map((index) => /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "odx-panel", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "jv-skeleton block h-3 w-32" }),
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("span", { className: "jv-skeleton mt-3 block h-16 w-full" })
+        ] }, index)) }) })
+      ] }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("p", { "aria-hidden": "true", className: "odx-loading__label", children: "Carregando painel de comando..." })
     ] });
   }
 
@@ -47579,7 +47649,32 @@ ${suffix}`;
     loadOperationLifecyclePermissions: () => later(300, { success: true, commands: role === "vendedor" ? [] : ["start_review", "advance_formalization", "advance_billing", "close", "cancel", "return_review", "return_formalization"] }),
     loadOperationStageCompletionsAction: () => later(300, { success: true, data: [] }),
     loadRelationshipInteractionsAction: (q) => later(350, interactions(q?.origin?.id ?? "")),
-    createOperationDocumentDownloadUrlAction: () => later(150, fail("Download desativado no laborat\xF3rio."))
+    createOperationDocumentDownloadUrlAction: () => later(150, fail("Download desativado no laborat\xF3rio.")),
+    // Modalidade e validação comercial: same shapes as the official repository (context / status / requests).
+    loadOperationModalityContextAction: (operationId) => {
+      const e = entities.find((x2) => x2.id === operationId);
+      if (!e) return later(200, fail("Opera\xE7\xE3o n\xE3o encontrada."));
+      const d = e.metadata.details;
+      const catalog = [["bank_financing", "Financiamento banc\xE1rio"], ["internal_installment", "Parcelamento interno"], ["own_resources_cash", "Recursos pr\xF3prios / \xE0 vista"], ["consortium", "Cons\xF3rcio"]].map(([key, label]) => ({ key, identityId: null, label, lifecycle: "ACTIVE", source: "catalog" }));
+      return later(320, { success: true, data: {
+        modalityKey: d.modalityKey,
+        updatedAt: e.timestamps.updatedAt,
+        internalInstallments: d.internalInstallments || null,
+        lifecycle: e.operationalLifecycle.state,
+        revision: 3,
+        context: { modalityKey: d.modalityKey, entryValue: d.entryValue, term: d.term, internalInstallments: d.internalInstallments || null, modalityDescription: null, operationValue: e.amount, modalityIdentityId: null },
+        canRequest: role === "vendedor",
+        canDecide: role !== "vendedor",
+        catalog
+      } });
+    },
+    loadOperationCommercialContextAction: (operationId) => {
+      const e = entities.find((x2) => x2.id === operationId);
+      if (!e) return later(200, fail("Opera\xE7\xE3o n\xE3o encontrada."));
+      const banks = (e.metadata.details.banks || []).map((b) => ({ linkId: "lnk-" + b.id, bankId: b.id, bankName: b.name, status: b.status }));
+      return later(340, { success: true, data: { revision: 3, approved: false, disbursed: false, canValidate: role !== "vendedor", canUpdateInternal: false, priorFormalization: false, priorBilling: false, internalAssessmentStatus: null, formalizationCompleted: false, billingCompleted: false, internalAssessmentId: null, banks, history: [] } });
+    },
+    listOperationModalityRequestsAction: () => later(300, { success: true, data: [] })
   };
   var read = /^(load|get|list|find)/;
   window.__act = (name, args) => {
@@ -47589,7 +47684,7 @@ ${suffix}`;
   };
 
   // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-lab1/entry.tsx
-  var import_jsx_runtime42 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime43 = __toESM(require_jsx_runtime());
   var p2 = new URLSearchParams(location.search);
   var slate = p2.get("theme") === "slate";
   var theme = slate ? "irmen-executive-light" : "irmen-industrial-dark";
@@ -47620,11 +47715,11 @@ ${suffix}`;
     }, []);
     const r2 = route();
     const m = r2.match(/^\/operations\/([^/]+)$/);
-    if (m && m[1] !== "new") return p2.get("nokey") ? /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OperationDetailCockpit, { id: m[1] }) : /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OperationDetailCockpit, { id: m[1] }, m[1]);
-    return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(OperationsList, {});
+    if (m && m[1] !== "new") return p2.get("nokey") ? /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(OperationDetailCockpit, { id: m[1] }) : /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(OperationDetailCockpit, { id: m[1] }, m[1]);
+    return /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(OperationsList, {});
   }
   var header = { userName: "Pessoa Sint\xE9tica", email: "pessoa@exemplo.invalid", company: "IRMEN", role: p2.get("role") || "mesa_credito" };
-  (0, import_client2.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime42.jsx)(AppShell, { initialTheme: theme, headerContext: header, children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Routes, {}) }));
+  (0, import_client2.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime43.jsx)(AppShell, { initialTheme: theme, headerContext: header, children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Routes, {}) }));
 })();
 /*! Bundled license information:
 
