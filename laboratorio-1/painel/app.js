@@ -19524,8 +19524,12 @@
     ] });
   }
 
-  // src/modules/client/components/client-detail-view.tsx
+  // src/modules/operation/components/status/bank-flow-action-button.tsx
+  init_define_process_env();
   var import_jsx_runtime30 = __toESM(require_jsx_runtime());
+
+  // src/modules/client/components/client-detail-view.tsx
+  var import_jsx_runtime31 = __toESM(require_jsx_runtime());
   var money3 = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
   var date2 = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
   var dateTime = new Intl.DateTimeFormat("pt-BR", { dateStyle: "short", timeStyle: "short" });
@@ -19540,29 +19544,29 @@
   var initials2 = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join("").toLocaleUpperCase("pt-BR") || "?";
   var toneClass = { good: "jv-pill jv-pill--good", warn: "jv-pill jv-pill--warn", crit: "jv-pill jv-pill--crit", neutral: "jv-pill" };
   function Panel({ title, icon: Icon2, sub, end, children, id: id2 }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("section", { className: "jv-panel", "aria-labelledby": id2, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-ph", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("h2", { id: id2, className: "inline-flex items-center gap-2", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Icon2, { size: 14, className: "text-[color:var(--jv-brand)]", "aria-hidden": true }),
+    return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("section", { className: "jv-panel", "aria-labelledby": id2, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("h2", { id: id2, className: "inline-flex items-center gap-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Icon2, { size: 14, className: "text-[color:var(--jv-brand)]", "aria-hidden": true }),
           title
         ] }),
-        sub && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-ph__sub", children: sub }),
-        end && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-ph__end", children: end })
+        sub && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cl-ph__sub", children: sub }),
+        end && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "cl-ph__end", children: end })
       ] }),
       children
     ] });
   }
   function Facts({ items }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("dl", { className: "cl-facts", children: items.map(([label, value]) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("dt", { children: label }),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("dd", { children: value ?? "\u2014" })
+    return /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("dl", { className: "cl-facts", children: items.map(([label, value]) => /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("dt", { children: label }),
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("dd", { children: value ?? "\u2014" })
     ] }, label)) });
   }
   function Stat({ label, children, foot }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-stat", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-stat__label", children: label }),
+    return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-stat", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "cl-stat__label", children: label }),
       children,
-      foot && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-stat__foot", children: foot })
+      foot && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "cl-stat__foot", children: foot })
     ] });
   }
   var timelineLabel = (action) => ({ "client.contact_saved": "Contato cadastral atualizado", "operation.created": "Opera\xE7\xE3o criada", "operation.lifecycle.transitioned": "Etapa operacional alterada", "client.company_enrichment.persisted": "Cadastro p\xFAblico atualizado", "client.registry_reconciliation.accept_external": "Dados externos conciliados", "client.registry_reconciliation.keep_current": "Dados internos preservados" })[action] ?? action;
@@ -19597,190 +19601,190 @@
     const documentLabel = maskCpfCnpj(identity.normalizedDocument);
     const location2 = address.internal.city && address.internal.state ? `${address.internal.city}/${address.internal.state}` : "Localiza\xE7\xE3o n\xE3o informada";
     const status = registrationStatusPresentation(identity.registrationStatus);
-    return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-col", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("section", { className: "jv-panel jv-panel--hud", "aria-labelledby": "cl-identity-name", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("button", { type: "button", className: "cl-back", onClick: onBack, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ArrowLeft, { size: 13, "aria-hidden": true }),
+    return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-col", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("section", { className: "jv-panel jv-panel--hud", "aria-labelledby": "cl-identity-name", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", className: "cl-back", onClick: onBack, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ArrowLeft, { size: 13, "aria-hidden": true }),
           "Central de Clientes"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-identity", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-logo", "aria-hidden": true, children: initials2(identity.legalName) }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-identity__main", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h2", { id: "cl-identity-name", className: "cl-identity__name", children: identity.legalName }),
-            identity.tradeName && identity.tradeName !== identity.legalName && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-identity__trade", children: identity.tradeName }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-identity__doc", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-identity", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cl-logo", "aria-hidden": true, children: initials2(identity.legalName) }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-identity__main", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h2", { id: "cl-identity-name", className: "cl-identity__name", children: identity.legalName }),
+            identity.tradeName && identity.tradeName !== identity.legalName && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "cl-identity__trade", children: identity.tradeName }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-identity__doc", children: [
               identity.personType === "PJ" ? "CNPJ" : "CPF",
               " ",
               documentLabel,
               " \xB7 ",
               location2
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-identity__pills", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "jv-pill jv-pill--arc", children: identity.personType === "PJ" ? "Pessoa jur\xEDdica" : "Pessoa f\xEDsica" }),
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("span", { className: toneClass[status.tone], children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-identity__pills", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "jv-pill jv-pill--arc", children: identity.personType === "PJ" ? "Pessoa jur\xEDdica" : "Pessoa f\xEDsica" }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: toneClass[status.tone], children: [
                 "Situa\xE7\xE3o cadastral: ",
                 status.label
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "jv-pill", "data-pending-id": "CLI-PROFILE-01", children: "Perfil: integra\xE7\xE3o pendente" }),
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "jv-pill", "data-pending-id": "CLI-PORTFOLIO-01", children: "Carteira: integra\xE7\xE3o pendente" })
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "jv-pill", "data-pending-id": "CLI-PROFILE-01", children: "Perfil: integra\xE7\xE3o pendente" }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "jv-pill", "data-pending-id": "CLI-PORTFOLIO-01", children: "Carteira: integra\xE7\xE3o pendente" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-uuid mt-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-uuid mt-2", children: [
               "ID ",
               identity.id
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-identity__actions", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingButton, { id: "CLI-WHATSAPP-01", icon: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(MessageCircle, { size: 14, "aria-hidden": true }), children: "WhatsApp" }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingButton, { id: "CLI-TASK-01", icon: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(SquareCheckBig, { size: 14, "aria-hidden": true }), children: "Tarefa" }),
-            commercial2.canCreate && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("a", { className: "ds-button ds-button--primary", href: `/sales-funnel/new?clientId=${encodeURIComponent(identity.id)}`, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("span", { className: "ds-button__content", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Plus, { size: 14, "aria-hidden": true }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-identity__actions", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientPendingButton, { id: "CLI-WHATSAPP-01", icon: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(MessageCircle, { size: 14, "aria-hidden": true }), children: "WhatsApp" }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientPendingButton, { id: "CLI-TASK-01", icon: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(SquareCheckBig, { size: 14, "aria-hidden": true }), children: "Tarefa" }),
+            commercial2.canCreate && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { className: "ds-button ds-button--primary", href: `/sales-funnel/new?clientId=${encodeURIComponent(identity.id)}`, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: "ds-button__content", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Plus, { size: 14, "aria-hidden": true }),
               "Oportunidade"
             ] }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(DesignButton, { onClick: () => {
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(DesignButton, { onClick: () => {
               window.location.href = `/operations/new?clientId=${encodeURIComponent(identity.id)}`;
             }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Plus, { size: 14, "aria-hidden": true }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Plus, { size: 14, "aria-hidden": true }),
               "Nova Opera\xE7\xE3o"
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(DesignButton, { onClick: onEdit, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PenLine, { size: 14, "aria-hidden": true }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(DesignButton, { onClick: onEdit, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(PenLine, { size: 14, "aria-hidden": true }),
               "Editar cadastro"
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-identity__note", "data-pending-id": "CLI-WHATSAPP-01 CLI-TASK-01", children: "WhatsApp e Tarefa ainda n\xE3o est\xE3o dispon\xEDveis." })
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "cl-identity__note", "data-pending-id": "CLI-WHATSAPP-01 CLI-TASK-01", children: "WhatsApp e Tarefa ainda n\xE3o est\xE3o dispon\xEDveis." })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g4 mt-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Vendas comerciais conclu\xEDdas", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientClosedSales, { clientId: identity.id }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Neg\xF3cios abertos", foot: commercial2.state.kind === "available" ? "No seu escopo comercial" : void 0, children: openDeals !== null ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("b", { className: "cl-stat__value", children: openDeals }) : commercial2.state.kind === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-stat__value", role: "status", "aria-label": "Carregando", children: "\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(import_jsx_runtime30.Fragment, { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-stat__value", "aria-hidden": true, children: "\u2014" }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-stat__foot", children: commercial2.state.kind === "denied" ? "Sem acesso" : "Erro na consulta" })
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-g4 mt-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Stat, { label: "Vendas comerciais conclu\xEDdas", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientClosedSales, { clientId: identity.id }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Stat, { label: "Neg\xF3cios abertos", foot: commercial2.state.kind === "available" ? "No seu escopo comercial" : void 0, children: openDeals !== null ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { className: "cl-stat__value", children: openDeals }) : commercial2.state.kind === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cl-stat__value", role: "status", "aria-label": "Carregando", children: "\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(import_jsx_runtime31.Fragment, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cl-stat__value", "aria-hidden": true, children: "\u2014" }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cl-stat__foot", children: commercial2.state.kind === "denied" ? "Sem acesso" : "Erro na consulta" })
           ] }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Documentos do cadastro", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingValue, { id: "CLI-DOCS-MASTER-01" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "\xDAltimo contato efetivo", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientLastContact, { clientId: identity.id }) })
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Stat, { label: "Documentos do cadastro", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientPendingValue, { id: "CLI-DOCS-MASTER-01" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Stat, { label: "\xDAltimo contato efetivo", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientLastContact, { clientId: identity.id }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g3 cl-stats-extra", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Opera\xE7\xF5es", foot: detail2.operationReadScope === "own" ? "Somente as suas" : void 0, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("b", { className: "cl-stat__value", children: indicators.operationsCount }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Volume em opera\xE7\xF5es", foot: indicators.totalVolume === null && indicators.volumeCoverage ? `${indicators.volumeCoverage.knownCount}/${indicators.volumeCoverage.totalCount} com valor \xB7 soma conhecida ${money3.format(indicators.volumeCoverage.knownAmount)}` : void 0, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("b", { className: "cl-stat__value", children: indicators.totalVolume === null ? "\u2014" : money3.format(indicators.totalVolume) }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Documentos operacionais", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("b", { className: "cl-stat__value", children: indicators.documentsCount }) })
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-g3 cl-stats-extra", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Stat, { label: "Opera\xE7\xF5es", foot: detail2.operationReadScope === "own" ? "Somente as suas" : void 0, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { className: "cl-stat__value", children: indicators.operationsCount }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Stat, { label: "Volume em opera\xE7\xF5es", foot: indicators.totalVolume === null && indicators.volumeCoverage ? `${indicators.volumeCoverage.knownCount}/${indicators.volumeCoverage.totalCount} com valor \xB7 soma conhecida ${money3.format(indicators.volumeCoverage.knownAmount)}` : void 0, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { className: "cl-stat__value", children: indicators.totalVolume === null ? "\u2014" : money3.format(indicators.totalVolume) }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Stat, { label: "Documentos operacionais", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { className: "cl-stat__value", children: indicators.documentsCount }) })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-contacts", title: "Contatos", icon: Phone, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientContactPeople, { clientId: identity.id }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub", children: "Contato operacional \xB7 cadastro interno" }),
-          !contacts.operational.phone && !contacts.operational.email ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum contato operacional informado." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Telefone", contacts.operational.phone], ["E-mail", contacts.operational.email]] }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub", children: "Contato p\xFAblico cadastral" }),
-          contacts.public.phones.length === 0 && !contacts.public.email ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum contato p\xFAblico dispon\xEDvel." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Telefones", contacts.public.phones.join(" \xB7 ") || "\u2014"], ["E-mail", contacts.public.email], ["Fonte", registry?.source ?? "\u2014"]] })
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-g2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Panel, { id: "cl-contacts", title: "Contatos", icon: Phone, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientContactPeople, { clientId: identity.id }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h3", { className: "cl-sub", children: "Contato operacional \xB7 cadastro interno" }),
+          !contacts.operational.phone && !contacts.operational.email ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(DesignState, { kind: "empty", title: "Nenhum contato operacional informado." }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Facts, { items: [["Telefone", contacts.operational.phone], ["E-mail", contacts.operational.email]] }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h3", { className: "cl-sub", children: "Contato p\xFAblico cadastral" }),
+          contacts.public.phones.length === 0 && !contacts.public.email ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(DesignState, { kind: "empty", title: "Nenhum contato p\xFAblico dispon\xEDvel." }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Facts, { items: [["Telefones", contacts.public.phones.join(" \xB7 ") || "\u2014"], ["E-mail", contacts.public.email], ["Fonte", registry?.source ?? "\u2014"]] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-checklist", title: "Checklist da Mesa", icon: SquareCheckBig, sub: "Exigidos para an\xE1lise de cr\xE9dito", end: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingButton, { small: true, id: "CLI-WHATSAPP-01", icon: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(MessageCircle, { size: 13, "aria-hidden": true }), children: "Cobrar pend\xEAncias" }), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingNotice, { id: "CLI-CHECKLIST-01" }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub", children: "Pend\xEAncias operacionais registradas" }),
-          pendingItems.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhuma pend\xEAncia operacional registrada." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "text-sm", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Panel, { id: "cl-checklist", title: "Checklist da Mesa", icon: SquareCheckBig, sub: "Exigidos para an\xE1lise de cr\xE9dito", end: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientPendingButton, { small: true, id: "CLI-WHATSAPP-01", icon: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(MessageCircle, { size: 13, "aria-hidden": true }), children: "Cobrar pend\xEAncias" }), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientPendingNotice, { id: "CLI-CHECKLIST-01" }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h3", { className: "cl-sub", children: "Pend\xEAncias operacionais registradas" }),
+          pendingItems.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(DesignState, { kind: "empty", title: "Nenhuma pend\xEAncia operacional registrada." }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "text-sm", children: [
             pendingItems.length,
             " pend\xEAncia(s) nas opera\xE7\xF5es vinculadas. Abra a opera\xE7\xE3o para gest\xE3o completa."
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Panel, { id: "cl-relationship", title: "Relacionamento", icon: MessageCircle, sub: "Contatos efetivos e tentativas registrados nas oportunidades e opera\xE7\xF5es", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(RelationshipInteractions, { query: { clientId: identity.id } }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientCommercialRelationships, { clientId: identity.id, state: commercial2.state, canCreate: commercial2.canCreate }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-timeline", title: "Linha do tempo", icon: History, sub: "Eventos factuais registrados para o cliente", children: [
-          timeline.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum evento registrado para o cliente." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("ol", { className: "cl-list", children: timeline.map((event2) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("li", { className: "cl-li", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-li__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(History, { size: 13 }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-li__body", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-li__t", children: timelineLabel(event2.action) }),
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Panel, { id: "cl-relationship", title: "Relacionamento", icon: MessageCircle, sub: "Contatos efetivos e tentativas registrados nas oportunidades e opera\xE7\xF5es", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(RelationshipInteractions, { query: { clientId: identity.id } }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-g2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientCommercialRelationships, { clientId: identity.id, state: commercial2.state, canCreate: commercial2.canCreate }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Panel, { id: "cl-timeline", title: "Linha do tempo", icon: History, sub: "Eventos factuais registrados para o cliente", children: [
+          timeline.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(DesignState, { kind: "empty", title: "Nenhum evento registrado para o cliente." }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("ol", { className: "cl-list", children: timeline.map((event2) => /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("li", { className: "cl-li", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cl-li__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(History, { size: 13 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-li__body", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "cl-li__t", children: timelineLabel(event2.action) }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-li__s", children: [
                 event2.actorRole ?? "Sistema",
                 " \xB7 ",
                 showDate(event2.occurredAt, true)
               ] })
             ] })
           ] }, event2.id)) }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientOperationComments, { clientId: identity.id })
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientOperationComments, { clientId: identity.id })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-identification", title: "Identifica\xE7\xE3o e endere\xE7o", icon: MapPin, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Tipo", identity.personType === "PJ" ? "Pessoa Jur\xEDdica" : "Pessoa F\xEDsica"], ["Documento", documentLabel], ["Situa\xE7\xE3o cadastral", status.label], ["Criado por", identity.createdByName ?? identity.createdBy], ["Criado em", showDate(identity.createdAt, true)], ["Atualizado em", showDate(identity.updatedAt, true)], ["Logradouro", address.internal.address], ["Bairro", address.internal.neighborhood], ["Cidade / UF", address.internal.city ? [address.internal.city, address.internal.state].filter(Boolean).join(" / ") : null], ["CEP", address.internal.postalCode]] }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-source", children: "Fonte: cadastro interno" })
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-g2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Panel, { id: "cl-identification", title: "Identifica\xE7\xE3o e endere\xE7o", icon: MapPin, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Facts, { items: [["Tipo", identity.personType === "PJ" ? "Pessoa Jur\xEDdica" : "Pessoa F\xEDsica"], ["Documento", documentLabel], ["Situa\xE7\xE3o cadastral", status.label], ["Criado por", identity.createdByName ?? identity.createdBy], ["Criado em", showDate(identity.createdAt, true)], ["Atualizado em", showDate(identity.updatedAt, true)], ["Logradouro", address.internal.address], ["Bairro", address.internal.neighborhood], ["Cidade / UF", address.internal.city ? [address.internal.city, address.internal.state].filter(Boolean).join(" / ") : null], ["CEP", address.internal.postalCode]] }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "cl-source", children: "Fonte: cadastro interno" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Panel, { id: "cl-group", title: "Grupo econ\xF4mico e empresas", icon: Building2, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingNotice, { id: "CLI-GROUP-01" }) })
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Panel, { id: "cl-group", title: "Grupo econ\xF4mico e empresas", icon: Building2, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientPendingNotice, { id: "CLI-GROUP-01" }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-fiscal", title: "Cadastro p\xFAblico e fiscal", icon: Landmark, children: [
-        registry ? /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(import_jsx_runtime30.Fragment, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Data de abertura", showDate(registry.openedAt)], ["Idade aproximada", companyAge === null ? "\u2014" : `${companyAge} anos`], ["Situa\xE7\xE3o desde", showDate(registry.registrationStatusAt)], ["Matriz / filial", registry.headquartersBranchIdentifier], ["Natureza jur\xEDdica", registry.legalNature], ["Porte", registry.companySize], ["Capital social", registry.shareCapital === null ? "\u2014" : money3.format(registry.shareCapital)], ["CNAE principal", [registry.primaryActivityCode, registry.primaryActivityDescription].filter(Boolean).join(" \u2014 ") || "\u2014"], ["C\xF3digo IBGE", registry.ibgeCityCode]] }),
-          registry.secondaryActivities.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("details", { className: "cl-details mt-3", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("summary", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Panel, { id: "cl-fiscal", title: "Cadastro p\xFAblico e fiscal", icon: Landmark, children: [
+        registry ? /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(import_jsx_runtime31.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Facts, { items: [["Data de abertura", showDate(registry.openedAt)], ["Idade aproximada", companyAge === null ? "\u2014" : `${companyAge} anos`], ["Situa\xE7\xE3o desde", showDate(registry.registrationStatusAt)], ["Matriz / filial", registry.headquartersBranchIdentifier], ["Natureza jur\xEDdica", registry.legalNature], ["Porte", registry.companySize], ["Capital social", registry.shareCapital === null ? "\u2014" : money3.format(registry.shareCapital)], ["CNAE principal", [registry.primaryActivityCode, registry.primaryActivityDescription].filter(Boolean).join(" \u2014 ") || "\u2014"], ["C\xF3digo IBGE", registry.ibgeCityCode]] }),
+          registry.secondaryActivities.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("details", { className: "cl-details mt-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("summary", { children: [
               "CNAEs secund\xE1rios (",
               registry.secondaryActivities.length,
               ")"
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("ul", { className: "mt-2 space-y-1 text-xs text-[color:var(--jv-fg-2)]", children: registry.secondaryActivities.map((item) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("li", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("ul", { className: "mt-2 space-y-1 text-xs text-[color:var(--jv-fg-2)]", children: registry.secondaryActivities.map((item) => /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("li", { children: [
               item.code,
               " \u2014 ",
               item.description ?? "Sem descri\xE7\xE3o"
             ] }, item.code)) })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-source", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-source", children: [
             "Fonte: BrasilAPI \xB7 consultado em ",
             showDate(registry.queriedAt, true)
           ] })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Cadastro p\xFAblico ainda n\xE3o consultado ou indispon\xEDvel." }),
-        fiscal && /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "mt-4 border-t border-[color:var(--jv-line)] pt-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Optante pelo Simples", yesNo(fiscal.simplesOption)], ["MEI", yesNo(fiscal.meiOption)], ["Regime tribut\xE1rio", fiscalRegimeLabels[fiscal.taxRegime]], ["Confirma\xE7\xE3o", fiscalConfirmationLabels[fiscal.confirmationStatus]]] }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientFiscalHistory, { history: fiscal.taxHistory })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(DesignState, { kind: "empty", title: "Cadastro p\xFAblico ainda n\xE3o consultado ou indispon\xEDvel." }),
+        fiscal && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "mt-4 border-t border-[color:var(--jv-line)] pt-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Facts, { items: [["Optante pelo Simples", yesNo(fiscal.simplesOption)], ["MEI", yesNo(fiscal.meiOption)], ["Regime tribut\xE1rio", fiscalRegimeLabels[fiscal.taxRegime]], ["Confirma\xE7\xE3o", fiscalConfirmationLabels[fiscal.confirmationStatus]]] }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientFiscalHistory, { history: fiscal.taxHistory })
         ] }),
-        identity.personType === "PJ" && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientRegistryReconciliation, { clientId: identity.id, document: identity.normalizedDocument, onDecided: () => onRegistryDecided?.() }, identity.id)
+        identity.personType === "PJ" && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientRegistryReconciliation, { clientId: identity.id, document: identity.normalizedDocument, onDecided: () => onRegistryDecided?.() }, identity.id)
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Panel, { id: "cl-qsa", title: "Quadro societ\xE1rio e pessoas relacionadas", icon: UsersRound, sub: "Dado p\xFAblico de s\xF3cios e administradores; n\xE3o \xE9 lista de contatos", children: qsa.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum s\xF3cio ou administrador dispon\xEDvel." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-qsa", children: qsa.map((person) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("article", { className: "cl-card", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-li__t font-semibold", children: person.name }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-li__s", children: [person.partnerType, person.qualification].filter(Boolean).join(" \xB7 ") || "V\xEDnculo n\xE3o informado" }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s mt-1", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Panel, { id: "cl-qsa", title: "Quadro societ\xE1rio e pessoas relacionadas", icon: UsersRound, sub: "Dado p\xFAblico de s\xF3cios e administradores; n\xE3o \xE9 lista de contatos", children: qsa.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(DesignState, { kind: "empty", title: "Nenhum s\xF3cio ou administrador dispon\xEDvel." }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "cl-qsa", children: qsa.map((person) => /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("article", { className: "cl-card", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h3", { className: "cl-li__t font-semibold", children: person.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "cl-li__s", children: [person.partnerType, person.qualification].filter(Boolean).join(" \xB7 ") || "V\xEDnculo n\xE3o informado" }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-li__s mt-1", children: [
           "Entrada: ",
           showDate(person.joinedAt)
         ] }),
-        person.maskedDocument && /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s", children: [
+        person.maskedDocument && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-li__s", children: [
           "Documento mascarado: ",
           person.maskedDocument
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: `mt-2 ${person.confirmationStatus === "HUMAN_CONFIRMED" ? "jv-pill jv-pill--good" : "jv-pill jv-pill--warn"}`, children: person.confirmationStatus === "HUMAN_CONFIRMED" ? "Confirmado internamente" : "Sugerido externamente" }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s mt-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: `mt-2 ${person.confirmationStatus === "HUMAN_CONFIRMED" ? "jv-pill jv-pill--good" : "jv-pill jv-pill--warn"}`, children: person.confirmationStatus === "HUMAN_CONFIRMED" ? "Confirmado internamente" : "Sugerido externamente" }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-li__s mt-2", children: [
           person.source,
           " \xB7 ",
           showDate(person.queriedAt, true)
         ] })
       ] }, person.id)) }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-operations", title: "Opera\xE7\xF5es e equipamentos vinculados", icon: Tractor, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(RestrictedOperationsNotice, { count: detail2.restrictedOtherOperationsCount }),
-        operations2.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: detail2.operationReadScope === "own" ? "Nenhuma opera\xE7\xE3o sua vinculada a este cliente." : "Nenhuma opera\xE7\xE3o vinculada." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { children: operations2.map((operation) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("article", { className: "cl-card", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-card__head", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "min-w-0", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "flex flex-wrap items-center gap-2", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("strong", { className: "cl-mono text-[color:var(--jv-fg)]", children: operation.number }),
-                /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "w-44 max-w-full shrink-0 text-left", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(OperationalLifecycleIndicator, { value: operation.lifecycleState }) })
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Panel, { id: "cl-operations", title: "Opera\xE7\xF5es e equipamentos vinculados", icon: Tractor, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(RestrictedOperationsNotice, { count: detail2.restrictedOtherOperationsCount }),
+        operations2.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(DesignState, { kind: "empty", title: detail2.operationReadScope === "own" ? "Nenhuma opera\xE7\xE3o sua vinculada a este cliente." : "Nenhuma opera\xE7\xE3o vinculada." }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { children: operations2.map((operation) => /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("article", { className: "cl-card", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-card__head", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "min-w-0", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "flex flex-wrap items-center gap-2", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("strong", { className: "cl-mono text-[color:var(--jv-fg)]", children: operation.number }),
+                /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "w-44 max-w-full shrink-0 text-left", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(OperationalLifecycleIndicator, { value: operation.lifecycleState }) })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s mt-1", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-li__s mt-1", children: [
                 operation.modality,
                 " \xB7 ",
                 showDate(operation.openedAt)
               ] })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "flex items-center gap-2", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("strong", { className: "cl-mono text-[color:var(--jv-fg)]", children: operation.value === null ? "Valor n\xE3o informado" : money3.format(operation.value) }),
-              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("a", { "aria-label": `Abrir ${operation.number}`, className: "jv-icon-btn", href: `/operations/${operation.id}`, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ExternalLink, { size: 15, "aria-hidden": true }) })
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("strong", { className: "cl-mono text-[color:var(--jv-fg)]", children: operation.value === null ? "Valor n\xE3o informado" : money3.format(operation.value) }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("a", { "aria-label": `Abrir ${operation.number}`, className: "jv-icon-btn", href: `/operations/${operation.id}`, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ExternalLink, { size: 15, "aria-hidden": true }) })
             ] })
           ] }),
-          operation.equipmentItems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-card__equip", children: operation.equipmentItems.map((item) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("strong", { className: "text-[color:var(--jv-fg)]", children: item.modelCode }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s", children: [
+          operation.equipmentItems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "cl-card__equip", children: operation.equipmentItems.map((item) => /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("strong", { className: "text-[color:var(--jv-fg)]", children: item.modelCode }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-li__s", children: [
               item.category,
               " \xB7 ",
               item.quantity,
               " un."
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-li__s", children: item.itemTotal === null ? "Valor n\xE3o informado" : money3.format(item.itemTotal) })
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "cl-li__s", children: item.itemTotal === null ? "Valor n\xE3o informado" : money3.format(item.itemTotal) })
           ] }, item.id)) }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-card__foot", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-card__foot", children: [
             "Vendedor: ",
             operation.sellerName ?? "\u2014",
             " \xB7 Respons\xE1vel: ",
@@ -19793,24 +19797,24 @@
           ] })
         ] }, operation.id)) })
       ] }),
-      operations2.length === 0 || detail2.operationReadScope === "own" ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Panel, { id: "cl-dossier", title: "Dossi\xEA financeiro", icon: Landmark, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: detail2.operationReadScope === "own" && operations2.length > 0 ? "Consulte uma opera\xE7\xE3o sua para visualizar os dados financeiros autorizados." : "Nenhuma an\xE1lise financeira dispon\xEDvel.", children: detail2.operationReadScope === "own" && operations2.length > 0 ? null : "Consulte uma opera\xE7\xE3o autorizada para visualizar o dossi\xEA financeiro." }) }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(FinancialDossierPanel, { clientId: identity.id }),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-documents", title: "Documentos", icon: FileText, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub mt-0", children: "Documentos master do cliente" }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingNotice, { id: "CLI-DOCS-MASTER-01" }),
-        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub", children: "Documentos vinculados a opera\xE7\xF5es" }),
-        documents.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum documento operacional." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("ul", { className: "cl-list", children: documents.map((item) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("li", { className: "cl-li", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-li__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(FileText, { size: 13 }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-li__body", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-li__t break-all", children: item.fileName }),
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s", children: [
+      operations2.length === 0 || detail2.operationReadScope === "own" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Panel, { id: "cl-dossier", title: "Dossi\xEA financeiro", icon: Landmark, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(DesignState, { kind: "empty", title: detail2.operationReadScope === "own" && operations2.length > 0 ? "Consulte uma opera\xE7\xE3o sua para visualizar os dados financeiros autorizados." : "Nenhuma an\xE1lise financeira dispon\xEDvel.", children: detail2.operationReadScope === "own" && operations2.length > 0 ? null : "Consulte uma opera\xE7\xE3o autorizada para visualizar o dossi\xEA financeiro." }) }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(FinancialDossierPanel, { clientId: identity.id }),
+      /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Panel, { id: "cl-documents", title: "Documentos", icon: FileText, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h3", { className: "cl-sub mt-0", children: "Documentos master do cliente" }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(ClientPendingNotice, { id: "CLI-DOCS-MASTER-01" }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h3", { className: "cl-sub", children: "Documentos vinculados a opera\xE7\xF5es" }),
+        documents.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(DesignState, { kind: "empty", title: "Nenhum documento operacional." }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("ul", { className: "cl-list", children: documents.map((item) => /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("li", { className: "cl-li", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cl-li__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(FileText, { size: 13 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cl-li__body", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "cl-li__t break-all", children: item.fileName }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("p", { className: "cl-li__s", children: [
               item.operationNumber,
               " \xB7 ",
               showDate(item.createdAt, true)
             ] }),
-            downloadState?.id === item.id && downloadState.kind === "error" && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { role: "alert", className: "cl-li__s text-[color:var(--jv-crit)]", children: downloadState.message })
+            downloadState?.id === item.id && downloadState.kind === "error" && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { role: "alert", className: "cl-li__s text-[color:var(--jv-crit)]", children: downloadState.message })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-li__end", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("button", { type: "button", className: "cl-link", disabled: downloadState?.id === item.id && downloadState.kind === "busy", onClick: () => void download(item.operationId, item.id), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Download, { size: 13, "aria-hidden": true }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "cl-li__end", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", className: "cl-link", disabled: downloadState?.id === item.id && downloadState.kind === "busy", onClick: () => void download(item.operationId, item.id), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Download, { size: 13, "aria-hidden": true }),
             downloadState?.id === item.id && downloadState.kind === "busy" ? "Gerando link\u2026" : "Baixar arquivo"
           ] }) })
         ] }, item.id)) })
@@ -19839,7 +19843,7 @@
   }
 
   // src/modules/operation/components/document-reuse-picker.tsx
-  var import_jsx_runtime31 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime32 = __toESM(require_jsx_runtime());
   var inserted = new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short" });
   var age = (v2) => {
     const days = Math.floor((Date.now() - new Date(v2).getTime()) / 864e5);
@@ -19925,67 +19929,67 @@
         setBusy(false);
       }
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { ref: root, className: "dr", "aria-label": "Reaproveitamento de documentos", "data-integration-id": "CLI-DOCS-MASTER-01", children: [
-      !ready2 ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "dr-hint", children: "Selecione o cliente e o vendedor para consultar documentos que podem ser reaproveitados." }) : state === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-bar", role: "status", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "jv-skeleton dr-sk" }),
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "sr-only", children: "Consultando documentos autorizados\u2026" })
-      ] }) : state === "error" || state === "denied" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: `dr-bar dr-bar--${state}`, role: state === "error" ? "alert" : void 0, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { children: message }),
-        state === "error" && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: () => setReload((v2) => v2 + 1), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
+    return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { ref: root, className: "dr", "aria-label": "Reaproveitamento de documentos", "data-integration-id": "CLI-DOCS-MASTER-01", children: [
+      !ready2 ? /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "dr-hint", children: "Selecione o cliente e o vendedor para consultar documentos que podem ser reaproveitados." }) : state === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "dr-bar", role: "status", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "jv-skeleton dr-sk" }),
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "sr-only", children: "Consultando documentos autorizados\u2026" })
+      ] }) : state === "error" || state === "denied" ? /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: `dr-bar dr-bar--${state}`, role: state === "error" ? "alert" : void 0, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { children: message }),
+        state === "error" && /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: () => setReload((v2) => v2 + 1), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
           "Tentar novamente"
         ] })
-      ] }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-bar", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dr-bar__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Files, { size: 16 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dr-bar__text", children: data?.candidates.length ? /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(import_jsx_runtime31.Fragment, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("b", { children: [
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "dr-bar", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "dr-bar__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Files, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "dr-bar__text", children: data?.candidates.length ? /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)(import_jsx_runtime32.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("b", { children: [
             data.candidates.length,
             " ",
             data.candidates.length === 1 ? "documento recente" : "documentos recentes"
           ] }),
           " deste cliente podem ser reaproveitados"
         ] }) : "Nenhum documento recente para reaproveitar. Envie novos documentos." }),
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: "dr-bar__acts", children: [
-          !!data?.candidates.length && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "ds-button ds-button--primary", disabled: busy, onClick: () => {
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "dr-bar__acts", children: [
+          !!data?.candidates.length && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("button", { type: "button", className: "ds-button ds-button--primary", disabled: busy, onClick: () => {
             setMode("REUSE");
             setOpen(true);
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "ds-button__content", children: "Reaproveitar" }) }),
-          count3 > 0 && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "ds-button", disabled: busy, onClick: () => {
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "ds-button__content", children: "Reaproveitar" }) }),
+          count3 > 0 && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("button", { type: "button", className: "ds-button", disabled: busy, onClick: () => {
             setMode("NEW_SET");
             setOpen(true);
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "ds-button__content", children: "Iniciar conjunto novo" }) })
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "ds-button__content", children: "Iniciar conjunto novo" }) })
         ] })
       ] }),
-      message && state === "ready" && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { role: "status", className: "dr-msg", children: message }),
-      open && typeof document !== "undefined" && (0, import_react_dom4.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "jv-dialog-backdrop", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { ref: dialog, role: "dialog", "aria-modal": "true", "aria-labelledby": heading, tabIndex: -1, onKeyDown: (e) => handleModalKeyDown(e, () => setOpen(false), busy), className: "jv-dialog dr-dialog", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "jv-dialog__head", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "jv-eyebrow", children: "Documentos do cliente" }),
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h2", { id: heading, className: "jv-dialog__title", children: "Este cliente tem documentos enviados recentemente" })
+      message && state === "ready" && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { role: "status", className: "dr-msg", children: message }),
+      open && typeof document !== "undefined" && (0, import_react_dom4.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", { className: "jv-dialog-backdrop", children: /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { ref: dialog, role: "dialog", "aria-modal": "true", "aria-labelledby": heading, tabIndex: -1, onKeyDown: (e) => handleModalKeyDown(e, () => setOpen(false), busy), className: "jv-dialog dr-dialog", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "jv-dialog__head", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "jv-eyebrow", children: "Documentos do cliente" }),
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("h2", { id: heading, className: "jv-dialog__title", children: "Este cliente tem documentos enviados recentemente" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "jv-icon-btn", "aria-label": "Fechar", disabled: busy, onClick: () => setOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(X, { size: 15, "aria-hidden": true }) })
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("button", { type: "button", className: "jv-icon-btn", "aria-label": "Fechar", disabled: busy, onClick: () => setOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(X, { size: 15, "aria-hidden": true }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "dr-lead", children: "Documentos do mesmo CPF/CNPJ e vendedor, enviados h\xE1 at\xE9 90 dias. Reaproveitar n\xE3o renova a data nem transfere aprova\xE7\xF5es ou itens do checklist." }),
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-modes", role: "group", "aria-label": "Como seguir", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", "aria-pressed": mode === "REUSE", disabled: busy, onClick: () => setMode("REUSE"), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Files, { size: 16, "aria-hidden": true }),
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { children: "Reaproveitar" }),
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("small", { children: "Vincular documentos existentes" })
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "dr-lead", children: "Documentos do mesmo CPF/CNPJ e vendedor, enviados h\xE1 at\xE9 90 dias. Reaproveitar n\xE3o renova a data nem transfere aprova\xE7\xF5es ou itens do checklist." }),
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "dr-modes", role: "group", "aria-label": "Como seguir", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("button", { type: "button", "aria-pressed": mode === "REUSE", disabled: busy, onClick: () => setMode("REUSE"), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Files, { size: 16, "aria-hidden": true }),
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("b", { children: "Reaproveitar" }),
+              /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("small", { children: "Vincular documentos existentes" })
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", "aria-pressed": mode === "NEW_SET", disabled: busy, onClick: () => setMode("NEW_SET"), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(FilePlus2, { size: 16, "aria-hidden": true }),
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { children: "Enviar novos" }),
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("small", { children: "Come\xE7ar um conjunto novo" })
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("button", { type: "button", "aria-pressed": mode === "NEW_SET", disabled: busy, onClick: () => setMode("NEW_SET"), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(FilePlus2, { size: 16, "aria-hidden": true }),
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("b", { children: "Enviar novos" }),
+              /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("small", { children: "Come\xE7ar um conjunto novo" })
             ] })
           ] })
         ] }),
-        mode === "REUSE" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("fieldset", { className: "dr-list", disabled: busy, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("legend", { children: [
+        mode === "REUSE" ? /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("fieldset", { className: "dr-list", disabled: busy, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("legend", { children: [
             "Escolha at\xE9 20 documentos ",
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: "jv-pill jv-pill--arc", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "jv-pill jv-pill--arc", children: [
               selected.length,
               " selecionado",
               selected.length === 1 ? "" : "s"
@@ -19993,41 +19997,41 @@
           ] }),
           data?.candidates.map((d) => {
             const checked = selected.includes(d.documentId);
-            return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("label", { className: "dr-doc", "data-checked": checked || void 0, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("input", { type: "checkbox", className: "dr-doc__input", checked, disabled: !checked && selected.length >= 20, onChange: (e) => setSelected((current) => e.target.checked ? [...current, d.documentId] : current.filter((id2) => id2 !== d.documentId)) }),
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dr-doc__box", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Check, { size: 12 }) }),
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dr-doc__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(FileText, { size: 16 }) }),
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: "dr-doc__main", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { children: d.fileName }),
-                /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { children: [
+            return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("label", { className: "dr-doc", "data-checked": checked || void 0, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("input", { type: "checkbox", className: "dr-doc__input", checked, disabled: !checked && selected.length >= 20, onChange: (e) => setSelected((current) => e.target.checked ? [...current, d.documentId] : current.filter((id2) => id2 !== d.documentId)) }),
+              /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "dr-doc__box", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Check, { size: 12 }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "dr-doc__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(FileText, { size: 16 }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "dr-doc__main", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("b", { children: d.fileName }),
+                /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { children: [
                   d.documentType ?? "Tipo ainda n\xE3o classificado",
                   " \xB7 ",
                   size(d.sizeBytes)
                 ] })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: "dr-doc__when", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("time", { dateTime: d.originalInsertedAt, children: inserted.format(new Date(d.originalInsertedAt)) }),
-                /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("small", { children: age(d.originalInsertedAt) })
+              /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "dr-doc__when", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("time", { dateTime: d.originalInsertedAt, children: inserted.format(new Date(d.originalInsertedAt)) }),
+                /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("small", { children: age(d.originalInsertedAt) })
               ] })
             ] }, d.documentId);
           }),
-          data?.truncated && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { role: "status", className: "dr-hint", children: "Mostrando os 100 documentos mais recentes." })
-        ] }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-newset", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { children: "O conjunto atual ser\xE1 encerrado aqui, com hist\xF3rico preservado. Nenhum documento da origem \xE9 alterado. Envie os documentos necess\xE1rios e complete o checklist vigente." }),
-          count3 > 0 && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("label", { className: "dr-confirm", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("input", { type: "checkbox", checked: replace, disabled: busy, onChange: (e) => setReplace(e.target.checked) }),
+          data?.truncated && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { role: "status", className: "dr-hint", children: "Mostrando os 100 documentos mais recentes." })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "dr-newset", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { children: "O conjunto atual ser\xE1 encerrado aqui, com hist\xF3rico preservado. Nenhum documento da origem \xE9 alterado. Envie os documentos necess\xE1rios e complete o checklist vigente." }),
+          count3 > 0 && /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("label", { className: "dr-confirm", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("input", { type: "checkbox", checked: replace, disabled: busy, onChange: (e) => setReplace(e.target.checked) }),
             "Confirmo substituir o conjunto atual, preservando o hist\xF3rico."
           ] })
         ] }),
-        message && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { role: "alert", className: "dr-error", children: message }),
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-acts", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "ds-button ds-button--primary", disabled: busy || mode === "REUSE" && !selected.length || mode === "NEW_SET" && count3 > 0 && !replace, onClick: () => void confirm(), children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "ds-button__content", children: busy ? "Validando\u2026" : mode === "REUSE" ? "Confirmar reaproveitamento" : "Confirmar conjunto novo" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "ds-button", disabled: busy, onClick: () => setOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "ds-button__content", children: "Cancelar" }) }),
-          message && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", className: "jv-icon-btn", disabled: busy, onClick: () => {
+        message && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { role: "alert", className: "dr-error", children: message }),
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "dr-acts", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("button", { type: "button", className: "ds-button ds-button--primary", disabled: busy || mode === "REUSE" && !selected.length || mode === "NEW_SET" && count3 > 0 && !replace, onClick: () => void confirm(), children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "ds-button__content", children: busy ? "Validando\u2026" : mode === "REUSE" ? "Confirmar reaproveitamento" : "Confirmar conjunto novo" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("button", { type: "button", className: "ds-button", disabled: busy, onClick: () => setOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "ds-button__content", children: "Cancelar" }) }),
+          message && /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("button", { type: "button", className: "jv-icon-btn", disabled: busy, onClick: () => {
             setOpen(false);
             setReload((v2) => v2 + 1);
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
             "Atualizar lista"
           ] })
         ] })
@@ -20037,7 +20041,7 @@
 
   // src/modules/sales-funnel/components/commercial-opportunity-documents.tsx
   var import_react23 = __toESM(require_react());
-  var import_jsx_runtime32 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime33 = __toESM(require_jsx_runtime());
   function CommercialOpportunityDocuments({ opportunityId, canRegister }) {
     const [context, setContext] = (0, import_react23.useState)(null), [busy, setBusy] = (0, import_react23.useState)(false), [error, setError] = (0, import_react23.useState)("");
     const load = (0, import_react23.useCallback)(async () => {
@@ -20076,51 +20080,51 @@
       if (r2.success) await load();
       else setError(r2.safeMessage);
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("section", { className: "dr dr-opp", "aria-labelledby": "opp-docs-title", "data-integration-id": "CLI-DOCS-MASTER-01.REUSE.OPP", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "dr-opp__head", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("h2", { id: "opp-docs-title", children: "Documentos da oportunidade" }),
-        context && /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "jv-pill", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("section", { className: "dr dr-opp", "aria-labelledby": "opp-docs-title", "data-integration-id": "CLI-DOCS-MASTER-01.REUSE.OPP", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "dr-opp__head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("h2", { id: "opp-docs-title", children: "Documentos da oportunidade" }),
+        context && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "jv-pill", children: [
           context.documents.length,
           " no ciclo atual"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "dr-hint", children: "Os anexos acompanham a oportunidade e seguem para a opera\xE7\xE3o na convers\xE3o, com hist\xF3rico preservado." }),
-      canRegister && context?.status !== "PROMOTED" && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(DocumentReusePicker, { target: { opportunityId }, activeDocuments: context?.documents.length ?? 0, onCompleted: async () => {
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "dr-hint", children: "Os anexos acompanham a oportunidade e seguem para a opera\xE7\xE3o na convers\xE3o, com hist\xF3rico preservado." }),
+      canRegister && context?.status !== "PROMOTED" && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DocumentReusePicker, { target: { opportunityId }, activeDocuments: context?.documents.length ?? 0, onCompleted: async () => {
         await load();
       } }),
-      canRegister && context?.status !== "PROMOTED" && /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("label", { className: "dr-upload", "data-busy": busy || void 0, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Paperclip, { size: 15, "aria-hidden": true }),
-        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { children: [
+      canRegister && context?.status !== "PROMOTED" && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "dr-upload", "data-busy": busy || void 0, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Paperclip, { size: 15, "aria-hidden": true }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { children: [
           busy ? "Enviando\u2026" : "Anexar documento",
-          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("small", { children: "PDF, imagem, DOCX ou XLSX" })
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("small", { children: "PDF, imagem, DOCX ou XLSX" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("input", { disabled: busy, type: "file", accept: ".pdf,.jpg,.jpeg,.png,.webp,.docx,.xlsx", onChange: (e) => {
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { disabled: busy, type: "file", accept: ".pdf,.jpg,.jpeg,.png,.webp,.docx,.xlsx", onChange: (e) => {
           const file = e.target.files?.[0];
           if (file) void upload(file);
           e.currentTarget.value = "";
         } })
       ] }),
-      busy && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { role: "status", className: "sr-only", children: "Enviando\u2026" }),
-      error && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { role: "alert", className: "dr-error", children: error }),
-      !!context?.documents.length && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("ul", { className: "dr-files", children: context.documents.map((d) => /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("li", { className: "dr-file", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "dr-doc__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(FileText, { size: 16 }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "dr-doc__main", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("b", { children: d.fileName }),
-          /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { children: [
+      busy && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { role: "status", className: "sr-only", children: "Enviando\u2026" }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { role: "alert", className: "dr-error", children: error }),
+      !!context?.documents.length && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("ul", { className: "dr-files", children: context.documents.map((d) => /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("li", { className: "dr-file", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "dr-doc__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(FileText, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "dr-doc__main", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("b", { children: d.fileName }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { children: [
             d.classifications.length ? d.classifications.join(" + ") : "Ainda n\xE3o classificado",
             " \xB7 ",
             d.analysisStatus ?? "Sem an\xE1lise"
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "dr-file__acts", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: () => void download(d.id), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Download, { size: 13, "aria-hidden": true }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "dr-file__acts", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: () => void download(d.id), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Download, { size: 13, "aria-hidden": true }),
             "Abrir"
           ] }),
-          canRegister && context.status === "ACTIVE" && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("button", { type: "button", className: "jv-icon-btn dr-file__rm", "aria-label": `Inativar anexo ${d.fileName}`, onClick: () => void remove(d.id), children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Trash2, { size: 13, "aria-hidden": true }) })
+          canRegister && context.status === "ACTIVE" && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", className: "jv-icon-btn dr-file__rm", "aria-label": `Inativar anexo ${d.fileName}`, onClick: () => void remove(d.id), children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Trash2, { size: 13, "aria-hidden": true }) })
         ] })
       ] }, d.id)) }),
-      context && !context.documents.length && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "dr-hint", children: "Nenhum documento no ciclo atual." })
+      context && !context.documents.length && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "dr-hint", children: "Nenhum documento no ciclo atual." })
     ] });
   }
 
@@ -20161,7 +20165,7 @@
   init_define_process_env();
 
   // src/modules/client/components/clients-list.tsx
-  var import_jsx_runtime33 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime34 = __toESM(require_jsx_runtime());
   var toneClass2 = { good: "jv-pill jv-pill--good", warn: "jv-pill jv-pill--warn", crit: "jv-pill jv-pill--crit", neutral: "jv-pill" };
   var browseViews = [
     { id: "list", label: "Lista", icon: List },
@@ -20169,57 +20173,57 @@
   ];
   var initials3 = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join("").toLocaleUpperCase("pt-BR") || "?";
   function ClientsOverview({ kpis, kpisAvailable, onOpenCreateModal }) {
-    const value = (n) => kpisAvailable && n !== void 0 ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("strong", { className: "jv-kpi__value", children: n.toLocaleString("pt-BR") }) : /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("strong", { className: "jv-kpi__value", "aria-label": "Indispon\xEDvel", children: "\u2014" });
-    return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(import_jsx_runtime33.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("header", { className: "cl-head", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-head__text", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-eyebrow", children: "CRM \xB7 Cadastro master" }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("h1", { className: "jv-h1", children: "Central de Clientes" }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-lead", children: "Cadastro, situa\xE7\xE3o p\xFAblica e fiscal, neg\xF3cios, opera\xE7\xF5es e documentos de cada cliente, dentro do seu escopo de acesso." })
+    const value = (n) => kpisAvailable && n !== void 0 ? /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("strong", { className: "jv-kpi__value", children: n.toLocaleString("pt-BR") }) : /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("strong", { className: "jv-kpi__value", "aria-label": "Indispon\xEDvel", children: "\u2014" });
+    return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(import_jsx_runtime34.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("header", { className: "cl-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "cl-head__text", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "jv-eyebrow", children: "CRM \xB7 Cadastro master" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("h1", { className: "jv-h1", children: "Central de Clientes" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "jv-lead", children: "Cadastro, situa\xE7\xE3o p\xFAblica e fiscal, neg\xF3cios, opera\xE7\xF5es e documentos de cada cliente, dentro do seu escopo de acesso." })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-head__actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ClientPendingButton, { id: "CLI-IMPORT-01", icon: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Upload, { size: 14, "aria-hidden": true }), children: "Importar planilha" }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(DesignButton, { intent: "primary", onClick: onOpenCreateModal, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Plus, { size: 14, "aria-hidden": true }),
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "cl-head__actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(ClientPendingButton, { id: "CLI-IMPORT-01", icon: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Upload, { size: 14, "aria-hidden": true }), children: "Importar planilha" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(DesignButton, { intent: "primary", onClick: onOpenCreateModal, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Plus, { size: 14, "aria-hidden": true }),
             "Novo cliente"
           ] })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("section", { "aria-label": "Indicadores de clientes", className: "jv-kpis", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon jv-kpi__icon--arc", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Users, { size: 16 }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Total de clientes" })
+      /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("section", { "aria-label": "Indicadores de clientes", className: "jv-kpis", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "jv-kpi__icon jv-kpi__icon--arc", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Users, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "jv-kpi__label", children: "Total de clientes" })
           ] }),
           value(kpis?.totalClients)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(UserCheck, { size: 16 }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Clientes ativos" })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "jv-kpi__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(UserCheck, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "jv-kpi__label", children: "Clientes ativos" })
           ] }),
           value(kpis?.activeClients)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon jv-kpi__icon--arc", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Star, { size: 16 }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Novos no m\xEAs" })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "jv-kpi__icon jv-kpi__icon--arc", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Star, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "jv-kpi__label", children: "Novos no m\xEAs" })
           ] }),
           value(kpis?.newClientsThisMonth)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Activity, { size: 16 }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Com opera\xE7\xE3o" })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "jv-kpi__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Activity, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "jv-kpi__label", children: "Com opera\xE7\xE3o" })
           ] }),
           value(kpis?.clientsWithOperations)
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon jv-kpi__icon--arc", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(SlidersHorizontal, { size: 16 }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Sem intera\xE7\xE3o \xB7 incompletos \xB7 duplicidades" })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "jv-kpi__icon jv-kpi__icon--arc", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(SlidersHorizontal, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "jv-kpi__label", children: "Sem intera\xE7\xE3o \xB7 incompletos \xB7 duplicidades" })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ClientPendingValue, { id: "CLI-LIST-INSIGHTS-01" })
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(ClientPendingValue, { id: "CLI-LIST-INSIGHTS-01" })
         ] })
       ] })
     ] });
@@ -20241,114 +20245,114 @@
     const renderClient = (client, index) => {
       const status = registrationStatusPresentation(client.registrationStatus);
       const place = client.city ? [client.city, client.state].filter(Boolean).join("/") : "Cidade n\xE3o informada";
-      return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("li", { style: { "--cl-i": Math.min(index, 12) }, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", className: "cl-org", "data-client-id": client.id, "data-tone": status.tone, "aria-current": client.id === selectedClientId ? "true" : void 0, onClick: () => onSelectClient(client.id), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-av", "aria-hidden": true, children: initials3(client.legalName) }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__body", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-org__who", children: client.legalName }),
-          client.tradeName && client.tradeName !== client.legalName && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-org__line cl-org__line--trade", children: client.tradeName }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__line cl-org__line--doc", children: [
+      return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("li", { style: { "--cl-i": Math.min(index, 12) }, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("button", { type: "button", className: "cl-org", "data-client-id": client.id, "data-tone": status.tone, "aria-current": client.id === selectedClientId ? "true" : void 0, onClick: () => onSelectClient(client.id), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "cl-av", "aria-hidden": true, children: initials3(client.legalName) }),
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "cl-org__body", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "cl-org__who", children: client.legalName }),
+          client.tradeName && client.tradeName !== client.legalName && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "cl-org__line cl-org__line--trade", children: client.tradeName }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "cl-org__line cl-org__line--doc", children: [
             client.personType,
             " \xB7 ",
             maskCpfCnpj(client.normalizedDocument)
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-org__line cl-org__line--place", children: place })
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "cl-org__line cl-org__line--place", children: place })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__end", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: toneClass2[status.tone], children: status.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__ops", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "cl-org__end", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: toneClass2[status.tone], children: status.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "cl-org__ops", children: [
             client.operationsCount,
             " op."
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__go", "aria-hidden": true, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "cl-org__go", "aria-hidden": true, children: [
             "Abrir",
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ArrowUpRight, { size: 13 })
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(ArrowUpRight, { size: 13 })
           ] })
         ] })
       ] }) }, client.id);
     };
-    return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("section", { className: `jv-panel cl-orgs cl-orgs--${layout}`, "aria-labelledby": "cl-orgs-title", "data-layout": layout, "data-view": view, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("h2", { id: "cl-orgs-title", className: "sr-only", children: "Lista de clientes" }),
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__search", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "ds-field", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Buscar" }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "jv-search", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Search, { size: 15, "aria-hidden": true }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { type: "search", className: "ds-input", value: searchTerm, onChange: (e) => onSearchChange(e.target.value), placeholder: "Nome, CPF/CNPJ, cidade ou endere\xE7o" })
+    return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("section", { className: `jv-panel cl-orgs cl-orgs--${layout}`, "aria-labelledby": "cl-orgs-title", "data-layout": layout, "data-view": view, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("h2", { id: "cl-orgs-title", className: "sr-only", children: "Lista de clientes" }),
+      /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: "cl-orgs__search", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Buscar" }),
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "jv-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Search, { size: 15, "aria-hidden": true }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { type: "search", className: "ds-input", value: searchTerm, onChange: (e) => onSearchChange(e.target.value), placeholder: "Nome, CPF/CNPJ, cidade ou endere\xE7o" })
         ] })
       ] }) }),
-      onFiltersChange && layout === "rail" && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", className: "cl-chip cl-rail-toggle", "aria-expanded": railFiltersOpen, "aria-controls": "cl-canonical-filters", onClick: () => setRailFiltersOpen((open) => !open), children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(SlidersHorizontal, { size: 13, "aria-hidden": true }),
+      onFiltersChange && layout === "rail" && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("button", { type: "button", className: "cl-chip cl-rail-toggle", "aria-expanded": railFiltersOpen, "aria-controls": "cl-canonical-filters", onClick: () => setRailFiltersOpen((open) => !open), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(SlidersHorizontal, { size: 13, "aria-hidden": true }),
         "Filtros",
-        activeFilters > 0 && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-rail-toggle__n", children: activeFilters })
+        activeFilters > 0 && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "cl-rail-toggle__n", children: activeFilters })
       ] }),
-      onFiltersChange && showFilters && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { id: "cl-canonical-filters", className: "cl-canonical-filters", "data-integration-id": "CLI-FILTERS-01", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "ds-field", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Pessoa" }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("select", { className: "ds-input", value: filters.personType ?? "all", onChange: (e) => onFiltersChange({ ...filters, personType: e.target.value === "all" ? void 0 : e.target.value }), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "all", children: "PF e PJ" }),
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "PF", children: "Pessoa f\xEDsica" }),
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "PJ", children: "Pessoa jur\xEDdica" })
+      onFiltersChange && showFilters && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { id: "cl-canonical-filters", className: "cl-canonical-filters", "data-integration-id": "CLI-FILTERS-01", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Pessoa" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("select", { className: "ds-input", value: filters.personType ?? "all", onChange: (e) => onFiltersChange({ ...filters, personType: e.target.value === "all" ? void 0 : e.target.value }), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("option", { value: "all", children: "PF e PJ" }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("option", { value: "PF", children: "Pessoa f\xEDsica" }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("option", { value: "PJ", children: "Pessoa jur\xEDdica" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "ds-field", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Situa\xE7\xE3o cadastral exata" }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { className: "ds-input", placeholder: "Todas as situa\xE7\xF5es", value: filters.registrationStatus ?? "", onChange: (e) => onFiltersChange({ ...filters, registrationStatus: e.target.value || void 0 }) })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Situa\xE7\xE3o cadastral exata" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { className: "ds-input", placeholder: "Todas as situa\xE7\xF5es", value: filters.registrationStatus ?? "", onChange: (e) => onFiltersChange({ ...filters, registrationStatus: e.target.value || void 0 }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "ds-field", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Opera\xE7\xF5es no seu escopo" }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("select", { className: "ds-input", value: filters.hasOperations === void 0 ? "all" : String(filters.hasOperations), onChange: (e) => onFiltersChange({ ...filters, hasOperations: e.target.value === "all" ? void 0 : e.target.value === "true" }), children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "all", children: "Com e sem opera\xE7\xE3o" }),
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "true", children: "Com opera\xE7\xE3o vis\xEDvel" }),
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "false", children: "Sem opera\xE7\xE3o vis\xEDvel" })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Opera\xE7\xF5es no seu escopo" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("select", { className: "ds-input", value: filters.hasOperations === void 0 ? "all" : String(filters.hasOperations), onChange: (e) => onFiltersChange({ ...filters, hasOperations: e.target.value === "all" ? void 0 : e.target.value === "true" }), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("option", { value: "all", children: "Com e sem opera\xE7\xE3o" }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("option", { value: "true", children: "Com opera\xE7\xE3o vis\xEDvel" }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("option", { value: "false", children: "Sem opera\xE7\xE3o vis\xEDvel" })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "cl-canonical-filters__missing", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { type: "checkbox", checked: filters.registrationStatus === "", onChange: (e) => onFiltersChange({ ...filters, registrationStatus: e.target.checked ? "" : void 0 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "cl-canonical-filters__missing", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { type: "checkbox", checked: filters.registrationStatus === "", onChange: (e) => onFiltersChange({ ...filters, registrationStatus: e.target.checked ? "" : void 0 }) }),
           " Situa\xE7\xE3o n\xE3o informada"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "cl-canonical-filters__note", children: "Lista e indicadores seguem os filtros. Pend\xEAncias operacionais exigem sua autoriza\xE7\xE3o pr\xF3pria. \u201CSem opera\xE7\xE3o vis\xEDvel\u201D n\xE3o afirma aus\xEAncia de opera\xE7\xF5es fora do seu acesso." })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "cl-canonical-filters__note", children: "Lista e indicadores seguem os filtros. Pend\xEAncias operacionais exigem sua autoriza\xE7\xE3o pr\xF3pria. \u201CSem opera\xE7\xE3o vis\xEDvel\u201D n\xE3o afirma aus\xEAncia de opera\xE7\xF5es fora do seu acesso." })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-orgs__chips", role: "group", "aria-label": "Recortes da lista", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", className: "cl-chip", "aria-pressed": !filters.personType && filters.registrationStatus === void 0 && filters.hasOperations === void 0 && filters.hasOpenPending === void 0, onClick: () => onFiltersChange?.({}), children: "Todos" }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", className: "cl-chip", disabled: true, "data-pending-id": "CLI-PORTFOLIO-01", title: "Integra\xE7\xE3o pendente \xB7 CLI-PORTFOLIO-01", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "cl-orgs__chips", role: "group", "aria-label": "Recortes da lista", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("button", { type: "button", className: "cl-chip", "aria-pressed": !filters.personType && filters.registrationStatus === void 0 && filters.hasOperations === void 0 && filters.hasOpenPending === void 0, onClick: () => onFiltersChange?.({}), children: "Todos" }),
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("button", { type: "button", className: "cl-chip", disabled: true, "data-pending-id": "CLI-PORTFOLIO-01", title: "Integra\xE7\xE3o pendente \xB7 CLI-PORTFOLIO-01", children: [
           "Minha carteira",
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "sr-only", children: " (integra\xE7\xE3o pendente, CLI-PORTFOLIO-01)" })
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "sr-only", children: " (integra\xE7\xE3o pendente, CLI-PORTFOLIO-01)" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", className: "cl-chip", "aria-pressed": filters.hasOpenPending === true, onClick: () => onFiltersChange?.({ ...filters, hasOpenPending: filters.hasOpenPending === true ? void 0 : true }), children: "Com pend\xEAncia operacional aberta vis\xEDvel" })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("button", { type: "button", className: "cl-chip", "aria-pressed": filters.hasOpenPending === true, onClick: () => onFiltersChange?.({ ...filters, hasOpenPending: filters.hasOpenPending === true ? void 0 : true }), children: "Com pend\xEAncia operacional aberta vis\xEDvel" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-orgs__meta", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: loaded ? `${totalItems.toLocaleString("pt-BR")} ${totalItems === 1 ? "cliente" : "clientes"}` : "\u2014" }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { role: "status", "aria-live": "polite", children: loading && loaded ? "Atualizando\u2026" : "" }),
-        layout === "browse" && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-views", role: "group", "aria-label": "Exibir clientes como", children: browseViews.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", "aria-pressed": browseView === id2, onClick: () => setBrowseView(id2), children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Icon2, { size: 13, "aria-hidden": true }),
+      /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "cl-orgs__meta", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: loaded ? `${totalItems.toLocaleString("pt-BR")} ${totalItems === 1 ? "cliente" : "clientes"}` : "\u2014" }),
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { role: "status", "aria-live": "polite", children: loading && loaded ? "Atualizando\u2026" : "" }),
+        layout === "browse" && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "cl-views", role: "group", "aria-label": "Exibir clientes como", children: browseViews.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("button", { type: "button", "aria-pressed": browseView === id2, onClick: () => setBrowseView(id2), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Icon2, { size: 13, "aria-hidden": true }),
           label
         ] }, id2)) })
       ] }),
-      error && loaded && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__state", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignState, { kind: "error", title: "Lista n\xE3o atualizada", action: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" }), children: error }) }),
-      !loaded ? error ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__state", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignState, { kind: "error", title: "N\xE3o foi poss\xEDvel carregar a Central de Clientes.", action: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" }), children: error }) }) : /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__state", role: "status", "aria-busy": "true", "aria-label": "Carregando clientes", children: [0, 1, 2, 3, 4].map((i) => /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "jv-skeleton my-2 h-[54px]" }, i)) }) : clients.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__state", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignState, { kind: "empty", title: searchTerm.trim() || filters.personType || filters.registrationStatus !== void 0 || filters.hasOperations !== void 0 || filters.hasOpenPending !== void 0 ? "Nenhum cliente encontrado para a busca e os filtros." : "Nenhum cliente cadastrado." }) }) : /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(import_jsx_runtime33.Fragment, { children: [
-        view === "list" && layout === "browse" && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-cols", "aria-hidden": true, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Cliente" }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Documento" }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Cidade" }),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Situa\xE7\xE3o \xB7 opera\xE7\xF5es" })
+      error && loaded && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: "cl-orgs__state", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(DesignState, { kind: "error", title: "Lista n\xE3o atualizada", action: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" }), children: error }) }),
+      !loaded ? error ? /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: "cl-orgs__state", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(DesignState, { kind: "error", title: "N\xE3o foi poss\xEDvel carregar a Central de Clientes.", action: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" }), children: error }) }) : /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: "cl-orgs__state", role: "status", "aria-busy": "true", "aria-label": "Carregando clientes", children: [0, 1, 2, 3, 4].map((i) => /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: "jv-skeleton my-2 h-[54px]" }, i)) }) : clients.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: "cl-orgs__state", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(DesignState, { kind: "empty", title: searchTerm.trim() || filters.personType || filters.registrationStatus !== void 0 || filters.hasOperations !== void 0 || filters.hasOpenPending !== void 0 ? "Nenhum cliente encontrado para a busca e os filtros." : "Nenhum cliente cadastrado." }) }) : /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(import_jsx_runtime34.Fragment, { children: [
+        view === "list" && layout === "browse" && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "cl-cols", "aria-hidden": true, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Cliente" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Documento" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Cidade" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Situa\xE7\xE3o \xB7 opera\xE7\xF5es" })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("ul", { className: "cl-orgs__list", children: clients.map(renderClient) })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("ul", { className: "cl-orgs__list", children: clients.map(renderClient) })
       ] }),
-      loaded && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("nav", { className: "cl-pager", "aria-label": "Pagina\xE7\xE3o da lista de clientes", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { children: [
+      loaded && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("nav", { className: "cl-pager", "aria-label": "Pagina\xE7\xE3o da lista de clientes", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { children: [
           first,
           "\u2013",
           last,
           " de ",
           totalItems.toLocaleString("pt-BR")
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-pager__pages", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", "aria-label": "P\xE1gina anterior", onClick: () => onPageChange(currentPage - 1), disabled: currentPage <= 1, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ChevronLeft, { size: 14, "aria-hidden": true }) }),
-          pageWindow(currentPage, totalPages).map((page, i) => page === "gap" ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { "aria-hidden": true, children: "\u2026" }, `gap-${i}`) : /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", "aria-label": `P\xE1gina ${page}`, "aria-current": page === currentPage ? "page" : void 0, onClick: () => onPageChange(page), children: page }, page)),
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", "aria-label": "Pr\xF3xima p\xE1gina", onClick: () => onPageChange(currentPage + 1), disabled: currentPage >= totalPages || totalPages === 0, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ChevronRight, { size: 14, "aria-hidden": true }) })
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "cl-pager__pages", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("button", { type: "button", "aria-label": "P\xE1gina anterior", onClick: () => onPageChange(currentPage - 1), disabled: currentPage <= 1, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(ChevronLeft, { size: 14, "aria-hidden": true }) }),
+          pageWindow(currentPage, totalPages).map((page, i) => page === "gap" ? /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { "aria-hidden": true, children: "\u2026" }, `gap-${i}`) : /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("button", { type: "button", "aria-label": `P\xE1gina ${page}`, "aria-current": page === currentPage ? "page" : void 0, onClick: () => onPageChange(page), children: page }, page)),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("button", { type: "button", "aria-label": "Pr\xF3xima p\xE1gina", onClick: () => onPageChange(currentPage + 1), disabled: currentPage >= totalPages || totalPages === 0, children: /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(ChevronRight, { size: 14, "aria-hidden": true }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "cl-pager__size", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "cl-pager__size", children: [
           "Por p\xE1gina",
-          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("select", { value: itemsPerPage, onChange: (e) => onItemsPerPageChange(Number(e.target.value)), children: [10, 25, 50, 100].map((size2) => /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: size2, children: size2 }, size2)) })
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("select", { value: itemsPerPage, onChange: (e) => onItemsPerPageChange(Number(e.target.value)), children: [10, 25, 50, 100].map((size2) => /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("option", { value: size2, children: size2 }, size2)) })
         ] })
       ] })
     ] });
@@ -20356,84 +20360,84 @@
 
   // src/modules/client/components/client-form-dialog.tsx
   init_define_process_env();
-  var import_jsx_runtime34 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime35 = __toESM(require_jsx_runtime());
   var emptyClientForm = { customerDocument: "", customerName: "", tradeName: "", phone: "", email: "", address: "", neighborhood: "", cep: "", city: "", uf: "", taxStatus: "" };
   var statusOptions = [["", "N\xE3o informada"], ["Ativa", "Ativa"], ["Inativa", "Inativa / Suspensa"], ["Inapta", "Inapta"]];
   function ClientFormDialog({ mode, form, setForm, saving, notice, onClose, onSubmit, onLookup, lookingUp = false }) {
     const set = (field) => (value) => setForm((prev) => ({ ...prev, [field]: value }));
     const options = statusOptions.some(([value]) => value === form.taxStatus) ? statusOptions : [...statusOptions, [form.taxStatus, `${form.taxStatus} (valor atual)`]];
     const busy = saving || lookingUp;
-    return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(
       DesignDialog,
       {
         title: mode === "create" ? "Cadastrar novo cliente" : "Editar cadastro do cliente",
         onClose,
         busy,
-        footer: /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "cl-dialog-foot", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(DesignButton, { disabled: busy, onClick: onClose, children: "Cancelar" }),
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(DesignButton, { intent: "primary", loading: saving, disabled: busy, onClick: onSubmit, children: mode === "create" ? "Cadastrar cliente" : "Salvar altera\xE7\xF5es" })
+        footer: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "cl-dialog-foot", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignButton, { disabled: busy, onClick: onClose, children: "Cancelar" }),
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignButton, { intent: "primary", loading: saving, disabled: busy, onClick: onSubmit, children: mode === "create" ? "Cadastrar cliente" : "Salvar altera\xE7\xF5es" })
         ] }),
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "cl-dialog-lead", children: mode === "create" ? "Preencha os dados abaixo. Para CNPJ, a consulta preenche os campos com a fonte p\xFAblica e o Cadastro Master." : "Altere os dados cadastrais do cliente selecionado. O documento n\xE3o pode ser alterado." }),
-          notice && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: `ds-notice${notice.tone === "error" ? " ds-notice--error" : ""}`, role: notice.tone === "error" ? "alert" : "status", children: notice.message }),
-          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("form", { className: "cl-form", onSubmit: (event2) => {
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "cl-dialog-lead", children: mode === "create" ? "Preencha os dados abaixo. Para CNPJ, a consulta preenche os campos com a fonte p\xFAblica e o Cadastro Master." : "Altere os dados cadastrais do cliente selecionado. O documento n\xE3o pode ser alterado." }),
+          notice && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: `ds-notice${notice.tone === "error" ? " ds-notice--error" : ""}`, role: notice.tone === "error" ? "alert" : "status", children: notice.message }),
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("form", { className: "cl-form", onSubmit: (event2) => {
             event2.preventDefault();
             if (!busy) onSubmit();
           }, noValidate: true, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Raz\xE3o social / nome *" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", required: true, autoComplete: "organization", value: form.customerName, onChange: (e) => set("customerName")(e.target.value), placeholder: "Nome completo ou raz\xE3o social" })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "Raz\xE3o social / nome *" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", required: true, autoComplete: "organization", value: form.customerName, onChange: (e) => set("customerName")(e.target.value), placeholder: "Nome completo ou raz\xE3o social" })
             ] }),
-            mode === "create" ? /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "CPF / CNPJ *" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "cl-form__doc", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", required: true, inputMode: "numeric", value: form.customerDocument, onChange: (e) => set("customerDocument")(maskCpfCnpj(e.target.value)), placeholder: "00.000.000/0001-00" }),
-                /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(DesignButton, { size: "sm", onClick: onLookup, loading: lookingUp, disabled: busy, children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Search, { size: 14, "aria-hidden": true }),
+            mode === "create" ? /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "CPF / CNPJ *" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("span", { className: "cl-form__doc", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", required: true, inputMode: "numeric", value: form.customerDocument, onChange: (e) => set("customerDocument")(maskCpfCnpj(e.target.value)), placeholder: "00.000.000/0001-00" }),
+                /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(DesignButton, { size: "sm", onClick: onLookup, loading: lookingUp, disabled: busy, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Search, { size: 14, "aria-hidden": true }),
                   "Consultar"
                 ] })
               ] })
-            ] }) : /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "CPF / CNPJ (bloqueado)" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", value: form.customerDocument, readOnly: true, "aria-readonly": "true" })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "CPF / CNPJ (bloqueado)" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", value: form.customerDocument, readOnly: true, "aria-readonly": "true" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Nome fantasia" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", value: form.tradeName, onChange: (e) => set("tradeName")(e.target.value), placeholder: "Se diferente da raz\xE3o social" })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "Nome fantasia" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", value: form.tradeName, onChange: (e) => set("tradeName")(e.target.value), placeholder: "Se diferente da raz\xE3o social" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Situa\xE7\xE3o cadastral" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("select", { disabled: busy, className: "ds-input", value: form.taxStatus, onChange: (e) => set("taxStatus")(e.target.value), children: options.map(([value, label]) => /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("option", { value, children: label }, value || "empty")) })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "Situa\xE7\xE3o cadastral" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("select", { disabled: busy, className: "ds-input", value: form.taxStatus, onChange: (e) => set("taxStatus")(e.target.value), children: options.map(([value, label]) => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("option", { value, children: label }, value || "empty")) })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Telefone operacional" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", type: "tel", autoComplete: "tel", value: form.phone, onChange: (e) => set("phone")(maskPhone(e.target.value)), placeholder: "(11) 99999-9999" })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "Telefone operacional" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", type: "tel", autoComplete: "tel", value: form.phone, onChange: (e) => set("phone")(maskPhone(e.target.value)), placeholder: "(11) 99999-9999" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "E-mail operacional" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", type: "email", autoComplete: "email", value: form.email, onChange: (e) => set("email")(e.target.value), placeholder: "cliente@email.com" })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "E-mail operacional" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", type: "email", autoComplete: "email", value: form.email, onChange: (e) => set("email")(e.target.value), placeholder: "cliente@email.com" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field cl-span-4", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Endere\xE7o" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", autoComplete: "street-address", value: form.address, onChange: (e) => set("address")(e.target.value), placeholder: "Rua, avenida, n\xFAmero" })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field cl-span-4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "Endere\xE7o" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", autoComplete: "street-address", value: form.address, onChange: (e) => set("address")(e.target.value), placeholder: "Rua, avenida, n\xFAmero" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field cl-span-2", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Bairro" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", value: form.neighborhood, onChange: (e) => set("neighborhood")(e.target.value), placeholder: "Centro" })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field cl-span-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "Bairro" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", value: form.neighborhood, onChange: (e) => set("neighborhood")(e.target.value), placeholder: "Centro" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Cidade" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", autoComplete: "address-level2", value: form.city, onChange: (e) => set("city")(e.target.value), placeholder: "Cidade" })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "Cidade" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", autoComplete: "address-level2", value: form.city, onChange: (e) => set("city")(e.target.value), placeholder: "Cidade" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field cl-span-1", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "UF" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", autoComplete: "address-level1", maxLength: 2, value: form.uf, onChange: (e) => set("uf")(e.target.value), placeholder: "UF" })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field cl-span-1", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "UF" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", autoComplete: "address-level1", maxLength: 2, value: form.uf, onChange: (e) => set("uf")(e.target.value), placeholder: "UF" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field cl-span-2", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "CEP" }),
-              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", inputMode: "numeric", autoComplete: "postal-code", value: form.cep, onChange: (e) => set("cep")(e.target.value), placeholder: "13300-000" })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("label", { className: "ds-field cl-span-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { children: "CEP" }),
+              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("input", { disabled: busy, className: "ds-input", inputMode: "numeric", autoComplete: "postal-code", value: form.cep, onChange: (e) => set("cep")(e.target.value), placeholder: "13300-000" })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("button", { type: "submit", hidden: true, "aria-hidden": true, tabIndex: -1 })
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("button", { type: "submit", hidden: true, "aria-hidden": true, tabIndex: -1 })
           ] })
         ]
       }
@@ -20441,7 +20445,7 @@
   }
 
   // src/app/(protected)/clients/page.tsx
-  var import_jsx_runtime35 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime36 = __toESM(require_jsx_runtime());
   function withLayoutTransition(update) {
     const doc = typeof document === "undefined" ? null : document;
     const reduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -20738,10 +20742,10 @@
     }, [loadData, loadClientDetail, selectedClientId]);
     const selected = viewMode === "detail" && selectedClientId !== null;
     const detailMatches = selectedClientDetail !== null && selectedClientDetail.identity.id === selectedClientId;
-    return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "cl-page", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(ClientsOverview, { kpis: clientsPageData?.kpis ?? null, kpisAvailable: clientsPageData !== null && !loadError && !loading, onOpenCreateModal: handleOpenCreateClientModal }),
-      /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "cl-workspace", "data-selected": selected ? "true" : "false", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "cl-page", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(ClientsOverview, { kpis: clientsPageData?.kpis ?? null, kpisAvailable: clientsPageData !== null && !loadError && !loading, onOpenCreateModal: handleOpenCreateClientModal }),
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "cl-workspace", "data-selected": selected ? "true" : "false", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
           ClientsList,
           {
             filters,
@@ -20773,8 +20777,8 @@
             layout: selected ? "rail" : "browse"
           }
         ),
-        selected && /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "cl-col cl-detail-col", children: [
-          detailMatches && selectedClientDetail ? /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+        selected && /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "cl-col cl-detail-col", children: [
+          detailMatches && selectedClientDetail ? /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
             ClientDetailView,
             {
               detail: selectedClientDetail,
@@ -20782,14 +20786,14 @@
               onEdit: handleOpenEditClientModal,
               onRegistryDecided: handleRegistryDecided
             }
-          ) : detailError ? /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("section", { className: "jv-panel", "aria-label": "Detalhe do cliente", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignState, { kind: detailFailureKind, title: detailFailureKind === "denied" ? "Sem acesso ao cliente" : "N\xE3o foi poss\xEDvel abrir o cliente.", action: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "flex flex-wrap justify-center gap-2", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignButton, { size: "sm", onClick: () => selectedClientId && void loadClientDetail(selectedClientId), children: "Tentar novamente" }),
-            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignButton, { size: "sm", intent: "ghost", onClick: handleBackToCentral, children: "Voltar \xE0 lista" })
-          ] }), children: detailError }) }) : /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("section", { className: "jv-panel", "aria-label": "Detalhe do cliente", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignState, { kind: "loading", title: "Carregando detalhes do cliente\u2026" }) }),
-          detailLoading && detailMatches && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { role: "status", className: "sr-only", children: "Atualizando detalhes do cliente\u2026" })
+          ) : detailError ? /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("section", { className: "jv-panel", "aria-label": "Detalhe do cliente", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DesignState, { kind: detailFailureKind, title: detailFailureKind === "denied" ? "Sem acesso ao cliente" : "N\xE3o foi poss\xEDvel abrir o cliente.", action: /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "flex flex-wrap justify-center gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DesignButton, { size: "sm", onClick: () => selectedClientId && void loadClientDetail(selectedClientId), children: "Tentar novamente" }),
+            /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DesignButton, { size: "sm", intent: "ghost", onClick: handleBackToCentral, children: "Voltar \xE0 lista" })
+          ] }), children: detailError }) }) : /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("section", { className: "jv-panel", "aria-label": "Detalhe do cliente", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DesignState, { kind: "loading", title: "Carregando detalhes do cliente\u2026" }) }),
+          detailLoading && detailMatches && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("p", { role: "status", className: "sr-only", children: "Atualizando detalhes do cliente\u2026" })
         ] })
       ] }),
-      isCreateClientModalOpen && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+      isCreateClientModalOpen && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
         ClientFormDialog,
         {
           mode: "create",
@@ -20803,7 +20807,7 @@
           lookingUp: searchingModalCnpj
         }
       ),
-      isEditClientModalOpen && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+      isEditClientModalOpen && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
         ClientFormDialog,
         {
           mode: "edit",
@@ -20815,12 +20819,12 @@
           onSubmit: () => void handleUpdateClient()
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignToasts, { toasts })
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DesignToasts, { toasts })
     ] });
   }
 
   // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/entry.tsx
-  var import_jsx_runtime36 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime37 = __toESM(require_jsx_runtime());
   var p2 = new URLSearchParams(location.search);
   var v = p2.get("v") || (typeof __SCENE__ === "string" ? __SCENE__ : "dash");
   window.__hv = v;
@@ -20848,28 +20852,28 @@
   };
   var header = { userName: "Pessoa Sint\xE9tica", email: "pessoa@exemplo.invalid", company: "IRMEN", role: "vendedor" };
   function Scene() {
-    if (v === "dash") return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DashboardHome, { viewer: { userName: "Pessoa Sint\xE9tica", role: "vendedor" } });
-    if (v === "clients") return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(ClientsPage, {});
-    if (v === "client") return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { className: "cl-page", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "cl-workspace", "data-selected": "true", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("section", { className: "jv-panel", "aria-label": "Lista de clientes (dubl\xEA fora do escopo)", style: { minHeight: 420 }, children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("p", { style: { fontSize: 12, opacity: 0.6 }, children: "Lista de clientes \xB7 fora do escopo deste lote" }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { className: "cl-col", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(ClientDetailView, { detail, onBack: () => {
+    if (v === "dash") return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(DashboardHome, { viewer: { userName: "Pessoa Sint\xE9tica", role: "vendedor" } });
+    if (v === "clients") return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(ClientsPage, {});
+    if (v === "client") return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: "cl-page", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: "cl-workspace", "data-selected": "true", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("section", { className: "jv-panel", "aria-label": "Lista de clientes (dubl\xEA fora do escopo)", style: { minHeight: 420 }, children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("p", { style: { fontSize: 12, opacity: 0.6 }, children: "Lista de clientes \xB7 fora do escopo deste lote" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: "cl-col", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(ClientDetailView, { detail, onBack: () => {
       }, onEdit: () => {
       } }) })
     ] }) });
-    if (v === "op") return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { maxWidth: 760 }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("section", { "aria-label": "Comunica\xE7\xE3o da Opera\xE7\xE3o", className: "flex flex-col justify-between rounded-xl border border-ui-800/90 bg-ui-surface p-4 sm:p-5 shadow-sm space-y-4 min-w-0", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(RelationshipInteractions, { query: { origin: { kind: "OP", id: id(602) } } }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { style: { height: 16 } }),
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DocumentReusePicker, { target: { operationId: id(602) }, onCompleted: async () => {
+    if (v === "op") return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { style: { maxWidth: 760 }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("section", { "aria-label": "Comunica\xE7\xE3o da Opera\xE7\xE3o", className: "flex flex-col justify-between rounded-xl border border-ui-800/90 bg-ui-surface p-4 sm:p-5 shadow-sm space-y-4 min-w-0", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(RelationshipInteractions, { query: { origin: { kind: "OP", id: id(602) } } }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { style: { height: 16 } }),
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(DocumentReusePicker, { target: { operationId: id(602) }, onCompleted: async () => {
       } })
     ] });
-    if (v === "opp") return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { maxWidth: 820, display: "flex", flexDirection: "column", gap: 16 }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(RelationshipInteractions, { query: { origin: { kind: "OPP", id: id(601) } } }),
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(CommercialOpportunityDocuments, { opportunityId: id(601), canRegister: true })
+    if (v === "opp") return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { style: { maxWidth: 820, display: "flex", flexDirection: "column", gap: 16 }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(RelationshipInteractions, { query: { origin: { kind: "OPP", id: id(601) } } }),
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(CommercialOpportunityDocuments, { opportunityId: id(601), canRegister: true })
     ] });
     return null;
   }
   window.__scene = { v, s: S, theme };
-  (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime36.jsx)(AppShell, { initialTheme: theme, headerContext: header, children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Scene, {}) }));
+  (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime37.jsx)(AppShell, { initialTheme: theme, headerContext: header, children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(Scene, {}) }));
 })();
 /*! Bundled license information:
 
