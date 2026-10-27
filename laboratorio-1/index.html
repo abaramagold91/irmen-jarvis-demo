@@ -71,7 +71,7 @@
       document.getElementById('pv-note').textContent = ops ? 'Laboratório 1 · dados fictícios · abra uma operação (→) para ver o novo detalhe; Ctrl K abre a Ava; pendências operacionais simuladas em memória (troque o Perfil para ver permissões)' : clients ? 'Dados fictícios · clique num cliente para ver a transição; "Central de Clientes" volta' : 'Dados fictícios · os cliques não abrem outras telas';
       {
         var src = ops
-          ? 'operacoes/index.html?r=l5' + (state.s !== 'ready' && state.s !== 'long' ? '&s=' + state.s : '') + (state.slate ? '&theme=slate' : '') + '&role=' + state.role
+          ? 'operacoes/index.html?r=l6' + (state.s !== 'ready' && state.s !== 'long' ? '&s=' + state.s : '') + (state.slate ? '&theme=slate' : '') + '&role=' + state.role
           : clients ? 'clientes/index.html?r=7' + (state.slate ? '&theme=slate' : '')
           : 'painel/index.html?v=dash&s=' + state.s + (state.slate ? '&theme=slate' : '');
         if (frame.getAttribute('src') !== src) frame.setAttribute('src', src); fit(); window.scrollTo(0, 0);

@@ -44102,6 +44102,26 @@ ${suffix}`;
     if (party === "OTHER_EXTERNAL" && !description.trim()) return "Para Terceiro, descreva quem \xE9 e o que precisa fazer.";
     return null;
   }
+  var RPC_MESSAGES = {
+    INVALID_PENDING_ITEM: "Dados da pend\xEAncia inv\xE1lidos.",
+    INVALID_PENDING_ITEM_CONTENT: "T\xEDtulo ou descri\xE7\xE3o inv\xE1lidos.",
+    SENSITIVE_PENDING_ITEM_CONTENT: "O texto n\xE3o pode conter credenciais ou termos sens\xEDveis.",
+    INVALID_ACTION_PARTY: "Escolha com quem est\xE1 a a\xE7\xE3o.",
+    INVALID_PENDING_ITEM_BANK: "O banco escolhido n\xE3o est\xE1 ativo.",
+    EXTERNAL_PARTY_DESCRIPTION_REQUIRED: "Para Terceiro, descreva quem \xE9 e o que precisa fazer.",
+    INVALID_PENDING_ITEM_OWNER: "O respons\xE1vel escolhido n\xE3o est\xE1 aprovado ou ativo.",
+    PENDING_ITEM_NOT_FOUND: "Pend\xEAncia n\xE3o encontrada. Atualize a opera\xE7\xE3o.",
+    PENDING_ITEM_NOT_OPEN: "Somente pend\xEAncias em aberto podem ser editadas.",
+    INVALID_PENDING_ITEM_TRANSITION: "Esta pend\xEAncia j\xE1 mudou de situa\xE7\xE3o. Atualize a opera\xE7\xE3o.",
+    PENDING_ITEM_REASON_REQUIRED: "Informe o motivo.",
+    INVALID_PENDING_ITEM_REASON: "Motivo inv\xE1lido (at\xE9 1.000 caracteres, sem termos sens\xEDveis).",
+    PENDING_ITEM_IDEMPOTENCY_CONFLICT: "Este envio j\xE1 foi usado em outra opera\xE7\xE3o. Feche e tente de novo.",
+    CORRELATION_REQUIRED: "Falha ao identificar o envio. Tente de novo."
+  };
+  function pendingErrorMessage(message) {
+    const code = Object.keys(RPC_MESSAGES).find((key) => new RegExp(`\\b${key}\\b`).test(message));
+    return code ? RPC_MESSAGES[code] : message;
+  }
 
   // src/modules/operation/components/detail-v2/cockpit-pending-commands.tsx
   var import_jsx_runtime38 = __toESM(require_jsx_runtime());
@@ -44229,7 +44249,7 @@ ${suffix}`;
       try {
         const result = item ? await updateOperationPendingItemAction(operationId, item.id, { ...fields, correlationId }) : await createOperationPendingItemAction({ operationId, type, ...fields, correlationId });
         if (!result.success) {
-          setError(result.safeMessage);
+          setError(pendingErrorMessage(result.safeMessage));
           return;
         }
         notify(editing ? "Pend\xEAncia atualizada" : "Pend\xEAncia criada", `${pendingTypeLabel(type)}: ${fields.title}`, opNumber);
@@ -44335,7 +44355,7 @@ ${suffix}`;
       try {
         const result = await spec.run(operationId, item.id, text4, commandId(`${command}:${item.id}:${text4}`));
         if (!result.success) {
-          setError(result.safeMessage);
+          setError(pendingErrorMessage(result.safeMessage));
           return;
         }
         notify(spec.done, `${pendingTypeLabel(item.type)}: ${item.title}`, opNumber);
