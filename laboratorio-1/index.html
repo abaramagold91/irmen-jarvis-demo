@@ -71,9 +71,9 @@
       document.getElementById('pv-note').textContent = ops ? 'Laboratório 1 · dados fictícios · abra uma operação (→) para ver o novo detalhe; Ctrl K abre a Ava; pendências operacionais simuladas em memória (troque o Perfil para ver permissões)' : clients ? 'Dados fictícios · clique num cliente para ver a transição; "Central de Clientes" volta' : 'Dados fictícios · os cliques não abrem outras telas';
       {
         var src = ops
-          ? 'operacoes/index.html?r=l9' + (state.s !== 'ready' && state.s !== 'long' ? '&s=' + state.s : '') + (state.slate ? '&theme=slate' : '') + '&role=' + state.role
-          : clients ? 'clientes/index.html?r=10' + (state.slate ? '&theme=slate' : '')
-          : 'painel/index.html?r=10&v=dash&s=' + state.s + (state.slate ? '&theme=slate' : '');
+          ? 'operacoes/index.html?r=l10' + (state.s !== 'ready' && state.s !== 'long' ? '&s=' + state.s : '') + (state.slate ? '&theme=slate' : '') + '&role=' + state.role
+          : clients ? 'clientes/index.html?r=11' + (state.slate ? '&theme=slate' : '')
+          : 'painel/index.html?r=11&v=dash&s=' + state.s + (state.slate ? '&theme=slate' : '');
         if (frame.getAttribute('src') !== src) frame.setAttribute('src', src); fit(); window.scrollTo(0, 0);
       }
     }
