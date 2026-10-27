@@ -20025,8 +20025,19 @@
     const [overlayOperation, setOverlayOperation] = import_react13.default.useState(null);
     const [contextOperation, setContextOperation] = import_react13.default.useState(null);
     const [institutionsOperation, setInstitutionsOperation] = import_react13.default.useState(null);
+    const tableRef = import_react13.default.useRef(null);
+    import_react13.default.useLayoutEffect(() => {
+      const table = tableRef.current;
+      if (!table) return;
+      const measure = () => table.style.setProperty("--oc-row-w", `${Math.round(table.getBoundingClientRect().width)}px`);
+      measure();
+      if (!("ResizeObserver" in window)) return;
+      const observer = new ResizeObserver(measure);
+      observer.observe(table);
+      return () => observer.disconnect();
+    }, []);
     return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { "aria-label": "Tabela de opera\xE7\xF5es", className: "oc-table overflow-hidden", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "oc-table__scroll hidden max-w-full overflow-x-auto overscroll-x-contain xl:block", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("table", { className: "w-full min-w-[680px] table-fixed border-collapse text-left", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "oc-table__scroll hidden max-w-full overflow-x-auto overscroll-x-contain xl:block", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("table", { className: "w-full min-w-[680px] table-fixed border-collapse text-left", ref: tableRef, children: [
         /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("caption", { className: "sr-only", children: "Opera\xE7\xF5es autorizadas com cliente, equipamento, valor, institui\xE7\xF5es financeiras, status, cr\xE9dito e vendedor." }),
         /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("thead", { className: "sticky top-0 z-10", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("tr", { className: cn("border-b", operationCenterTypography.tableHeader), children: [
           /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("th", { className: cn("w-[15%]", operationCenterTableGeometry.headerCell), children: "Etapa / Cr\xE9dito" }),
