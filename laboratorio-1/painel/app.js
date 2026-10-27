@@ -529,9 +529,9 @@
       }
       function mapChildren(children, func, context) {
         if (null == children) return children;
-        var result = [], count = 0;
+        var result = [], count3 = 0;
         mapIntoArray(children, result, "", "", function(child) {
-          return func.call(context, child, count++);
+          return func.call(context, child, count3++);
         });
         return result;
       }
@@ -611,8 +611,8 @@
       exports.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE = ReactSharedInternals;
       exports.__COMPILER_RUNTIME = {
         __proto__: null,
-        c: function(size) {
-          return ReactSharedInternals.H.useMemoCache(size);
+        c: function(size2) {
+          return ReactSharedInternals.H.useMemoCache(size2);
         }
       };
       exports.cache = function(fn) {
@@ -761,9 +761,9 @@
       exports.useState = function(initialState) {
         return ReactSharedInternals.H.useState(initialState);
       };
-      exports.useSyncExternalStore = function(subscribe2, getSnapshot, getServerSnapshot) {
+      exports.useSyncExternalStore = function(subscribe3, getSnapshot, getServerSnapshot) {
         return ReactSharedInternals.H.useSyncExternalStore(
-          subscribe2,
+          subscribe3,
           getSnapshot,
           getServerSnapshot
         );
@@ -793,7 +793,7 @@
     "node_modules/react-dom/cjs/react-dom.production.js"(exports) {
       "use strict";
       init_define_process_env();
-      var React7 = require_react();
+      var React8 = require_react();
       function formatProdErrorMessage(code) {
         var url = "https://react.dev/errors/" + code;
         if (1 < arguments.length) {
@@ -833,7 +833,7 @@
           implementation
         };
       }
-      var ReactSharedInternals = React7.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+      var ReactSharedInternals = React8.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       function getCrossOriginStringAs(as, input) {
         if ("font" === as) return "";
         if ("string" === typeof input)
@@ -971,7 +971,7 @@
       "use strict";
       init_define_process_env();
       var Scheduler = require_scheduler();
-      var React7 = require_react();
+      var React8 = require_react();
       var ReactDOM = require_react_dom();
       function formatProdErrorMessage(code) {
         var url = "https://react.dev/errors/" + code;
@@ -1162,7 +1162,7 @@
         return null;
       }
       var isArrayImpl = Array.isArray;
-      var ReactSharedInternals = React7.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+      var ReactSharedInternals = React8.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       var ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
       var sharedNotPendingObject = {
         pending: false,
@@ -1374,7 +1374,7 @@
       var cancelCallback$1 = Scheduler.unstable_cancelCallback;
       var shouldYield = Scheduler.unstable_shouldYield;
       var requestPaint = Scheduler.unstable_requestPaint;
-      var now = Scheduler.unstable_now;
+      var now2 = Scheduler.unstable_now;
       var getCurrentPriorityLevel = Scheduler.unstable_getCurrentPriorityLevel;
       var ImmediatePriority = Scheduler.unstable_ImmediatePriority;
       var UserBlockingPriority = Scheduler.unstable_UserBlockingPriority;
@@ -1394,11 +1394,11 @@
           }
       }
       var clz32 = Math.clz32 ? Math.clz32 : clz32Fallback;
-      var log = Math.log;
+      var log2 = Math.log;
       var LN2 = Math.LN2;
       function clz32Fallback(x) {
         x >>>= 0;
-        return 0 === x ? 32 : 31 - (log(x) / LN2 | 0) | 0;
+        return 0 === x ? 32 : 31 - (log2(x) / LN2 | 0) | 0;
       }
       var nextTransitionUpdateLane = 256;
       var nextTransitionDeferredLane = 262144;
@@ -1458,17 +1458,17 @@
             return lanes;
         }
       }
-      function getNextLanes(root3, wipLanes, rootHasPendingCommit) {
-        var pendingLanes = root3.pendingLanes;
+      function getNextLanes(root2, wipLanes, rootHasPendingCommit) {
+        var pendingLanes = root2.pendingLanes;
         if (0 === pendingLanes) return 0;
-        var nextLanes = 0, suspendedLanes = root3.suspendedLanes, pingedLanes = root3.pingedLanes;
-        root3 = root3.warmLanes;
+        var nextLanes = 0, suspendedLanes = root2.suspendedLanes, pingedLanes = root2.pingedLanes;
+        root2 = root2.warmLanes;
         var nonIdlePendingLanes = pendingLanes & 134217727;
-        0 !== nonIdlePendingLanes ? (pendingLanes = nonIdlePendingLanes & ~suspendedLanes, 0 !== pendingLanes ? nextLanes = getHighestPriorityLanes(pendingLanes) : (pingedLanes &= nonIdlePendingLanes, 0 !== pingedLanes ? nextLanes = getHighestPriorityLanes(pingedLanes) : rootHasPendingCommit || (rootHasPendingCommit = nonIdlePendingLanes & ~root3, 0 !== rootHasPendingCommit && (nextLanes = getHighestPriorityLanes(rootHasPendingCommit))))) : (nonIdlePendingLanes = pendingLanes & ~suspendedLanes, 0 !== nonIdlePendingLanes ? nextLanes = getHighestPriorityLanes(nonIdlePendingLanes) : 0 !== pingedLanes ? nextLanes = getHighestPriorityLanes(pingedLanes) : rootHasPendingCommit || (rootHasPendingCommit = pendingLanes & ~root3, 0 !== rootHasPendingCommit && (nextLanes = getHighestPriorityLanes(rootHasPendingCommit))));
+        0 !== nonIdlePendingLanes ? (pendingLanes = nonIdlePendingLanes & ~suspendedLanes, 0 !== pendingLanes ? nextLanes = getHighestPriorityLanes(pendingLanes) : (pingedLanes &= nonIdlePendingLanes, 0 !== pingedLanes ? nextLanes = getHighestPriorityLanes(pingedLanes) : rootHasPendingCommit || (rootHasPendingCommit = nonIdlePendingLanes & ~root2, 0 !== rootHasPendingCommit && (nextLanes = getHighestPriorityLanes(rootHasPendingCommit))))) : (nonIdlePendingLanes = pendingLanes & ~suspendedLanes, 0 !== nonIdlePendingLanes ? nextLanes = getHighestPriorityLanes(nonIdlePendingLanes) : 0 !== pingedLanes ? nextLanes = getHighestPriorityLanes(pingedLanes) : rootHasPendingCommit || (rootHasPendingCommit = pendingLanes & ~root2, 0 !== rootHasPendingCommit && (nextLanes = getHighestPriorityLanes(rootHasPendingCommit))));
         return 0 === nextLanes ? 0 : 0 !== wipLanes && wipLanes !== nextLanes && 0 === (wipLanes & suspendedLanes) && (suspendedLanes = nextLanes & -nextLanes, rootHasPendingCommit = wipLanes & -wipLanes, suspendedLanes >= rootHasPendingCommit || 32 === suspendedLanes && 0 !== (rootHasPendingCommit & 4194048)) ? wipLanes : nextLanes;
       }
-      function checkIfRootIsPrerendering(root3, renderLanes2) {
-        return 0 === (root3.pendingLanes & ~(root3.suspendedLanes & ~root3.pingedLanes) & renderLanes2);
+      function checkIfRootIsPrerendering(root2, renderLanes2) {
+        return 0 === (root2.pendingLanes & ~(root2.suspendedLanes & ~root2.pingedLanes) & renderLanes2);
       }
       function computeExpirationTime(lane, currentTime) {
         switch (lane) {
@@ -1521,21 +1521,21 @@
         for (var laneMap = [], i = 0; 31 > i; i++) laneMap.push(initial);
         return laneMap;
       }
-      function markRootUpdated$1(root3, updateLane) {
-        root3.pendingLanes |= updateLane;
-        268435456 !== updateLane && (root3.suspendedLanes = 0, root3.pingedLanes = 0, root3.warmLanes = 0);
+      function markRootUpdated$1(root2, updateLane) {
+        root2.pendingLanes |= updateLane;
+        268435456 !== updateLane && (root2.suspendedLanes = 0, root2.pingedLanes = 0, root2.warmLanes = 0);
       }
-      function markRootFinished(root3, finishedLanes, remainingLanes, spawnedLane, updatedLanes, suspendedRetryLanes) {
-        var previouslyPendingLanes = root3.pendingLanes;
-        root3.pendingLanes = remainingLanes;
-        root3.suspendedLanes = 0;
-        root3.pingedLanes = 0;
-        root3.warmLanes = 0;
-        root3.expiredLanes &= remainingLanes;
-        root3.entangledLanes &= remainingLanes;
-        root3.errorRecoveryDisabledLanes &= remainingLanes;
-        root3.shellSuspendCounter = 0;
-        var entanglements = root3.entanglements, expirationTimes = root3.expirationTimes, hiddenUpdates = root3.hiddenUpdates;
+      function markRootFinished(root2, finishedLanes, remainingLanes, spawnedLane, updatedLanes, suspendedRetryLanes) {
+        var previouslyPendingLanes = root2.pendingLanes;
+        root2.pendingLanes = remainingLanes;
+        root2.suspendedLanes = 0;
+        root2.pingedLanes = 0;
+        root2.warmLanes = 0;
+        root2.expiredLanes &= remainingLanes;
+        root2.entangledLanes &= remainingLanes;
+        root2.errorRecoveryDisabledLanes &= remainingLanes;
+        root2.shellSuspendCounter = 0;
+        var entanglements = root2.entanglements, expirationTimes = root2.expirationTimes, hiddenUpdates = root2.hiddenUpdates;
         for (remainingLanes = previouslyPendingLanes & ~remainingLanes; 0 < remainingLanes; ) {
           var index$7 = 31 - clz32(remainingLanes), lane = 1 << index$7;
           entanglements[index$7] = 0;
@@ -1548,28 +1548,28 @@
             }
           remainingLanes &= ~lane;
         }
-        0 !== spawnedLane && markSpawnedDeferredLane(root3, spawnedLane, 0);
-        0 !== suspendedRetryLanes && 0 === updatedLanes && 0 !== root3.tag && (root3.suspendedLanes |= suspendedRetryLanes & ~(previouslyPendingLanes & ~finishedLanes));
+        0 !== spawnedLane && markSpawnedDeferredLane(root2, spawnedLane, 0);
+        0 !== suspendedRetryLanes && 0 === updatedLanes && 0 !== root2.tag && (root2.suspendedLanes |= suspendedRetryLanes & ~(previouslyPendingLanes & ~finishedLanes));
       }
-      function markSpawnedDeferredLane(root3, spawnedLane, entangledLanes) {
-        root3.pendingLanes |= spawnedLane;
-        root3.suspendedLanes &= ~spawnedLane;
+      function markSpawnedDeferredLane(root2, spawnedLane, entangledLanes) {
+        root2.pendingLanes |= spawnedLane;
+        root2.suspendedLanes &= ~spawnedLane;
         var spawnedLaneIndex = 31 - clz32(spawnedLane);
-        root3.entangledLanes |= spawnedLane;
-        root3.entanglements[spawnedLaneIndex] = root3.entanglements[spawnedLaneIndex] | 1073741824 | entangledLanes & 261930;
+        root2.entangledLanes |= spawnedLane;
+        root2.entanglements[spawnedLaneIndex] = root2.entanglements[spawnedLaneIndex] | 1073741824 | entangledLanes & 261930;
       }
-      function markRootEntangled(root3, entangledLanes) {
-        var rootEntangledLanes = root3.entangledLanes |= entangledLanes;
-        for (root3 = root3.entanglements; rootEntangledLanes; ) {
+      function markRootEntangled(root2, entangledLanes) {
+        var rootEntangledLanes = root2.entangledLanes |= entangledLanes;
+        for (root2 = root2.entanglements; rootEntangledLanes; ) {
           var index$8 = 31 - clz32(rootEntangledLanes), lane = 1 << index$8;
-          lane & entangledLanes | root3[index$8] & entangledLanes && (root3[index$8] |= entangledLanes);
+          lane & entangledLanes | root2[index$8] & entangledLanes && (root2[index$8] |= entangledLanes);
           rootEntangledLanes &= ~lane;
         }
       }
-      function getBumpedLaneForHydration(root3, renderLanes2) {
+      function getBumpedLaneForHydration(root2, renderLanes2) {
         var renderLane = renderLanes2 & -renderLanes2;
         renderLane = 0 !== (renderLane & 42) ? 1 : getBumpedLaneForHydrationByLane(renderLane);
-        return 0 !== (renderLane & (root3.suspendedLanes | renderLanes2)) ? 0 : renderLane;
+        return 0 !== (renderLane & (root2.suspendedLanes | renderLanes2)) ? 0 : renderLane;
       }
       function getBumpedLaneForHydrationByLane(lane) {
         switch (lane) {
@@ -1675,9 +1675,9 @@
         if (5 === tag || 26 === tag || 27 === tag || 6 === tag) return inst.stateNode;
         throw Error(formatProdErrorMessage(33));
       }
-      function getResourcesFromRoot(root3) {
-        var resources = root3[internalRootNodeResourcesKey];
-        resources || (resources = root3[internalRootNodeResourcesKey] = { hoistableStyles: /* @__PURE__ */ new Map(), hoistableScripts: /* @__PURE__ */ new Map() });
+      function getResourcesFromRoot(root2) {
+        var resources = root2[internalRootNodeResourcesKey];
+        resources || (resources = root2[internalRootNodeResourcesKey] = { hoistableStyles: /* @__PURE__ */ new Map(), hoistableScripts: /* @__PURE__ */ new Map() });
         return resources;
       }
       function markNodeAsHoistable(node) {
@@ -2188,12 +2188,12 @@
           passiveBrowserEventsSupported = false;
         }
       var options;
-      var root2 = null;
+      var root = null;
       var startText = null;
       var fallbackText = null;
       function getData() {
         if (fallbackText) return fallbackText;
-        var start, startValue = startText, startLength = startValue.length, end, endValue = "value" in root2 ? root2.value : root2.textContent, endLength = endValue.length;
+        var start, startValue = startText, startLength = startValue.length, end, endValue = "value" in root ? root.value : root.textContent, endLength = endValue.length;
         for (start = 0; start < startLength && startValue[start] === endValue[start]; start++) ;
         var minEnd = startLength - start;
         for (end = 1; end <= minEnd && startValue[startLength - end] === endValue[endLength - end]; end++) ;
@@ -2484,7 +2484,7 @@
       }
       function getFallbackBeforeInputChars(domEventName, nativeEvent) {
         if (isComposing)
-          return "compositionend" === domEventName || !canUseCompositionEvent && isFallbackCompositionEnd(domEventName, nativeEvent) ? (domEventName = getData(), fallbackText = startText = root2 = null, isComposing = false, domEventName) : null;
+          return "compositionend" === domEventName || !canUseCompositionEvent && isFallbackCompositionEnd(domEventName, nativeEvent) ? (domEventName = getData(), fallbackText = startText = root = null, isComposing = false, domEventName) : null;
         switch (domEventName) {
           case "paste":
             return null;
@@ -2611,15 +2611,15 @@
         for (; node && node.firstChild; ) node = node.firstChild;
         return node;
       }
-      function getNodeForCharacterOffset(root3, offset) {
-        var node = getLeafNode(root3);
-        root3 = 0;
+      function getNodeForCharacterOffset(root2, offset) {
+        var node = getLeafNode(root2);
+        root2 = 0;
         for (var nodeEnd; node; ) {
           if (3 === node.nodeType) {
-            nodeEnd = root3 + node.textContent.length;
-            if (root3 <= offset && nodeEnd >= offset)
-              return { node, offset: offset - root3 };
-            root3 = nodeEnd;
+            nodeEnd = root2 + node.textContent.length;
+            if (root2 <= offset && nodeEnd >= offset)
+              return { node, offset: offset - root2 };
+            root2 = nodeEnd;
           }
           a: {
             for (; node; ) {
@@ -2748,8 +2748,8 @@
           var lane = concurrentQueues[i];
           concurrentQueues[i++] = null;
           if (null !== queue && null !== update) {
-            var pending = queue.pending;
-            null === pending ? update.next = update : (update.next = pending.next, pending.next = update);
+            var pending2 = queue.pending;
+            null === pending2 ? update.next = update : (update.next = pending2.next, pending2.next = update);
             queue.pending = update;
           }
           0 !== lane && markUpdateLaneFromFiberToRoot(fiber, update, lane);
@@ -3267,15 +3267,15 @@
         return value;
       }
       var AbortControllerLocal = "undefined" !== typeof AbortController ? AbortController : function() {
-        var listeners = [], signal = this.signal = {
+        var listeners2 = [], signal = this.signal = {
           aborted: false,
           addEventListener: function(type, listener) {
-            listeners.push(listener);
+            listeners2.push(listener);
           }
         };
         this.abort = function() {
           signal.aborted = true;
-          listeners.forEach(function(listener) {
+          listeners2.forEach(function(listener) {
             return listener();
           });
         };
@@ -3327,40 +3327,40 @@
       function pingEngtangledActionScope() {
         if (0 === --currentEntangledPendingCount && null !== currentEntangledListeners) {
           null !== currentEntangledActionThenable && (currentEntangledActionThenable.status = "fulfilled");
-          var listeners = currentEntangledListeners;
+          var listeners2 = currentEntangledListeners;
           currentEntangledListeners = null;
           currentEntangledLane = 0;
           currentEntangledActionThenable = null;
-          for (var i = 0; i < listeners.length; i++) (0, listeners[i])();
+          for (var i = 0; i < listeners2.length; i++) (0, listeners2[i])();
         }
       }
       function chainThenableValue(thenable, result) {
-        var listeners = [], thenableWithOverride = {
+        var listeners2 = [], thenableWithOverride = {
           status: "pending",
           value: null,
           reason: null,
           then: function(resolve) {
-            listeners.push(resolve);
+            listeners2.push(resolve);
           }
         };
         thenable.then(
           function() {
             thenableWithOverride.status = "fulfilled";
             thenableWithOverride.value = result;
-            for (var i = 0; i < listeners.length; i++) (0, listeners[i])(result);
+            for (var i = 0; i < listeners2.length; i++) (0, listeners2[i])(result);
           },
           function(error) {
             thenableWithOverride.status = "rejected";
             thenableWithOverride.reason = error;
-            for (error = 0; error < listeners.length; error++)
-              (0, listeners[error])(void 0);
+            for (error = 0; error < listeners2.length; error++)
+              (0, listeners2[error])(void 0);
           }
         );
         return thenableWithOverride;
       }
       var prevOnStartTransitionFinish = ReactSharedInternals.S;
       ReactSharedInternals.S = function(transition, returnValue) {
-        globalMostRecentTransitionTime = now();
+        globalMostRecentTransitionTime = now2();
         "object" === typeof returnValue && null !== returnValue && "function" === typeof returnValue.then && entangleAsyncAction(transition, returnValue);
         null !== prevOnStartTransitionFinish && prevOnStartTransitionFinish(transition, returnValue);
       };
@@ -3939,8 +3939,8 @@
         if (null === updateQueue) return null;
         updateQueue = updateQueue.shared;
         if (0 !== (executionContext & 2)) {
-          var pending = updateQueue.pending;
-          null === pending ? update.next = update : (update.next = pending.next, pending.next = update);
+          var pending2 = updateQueue.pending;
+          null === pending2 ? update.next = update : (update.next = pending2.next, pending2.next = update);
           updateQueue.pending = update;
           update = getRootForUpdatedFiber(fiber);
           markUpdateLaneFromFiberToRoot(fiber, null, lane);
@@ -3949,14 +3949,14 @@
         enqueueUpdate$1(fiber, updateQueue, update, lane);
         return getRootForUpdatedFiber(fiber);
       }
-      function entangleTransitions(root3, fiber, lane) {
+      function entangleTransitions(root2, fiber, lane) {
         fiber = fiber.updateQueue;
         if (null !== fiber && (fiber = fiber.shared, 0 !== (lane & 4194048))) {
           var queueLanes = fiber.lanes;
-          queueLanes &= root3.pendingLanes;
+          queueLanes &= root2.pendingLanes;
           lane |= queueLanes;
           fiber.lanes = lane;
-          markRootEntangled(root3, lane);
+          markRootEntangled(root2, lane);
         }
       }
       function enqueueCapturedUpdate(workInProgress2, capturedUpdate) {
@@ -4318,7 +4318,7 @@
         }
         throw Error(formatProdErrorMessage(438, String(usable)));
       }
-      function useMemoCache(size) {
+      function useMemoCache(size2) {
         var memoCache = null, updateQueue = currentlyRenderingFiber.updateQueue;
         null !== updateQueue && (memoCache = updateQueue.memoCache);
         if (null == memoCache) {
@@ -4335,7 +4335,7 @@
         updateQueue.memoCache = memoCache;
         updateQueue = memoCache.data[memoCache.index];
         if (void 0 === updateQueue)
-          for (updateQueue = memoCache.data[memoCache.index] = Array(size), current = 0; current < size; current++)
+          for (updateQueue = memoCache.data[memoCache.index] = Array(size2), current = 0; current < size2; current++)
             updateQueue[current] = REACT_MEMO_CACHE_SENTINEL;
         memoCache.index++;
         return updateQueue;
@@ -4438,7 +4438,7 @@
         }
         return [newState, dispatch];
       }
-      function updateSyncExternalStore(subscribe2, getSnapshot, getServerSnapshot) {
+      function updateSyncExternalStore(subscribe3, getSnapshot, getServerSnapshot) {
         var fiber = currentlyRenderingFiber, hook = updateWorkInProgressHook(), isHydrating$jscomp$0 = isHydrating;
         if (isHydrating$jscomp$0) {
           if (void 0 === getServerSnapshot) throw Error(formatProdErrorMessage(407));
@@ -4450,8 +4450,8 @@
         );
         snapshotChanged && (hook.memoizedState = getServerSnapshot, didReceiveUpdate = true);
         hook = hook.queue;
-        updateEffect(subscribeToStore.bind(null, fiber, hook, subscribe2), [
-          subscribe2
+        updateEffect(subscribeToStore.bind(null, fiber, hook, subscribe3), [
+          subscribe3
         ]);
         if (hook.getSnapshot !== getSnapshot || snapshotChanged || null !== workInProgressHook && workInProgressHook.memoizedState.tag & 1) {
           fiber.flags |= 2048;
@@ -4483,8 +4483,8 @@
         inst.getSnapshot = getSnapshot;
         checkIfSnapshotChanged(inst) && forceStoreRerender(fiber);
       }
-      function subscribeToStore(fiber, inst, subscribe2) {
-        return subscribe2(function() {
+      function subscribeToStore(fiber, inst, subscribe3) {
+        return subscribe3(function() {
           checkIfSnapshotChanged(inst) && forceStoreRerender(fiber);
         });
       }
@@ -4499,8 +4499,8 @@
         }
       }
       function forceStoreRerender(fiber) {
-        var root3 = enqueueConcurrentRenderForLane(fiber, 2);
-        null !== root3 && scheduleUpdateOnFiber(root3, fiber, 2);
+        var root2 = enqueueConcurrentRenderForLane(fiber, 2);
+        null !== root2 && scheduleUpdateOnFiber(root2, fiber, 2);
       }
       function mountStateImpl(initialState) {
         var hook = mountWorkInProgressHook();
@@ -5065,17 +5065,17 @@
       }
       function enqueueRenderPhaseUpdate(queue, update) {
         didScheduleRenderPhaseUpdateDuringThisPass = didScheduleRenderPhaseUpdate = true;
-        var pending = queue.pending;
-        null === pending ? update.next = update : (update.next = pending.next, pending.next = update);
+        var pending2 = queue.pending;
+        null === pending2 ? update.next = update : (update.next = pending2.next, pending2.next = update);
         queue.pending = update;
       }
-      function entangleTransitionUpdate(root3, queue, lane) {
+      function entangleTransitionUpdate(root2, queue, lane) {
         if (0 !== (lane & 4194048)) {
           var queueLanes = queue.lanes;
-          queueLanes &= root3.pendingLanes;
+          queueLanes &= root2.pendingLanes;
           lane |= queueLanes;
           queue.lanes = lane;
-          markRootEntangled(root3, lane);
+          markRootEntangled(root2, lane);
         }
       }
       var ContextOnlyDispatcher = {
@@ -5203,7 +5203,7 @@
           mountWorkInProgressHook().memoizedState = stateHook;
           return [false, stateHook];
         },
-        useSyncExternalStore: function(subscribe2, getSnapshot, getServerSnapshot) {
+        useSyncExternalStore: function(subscribe3, getSnapshot, getServerSnapshot) {
           var fiber = currentlyRenderingFiber, hook = mountWorkInProgressHook();
           if (isHydrating) {
             if (void 0 === getServerSnapshot)
@@ -5218,8 +5218,8 @@
           hook.memoizedState = getServerSnapshot;
           var inst = { value: getServerSnapshot, getSnapshot };
           hook.queue = inst;
-          mountEffect(subscribeToStore.bind(null, fiber, inst, subscribe2), [
-            subscribe2
+          mountEffect(subscribeToStore.bind(null, fiber, inst, subscribe3), [
+            subscribe3
           ]);
           fiber.flags |= 2048;
           pushSimpleEffect(
@@ -5450,9 +5450,9 @@
       function defaultOnRecoverableError(error) {
         reportGlobalError(error);
       }
-      function logUncaughtError(root3, errorInfo) {
+      function logUncaughtError(root2, errorInfo) {
         try {
-          var onUncaughtError = root3.onUncaughtError;
+          var onUncaughtError = root2.onUncaughtError;
           onUncaughtError(errorInfo.value, { componentStack: errorInfo.stack });
         } catch (e$74) {
           setTimeout(function() {
@@ -5460,9 +5460,9 @@
           });
         }
       }
-      function logCaughtError(root3, boundary, errorInfo) {
+      function logCaughtError(root2, boundary, errorInfo) {
         try {
-          var onCaughtError = root3.onCaughtError;
+          var onCaughtError = root2.onCaughtError;
           onCaughtError(errorInfo.value, {
             componentStack: errorInfo.stack,
             errorBoundary: 1 === boundary.tag ? boundary.stateNode : null
@@ -5473,12 +5473,12 @@
           });
         }
       }
-      function createRootErrorUpdate(root3, errorInfo, lane) {
+      function createRootErrorUpdate(root2, errorInfo, lane) {
         lane = createUpdate(lane);
         lane.tag = 3;
         lane.payload = { element: null };
         lane.callback = function() {
-          logUncaughtError(root3, errorInfo);
+          logUncaughtError(root2, errorInfo);
         };
         return lane;
       }
@@ -5487,7 +5487,7 @@
         lane.tag = 3;
         return lane;
       }
-      function initializeClassErrorUpdate(update, root3, fiber, errorInfo) {
+      function initializeClassErrorUpdate(update, root2, fiber, errorInfo) {
         var getDerivedStateFromError = fiber.type.getDerivedStateFromError;
         if ("function" === typeof getDerivedStateFromError) {
           var error = errorInfo.value;
@@ -5495,12 +5495,12 @@
             return getDerivedStateFromError(error);
           };
           update.callback = function() {
-            logCaughtError(root3, fiber, errorInfo);
+            logCaughtError(root2, fiber, errorInfo);
           };
         }
         var inst = fiber.stateNode;
         null !== inst && "function" === typeof inst.componentDidCatch && (update.callback = function() {
-          logCaughtError(root3, fiber, errorInfo);
+          logCaughtError(root2, fiber, errorInfo);
           "function" !== typeof getDerivedStateFromError && (null === legacyErrorBoundariesThatAlreadyFailed ? legacyErrorBoundariesThatAlreadyFailed = /* @__PURE__ */ new Set([this]) : legacyErrorBoundariesThatAlreadyFailed.add(this));
           var stack = errorInfo.stack;
           this.componentDidCatch(errorInfo.value, {
@@ -5508,7 +5508,7 @@
           });
         });
       }
-      function throwException(root3, returnFiber, sourceFiber, value, rootRenderLanes) {
+      function throwException(root2, returnFiber, sourceFiber, value, rootRenderLanes) {
         sourceFiber.flags |= 32768;
         if (null !== value && "object" === typeof value && "function" === typeof value.then) {
           returnFiber = sourceFiber.alternate;
@@ -5523,30 +5523,30 @@
             switch (sourceFiber.tag) {
               case 31:
               case 13:
-                return null === shellBoundary ? renderDidSuspendDelayIfPossible() : null === sourceFiber.alternate && 0 === workInProgressRootExitStatus && (workInProgressRootExitStatus = 3), sourceFiber.flags &= -257, sourceFiber.flags |= 65536, sourceFiber.lanes = rootRenderLanes, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? sourceFiber.updateQueue = /* @__PURE__ */ new Set([value]) : returnFiber.add(value), attachPingListener(root3, value, rootRenderLanes)), false;
+                return null === shellBoundary ? renderDidSuspendDelayIfPossible() : null === sourceFiber.alternate && 0 === workInProgressRootExitStatus && (workInProgressRootExitStatus = 3), sourceFiber.flags &= -257, sourceFiber.flags |= 65536, sourceFiber.lanes = rootRenderLanes, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? sourceFiber.updateQueue = /* @__PURE__ */ new Set([value]) : returnFiber.add(value), attachPingListener(root2, value, rootRenderLanes)), false;
               case 22:
                 return sourceFiber.flags |= 65536, value === noopSuspenseyCommitThenable ? sourceFiber.flags |= 16384 : (returnFiber = sourceFiber.updateQueue, null === returnFiber ? (returnFiber = {
                   transitions: null,
                   markerInstances: null,
                   retryQueue: /* @__PURE__ */ new Set([value])
-                }, sourceFiber.updateQueue = returnFiber) : (sourceFiber = returnFiber.retryQueue, null === sourceFiber ? returnFiber.retryQueue = /* @__PURE__ */ new Set([value]) : sourceFiber.add(value)), attachPingListener(root3, value, rootRenderLanes)), false;
+                }, sourceFiber.updateQueue = returnFiber) : (sourceFiber = returnFiber.retryQueue, null === sourceFiber ? returnFiber.retryQueue = /* @__PURE__ */ new Set([value]) : sourceFiber.add(value)), attachPingListener(root2, value, rootRenderLanes)), false;
             }
             throw Error(formatProdErrorMessage(435, sourceFiber.tag));
           }
-          attachPingListener(root3, value, rootRenderLanes);
+          attachPingListener(root2, value, rootRenderLanes);
           renderDidSuspendDelayIfPossible();
           return false;
         }
         if (isHydrating)
-          return returnFiber = suspenseHandlerStackCursor.current, null !== returnFiber ? (0 === (returnFiber.flags & 65536) && (returnFiber.flags |= 256), returnFiber.flags |= 65536, returnFiber.lanes = rootRenderLanes, value !== HydrationMismatchException && (root3 = Error(formatProdErrorMessage(422), { cause: value }), queueHydrationError(createCapturedValueAtFiber(root3, sourceFiber)))) : (value !== HydrationMismatchException && (returnFiber = Error(formatProdErrorMessage(423), {
+          return returnFiber = suspenseHandlerStackCursor.current, null !== returnFiber ? (0 === (returnFiber.flags & 65536) && (returnFiber.flags |= 256), returnFiber.flags |= 65536, returnFiber.lanes = rootRenderLanes, value !== HydrationMismatchException && (root2 = Error(formatProdErrorMessage(422), { cause: value }), queueHydrationError(createCapturedValueAtFiber(root2, sourceFiber)))) : (value !== HydrationMismatchException && (returnFiber = Error(formatProdErrorMessage(423), {
             cause: value
           }), queueHydrationError(
             createCapturedValueAtFiber(returnFiber, sourceFiber)
-          )), root3 = root3.current.alternate, root3.flags |= 65536, rootRenderLanes &= -rootRenderLanes, root3.lanes |= rootRenderLanes, value = createCapturedValueAtFiber(value, sourceFiber), rootRenderLanes = createRootErrorUpdate(
-            root3.stateNode,
+          )), root2 = root2.current.alternate, root2.flags |= 65536, rootRenderLanes &= -rootRenderLanes, root2.lanes |= rootRenderLanes, value = createCapturedValueAtFiber(value, sourceFiber), rootRenderLanes = createRootErrorUpdate(
+            root2.stateNode,
             value,
             rootRenderLanes
-          ), enqueueCapturedUpdate(root3, rootRenderLanes), 4 !== workInProgressRootExitStatus && (workInProgressRootExitStatus = 2)), false;
+          ), enqueueCapturedUpdate(root2, rootRenderLanes), 4 !== workInProgressRootExitStatus && (workInProgressRootExitStatus = 2)), false;
         var wrapperError = Error(formatProdErrorMessage(520), { cause: value });
         wrapperError = createCapturedValueAtFiber(wrapperError, sourceFiber);
         null === workInProgressRootConcurrentErrors ? workInProgressRootConcurrentErrors = [wrapperError] : workInProgressRootConcurrentErrors.push(wrapperError);
@@ -5557,12 +5557,12 @@
         do {
           switch (sourceFiber.tag) {
             case 3:
-              return sourceFiber.flags |= 65536, root3 = rootRenderLanes & -rootRenderLanes, sourceFiber.lanes |= root3, root3 = createRootErrorUpdate(sourceFiber.stateNode, value, root3), enqueueCapturedUpdate(sourceFiber, root3), false;
+              return sourceFiber.flags |= 65536, root2 = rootRenderLanes & -rootRenderLanes, sourceFiber.lanes |= root2, root2 = createRootErrorUpdate(sourceFiber.stateNode, value, root2), enqueueCapturedUpdate(sourceFiber, root2), false;
             case 1:
               if (returnFiber = sourceFiber.type, wrapperError = sourceFiber.stateNode, 0 === (sourceFiber.flags & 128) && ("function" === typeof returnFiber.getDerivedStateFromError || null !== wrapperError && "function" === typeof wrapperError.componentDidCatch && (null === legacyErrorBoundariesThatAlreadyFailed || !legacyErrorBoundariesThatAlreadyFailed.has(wrapperError))))
                 return sourceFiber.flags |= 65536, rootRenderLanes &= -rootRenderLanes, sourceFiber.lanes |= rootRenderLanes, rootRenderLanes = createClassErrorUpdate(rootRenderLanes), initializeClassErrorUpdate(
                   rootRenderLanes,
-                  root3,
+                  root2,
                   sourceFiber,
                   value
                 ), enqueueCapturedUpdate(sourceFiber, rootRenderLanes), false;
@@ -7034,7 +7034,7 @@
                     }
                     current = current.sibling;
                   }
-                null !== newProps.tail && now() > workInProgressRootRenderTargetTime && (workInProgress2.flags |= 128, type = true, cutOffTailIfNeeded(newProps, false), workInProgress2.lanes = 4194304);
+                null !== newProps.tail && now2() > workInProgressRootRenderTargetTime && (workInProgress2.flags |= 128, type = true, cutOffTailIfNeeded(newProps, false), workInProgress2.lanes = 4194304);
               }
             else {
               if (!type)
@@ -7042,11 +7042,11 @@
                   if (workInProgress2.flags |= 128, type = true, current = current.updateQueue, workInProgress2.updateQueue = current, scheduleRetryEffect(workInProgress2, current), cutOffTailIfNeeded(newProps, true), null === newProps.tail && "hidden" === newProps.tailMode && !nextResource.alternate && !isHydrating)
                     return bubbleProperties(workInProgress2), null;
                 } else
-                  2 * now() - newProps.renderingStartTime > workInProgressRootRenderTargetTime && 536870912 !== renderLanes2 && (workInProgress2.flags |= 128, type = true, cutOffTailIfNeeded(newProps, false), workInProgress2.lanes = 4194304);
+                  2 * now2() - newProps.renderingStartTime > workInProgressRootRenderTargetTime && 536870912 !== renderLanes2 && (workInProgress2.flags |= 128, type = true, cutOffTailIfNeeded(newProps, false), workInProgress2.lanes = 4194304);
               newProps.isBackwards ? (nextResource.sibling = workInProgress2.child, workInProgress2.child = nextResource) : (current = newProps.last, null !== current ? current.sibling = nextResource : workInProgress2.child = nextResource, newProps.last = nextResource);
             }
             if (null !== newProps.tail)
-              return current = newProps.tail, newProps.rendering = current, newProps.tail = current.sibling, newProps.renderingStartTime = now(), current.sibling = null, renderLanes2 = suspenseStackCursor.current, push(
+              return current = newProps.tail, newProps.rendering = current, newProps.tail = current.sibling, newProps.renderingStartTime = now2(), current.sibling = null, renderLanes2 = suspenseStackCursor.current, push(
                 suspenseStackCursor,
                 type ? renderLanes2 & 1 | 2 : renderLanes2 & 1
               ), isHydrating && pushTreeFork(workInProgress2, newProps.treeForkCount), current;
@@ -7341,19 +7341,19 @@
       var needsFormReset = false;
       var PossiblyWeakSet = "function" === typeof WeakSet ? WeakSet : Set;
       var nextEffect = null;
-      function commitBeforeMutationEffects(root3, firstChild) {
-        root3 = root3.containerInfo;
+      function commitBeforeMutationEffects(root2, firstChild) {
+        root2 = root2.containerInfo;
         eventsEnabled = _enabled;
-        root3 = getActiveElementDeep(root3);
-        if (hasSelectionCapabilities(root3)) {
-          if ("selectionStart" in root3)
+        root2 = getActiveElementDeep(root2);
+        if (hasSelectionCapabilities(root2)) {
+          if ("selectionStart" in root2)
             var JSCompiler_temp = {
-              start: root3.selectionStart,
-              end: root3.selectionEnd
+              start: root2.selectionStart,
+              end: root2.selectionEnd
             };
           else
             a: {
-              JSCompiler_temp = (JSCompiler_temp = root3.ownerDocument) && JSCompiler_temp.defaultView || window;
+              JSCompiler_temp = (JSCompiler_temp = root2.ownerDocument) && JSCompiler_temp.defaultView || window;
               var selection = JSCompiler_temp.getSelection && JSCompiler_temp.getSelection();
               if (selection && 0 !== selection.rangeCount) {
                 JSCompiler_temp = selection.anchorNode;
@@ -7365,7 +7365,7 @@
                   JSCompiler_temp = null;
                   break a;
                 }
-                var length = 0, start = -1, end = -1, indexWithinAnchor = 0, indexWithinFocus = 0, node = root3, parentNode = null;
+                var length = 0, start = -1, end = -1, indexWithinAnchor = 0, indexWithinFocus = 0, node = root2, parentNode = null;
                 b: for (; ; ) {
                   for (var next; ; ) {
                     node !== JSCompiler_temp || 0 !== anchorOffset && 3 !== node.nodeType || (start = length + anchorOffset);
@@ -7376,7 +7376,7 @@
                     node = next;
                   }
                   for (; ; ) {
-                    if (node === root3) break b;
+                    if (node === root2) break b;
                     parentNode === JSCompiler_temp && ++indexWithinAnchor === anchorOffset && (start = length);
                     parentNode === focusNode && ++indexWithinFocus === selection && (end = length);
                     if (null !== (next = node.nextSibling)) break;
@@ -7390,28 +7390,28 @@
             }
           JSCompiler_temp = JSCompiler_temp || { start: 0, end: 0 };
         } else JSCompiler_temp = null;
-        selectionInformation = { focusedElem: root3, selectionRange: JSCompiler_temp };
+        selectionInformation = { focusedElem: root2, selectionRange: JSCompiler_temp };
         _enabled = false;
         for (nextEffect = firstChild; null !== nextEffect; )
-          if (firstChild = nextEffect, root3 = firstChild.child, 0 !== (firstChild.subtreeFlags & 1028) && null !== root3)
-            root3.return = firstChild, nextEffect = root3;
+          if (firstChild = nextEffect, root2 = firstChild.child, 0 !== (firstChild.subtreeFlags & 1028) && null !== root2)
+            root2.return = firstChild, nextEffect = root2;
           else
             for (; null !== nextEffect; ) {
               firstChild = nextEffect;
               focusNode = firstChild.alternate;
-              root3 = firstChild.flags;
+              root2 = firstChild.flags;
               switch (firstChild.tag) {
                 case 0:
-                  if (0 !== (root3 & 4) && (root3 = firstChild.updateQueue, root3 = null !== root3 ? root3.events : null, null !== root3))
-                    for (JSCompiler_temp = 0; JSCompiler_temp < root3.length; JSCompiler_temp++)
-                      anchorOffset = root3[JSCompiler_temp], anchorOffset.ref.impl = anchorOffset.nextImpl;
+                  if (0 !== (root2 & 4) && (root2 = firstChild.updateQueue, root2 = null !== root2 ? root2.events : null, null !== root2))
+                    for (JSCompiler_temp = 0; JSCompiler_temp < root2.length; JSCompiler_temp++)
+                      anchorOffset = root2[JSCompiler_temp], anchorOffset.ref.impl = anchorOffset.nextImpl;
                   break;
                 case 11:
                 case 15:
                   break;
                 case 1:
-                  if (0 !== (root3 & 1024) && null !== focusNode) {
-                    root3 = void 0;
+                  if (0 !== (root2 & 1024) && null !== focusNode) {
+                    root2 = void 0;
                     JSCompiler_temp = firstChild;
                     anchorOffset = focusNode.memoizedProps;
                     focusNode = focusNode.memoizedState;
@@ -7421,11 +7421,11 @@
                         JSCompiler_temp.type,
                         anchorOffset
                       );
-                      root3 = selection.getSnapshotBeforeUpdate(
+                      root2 = selection.getSnapshotBeforeUpdate(
                         resolvedPrevProps,
                         focusNode
                       );
-                      selection.__reactInternalSnapshotBeforeUpdate = root3;
+                      selection.__reactInternalSnapshotBeforeUpdate = root2;
                     } catch (error) {
                       captureCommitPhaseError(
                         JSCompiler_temp,
@@ -7436,18 +7436,18 @@
                   }
                   break;
                 case 3:
-                  if (0 !== (root3 & 1024)) {
-                    if (root3 = firstChild.stateNode.containerInfo, JSCompiler_temp = root3.nodeType, 9 === JSCompiler_temp)
-                      clearContainerSparingly(root3);
+                  if (0 !== (root2 & 1024)) {
+                    if (root2 = firstChild.stateNode.containerInfo, JSCompiler_temp = root2.nodeType, 9 === JSCompiler_temp)
+                      clearContainerSparingly(root2);
                     else if (1 === JSCompiler_temp)
-                      switch (root3.nodeName) {
+                      switch (root2.nodeName) {
                         case "HEAD":
                         case "HTML":
                         case "BODY":
-                          clearContainerSparingly(root3);
+                          clearContainerSparingly(root2);
                           break;
                         default:
-                          root3.textContent = "";
+                          root2.textContent = "";
                       }
                   }
                   break;
@@ -7459,12 +7459,12 @@
                 case 17:
                   break;
                 default:
-                  if (0 !== (root3 & 1024)) throw Error(formatProdErrorMessage(163));
+                  if (0 !== (root2 & 1024)) throw Error(formatProdErrorMessage(163));
               }
-              root3 = firstChild.sibling;
-              if (null !== root3) {
-                root3.return = firstChild.return;
-                nextEffect = root3;
+              root2 = firstChild.sibling;
+              if (null !== root2) {
+                root2.return = firstChild.return;
+                nextEffect = root2;
                 break;
               }
               nextEffect = firstChild.return;
@@ -7775,7 +7775,7 @@
         var deletions = parentFiber.deletions;
         if (null !== deletions)
           for (var i = 0; i < deletions.length; i++) {
-            var childToDelete = deletions[i], root3 = root$jscomp$0, returnFiber = parentFiber, parent = returnFiber;
+            var childToDelete = deletions[i], root2 = root$jscomp$0, returnFiber = parentFiber, parent = returnFiber;
             a: for (; null !== parent; ) {
               switch (parent.tag) {
                 case 27:
@@ -7798,11 +7798,11 @@
               parent = parent.return;
             }
             if (null === hostParent) throw Error(formatProdErrorMessage(160));
-            commitDeletionEffectsOnFiber(root3, returnFiber, childToDelete);
+            commitDeletionEffectsOnFiber(root2, returnFiber, childToDelete);
             hostParent = null;
             hostParentIsContainer = false;
-            root3 = childToDelete.alternate;
-            null !== root3 && (root3.return = null);
+            root2 = childToDelete.alternate;
+            null !== root2 && (root2.return = null);
             childToDelete.return = null;
           }
         if (parentFiber.subtreeFlags & 13886)
@@ -7810,26 +7810,26 @@
             commitMutationEffectsOnFiber(parentFiber, root$jscomp$0), parentFiber = parentFiber.sibling;
       }
       var currentHoistableRoot = null;
-      function commitMutationEffectsOnFiber(finishedWork, root3) {
+      function commitMutationEffectsOnFiber(finishedWork, root2) {
         var current = finishedWork.alternate, flags = finishedWork.flags;
         switch (finishedWork.tag) {
           case 0:
           case 11:
           case 14:
           case 15:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 4 && (commitHookEffectListUnmount(3, finishedWork, finishedWork.return), commitHookEffectListMount(3, finishedWork), commitHookEffectListUnmount(5, finishedWork, finishedWork.return));
             break;
           case 1:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current || safelyDetachRef(current, current.return));
             flags & 64 && offscreenSubtreeIsHidden && (finishedWork = finishedWork.updateQueue, null !== finishedWork && (flags = finishedWork.callbacks, null !== flags && (current = finishedWork.shared.hiddenCallbacks, finishedWork.shared.hiddenCallbacks = null === current ? flags : current.concat(flags))));
             break;
           case 26:
             var hoistableRoot = currentHoistableRoot;
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current || safelyDetachRef(current, current.return));
             if (flags & 4) {
@@ -7925,7 +7925,7 @@
             }
             break;
           case 27:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current || safelyDetachRef(current, current.return));
             null !== current && flags & 4 && commitHostUpdate(
@@ -7935,7 +7935,7 @@
             );
             break;
           case 5:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 512 && (offscreenSubtreeWasHidden || null === current || safelyDetachRef(current, current.return));
             if (finishedWork.flags & 32) {
@@ -7954,7 +7954,7 @@
             flags & 1024 && (needsFormReset = true);
             break;
           case 6:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             if (flags & 4) {
               if (null === finishedWork.stateNode)
@@ -7971,13 +7971,13 @@
           case 3:
             tagCaches = null;
             hoistableRoot = currentHoistableRoot;
-            currentHoistableRoot = getHoistableRoot(root3.containerInfo);
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            currentHoistableRoot = getHoistableRoot(root2.containerInfo);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             currentHoistableRoot = hoistableRoot;
             commitReconciliationEffects(finishedWork);
             if (flags & 4 && null !== current && current.memoizedState.isDehydrated)
               try {
-                retryIfBlockedOn(root3.containerInfo);
+                retryIfBlockedOn(root2.containerInfo);
               } catch (error) {
                 captureCommitPhaseError(finishedWork, finishedWork.return, error);
               }
@@ -7988,23 +7988,23 @@
             currentHoistableRoot = getHoistableRoot(
               finishedWork.stateNode.containerInfo
             );
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             currentHoistableRoot = flags;
             break;
           case 12:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             break;
           case 31:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, flags)));
             break;
           case 13:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
-            finishedWork.child.flags & 8192 && null !== finishedWork.memoizedState !== (null !== current && null !== current.memoizedState) && (globalMostRecentFallbackTime = now());
+            finishedWork.child.flags & 8192 && null !== finishedWork.memoizedState !== (null !== current && null !== current.memoizedState) && (globalMostRecentFallbackTime = now2());
             flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, flags)));
             break;
           case 22:
@@ -8012,15 +8012,15 @@
             var wasHidden = null !== current && null !== current.memoizedState, prevOffscreenSubtreeIsHidden = offscreenSubtreeIsHidden, prevOffscreenSubtreeWasHidden = offscreenSubtreeWasHidden;
             offscreenSubtreeIsHidden = prevOffscreenSubtreeIsHidden || hoistableRoot;
             offscreenSubtreeWasHidden = prevOffscreenSubtreeWasHidden || wasHidden;
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             offscreenSubtreeWasHidden = prevOffscreenSubtreeWasHidden;
             offscreenSubtreeIsHidden = prevOffscreenSubtreeIsHidden;
             commitReconciliationEffects(finishedWork);
             if (flags & 8192)
-              a: for (root3 = finishedWork.stateNode, root3._visibility = hoistableRoot ? root3._visibility & -2 : root3._visibility | 1, hoistableRoot && (null === current || wasHidden || offscreenSubtreeIsHidden || offscreenSubtreeWasHidden || recursivelyTraverseDisappearLayoutEffects(finishedWork)), current = null, root3 = finishedWork; ; ) {
-                if (5 === root3.tag || 26 === root3.tag) {
+              a: for (root2 = finishedWork.stateNode, root2._visibility = hoistableRoot ? root2._visibility & -2 : root2._visibility | 1, hoistableRoot && (null === current || wasHidden || offscreenSubtreeIsHidden || offscreenSubtreeWasHidden || recursivelyTraverseDisappearLayoutEffects(finishedWork)), current = null, root2 = finishedWork; ; ) {
+                if (5 === root2.tag || 26 === root2.tag) {
                   if (null === current) {
-                    wasHidden = current = root3;
+                    wasHidden = current = root2;
                     try {
                       if (currentResource = wasHidden.stateNode, hoistableRoot)
                         maybeNodes = currentResource.style, "function" === typeof maybeNodes.setProperty ? maybeNodes.setProperty("display", "none", "important") : maybeNodes.display = "none";
@@ -8033,18 +8033,18 @@
                       captureCommitPhaseError(wasHidden, wasHidden.return, error);
                     }
                   }
-                } else if (6 === root3.tag) {
+                } else if (6 === root2.tag) {
                   if (null === current) {
-                    wasHidden = root3;
+                    wasHidden = root2;
                     try {
                       wasHidden.stateNode.nodeValue = hoistableRoot ? "" : wasHidden.memoizedProps;
                     } catch (error) {
                       captureCommitPhaseError(wasHidden, wasHidden.return, error);
                     }
                   }
-                } else if (18 === root3.tag) {
+                } else if (18 === root2.tag) {
                   if (null === current) {
-                    wasHidden = root3;
+                    wasHidden = root2;
                     try {
                       var instance = wasHidden.stateNode;
                       hoistableRoot ? hideOrUnhideDehydratedBoundary(instance, true) : hideOrUnhideDehydratedBoundary(wasHidden.stateNode, false);
@@ -8052,25 +8052,25 @@
                       captureCommitPhaseError(wasHidden, wasHidden.return, error);
                     }
                   }
-                } else if ((22 !== root3.tag && 23 !== root3.tag || null === root3.memoizedState || root3 === finishedWork) && null !== root3.child) {
-                  root3.child.return = root3;
-                  root3 = root3.child;
+                } else if ((22 !== root2.tag && 23 !== root2.tag || null === root2.memoizedState || root2 === finishedWork) && null !== root2.child) {
+                  root2.child.return = root2;
+                  root2 = root2.child;
                   continue;
                 }
-                if (root3 === finishedWork) break a;
-                for (; null === root3.sibling; ) {
-                  if (null === root3.return || root3.return === finishedWork) break a;
-                  current === root3 && (current = null);
-                  root3 = root3.return;
+                if (root2 === finishedWork) break a;
+                for (; null === root2.sibling; ) {
+                  if (null === root2.return || root2.return === finishedWork) break a;
+                  current === root2 && (current = null);
+                  root2 = root2.return;
                 }
-                current === root3 && (current = null);
-                root3.sibling.return = root3.return;
-                root3 = root3.sibling;
+                current === root2 && (current = null);
+                root2.sibling.return = root2.return;
+                root2 = root2.sibling;
               }
             flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (current = flags.retryQueue, null !== current && (flags.retryQueue = null, attachSuspenseRetryListeners(finishedWork, current))));
             break;
           case 19:
-            recursivelyTraverseMutationEffects(root3, finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork);
             commitReconciliationEffects(finishedWork);
             flags & 4 && (flags = finishedWork.updateQueue, null !== flags && (finishedWork.updateQueue = null, attachSuspenseRetryListeners(finishedWork, flags)));
             break;
@@ -8079,7 +8079,7 @@
           case 21:
             break;
           default:
-            recursivelyTraverseMutationEffects(root3, finishedWork), commitReconciliationEffects(finishedWork);
+            recursivelyTraverseMutationEffects(root2, finishedWork), commitReconciliationEffects(finishedWork);
         }
       }
       function commitReconciliationEffects(finishedWork) {
@@ -8133,10 +8133,10 @@
             parentFiber = parentFiber.sibling;
           }
       }
-      function recursivelyTraverseLayoutEffects(root3, parentFiber) {
+      function recursivelyTraverseLayoutEffects(root2, parentFiber) {
         if (parentFiber.subtreeFlags & 8772)
           for (parentFiber = parentFiber.child; null !== parentFiber; )
-            commitLayoutEffectOnFiber(root3, parentFiber.alternate, parentFiber), parentFiber = parentFiber.sibling;
+            commitLayoutEffectOnFiber(root2, parentFiber.alternate, parentFiber), parentFiber = parentFiber.sibling;
       }
       function recursivelyTraverseDisappearLayoutEffects(parentFiber) {
         for (parentFiber = parentFiber.child; null !== parentFiber; ) {
@@ -8291,11 +8291,11 @@
         finishedWork = finishedWork.memoizedState.cache;
         finishedWork !== current && (finishedWork.refCount++, null != current && releaseCache(current));
       }
-      function recursivelyTraversePassiveMountEffects(root3, parentFiber, committedLanes, committedTransitions) {
+      function recursivelyTraversePassiveMountEffects(root2, parentFiber, committedLanes, committedTransitions) {
         if (parentFiber.subtreeFlags & 10256)
           for (parentFiber = parentFiber.child; null !== parentFiber; )
             commitPassiveMountOnFiber(
-              root3,
+              root2,
               parentFiber,
               committedLanes,
               committedTransitions
@@ -8342,9 +8342,9 @@
               );
               finishedRoot = finishedWork.stateNode;
               try {
-                var _finishedWork$memoize2 = finishedWork.memoizedProps, id = _finishedWork$memoize2.id, onPostCommit = _finishedWork$memoize2.onPostCommit;
+                var _finishedWork$memoize2 = finishedWork.memoizedProps, id2 = _finishedWork$memoize2.id, onPostCommit = _finishedWork$memoize2.onPostCommit;
                 "function" === typeof onPostCommit && onPostCommit(
-                  id,
+                  id2,
                   null === finishedWork.alternate ? "mount" : "update",
                   finishedRoot.passiveEffectDuration,
                   -0
@@ -8380,7 +8380,7 @@
             break;
           case 22:
             _finishedWork$memoize2 = finishedWork.stateNode;
-            id = finishedWork.alternate;
+            id2 = finishedWork.alternate;
             null !== finishedWork.memoizedState ? _finishedWork$memoize2._visibility & 2 ? recursivelyTraversePassiveMountEffects(
               finishedRoot,
               finishedWork,
@@ -8398,7 +8398,7 @@
               committedTransitions,
               0 !== (finishedWork.subtreeFlags & 10256) || false
             ));
-            flags & 2048 && commitOffscreenPassiveMountEffects(id, finishedWork);
+            flags & 2048 && commitOffscreenPassiveMountEffects(id2, finishedWork);
             break;
           case 24:
             recursivelyTraversePassiveMountEffects(
@@ -8746,22 +8746,22 @@
         null !== lane && (lane.flags |= 32);
         return workInProgressDeferredLane;
       }
-      function scheduleUpdateOnFiber(root3, fiber, lane) {
-        if (root3 === workInProgressRoot && (2 === workInProgressSuspendedReason || 9 === workInProgressSuspendedReason) || null !== root3.cancelPendingCommit)
-          prepareFreshStack(root3, 0), markRootSuspended(
-            root3,
+      function scheduleUpdateOnFiber(root2, fiber, lane) {
+        if (root2 === workInProgressRoot && (2 === workInProgressSuspendedReason || 9 === workInProgressSuspendedReason) || null !== root2.cancelPendingCommit)
+          prepareFreshStack(root2, 0), markRootSuspended(
+            root2,
             workInProgressRootRenderLanes,
             workInProgressDeferredLane,
             false
           );
-        markRootUpdated$1(root3, lane);
-        if (0 === (executionContext & 2) || root3 !== workInProgressRoot)
-          root3 === workInProgressRoot && (0 === (executionContext & 2) && (workInProgressRootInterleavedUpdatedLanes |= lane), 4 === workInProgressRootExitStatus && markRootSuspended(
-            root3,
+        markRootUpdated$1(root2, lane);
+        if (0 === (executionContext & 2) || root2 !== workInProgressRoot)
+          root2 === workInProgressRoot && (0 === (executionContext & 2) && (workInProgressRootInterleavedUpdatedLanes |= lane), 4 === workInProgressRootExitStatus && markRootSuspended(
+            root2,
             workInProgressRootRenderLanes,
             workInProgressDeferredLane,
             false
-          )), ensureRootIsScheduled(root3);
+          )), ensureRootIsScheduled(root2);
       }
       function performWorkOnRoot(root$jscomp$0, lanes, forceSync) {
         if (0 !== (executionContext & 6)) throw Error(formatProdErrorMessage(327));
@@ -8786,18 +8786,18 @@
               if (0 !== JSCompiler_inline_result) {
                 lanes = JSCompiler_inline_result;
                 a: {
-                  var root3 = root$jscomp$0;
+                  var root2 = root$jscomp$0;
                   exitStatus = workInProgressRootConcurrentErrors;
-                  var wasRootDehydrated = root3.current.memoizedState.isDehydrated;
-                  wasRootDehydrated && (prepareFreshStack(root3, JSCompiler_inline_result).flags |= 256);
+                  var wasRootDehydrated = root2.current.memoizedState.isDehydrated;
+                  wasRootDehydrated && (prepareFreshStack(root2, JSCompiler_inline_result).flags |= 256);
                   JSCompiler_inline_result = renderRootSync(
-                    root3,
+                    root2,
                     JSCompiler_inline_result,
                     false
                   );
                   if (2 !== JSCompiler_inline_result) {
                     if (workInProgressRootDidAttachPingListener && !wasRootDehydrated) {
-                      root3.errorRecoveryDisabledLanes |= renderWasConcurrent;
+                      root2.errorRecoveryDisabledLanes |= renderWasConcurrent;
                       workInProgressRootInterleavedUpdatedLanes |= renderWasConcurrent;
                       exitStatus = 4;
                       break a;
@@ -8846,7 +8846,7 @@
                 default:
                   throw Error(formatProdErrorMessage(329));
               }
-              if ((lanes & 62914560) === lanes && (exitStatus = globalMostRecentFallbackTime + 300 - now(), 10 < exitStatus)) {
+              if ((lanes & 62914560) === lanes && (exitStatus = globalMostRecentFallbackTime + 300 - now2(), 10 < exitStatus)) {
                 markRootSuspended(
                   shouldTimeSlice,
                   lanes,
@@ -8899,8 +8899,8 @@
         } while (1);
         ensureRootIsScheduled(root$jscomp$0);
       }
-      function commitRootWhenReady(root3, finishedWork, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, lanes, spawnedLane, updatedLanes, suspendedRetryLanes, didSkipSuspendedSiblings, exitStatus, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
-        root3.timeoutHandle = -1;
+      function commitRootWhenReady(root2, finishedWork, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, lanes, spawnedLane, updatedLanes, suspendedRetryLanes, didSkipSuspendedSiblings, exitStatus, suspendedCommitReason, completedRenderStartTime, completedRenderEndTime) {
+        root2.timeoutHandle = -1;
         suspendedCommitReason = finishedWork.subtreeFlags;
         if (suspendedCommitReason & 8192 || 16785408 === (suspendedCommitReason & 16785408)) {
           suspendedCommitReason = {
@@ -8918,17 +8918,17 @@
             lanes,
             suspendedCommitReason
           );
-          var timeoutOffset = (lanes & 62914560) === lanes ? globalMostRecentFallbackTime - now() : (lanes & 4194048) === lanes ? globalMostRecentTransitionTime - now() : 0;
+          var timeoutOffset = (lanes & 62914560) === lanes ? globalMostRecentFallbackTime - now2() : (lanes & 4194048) === lanes ? globalMostRecentTransitionTime - now2() : 0;
           timeoutOffset = waitForCommitToBeReady(
             suspendedCommitReason,
             timeoutOffset
           );
           if (null !== timeoutOffset) {
             pendingEffectsLanes = lanes;
-            root3.cancelPendingCommit = timeoutOffset(
+            root2.cancelPendingCommit = timeoutOffset(
               commitRoot.bind(
                 null,
-                root3,
+                root2,
                 finishedWork,
                 lanes,
                 recoverableErrors,
@@ -8944,12 +8944,12 @@
                 completedRenderEndTime
               )
             );
-            markRootSuspended(root3, lanes, spawnedLane, !didSkipSuspendedSiblings);
+            markRootSuspended(root2, lanes, spawnedLane, !didSkipSuspendedSiblings);
             return;
           }
         }
         commitRoot(
-          root3,
+          root2,
           finishedWork,
           lanes,
           recoverableErrors,
@@ -8988,19 +8988,19 @@
         }
         return true;
       }
-      function markRootSuspended(root3, suspendedLanes, spawnedLane, didAttemptEntireTree) {
+      function markRootSuspended(root2, suspendedLanes, spawnedLane, didAttemptEntireTree) {
         suspendedLanes &= ~workInProgressRootPingedLanes;
         suspendedLanes &= ~workInProgressRootInterleavedUpdatedLanes;
-        root3.suspendedLanes |= suspendedLanes;
-        root3.pingedLanes &= ~suspendedLanes;
-        didAttemptEntireTree && (root3.warmLanes |= suspendedLanes);
-        didAttemptEntireTree = root3.expirationTimes;
+        root2.suspendedLanes |= suspendedLanes;
+        root2.pingedLanes &= ~suspendedLanes;
+        didAttemptEntireTree && (root2.warmLanes |= suspendedLanes);
+        didAttemptEntireTree = root2.expirationTimes;
         for (var lanes = suspendedLanes; 0 < lanes; ) {
           var index$6 = 31 - clz32(lanes), lane = 1 << index$6;
           didAttemptEntireTree[index$6] = -1;
           lanes &= ~lane;
         }
-        0 !== spawnedLane && markSpawnedDeferredLane(root3, spawnedLane, suspendedLanes);
+        0 !== spawnedLane && markSpawnedDeferredLane(root2, spawnedLane, suspendedLanes);
       }
       function flushSyncWork$1() {
         return 0 === (executionContext & 6) ? (flushSyncWorkAcrossRoots_impl(0, false), false) : true;
@@ -9016,44 +9016,44 @@
           workInProgress = null;
         }
       }
-      function prepareFreshStack(root3, lanes) {
-        var timeoutHandle = root3.timeoutHandle;
-        -1 !== timeoutHandle && (root3.timeoutHandle = -1, cancelTimeout(timeoutHandle));
-        timeoutHandle = root3.cancelPendingCommit;
-        null !== timeoutHandle && (root3.cancelPendingCommit = null, timeoutHandle());
+      function prepareFreshStack(root2, lanes) {
+        var timeoutHandle = root2.timeoutHandle;
+        -1 !== timeoutHandle && (root2.timeoutHandle = -1, cancelTimeout(timeoutHandle));
+        timeoutHandle = root2.cancelPendingCommit;
+        null !== timeoutHandle && (root2.cancelPendingCommit = null, timeoutHandle());
         pendingEffectsLanes = 0;
         resetWorkInProgressStack();
-        workInProgressRoot = root3;
-        workInProgress = timeoutHandle = createWorkInProgress(root3.current, null);
+        workInProgressRoot = root2;
+        workInProgress = timeoutHandle = createWorkInProgress(root2.current, null);
         workInProgressRootRenderLanes = lanes;
         workInProgressSuspendedReason = 0;
         workInProgressThrownValue = null;
         workInProgressRootDidSkipSuspendedSiblings = false;
-        workInProgressRootIsPrerendering = checkIfRootIsPrerendering(root3, lanes);
+        workInProgressRootIsPrerendering = checkIfRootIsPrerendering(root2, lanes);
         workInProgressRootDidAttachPingListener = false;
         workInProgressSuspendedRetryLanes = workInProgressDeferredLane = workInProgressRootPingedLanes = workInProgressRootInterleavedUpdatedLanes = workInProgressRootSkippedLanes = workInProgressRootExitStatus = 0;
         workInProgressRootRecoverableErrors = workInProgressRootConcurrentErrors = null;
         workInProgressRootDidIncludeRecursiveRenderUpdate = false;
         0 !== (lanes & 8) && (lanes |= lanes & 32);
-        var allEntangledLanes = root3.entangledLanes;
+        var allEntangledLanes = root2.entangledLanes;
         if (0 !== allEntangledLanes)
-          for (root3 = root3.entanglements, allEntangledLanes &= lanes; 0 < allEntangledLanes; ) {
+          for (root2 = root2.entanglements, allEntangledLanes &= lanes; 0 < allEntangledLanes; ) {
             var index$4 = 31 - clz32(allEntangledLanes), lane = 1 << index$4;
-            lanes |= root3[index$4];
+            lanes |= root2[index$4];
             allEntangledLanes &= ~lane;
           }
         entangledRenderLanes = lanes;
         finishQueueingConcurrentUpdates();
         return timeoutHandle;
       }
-      function handleThrow(root3, thrownValue) {
+      function handleThrow(root2, thrownValue) {
         currentlyRenderingFiber = null;
         ReactSharedInternals.H = ContextOnlyDispatcher;
         thrownValue === SuspenseException || thrownValue === SuspenseActionException ? (thrownValue = getSuspendedThenable(), workInProgressSuspendedReason = 3) : thrownValue === SuspenseyCommitException ? (thrownValue = getSuspendedThenable(), workInProgressSuspendedReason = 4) : workInProgressSuspendedReason = thrownValue === SelectiveHydrationException ? 8 : null !== thrownValue && "object" === typeof thrownValue && "function" === typeof thrownValue.then ? 6 : 1;
         workInProgressThrownValue = thrownValue;
         null === workInProgress && (workInProgressRootExitStatus = 1, logUncaughtError(
-          root3,
-          createCapturedValueAtFiber(thrownValue, root3.current)
+          root2,
+          createCapturedValueAtFiber(thrownValue, root2.current)
         ));
       }
       function shouldRemainOnPreviousScreen() {
@@ -9080,12 +9080,12 @@
           false
         );
       }
-      function renderRootSync(root3, lanes, shouldYieldForPrerendering) {
+      function renderRootSync(root2, lanes, shouldYieldForPrerendering) {
         var prevExecutionContext = executionContext;
         executionContext |= 2;
         var prevDispatcher = pushDispatcher(), prevAsyncDispatcher = pushAsyncDispatcher();
-        if (workInProgressRoot !== root3 || workInProgressRootRenderLanes !== lanes)
-          workInProgressTransitions = null, prepareFreshStack(root3, lanes);
+        if (workInProgressRoot !== root2 || workInProgressRootRenderLanes !== lanes)
+          workInProgressTransitions = null, prepareFreshStack(root2, lanes);
         lanes = false;
         var exitStatus = workInProgressRootExitStatus;
         a: do
@@ -9105,24 +9105,24 @@
                   var reason = workInProgressSuspendedReason;
                   workInProgressSuspendedReason = 0;
                   workInProgressThrownValue = null;
-                  throwAndUnwindWorkLoop(root3, unitOfWork, thrownValue, reason);
+                  throwAndUnwindWorkLoop(root2, unitOfWork, thrownValue, reason);
                   if (shouldYieldForPrerendering && workInProgressRootIsPrerendering) {
                     exitStatus = 0;
                     break a;
                   }
                   break;
                 default:
-                  reason = workInProgressSuspendedReason, workInProgressSuspendedReason = 0, workInProgressThrownValue = null, throwAndUnwindWorkLoop(root3, unitOfWork, thrownValue, reason);
+                  reason = workInProgressSuspendedReason, workInProgressSuspendedReason = 0, workInProgressThrownValue = null, throwAndUnwindWorkLoop(root2, unitOfWork, thrownValue, reason);
               }
             }
             workLoopSync();
             exitStatus = workInProgressRootExitStatus;
             break;
           } catch (thrownValue$165) {
-            handleThrow(root3, thrownValue$165);
+            handleThrow(root2, thrownValue$165);
           }
         while (1);
-        lanes && root3.shellSuspendCounter++;
+        lanes && root2.shellSuspendCounter++;
         lastContextDependency = currentlyRenderingFiber$1 = null;
         executionContext = prevExecutionContext;
         ReactSharedInternals.H = prevDispatcher;
@@ -9133,12 +9133,12 @@
       function workLoopSync() {
         for (; null !== workInProgress; ) performUnitOfWork(workInProgress);
       }
-      function renderRootConcurrent(root3, lanes) {
+      function renderRootConcurrent(root2, lanes) {
         var prevExecutionContext = executionContext;
         executionContext |= 2;
         var prevDispatcher = pushDispatcher(), prevAsyncDispatcher = pushAsyncDispatcher();
-        workInProgressRoot !== root3 || workInProgressRootRenderLanes !== lanes ? (workInProgressTransitions = null, workInProgressRootRenderTargetTime = now() + 500, prepareFreshStack(root3, lanes)) : workInProgressRootIsPrerendering = checkIfRootIsPrerendering(
-          root3,
+        workInProgressRoot !== root2 || workInProgressRootRenderLanes !== lanes ? (workInProgressTransitions = null, workInProgressRootRenderTargetTime = now2() + 500, prepareFreshStack(root2, lanes)) : workInProgressRootIsPrerendering = checkIfRootIsPrerendering(
+          root2,
           lanes
         );
         a: do
@@ -9150,7 +9150,7 @@
                 case 1:
                   workInProgressSuspendedReason = 0;
                   workInProgressThrownValue = null;
-                  throwAndUnwindWorkLoop(root3, lanes, thrownValue, 1);
+                  throwAndUnwindWorkLoop(root2, lanes, thrownValue, 1);
                   break;
                 case 2:
                 case 9:
@@ -9161,8 +9161,8 @@
                     break;
                   }
                   lanes = function() {
-                    2 !== workInProgressSuspendedReason && 9 !== workInProgressSuspendedReason || workInProgressRoot !== root3 || (workInProgressSuspendedReason = 7);
-                    ensureRootIsScheduled(root3);
+                    2 !== workInProgressSuspendedReason && 9 !== workInProgressSuspendedReason || workInProgressRoot !== root2 || (workInProgressSuspendedReason = 7);
+                    ensureRootIsScheduled(root2);
                   };
                   thrownValue.then(lanes, lanes);
                   break a;
@@ -9173,7 +9173,7 @@
                   workInProgressSuspendedReason = 5;
                   break a;
                 case 7:
-                  isThenableResolved(thrownValue) ? (workInProgressSuspendedReason = 0, workInProgressThrownValue = null, replaySuspendedUnitOfWork(lanes)) : (workInProgressSuspendedReason = 0, workInProgressThrownValue = null, throwAndUnwindWorkLoop(root3, lanes, thrownValue, 7));
+                  isThenableResolved(thrownValue) ? (workInProgressSuspendedReason = 0, workInProgressThrownValue = null, replaySuspendedUnitOfWork(lanes)) : (workInProgressSuspendedReason = 0, workInProgressThrownValue = null, throwAndUnwindWorkLoop(root2, lanes, thrownValue, 7));
                   break;
                 case 5:
                   var resource = null;
@@ -9197,12 +9197,12 @@
                   }
                   workInProgressSuspendedReason = 0;
                   workInProgressThrownValue = null;
-                  throwAndUnwindWorkLoop(root3, lanes, thrownValue, 5);
+                  throwAndUnwindWorkLoop(root2, lanes, thrownValue, 5);
                   break;
                 case 6:
                   workInProgressSuspendedReason = 0;
                   workInProgressThrownValue = null;
-                  throwAndUnwindWorkLoop(root3, lanes, thrownValue, 6);
+                  throwAndUnwindWorkLoop(root2, lanes, thrownValue, 6);
                   break;
                 case 8:
                   resetWorkInProgressStack();
@@ -9215,7 +9215,7 @@
             workLoopConcurrentByScheduler();
             break;
           } catch (thrownValue$167) {
-            handleThrow(root3, thrownValue$167);
+            handleThrow(root2, thrownValue$167);
           }
         while (1);
         lastContextDependency = currentlyRenderingFiber$1 = null;
@@ -9270,7 +9270,7 @@
         unitOfWork.memoizedProps = unitOfWork.pendingProps;
         null === next ? completeUnitOfWork(unitOfWork) : workInProgress = next;
       }
-      function throwAndUnwindWorkLoop(root3, unitOfWork, thrownValue, suspendedReason) {
+      function throwAndUnwindWorkLoop(root2, unitOfWork, thrownValue, suspendedReason) {
         lastContextDependency = currentlyRenderingFiber$1 = null;
         resetHooksOnUnwind(unitOfWork);
         thenableState$1 = null;
@@ -9278,7 +9278,7 @@
         var returnFiber = unitOfWork.return;
         try {
           if (throwException(
-            root3,
+            root2,
             returnFiber,
             unitOfWork,
             thrownValue,
@@ -9286,8 +9286,8 @@
           )) {
             workInProgressRootExitStatus = 1;
             logUncaughtError(
-              root3,
-              createCapturedValueAtFiber(thrownValue, root3.current)
+              root2,
+              createCapturedValueAtFiber(thrownValue, root2.current)
             );
             workInProgress = null;
             return;
@@ -9296,19 +9296,19 @@
           if (null !== returnFiber) throw workInProgress = returnFiber, error;
           workInProgressRootExitStatus = 1;
           logUncaughtError(
-            root3,
-            createCapturedValueAtFiber(thrownValue, root3.current)
+            root2,
+            createCapturedValueAtFiber(thrownValue, root2.current)
           );
           workInProgress = null;
           return;
         }
         if (unitOfWork.flags & 32768) {
-          if (isHydrating || 1 === suspendedReason) root3 = true;
+          if (isHydrating || 1 === suspendedReason) root2 = true;
           else if (workInProgressRootIsPrerendering || 0 !== (workInProgressRootRenderLanes & 536870912))
-            root3 = false;
-          else if (workInProgressRootDidSkipSuspendedSiblings = root3 = true, 2 === suspendedReason || 9 === suspendedReason || 3 === suspendedReason || 6 === suspendedReason)
+            root2 = false;
+          else if (workInProgressRootDidSkipSuspendedSiblings = root2 = true, 2 === suspendedReason || 9 === suspendedReason || 3 === suspendedReason || 6 === suspendedReason)
             suspendedReason = suspenseHandlerStackCursor.current, null !== suspendedReason && 13 === suspendedReason.tag && (suspendedReason.flags |= 16384);
-          unwindUnitOfWork(unitOfWork, root3);
+          unwindUnitOfWork(unitOfWork, root2);
         } else completeUnitOfWork(unitOfWork);
       }
       function completeUnitOfWork(unitOfWork) {
@@ -9359,35 +9359,35 @@
         workInProgressRootExitStatus = 6;
         workInProgress = null;
       }
-      function commitRoot(root3, finishedWork, lanes, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, spawnedLane, updatedLanes, suspendedRetryLanes) {
-        root3.cancelPendingCommit = null;
+      function commitRoot(root2, finishedWork, lanes, recoverableErrors, transitions, didIncludeRenderPhaseUpdate, spawnedLane, updatedLanes, suspendedRetryLanes) {
+        root2.cancelPendingCommit = null;
         do
           flushPendingEffects();
         while (0 !== pendingEffectsStatus);
         if (0 !== (executionContext & 6)) throw Error(formatProdErrorMessage(327));
         if (null !== finishedWork) {
-          if (finishedWork === root3.current) throw Error(formatProdErrorMessage(177));
+          if (finishedWork === root2.current) throw Error(formatProdErrorMessage(177));
           didIncludeRenderPhaseUpdate = finishedWork.lanes | finishedWork.childLanes;
           didIncludeRenderPhaseUpdate |= concurrentlyUpdatedLanes;
           markRootFinished(
-            root3,
+            root2,
             lanes,
             didIncludeRenderPhaseUpdate,
             spawnedLane,
             updatedLanes,
             suspendedRetryLanes
           );
-          root3 === workInProgressRoot && (workInProgress = workInProgressRoot = null, workInProgressRootRenderLanes = 0);
+          root2 === workInProgressRoot && (workInProgress = workInProgressRoot = null, workInProgressRootRenderLanes = 0);
           pendingFinishedWork = finishedWork;
-          pendingEffectsRoot = root3;
+          pendingEffectsRoot = root2;
           pendingEffectsLanes = lanes;
           pendingEffectsRemainingLanes = didIncludeRenderPhaseUpdate;
           pendingPassiveTransitions = transitions;
           pendingRecoverableErrors = recoverableErrors;
-          0 !== (finishedWork.subtreeFlags & 10256) || 0 !== (finishedWork.flags & 10256) ? (root3.callbackNode = null, root3.callbackPriority = 0, scheduleCallback$1(NormalPriority$1, function() {
+          0 !== (finishedWork.subtreeFlags & 10256) || 0 !== (finishedWork.flags & 10256) ? (root2.callbackNode = null, root2.callbackPriority = 0, scheduleCallback$1(NormalPriority$1, function() {
             flushPassiveEffects();
             return null;
-          })) : (root3.callbackNode = null, root3.callbackPriority = 0);
+          })) : (root2.callbackNode = null, root2.callbackPriority = 0);
           recoverableErrors = 0 !== (finishedWork.flags & 13878);
           if (0 !== (finishedWork.subtreeFlags & 13878) || recoverableErrors) {
             recoverableErrors = ReactSharedInternals.T;
@@ -9397,7 +9397,7 @@
             spawnedLane = executionContext;
             executionContext |= 4;
             try {
-              commitBeforeMutationEffects(root3, finishedWork, lanes);
+              commitBeforeMutationEffects(root2, finishedWork, lanes);
             } finally {
               executionContext = spawnedLane, ReactDOMSharedInternals.p = transitions, ReactSharedInternals.T = recoverableErrors;
             }
@@ -9411,7 +9411,7 @@
       function flushMutationEffects() {
         if (1 === pendingEffectsStatus) {
           pendingEffectsStatus = 0;
-          var root3 = pendingEffectsRoot, finishedWork = pendingFinishedWork, rootMutationHasEffect = 0 !== (finishedWork.flags & 13878);
+          var root2 = pendingEffectsRoot, finishedWork = pendingFinishedWork, rootMutationHasEffect = 0 !== (finishedWork.flags & 13878);
           if (0 !== (finishedWork.subtreeFlags & 13878) || rootMutationHasEffect) {
             rootMutationHasEffect = ReactSharedInternals.T;
             ReactSharedInternals.T = null;
@@ -9420,8 +9420,8 @@
             var prevExecutionContext = executionContext;
             executionContext |= 4;
             try {
-              commitMutationEffectsOnFiber(finishedWork, root3);
-              var priorSelectionInformation = selectionInformation, curFocusedElem = getActiveElementDeep(root3.containerInfo), priorFocusedElem = priorSelectionInformation.focusedElem, priorSelectionRange = priorSelectionInformation.selectionRange;
+              commitMutationEffectsOnFiber(finishedWork, root2);
+              var priorSelectionInformation = selectionInformation, curFocusedElem = getActiveElementDeep(root2.containerInfo), priorFocusedElem = priorSelectionInformation.focusedElem, priorSelectionRange = priorSelectionInformation.selectionRange;
               if (curFocusedElem !== priorFocusedElem && priorFocusedElem && priorFocusedElem.ownerDocument && containsNode(
                 priorFocusedElem.ownerDocument.documentElement,
                 priorFocusedElem
@@ -9475,14 +9475,14 @@
               executionContext = prevExecutionContext, ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = rootMutationHasEffect;
             }
           }
-          root3.current = finishedWork;
+          root2.current = finishedWork;
           pendingEffectsStatus = 2;
         }
       }
       function flushLayoutEffects() {
         if (2 === pendingEffectsStatus) {
           pendingEffectsStatus = 0;
-          var root3 = pendingEffectsRoot, finishedWork = pendingFinishedWork, rootHasLayoutEffect = 0 !== (finishedWork.flags & 8772);
+          var root2 = pendingEffectsRoot, finishedWork = pendingFinishedWork, rootHasLayoutEffect = 0 !== (finishedWork.flags & 8772);
           if (0 !== (finishedWork.subtreeFlags & 8772) || rootHasLayoutEffect) {
             rootHasLayoutEffect = ReactSharedInternals.T;
             ReactSharedInternals.T = null;
@@ -9491,7 +9491,7 @@
             var prevExecutionContext = executionContext;
             executionContext |= 4;
             try {
-              commitLayoutEffectOnFiber(root3, finishedWork.alternate, finishedWork);
+              commitLayoutEffectOnFiber(root2, finishedWork.alternate, finishedWork);
             } finally {
               executionContext = prevExecutionContext, ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = rootHasLayoutEffect;
             }
@@ -9503,9 +9503,9 @@
         if (4 === pendingEffectsStatus || 3 === pendingEffectsStatus) {
           pendingEffectsStatus = 0;
           requestPaint();
-          var root3 = pendingEffectsRoot, finishedWork = pendingFinishedWork, lanes = pendingEffectsLanes, recoverableErrors = pendingRecoverableErrors;
-          0 !== (finishedWork.subtreeFlags & 10256) || 0 !== (finishedWork.flags & 10256) ? pendingEffectsStatus = 5 : (pendingEffectsStatus = 0, pendingFinishedWork = pendingEffectsRoot = null, releaseRootPooledCache(root3, root3.pendingLanes));
-          var remainingLanes = root3.pendingLanes;
+          var root2 = pendingEffectsRoot, finishedWork = pendingFinishedWork, lanes = pendingEffectsLanes, recoverableErrors = pendingRecoverableErrors;
+          0 !== (finishedWork.subtreeFlags & 10256) || 0 !== (finishedWork.flags & 10256) ? pendingEffectsStatus = 5 : (pendingEffectsStatus = 0, pendingFinishedWork = pendingEffectsRoot = null, releaseRootPooledCache(root2, root2.pendingLanes));
+          var remainingLanes = root2.pendingLanes;
           0 === remainingLanes && (legacyErrorBoundariesThatAlreadyFailed = null);
           lanesToEventPriority(lanes);
           finishedWork = finishedWork.stateNode;
@@ -9525,7 +9525,7 @@
             ReactDOMSharedInternals.p = 2;
             ReactSharedInternals.T = null;
             try {
-              for (var onRecoverableError = root3.onRecoverableError, i = 0; i < recoverableErrors.length; i++) {
+              for (var onRecoverableError = root2.onRecoverableError, i = 0; i < recoverableErrors.length; i++) {
                 var recoverableError = recoverableErrors[i];
                 onRecoverableError(recoverableError.value, {
                   componentStack: recoverableError.stack
@@ -9536,14 +9536,14 @@
             }
           }
           0 !== (pendingEffectsLanes & 3) && flushPendingEffects();
-          ensureRootIsScheduled(root3);
-          remainingLanes = root3.pendingLanes;
-          0 !== (lanes & 261930) && 0 !== (remainingLanes & 42) ? root3 === rootWithNestedUpdates ? nestedUpdateCount++ : (nestedUpdateCount = 0, rootWithNestedUpdates = root3) : nestedUpdateCount = 0;
+          ensureRootIsScheduled(root2);
+          remainingLanes = root2.pendingLanes;
+          0 !== (lanes & 261930) && 0 !== (remainingLanes & 42) ? root2 === rootWithNestedUpdates ? nestedUpdateCount++ : (nestedUpdateCount = 0, rootWithNestedUpdates = root2) : nestedUpdateCount = 0;
           flushSyncWorkAcrossRoots_impl(0, false);
         }
       }
-      function releaseRootPooledCache(root3, remainingLanes) {
-        0 === (root3.pooledCacheLanes &= remainingLanes) && (remainingLanes = root3.pooledCache, null != remainingLanes && (root3.pooledCache = null, releaseCache(remainingLanes)));
+      function releaseRootPooledCache(root2, remainingLanes) {
+        0 === (root2.pooledCacheLanes &= remainingLanes) && (remainingLanes = root2.pooledCache, null != remainingLanes && (root2.pooledCache = null, releaseCache(remainingLanes)));
       }
       function flushPendingEffects() {
         flushMutationEffects();
@@ -9553,7 +9553,7 @@
       }
       function flushPassiveEffects() {
         if (5 !== pendingEffectsStatus) return false;
-        var root3 = pendingEffectsRoot, remainingLanes = pendingEffectsRemainingLanes;
+        var root2 = pendingEffectsRoot, remainingLanes = pendingEffectsRemainingLanes;
         pendingEffectsRemainingLanes = 0;
         var renderPriority = lanesToEventPriority(pendingEffectsLanes), prevTransition = ReactSharedInternals.T, previousPriority = ReactDOMSharedInternals.p;
         try {
@@ -9584,7 +9584,7 @@
             }
           return true;
         } finally {
-          ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = prevTransition, releaseRootPooledCache(root3, remainingLanes);
+          ReactDOMSharedInternals.p = previousPriority, ReactSharedInternals.T = prevTransition, releaseRootPooledCache(root2, remainingLanes);
         }
       }
       function captureCommitPhaseErrorOnRoot(rootFiber, sourceFiber, error) {
@@ -9623,23 +9623,23 @@
             nearestMountedAncestor = nearestMountedAncestor.return;
           }
       }
-      function attachPingListener(root3, wakeable, lanes) {
-        var pingCache = root3.pingCache;
+      function attachPingListener(root2, wakeable, lanes) {
+        var pingCache = root2.pingCache;
         if (null === pingCache) {
-          pingCache = root3.pingCache = new PossiblyWeakMap();
+          pingCache = root2.pingCache = new PossiblyWeakMap();
           var threadIDs = /* @__PURE__ */ new Set();
           pingCache.set(wakeable, threadIDs);
         } else
           threadIDs = pingCache.get(wakeable), void 0 === threadIDs && (threadIDs = /* @__PURE__ */ new Set(), pingCache.set(wakeable, threadIDs));
-        threadIDs.has(lanes) || (workInProgressRootDidAttachPingListener = true, threadIDs.add(lanes), root3 = pingSuspendedRoot.bind(null, root3, wakeable, lanes), wakeable.then(root3, root3));
+        threadIDs.has(lanes) || (workInProgressRootDidAttachPingListener = true, threadIDs.add(lanes), root2 = pingSuspendedRoot.bind(null, root2, wakeable, lanes), wakeable.then(root2, root2));
       }
-      function pingSuspendedRoot(root3, wakeable, pingedLanes) {
-        var pingCache = root3.pingCache;
+      function pingSuspendedRoot(root2, wakeable, pingedLanes) {
+        var pingCache = root2.pingCache;
         null !== pingCache && pingCache.delete(wakeable);
-        root3.pingedLanes |= root3.suspendedLanes & pingedLanes;
-        root3.warmLanes &= ~pingedLanes;
-        workInProgressRoot === root3 && (workInProgressRootRenderLanes & pingedLanes) === pingedLanes && (4 === workInProgressRootExitStatus || 3 === workInProgressRootExitStatus && (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes && 300 > now() - globalMostRecentFallbackTime ? 0 === (executionContext & 2) && prepareFreshStack(root3, 0) : workInProgressRootPingedLanes |= pingedLanes, workInProgressSuspendedRetryLanes === workInProgressRootRenderLanes && (workInProgressSuspendedRetryLanes = 0));
-        ensureRootIsScheduled(root3);
+        root2.pingedLanes |= root2.suspendedLanes & pingedLanes;
+        root2.warmLanes &= ~pingedLanes;
+        workInProgressRoot === root2 && (workInProgressRootRenderLanes & pingedLanes) === pingedLanes && (4 === workInProgressRootExitStatus || 3 === workInProgressRootExitStatus && (workInProgressRootRenderLanes & 62914560) === workInProgressRootRenderLanes && 300 > now2() - globalMostRecentFallbackTime ? 0 === (executionContext & 2) && prepareFreshStack(root2, 0) : workInProgressRootPingedLanes |= pingedLanes, workInProgressSuspendedRetryLanes === workInProgressRootRenderLanes && (workInProgressSuspendedRetryLanes = 0));
+        ensureRootIsScheduled(root2);
       }
       function retryTimedOutBoundary(boundaryFiber, retryLane) {
         0 === retryLane && (retryLane = claimNextRetryLane());
@@ -9681,8 +9681,8 @@
       var mightHavePendingSyncWork = false;
       var isFlushingWork = false;
       var currentEventTransitionLane = 0;
-      function ensureRootIsScheduled(root3) {
-        root3 !== lastScheduledRoot && null === root3.next && (null === lastScheduledRoot ? firstScheduledRoot = lastScheduledRoot = root3 : lastScheduledRoot = lastScheduledRoot.next = root3);
+      function ensureRootIsScheduled(root2) {
+        root2 !== lastScheduledRoot && null === root2.next && (null === lastScheduledRoot ? firstScheduledRoot = lastScheduledRoot = root2 : lastScheduledRoot = lastScheduledRoot.next = root2);
         mightHavePendingSyncWork = true;
         didScheduleMicrotask || (didScheduleMicrotask = true, scheduleImmediateRootScheduleTask());
       }
@@ -9722,39 +9722,39 @@
         mightHavePendingSyncWork = didScheduleMicrotask = false;
         var syncTransitionLanes = 0;
         0 !== currentEventTransitionLane && shouldAttemptEagerTransition() && (syncTransitionLanes = currentEventTransitionLane);
-        for (var currentTime = now(), prev = null, root3 = firstScheduledRoot; null !== root3; ) {
-          var next = root3.next, nextLanes = scheduleTaskForRootDuringMicrotask(root3, currentTime);
+        for (var currentTime = now2(), prev = null, root2 = firstScheduledRoot; null !== root2; ) {
+          var next = root2.next, nextLanes = scheduleTaskForRootDuringMicrotask(root2, currentTime);
           if (0 === nextLanes)
-            root3.next = null, null === prev ? firstScheduledRoot = next : prev.next = next, null === next && (lastScheduledRoot = prev);
-          else if (prev = root3, 0 !== syncTransitionLanes || 0 !== (nextLanes & 3))
+            root2.next = null, null === prev ? firstScheduledRoot = next : prev.next = next, null === next && (lastScheduledRoot = prev);
+          else if (prev = root2, 0 !== syncTransitionLanes || 0 !== (nextLanes & 3))
             mightHavePendingSyncWork = true;
-          root3 = next;
+          root2 = next;
         }
         0 !== pendingEffectsStatus && 5 !== pendingEffectsStatus || flushSyncWorkAcrossRoots_impl(syncTransitionLanes, false);
         0 !== currentEventTransitionLane && (currentEventTransitionLane = 0);
       }
-      function scheduleTaskForRootDuringMicrotask(root3, currentTime) {
-        for (var suspendedLanes = root3.suspendedLanes, pingedLanes = root3.pingedLanes, expirationTimes = root3.expirationTimes, lanes = root3.pendingLanes & -62914561; 0 < lanes; ) {
+      function scheduleTaskForRootDuringMicrotask(root2, currentTime) {
+        for (var suspendedLanes = root2.suspendedLanes, pingedLanes = root2.pingedLanes, expirationTimes = root2.expirationTimes, lanes = root2.pendingLanes & -62914561; 0 < lanes; ) {
           var index$5 = 31 - clz32(lanes), lane = 1 << index$5, expirationTime = expirationTimes[index$5];
           if (-1 === expirationTime) {
             if (0 === (lane & suspendedLanes) || 0 !== (lane & pingedLanes))
               expirationTimes[index$5] = computeExpirationTime(lane, currentTime);
-          } else expirationTime <= currentTime && (root3.expiredLanes |= lane);
+          } else expirationTime <= currentTime && (root2.expiredLanes |= lane);
           lanes &= ~lane;
         }
         currentTime = workInProgressRoot;
         suspendedLanes = workInProgressRootRenderLanes;
         suspendedLanes = getNextLanes(
-          root3,
-          root3 === currentTime ? suspendedLanes : 0,
-          null !== root3.cancelPendingCommit || -1 !== root3.timeoutHandle
+          root2,
+          root2 === currentTime ? suspendedLanes : 0,
+          null !== root2.cancelPendingCommit || -1 !== root2.timeoutHandle
         );
-        pingedLanes = root3.callbackNode;
-        if (0 === suspendedLanes || root3 === currentTime && (2 === workInProgressSuspendedReason || 9 === workInProgressSuspendedReason) || null !== root3.cancelPendingCommit)
-          return null !== pingedLanes && null !== pingedLanes && cancelCallback$1(pingedLanes), root3.callbackNode = null, root3.callbackPriority = 0;
-        if (0 === (suspendedLanes & 3) || checkIfRootIsPrerendering(root3, suspendedLanes)) {
+        pingedLanes = root2.callbackNode;
+        if (0 === suspendedLanes || root2 === currentTime && (2 === workInProgressSuspendedReason || 9 === workInProgressSuspendedReason) || null !== root2.cancelPendingCommit)
+          return null !== pingedLanes && null !== pingedLanes && cancelCallback$1(pingedLanes), root2.callbackNode = null, root2.callbackPriority = 0;
+        if (0 === (suspendedLanes & 3) || checkIfRootIsPrerendering(root2, suspendedLanes)) {
           currentTime = suspendedLanes & -suspendedLanes;
-          if (currentTime === root3.callbackPriority) return currentTime;
+          if (currentTime === root2.callbackPriority) return currentTime;
           null !== pingedLanes && cancelCallback$1(pingedLanes);
           switch (lanesToEventPriority(suspendedLanes)) {
             case 2:
@@ -9770,37 +9770,37 @@
             default:
               suspendedLanes = NormalPriority$1;
           }
-          pingedLanes = performWorkOnRootViaSchedulerTask.bind(null, root3);
+          pingedLanes = performWorkOnRootViaSchedulerTask.bind(null, root2);
           suspendedLanes = scheduleCallback$3(suspendedLanes, pingedLanes);
-          root3.callbackPriority = currentTime;
-          root3.callbackNode = suspendedLanes;
+          root2.callbackPriority = currentTime;
+          root2.callbackNode = suspendedLanes;
           return currentTime;
         }
         null !== pingedLanes && null !== pingedLanes && cancelCallback$1(pingedLanes);
-        root3.callbackPriority = 2;
-        root3.callbackNode = null;
+        root2.callbackPriority = 2;
+        root2.callbackNode = null;
         return 2;
       }
-      function performWorkOnRootViaSchedulerTask(root3, didTimeout) {
+      function performWorkOnRootViaSchedulerTask(root2, didTimeout) {
         if (0 !== pendingEffectsStatus && 5 !== pendingEffectsStatus)
-          return root3.callbackNode = null, root3.callbackPriority = 0, null;
-        var originalCallbackNode = root3.callbackNode;
-        if (flushPendingEffects() && root3.callbackNode !== originalCallbackNode)
+          return root2.callbackNode = null, root2.callbackPriority = 0, null;
+        var originalCallbackNode = root2.callbackNode;
+        if (flushPendingEffects() && root2.callbackNode !== originalCallbackNode)
           return null;
         var workInProgressRootRenderLanes$jscomp$0 = workInProgressRootRenderLanes;
         workInProgressRootRenderLanes$jscomp$0 = getNextLanes(
-          root3,
-          root3 === workInProgressRoot ? workInProgressRootRenderLanes$jscomp$0 : 0,
-          null !== root3.cancelPendingCommit || -1 !== root3.timeoutHandle
+          root2,
+          root2 === workInProgressRoot ? workInProgressRootRenderLanes$jscomp$0 : 0,
+          null !== root2.cancelPendingCommit || -1 !== root2.timeoutHandle
         );
         if (0 === workInProgressRootRenderLanes$jscomp$0) return null;
-        performWorkOnRoot(root3, workInProgressRootRenderLanes$jscomp$0, didTimeout);
-        scheduleTaskForRootDuringMicrotask(root3, now());
-        return null != root3.callbackNode && root3.callbackNode === originalCallbackNode ? performWorkOnRootViaSchedulerTask.bind(null, root3) : null;
+        performWorkOnRoot(root2, workInProgressRootRenderLanes$jscomp$0, didTimeout);
+        scheduleTaskForRootDuringMicrotask(root2, now2());
+        return null != root2.callbackNode && root2.callbackNode === originalCallbackNode ? performWorkOnRootViaSchedulerTask.bind(null, root2) : null;
       }
-      function performSyncWorkOnRoot(root3, lanes) {
+      function performSyncWorkOnRoot(root2, lanes) {
         if (flushPendingEffects()) return null;
-        performWorkOnRoot(root3, lanes, true);
+        performWorkOnRoot(root2, lanes, true);
       }
       function scheduleImmediateRootScheduleTask() {
         scheduleMicrotask(function() {
@@ -10327,7 +10327,7 @@
               }
             else
               isComposing ? isFallbackCompositionEnd(domEventName, nativeEvent) && (eventType = "onCompositionEnd") : "keydown" === domEventName && 229 === nativeEvent.keyCode && (eventType = "onCompositionStart");
-            eventType && (useFallbackCompositionData && "ko" !== nativeEvent.locale && (isComposing || "onCompositionStart" !== eventType ? "onCompositionEnd" === eventType && isComposing && (fallbackData = getData()) : (root2 = nativeEventTarget, startText = "value" in root2 ? root2.value : root2.textContent, isComposing = true)), handleEventFunc = accumulateTwoPhaseListeners(targetInst, eventType), 0 < handleEventFunc.length && (eventType = new SyntheticCompositionEvent(
+            eventType && (useFallbackCompositionData && "ko" !== nativeEvent.locale && (isComposing || "onCompositionStart" !== eventType ? "onCompositionEnd" === eventType && isComposing && (fallbackData = getData()) : (root = nativeEventTarget, startText = "value" in root ? root.value : root.textContent, isComposing = true)), handleEventFunc = accumulateTwoPhaseListeners(targetInst, eventType), 0 < handleEventFunc.length && (eventType = new SyntheticCompositionEvent(
               eventType,
               domEventName,
               null,
@@ -10364,15 +10364,15 @@
         };
       }
       function accumulateTwoPhaseListeners(targetFiber, reactName) {
-        for (var captureName = reactName + "Capture", listeners = []; null !== targetFiber; ) {
+        for (var captureName = reactName + "Capture", listeners2 = []; null !== targetFiber; ) {
           var _instance2 = targetFiber, stateNode = _instance2.stateNode;
           _instance2 = _instance2.tag;
-          5 !== _instance2 && 26 !== _instance2 && 27 !== _instance2 || null === stateNode || (_instance2 = getListener(targetFiber, captureName), null != _instance2 && listeners.unshift(
+          5 !== _instance2 && 26 !== _instance2 && 27 !== _instance2 || null === stateNode || (_instance2 = getListener(targetFiber, captureName), null != _instance2 && listeners2.unshift(
             createDispatchListener(targetFiber, _instance2, stateNode)
-          ), _instance2 = getListener(targetFiber, reactName), null != _instance2 && listeners.push(
+          ), _instance2 = getListener(targetFiber, reactName), null != _instance2 && listeners2.push(
             createDispatchListener(targetFiber, _instance2, stateNode)
           ));
-          if (3 === targetFiber.tag) return listeners;
+          if (3 === targetFiber.tag) return listeners2;
           targetFiber = targetFiber.return;
         }
         return [];
@@ -10385,18 +10385,18 @@
         return inst ? inst : null;
       }
       function accumulateEnterLeaveListenersForEvent(dispatchQueue, event2, target, common, inCapturePhase) {
-        for (var registrationName = event2._reactName, listeners = []; null !== target && target !== common; ) {
+        for (var registrationName = event2._reactName, listeners2 = []; null !== target && target !== common; ) {
           var _instance3 = target, alternate = _instance3.alternate, stateNode = _instance3.stateNode;
           _instance3 = _instance3.tag;
           if (null !== alternate && alternate === common) break;
-          5 !== _instance3 && 26 !== _instance3 && 27 !== _instance3 || null === stateNode || (alternate = stateNode, inCapturePhase ? (stateNode = getListener(target, registrationName), null != stateNode && listeners.unshift(
+          5 !== _instance3 && 26 !== _instance3 && 27 !== _instance3 || null === stateNode || (alternate = stateNode, inCapturePhase ? (stateNode = getListener(target, registrationName), null != stateNode && listeners2.unshift(
             createDispatchListener(target, stateNode, alternate)
-          )) : inCapturePhase || (stateNode = getListener(target, registrationName), null != stateNode && listeners.push(
+          )) : inCapturePhase || (stateNode = getListener(target, registrationName), null != stateNode && listeners2.push(
             createDispatchListener(target, stateNode, alternate)
           )));
           target = target.return;
         }
-        0 !== listeners.length && dispatchQueue.push({ event: event2, listeners });
+        0 !== listeners2.length && dispatchQueue.push({ event: event2, listeners: listeners2 });
       }
       var NORMALIZE_NEWLINES_REGEX = /\r\n?/g;
       var NORMALIZE_NULL_AND_REPLACEMENT_REGEX = /\u0000|\uFFFD/g;
@@ -11185,7 +11185,7 @@
       }
       function estimateBandwidth() {
         if ("function" === typeof performance.getEntriesByType) {
-          for (var count = 0, bits = 0, resourceEntries = performance.getEntriesByType("resource"), i = 0; i < resourceEntries.length; i++) {
+          for (var count3 = 0, bits = 0, resourceEntries = performance.getEntriesByType("resource"), i = 0; i < resourceEntries.length; i++) {
             var entry = resourceEntries[i], transferSize = entry.transferSize, initiatorType = entry.initiatorType, duration = entry.duration;
             if (transferSize && duration && isLikelyStaticResource(initiatorType)) {
               initiatorType = 0;
@@ -11198,13 +11198,13 @@
               }
               --i;
               bits += 8 * (transferSize + initiatorType) / (entry.duration / 1e3);
-              count++;
-              if (10 < count) break;
+              count3++;
+              if (10 < count3) break;
             }
           }
-          if (0 < count) return bits / count / 1e6;
+          if (0 < count3) return bits / count3 / 1e6;
         }
-        return navigator.connection && (count = navigator.connection.downlink, "number" === typeof count) ? count : 5;
+        return navigator.connection && (count3 = navigator.connection.downlink, "number" === typeof count3) ? count3 : 5;
       }
       var eventsEnabled = null;
       var selectionInformation = null;
@@ -11502,13 +11502,13 @@
         null !== formInst && 5 === formInst.tag && "form" === formInst.type ? requestFormReset$1(formInst) : previousDispatcher.r(form);
       }
       var globalDocument = "undefined" === typeof document ? null : document;
-      function preconnectAs(rel, href, crossOrigin) {
+      function preconnectAs(rel2, href, crossOrigin) {
         var ownerDocument = globalDocument;
         if (ownerDocument && "string" === typeof href && href) {
           var limitedEscapedHref = escapeSelectorAttributeValueInsideDoubleQuotes(href);
-          limitedEscapedHref = 'link[rel="' + rel + '"][href="' + limitedEscapedHref + '"]';
+          limitedEscapedHref = 'link[rel="' + rel2 + '"][href="' + limitedEscapedHref + '"]';
           "string" === typeof crossOrigin && (limitedEscapedHref += '[crossorigin="' + crossOrigin + '"]');
-          preconnectsSet.has(limitedEscapedHref) || (preconnectsSet.add(limitedEscapedHref), rel = { rel, crossOrigin, href }, null === ownerDocument.querySelector(limitedEscapedHref) && (href = ownerDocument.createElement("link"), setInitialProperties(href, "link", rel), markNodeAsHoistable(href), ownerDocument.head.appendChild(href)));
+          preconnectsSet.has(limitedEscapedHref) || (preconnectsSet.add(limitedEscapedHref), rel2 = { rel: rel2, crossOrigin, href }, null === ownerDocument.querySelector(limitedEscapedHref) && (href = ownerDocument.createElement("link"), setInitialProperties(href, "link", rel2), markNodeAsHoistable(href), ownerDocument.head.appendChild(href)));
         }
       }
       function prefetchDNS(href) {
@@ -11806,15 +11806,15 @@
           "stylesheet" === resource.type && 0 === (resource.state.loading & 4) && (instance = resource.instance, resource.state.loading |= 4, insertStylesheet(instance, props.precedence, hoistableRoot));
         return resource.instance;
       }
-      function insertStylesheet(instance, precedence, root3) {
-        for (var nodes = root3.querySelectorAll(
+      function insertStylesheet(instance, precedence, root2) {
+        for (var nodes = root2.querySelectorAll(
           'link[rel="stylesheet"][data-precedence],style[data-precedence]'
         ), last = nodes.length ? nodes[nodes.length - 1] : null, prior = last, i = 0; i < nodes.length; i++) {
           var node = nodes[i];
           if (node.dataset.precedence === precedence) prior = node;
           else if (prior !== last) break;
         }
-        prior ? prior.parentNode.insertBefore(instance, prior.nextSibling) : (precedence = 9 === root3.nodeType ? root3.head : root3, precedence.insertBefore(instance, precedence.firstChild));
+        prior ? prior.parentNode.insertBefore(instance, prior.nextSibling) : (precedence = 9 === root2.nodeType ? root2.head : root2, precedence.insertBefore(instance, precedence.firstChild));
       }
       function adoptPreloadPropsForStylesheet(stylesheetProps, preloadProps) {
         null == stylesheetProps.crossOrigin && (stylesheetProps.crossOrigin = preloadProps.crossOrigin);
@@ -11963,14 +11963,14 @@
         state.stylesheets = null;
         null !== state.unsuspend && (state.count++, precedencesByRoot = /* @__PURE__ */ new Map(), resources.forEach(insertStylesheetIntoRoot, state), precedencesByRoot = null, onUnsuspend.call(state));
       }
-      function insertStylesheetIntoRoot(root3, resource) {
+      function insertStylesheetIntoRoot(root2, resource) {
         if (!(resource.state.loading & 4)) {
-          var precedences = precedencesByRoot.get(root3);
+          var precedences = precedencesByRoot.get(root2);
           if (precedences) var last = precedences.get(null);
           else {
             precedences = /* @__PURE__ */ new Map();
-            precedencesByRoot.set(root3, precedences);
-            for (var nodes = root3.querySelectorAll(
+            precedencesByRoot.set(root2, precedences);
+            for (var nodes = root2.querySelectorAll(
               "link[data-precedence],style[data-precedence]"
             ), i = 0; i < nodes.length; i++) {
               var node = nodes[i];
@@ -11988,7 +11988,7 @@
           last = onUnsuspend.bind(this);
           nodes.addEventListener("load", last);
           nodes.addEventListener("error", last);
-          i ? i.parentNode.insertBefore(nodes, i.nextSibling) : (root3 = 9 === root3.nodeType ? root3.head : root3, root3.insertBefore(nodes, root3.firstChild));
+          i ? i.parentNode.insertBefore(nodes, i.nextSibling) : (root2 = 9 === root2.nodeType ? root2.head : root2, root2.insertBefore(nodes, root2.firstChild));
           resource.state.loading |= 4;
         }
       }
@@ -12077,8 +12077,8 @@
       }
       function attemptContinuousHydration(fiber) {
         if (13 === fiber.tag || 31 === fiber.tag) {
-          var root3 = enqueueConcurrentRenderForLane(fiber, 67108864);
-          null !== root3 && scheduleUpdateOnFiber(root3, fiber, 67108864);
+          var root2 = enqueueConcurrentRenderForLane(fiber, 67108864);
+          null !== root2 && scheduleUpdateOnFiber(root2, fiber, 67108864);
           markRetryLaneIfNotHydrated(fiber, 67108864);
         }
       }
@@ -12086,8 +12086,8 @@
         if (13 === fiber.tag || 31 === fiber.tag) {
           var lane = requestUpdateLane();
           lane = getBumpedLaneForHydrationByLane(lane);
-          var root3 = enqueueConcurrentRenderForLane(fiber, lane);
-          null !== root3 && scheduleUpdateOnFiber(root3, fiber, lane);
+          var root2 = enqueueConcurrentRenderForLane(fiber, lane);
+          null !== root2 && scheduleUpdateOnFiber(root2, fiber, lane);
           markRetryLaneIfNotHydrated(fiber, lane);
         }
       }
@@ -12141,21 +12141,21 @@
                     if (fiber.current.memoizedState.isDehydrated) {
                       var lanes = getHighestPriorityLanes(fiber.pendingLanes);
                       if (0 !== lanes) {
-                        var root3 = fiber;
-                        root3.pendingLanes |= 2;
-                        for (root3.entangledLanes |= 2; lanes; ) {
+                        var root2 = fiber;
+                        root2.pendingLanes |= 2;
+                        for (root2.entangledLanes |= 2; lanes; ) {
                           var lane = 1 << 31 - clz32(lanes);
-                          root3.entanglements[1] |= lane;
+                          root2.entanglements[1] |= lane;
                           lanes &= ~lane;
                         }
                         ensureRootIsScheduled(fiber);
-                        0 === (executionContext & 6) && (workInProgressRootRenderTargetTime = now() + 500, flushSyncWorkAcrossRoots_impl(0, false));
+                        0 === (executionContext & 6) && (workInProgressRootRenderTargetTime = now2() + 500, flushSyncWorkAcrossRoots_impl(0, false));
                       }
                     }
                     break;
                   case 31:
                   case 13:
-                    root3 = enqueueConcurrentRenderForLane(fiber, 2), null !== root3 && scheduleUpdateOnFiber(root3, fiber, 2), flushSyncWork$1(), markRetryLaneIfNotHydrated(fiber, 2);
+                    root2 = enqueueConcurrentRenderForLane(fiber, 2), null !== root2 && scheduleUpdateOnFiber(root2, fiber, 2), flushSyncWork$1(), markRetryLaneIfNotHydrated(fiber, 2);
                 }
               fiber = findInstanceBlockingEvent(nativeEvent);
               null === fiber && dispatchEventForPluginEventSystem(
@@ -12581,17 +12581,17 @@
         this._internalRoot = internalRoot;
       }
       ReactDOMHydrationRoot.prototype.render = ReactDOMRoot.prototype.render = function(children) {
-        var root3 = this._internalRoot;
-        if (null === root3) throw Error(formatProdErrorMessage(409));
-        var current = root3.current, lane = requestUpdateLane();
-        updateContainerImpl(current, lane, children, root3, null, null);
+        var root2 = this._internalRoot;
+        if (null === root2) throw Error(formatProdErrorMessage(409));
+        var current = root2.current, lane = requestUpdateLane();
+        updateContainerImpl(current, lane, children, root2, null, null);
       };
       ReactDOMHydrationRoot.prototype.unmount = ReactDOMRoot.prototype.unmount = function() {
-        var root3 = this._internalRoot;
-        if (null !== root3) {
+        var root2 = this._internalRoot;
+        if (null !== root2) {
           this._internalRoot = null;
-          var container = root3.containerInfo;
-          updateContainerImpl(root3.current, 2, null, root3, null, null);
+          var container = root2.containerInfo;
+          updateContainerImpl(root2.current, 2, null, root2, null, null);
           flushSyncWork$1();
           container[internalContainerInstanceKey] = null;
         }
@@ -12608,7 +12608,7 @@
           0 === i && attemptExplicitHydrationTarget(target);
         }
       };
-      var isomorphicReactPackageVersion$jscomp$inline_1840 = React7.version;
+      var isomorphicReactPackageVersion$jscomp$inline_1840 = React8.version;
       if ("19.2.7" !== isomorphicReactPackageVersion$jscomp$inline_1840)
         throw Error(
           formatProdErrorMessage(
@@ -12778,7 +12778,7 @@
     }
   });
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/entry.tsx
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/entry.tsx
   init_define_process_env();
   var import_client = __toESM(require_client());
 
@@ -12824,7 +12824,7 @@
   var Icon = (0, import_react.forwardRef)(
     ({
       color = "currentColor",
-      size = 24,
+      size: size2 = 24,
       strokeWidth = 2,
       absoluteStrokeWidth,
       className = "",
@@ -12837,10 +12837,10 @@
         {
           ref,
           ...defaultAttributes,
-          width: size,
-          height: size,
+          width: size2,
+          height: size2,
           stroke: color,
-          strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size) : strokeWidth,
+          strokeWidth: absoluteStrokeWidth ? Number(strokeWidth) * 24 / Number(size2) : strokeWidth,
           className: mergeClasses("lucide", className),
           ...rest
         },
@@ -12866,11 +12866,37 @@
     return Component;
   };
 
+  // node_modules/lucide-react/dist/esm/icons/activity.js
+  init_define_process_env();
+  var Activity = createLucideIcon("Activity", [
+    [
+      "path",
+      {
+        d: "M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2",
+        key: "169zse"
+      }
+    ]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/arrow-left.js
+  init_define_process_env();
+  var ArrowLeft = createLucideIcon("ArrowLeft", [
+    ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
+    ["path", { d: "M19 12H5", key: "x3x0zl" }]
+  ]);
+
   // node_modules/lucide-react/dist/esm/icons/arrow-right.js
   init_define_process_env();
   var ArrowRight = createLucideIcon("ArrowRight", [
     ["path", { d: "M5 12h14", key: "1ays0h" }],
     ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/arrow-up-right.js
+  init_define_process_env();
+  var ArrowUpRight = createLucideIcon("ArrowUpRight", [
+    ["path", { d: "M7 7h10v10", key: "1tivn9" }],
+    ["path", { d: "M7 17 17 7", key: "1vkiza" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/banknote.js
@@ -12905,6 +12931,13 @@
     ["path", { d: "M9 13v2", key: "rq6x2g" }]
   ]);
 
+  // node_modules/lucide-react/dist/esm/icons/briefcase.js
+  init_define_process_env();
+  var Briefcase = createLucideIcon("Briefcase", [
+    ["path", { d: "M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16", key: "jecpp" }],
+    ["rect", { width: "20", height: "14", x: "2", y: "6", rx: "2", key: "i6l2r4" }]
+  ]);
+
   // node_modules/lucide-react/dist/esm/icons/building-2.js
   init_define_process_env();
   var Building2 = createLucideIcon("Building2", [
@@ -12926,6 +12959,22 @@
     ["path", { d: "M8 17v-3", key: "17ska0" }]
   ]);
 
+  // node_modules/lucide-react/dist/esm/icons/check.js
+  init_define_process_env();
+  var Check = createLucideIcon("Check", [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]]);
+
+  // node_modules/lucide-react/dist/esm/icons/chevron-left.js
+  init_define_process_env();
+  var ChevronLeft = createLucideIcon("ChevronLeft", [
+    ["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/chevron-right.js
+  init_define_process_env();
+  var ChevronRight = createLucideIcon("ChevronRight", [
+    ["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]
+  ]);
+
   // node_modules/lucide-react/dist/esm/icons/clipboard-list.js
   init_define_process_env();
   var ClipboardList = createLucideIcon("ClipboardList", [
@@ -12943,6 +12992,22 @@
     ["path", { d: "M8 16h.01", key: "18s6g9" }]
   ]);
 
+  // node_modules/lucide-react/dist/esm/icons/download.js
+  init_define_process_env();
+  var Download = createLucideIcon("Download", [
+    ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+    ["polyline", { points: "7 10 12 15 17 10", key: "2ggqvy" }],
+    ["line", { x1: "12", x2: "12", y1: "15", y2: "3", key: "1vk2je" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/external-link.js
+  init_define_process_env();
+  var ExternalLink = createLucideIcon("ExternalLink", [
+    ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+    ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+    ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+  ]);
+
   // node_modules/lucide-react/dist/esm/icons/file-archive.js
   init_define_process_env();
   var FileArchive = createLucideIcon("FileArchive", [
@@ -12955,6 +13020,15 @@
       { d: "M15.5 22H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v16a2 2 0 0 0 .274 1.01", key: "gkbcor" }
     ],
     ["circle", { cx: "10", cy: "20", r: "2", key: "1xzdoj" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/file-plus-2.js
+  init_define_process_env();
+  var FilePlus2 = createLucideIcon("FilePlus2", [
+    ["path", { d: "M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4", key: "1pf5j1" }],
+    ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+    ["path", { d: "M3 15h6", key: "4e2qda" }],
+    ["path", { d: "M6 12v6", key: "1u72j0" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/file-search.js
@@ -12979,6 +13053,22 @@
     ["path", { d: "M16 17H8", key: "z1uh3a" }]
   ]);
 
+  // node_modules/lucide-react/dist/esm/icons/files.js
+  init_define_process_env();
+  var Files = createLucideIcon("Files", [
+    ["path", { d: "M20 7h-3a2 2 0 0 1-2-2V2", key: "x099mo" }],
+    ["path", { d: "M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z", key: "18t6ie" }],
+    ["path", { d: "M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8", key: "1nja0z" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/history.js
+  init_define_process_env();
+  var History = createLucideIcon("History", [
+    ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
+    ["path", { d: "M3 3v5h5", key: "1xhq8a" }],
+    ["path", { d: "M12 7v5l4 2", key: "1fdv2h" }]
+  ]);
+
   // node_modules/lucide-react/dist/esm/icons/house.js
   init_define_process_env();
   var House = createLucideIcon("House", [
@@ -12990,6 +13080,45 @@
         key: "1d0kgt"
       }
     ]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/info.js
+  init_define_process_env();
+  var Info = createLucideIcon("Info", [
+    ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+    ["path", { d: "M12 16v-4", key: "1dtifu" }],
+    ["path", { d: "M12 8h.01", key: "e9boi3" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/landmark.js
+  init_define_process_env();
+  var Landmark = createLucideIcon("Landmark", [
+    ["line", { x1: "3", x2: "21", y1: "22", y2: "22", key: "j8o0r" }],
+    ["line", { x1: "6", x2: "6", y1: "18", y2: "11", key: "10tf0k" }],
+    ["line", { x1: "10", x2: "10", y1: "18", y2: "11", key: "54lgf6" }],
+    ["line", { x1: "14", x2: "14", y1: "18", y2: "11", key: "380y" }],
+    ["line", { x1: "18", x2: "18", y1: "18", y2: "11", key: "1kevvc" }],
+    ["polygon", { points: "12 2 20 7 4 7", key: "jkujk7" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/layout-grid.js
+  init_define_process_env();
+  var LayoutGrid = createLucideIcon("LayoutGrid", [
+    ["rect", { width: "7", height: "7", x: "3", y: "3", rx: "1", key: "1g98yp" }],
+    ["rect", { width: "7", height: "7", x: "14", y: "3", rx: "1", key: "6d4xhi" }],
+    ["rect", { width: "7", height: "7", x: "14", y: "14", rx: "1", key: "nxv5o0" }],
+    ["rect", { width: "7", height: "7", x: "3", y: "14", rx: "1", key: "1bb6yr" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/list.js
+  init_define_process_env();
+  var List = createLucideIcon("List", [
+    ["path", { d: "M3 12h.01", key: "nlz23k" }],
+    ["path", { d: "M3 18h.01", key: "1tta3j" }],
+    ["path", { d: "M3 6h.01", key: "1rqtza" }],
+    ["path", { d: "M8 12h13", key: "1za7za" }],
+    ["path", { d: "M8 18h13", key: "1lx6n3" }],
+    ["path", { d: "M8 6h13", key: "ik3vkj" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/loader-circle.js
@@ -13004,6 +13133,13 @@
     ["path", { d: "M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4", key: "1uf3rs" }],
     ["polyline", { points: "16 17 21 12 16 7", key: "1gabdz" }],
     ["line", { x1: "21", x2: "9", y1: "12", y2: "12", key: "1uyos4" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/mail.js
+  init_define_process_env();
+  var Mail = createLucideIcon("Mail", [
+    ["rect", { width: "20", height: "16", x: "2", y: "4", rx: "2", key: "18n3k1" }],
+    ["path", { d: "m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7", key: "1ocrg3" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/map-pin.js
@@ -13025,6 +13161,12 @@
     ["line", { x1: "4", x2: "20", y1: "12", y2: "12", key: "1e0a9i" }],
     ["line", { x1: "4", x2: "20", y1: "6", y2: "6", key: "1owob3" }],
     ["line", { x1: "4", x2: "20", y1: "18", y2: "18", key: "yk5zj1" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/message-circle.js
+  init_define_process_env();
+  var MessageCircle = createLucideIcon("MessageCircle", [
+    ["path", { d: "M7.9 20A9 9 0 1 0 4 16.1L2 22Z", key: "vv11sd" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/moon.js
@@ -13049,11 +13191,89 @@
     ["line", { x1: "12", x2: "12", y1: "22", y2: "12", key: "a4e8g8" }]
   ]);
 
+  // node_modules/lucide-react/dist/esm/icons/paperclip.js
+  init_define_process_env();
+  var Paperclip = createLucideIcon("Paperclip", [
+    ["path", { d: "M13.234 20.252 21 12.3", key: "1cbrk9" }],
+    [
+      "path",
+      {
+        d: "m16 6-8.414 8.586a2 2 0 0 0 0 2.828 2 2 0 0 0 2.828 0l8.414-8.586a4 4 0 0 0 0-5.656 4 4 0 0 0-5.656 0l-8.415 8.585a6 6 0 1 0 8.486 8.486",
+        key: "1pkts6"
+      }
+    ]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/pen-line.js
+  init_define_process_env();
+  var PenLine = createLucideIcon("PenLine", [
+    ["path", { d: "M12 20h9", key: "t2du7b" }],
+    [
+      "path",
+      {
+        d: "M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z",
+        key: "1ykcvy"
+      }
+    ]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/pencil.js
+  init_define_process_env();
+  var Pencil = createLucideIcon("Pencil", [
+    [
+      "path",
+      {
+        d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+        key: "1a8usu"
+      }
+    ],
+    ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/phone.js
+  init_define_process_env();
+  var Phone = createLucideIcon("Phone", [
+    [
+      "path",
+      {
+        d: "M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z",
+        key: "foiqr5"
+      }
+    ]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/plug-zap.js
+  init_define_process_env();
+  var PlugZap = createLucideIcon("PlugZap", [
+    [
+      "path",
+      { d: "M6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z", key: "goz73y" }
+    ],
+    ["path", { d: "m2 22 3-3", key: "19mgm9" }],
+    ["path", { d: "M7.5 13.5 10 11", key: "7xgeeb" }],
+    ["path", { d: "M10.5 16.5 13 14", key: "10btkg" }],
+    ["path", { d: "m18 3-4 4h6l-4 4", key: "16psg9" }]
+  ]);
+
   // node_modules/lucide-react/dist/esm/icons/plus.js
   init_define_process_env();
   var Plus = createLucideIcon("Plus", [
     ["path", { d: "M5 12h14", key: "1ays0h" }],
     ["path", { d: "M12 5v14", key: "s699le" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/rotate-ccw.js
+  init_define_process_env();
+  var RotateCcw = createLucideIcon("RotateCcw", [
+    ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
+    ["path", { d: "M3 3v5h5", key: "1xhq8a" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/search.js
+  init_define_process_env();
+  var Search = createLucideIcon("Search", [
+    ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }],
+    ["path", { d: "m21 21-4.3-4.3", key: "1qie3q" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/settings.js
@@ -13096,6 +13316,55 @@
     ["path", { d: "m9.5 9.5 5 5", key: "18nt4w" }]
   ]);
 
+  // node_modules/lucide-react/dist/esm/icons/sliders-horizontal.js
+  init_define_process_env();
+  var SlidersHorizontal = createLucideIcon("SlidersHorizontal", [
+    ["line", { x1: "21", x2: "14", y1: "4", y2: "4", key: "obuewd" }],
+    ["line", { x1: "10", x2: "3", y1: "4", y2: "4", key: "1q6298" }],
+    ["line", { x1: "21", x2: "12", y1: "12", y2: "12", key: "1iu8h1" }],
+    ["line", { x1: "8", x2: "3", y1: "12", y2: "12", key: "ntss68" }],
+    ["line", { x1: "21", x2: "16", y1: "20", y2: "20", key: "14d8ph" }],
+    ["line", { x1: "12", x2: "3", y1: "20", y2: "20", key: "m0wm8r" }],
+    ["line", { x1: "14", x2: "14", y1: "2", y2: "6", key: "14e1ph" }],
+    ["line", { x1: "8", x2: "8", y1: "10", y2: "14", key: "1i6ji0" }],
+    ["line", { x1: "16", x2: "16", y1: "18", y2: "22", key: "1lctlv" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/sparkles.js
+  init_define_process_env();
+  var Sparkles = createLucideIcon("Sparkles", [
+    [
+      "path",
+      {
+        d: "M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z",
+        key: "4pj2yx"
+      }
+    ],
+    ["path", { d: "M20 3v4", key: "1olli1" }],
+    ["path", { d: "M22 5h-4", key: "1gvqau" }],
+    ["path", { d: "M4 17v2", key: "vumght" }],
+    ["path", { d: "M5 18H3", key: "zchphs" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/square-check-big.js
+  init_define_process_env();
+  var SquareCheckBig = createLucideIcon("SquareCheckBig", [
+    ["path", { d: "M21 10.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.5", key: "1uzm8b" }],
+    ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/star.js
+  init_define_process_env();
+  var Star = createLucideIcon("Star", [
+    [
+      "path",
+      {
+        d: "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",
+        key: "r04s7s"
+      }
+    ]
+  ]);
+
   // node_modules/lucide-react/dist/esm/icons/sun.js
   init_define_process_env();
   var Sun = createLucideIcon("Sun", [
@@ -13110,11 +13379,59 @@
     ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
   ]);
 
+  // node_modules/lucide-react/dist/esm/icons/tractor.js
+  init_define_process_env();
+  var Tractor = createLucideIcon("Tractor", [
+    ["path", { d: "m10 11 11 .9a1 1 0 0 1 .8 1.1l-.665 4.158a1 1 0 0 1-.988.842H20", key: "she1j9" }],
+    ["path", { d: "M16 18h-5", key: "bq60fd" }],
+    ["path", { d: "M18 5a1 1 0 0 0-1 1v5.573", key: "1kv8ia" }],
+    ["path", { d: "M3 4h8.129a1 1 0 0 1 .99.863L13 11.246", key: "1q1ert" }],
+    ["path", { d: "M4 11V4", key: "9ft8pt" }],
+    ["path", { d: "M7 15h.01", key: "k5ht0j" }],
+    ["path", { d: "M8 10.1V4", key: "1jgyzo" }],
+    ["circle", { cx: "18", cy: "18", r: "2", key: "1emm8v" }],
+    ["circle", { cx: "7", cy: "15", r: "5", key: "ddtuc" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/trash-2.js
+  init_define_process_env();
+  var Trash2 = createLucideIcon("Trash2", [
+    ["path", { d: "M3 6h18", key: "d0wm0j" }],
+    ["path", { d: "M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6", key: "4alrt4" }],
+    ["path", { d: "M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2", key: "v07s0e" }],
+    ["line", { x1: "10", x2: "10", y1: "11", y2: "17", key: "1uufr5" }],
+    ["line", { x1: "14", x2: "14", y1: "11", y2: "17", key: "xtxkd" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/upload.js
+  init_define_process_env();
+  var Upload = createLucideIcon("Upload", [
+    ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+    ["polyline", { points: "17 8 12 3 7 8", key: "t8dd8p" }],
+    ["line", { x1: "12", x2: "12", y1: "3", y2: "15", key: "widbto" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/user-check.js
+  init_define_process_env();
+  var UserCheck = createLucideIcon("UserCheck", [
+    ["path", { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2", key: "1yyitq" }],
+    ["circle", { cx: "9", cy: "7", r: "4", key: "nufk8" }],
+    ["polyline", { points: "16 11 18 13 22 9", key: "1pwet4" }]
+  ]);
+
   // node_modules/lucide-react/dist/esm/icons/user-round.js
   init_define_process_env();
   var UserRound = createLucideIcon("UserRound", [
     ["circle", { cx: "12", cy: "8", r: "5", key: "1hypcn" }],
     ["path", { d: "M20 21a8 8 0 0 0-16 0", key: "rfgkzh" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/users-round.js
+  init_define_process_env();
+  var UsersRound = createLucideIcon("UsersRound", [
+    ["path", { d: "M18 21a8 8 0 0 0-16 0", key: "3ypg7q" }],
+    ["circle", { cx: "10", cy: "8", r: "5", key: "o932ke" }],
+    ["path", { d: "M22 20c0-3.37-2-6.5-4-8a5 5 0 0 0-.45-8.3", key: "10s06x" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/users.js
@@ -13145,7 +13462,7 @@
   init_define_process_env();
   var import_react3 = __toESM(require_react());
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/stubs/next-navigation.ts
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/next-navigation.ts
   init_define_process_env();
   function useRouter() {
     return { push() {
@@ -13156,7 +13473,8 @@
     } };
   }
   function usePathname() {
-    return "/dashboard";
+    const v2 = window.__hv || new URLSearchParams(location.search).get("v") || "dash";
+    return v2 === "dash" ? "/dashboard" : v2.startsWith("client") ? "/clients" : v2 === "opp" ? "/sales-funnel" : "/operations";
   }
 
   // src/components/ui/button.tsx
@@ -15881,12 +16199,12 @@
     }
   );
   var Button = React3.forwardRef(
-    ({ className, variant, size, asChild = false, ...props }, ref) => {
+    ({ className, variant, size: size2, asChild = false, ...props }, ref) => {
       const Comp = asChild ? Slot : "button";
       return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         Comp,
         {
-          className: cn(buttonVariants({ variant, size, className })),
+          className: cn(buttonVariants({ variant, size: size2, className })),
           ref,
           ...props
         }
@@ -15895,7 +16213,7 @@
   );
   Button.displayName = "Button";
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/stubs/auth-ui.controller.ts
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/auth-ui.controller.ts
   init_define_process_env();
   async function logoutFromUi() {
     return { success: true };
@@ -16032,6 +16350,7 @@
     const style = getComputedStyle(host);
     const ink = style.getPropertyValue("--ds-mesh-ink").trim();
     const accent = style.getPropertyValue("--ds-accent").trim();
+    const line = style.getPropertyValue("--ds-mesh-line").trim();
     function resize() {
       width = Math.max(1, host.clientWidth);
       height = Math.max(1, host.clientHeight);
@@ -16039,9 +16358,9 @@
       canvas.width = Math.round(width * ratio);
       canvas.height = Math.round(height * ratio);
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-      const count = limited || window.innerWidth < 768 ? MESH_REFERENCE.mobileDensity : MESH_REFERENCE.density;
-      points = Array.from({ length: count }, () => ({ x: Math.random() * width, y: Math.random() * height, vx: (Math.random() - 0.5) * MESH_REFERENCE.speed, vy: (Math.random() - 0.5) * MESH_REFERENCE.speed, fx: 0, fy: 0, accent: Math.random() < MESH_REFERENCE.redRatio, radius: Math.random() * 1.5 + 0.8 }));
-      canvas.dataset.pointCount = String(count);
+      const count3 = limited || window.innerWidth < 768 ? MESH_REFERENCE.mobileDensity : MESH_REFERENCE.density;
+      points = Array.from({ length: count3 }, () => ({ x: Math.random() * width, y: Math.random() * height, vx: (Math.random() - 0.5) * MESH_REFERENCE.speed, vy: (Math.random() - 0.5) * MESH_REFERENCE.speed, fx: 0, fy: 0, accent: Math.random() < MESH_REFERENCE.redRatio, radius: Math.random() * 1.5 + 0.8 }));
+      canvas.dataset.pointCount = String(count3);
       last = -Infinity;
     }
     const loop = createMotionLoop({
@@ -16049,7 +16368,7 @@
       hidden: () => document.hidden,
       visible: () => intersecting,
       request: (cb) => requestAnimationFrame(cb),
-      cancel: (id) => cancelAnimationFrame(id),
+      cancel: (id2) => cancelAnimationFrame(id2),
       state: onState,
       render(time) {
         if (time !== 0 && time - last < (limited ? 33 : 16)) return;
@@ -16059,58 +16378,58 @@
         let cursorLinks = 0;
         const active = mouse && hover.matches && window.innerWidth >= 768 && !reduced.matches ? mouse : null;
         for (let i = 0; i < points.length; i++) {
-          const p = points[i];
-          const push = active ? repelPush(p.fx, p.fy, p.x - active.x, p.y - active.y, step) : repelPush(p.fx, p.fy, Infinity, Infinity, step);
-          p.fx = push.fx;
-          p.fy = push.fy;
-          p.x += (p.vx + p.fx) * step;
-          p.y += (p.vy + p.fy) * step;
-          if (p.x < 0) {
-            p.x = 0;
-            p.vx = Math.abs(p.vx);
-            p.fx = Math.abs(p.fx);
-          } else if (p.x > width) {
-            p.x = width;
-            p.vx = -Math.abs(p.vx);
-            p.fx = -Math.abs(p.fx);
+          const p3 = points[i];
+          const push = active ? repelPush(p3.fx, p3.fy, p3.x - active.x, p3.y - active.y, step) : repelPush(p3.fx, p3.fy, Infinity, Infinity, step);
+          p3.fx = push.fx;
+          p3.fy = push.fy;
+          p3.x += (p3.vx + p3.fx) * step;
+          p3.y += (p3.vy + p3.fy) * step;
+          if (p3.x < 0) {
+            p3.x = 0;
+            p3.vx = Math.abs(p3.vx);
+            p3.fx = Math.abs(p3.fx);
+          } else if (p3.x > width) {
+            p3.x = width;
+            p3.vx = -Math.abs(p3.vx);
+            p3.fx = -Math.abs(p3.fx);
           }
-          if (p.y < 0) {
-            p.y = 0;
-            p.vy = Math.abs(p.vy);
-            p.fy = Math.abs(p.fy);
-          } else if (p.y > height) {
-            p.y = height;
-            p.vy = -Math.abs(p.vy);
-            p.fy = -Math.abs(p.fy);
+          if (p3.y < 0) {
+            p3.y = 0;
+            p3.vy = Math.abs(p3.vy);
+            p3.fy = Math.abs(p3.fy);
+          } else if (p3.y > height) {
+            p3.y = height;
+            p3.vy = -Math.abs(p3.vy);
+            p3.fy = -Math.abs(p3.fy);
           }
-          ctx.fillStyle = p.accent ? accent : ink;
+          ctx.fillStyle = p3.accent ? accent : ink;
           ctx.globalAlpha = 1;
-          ctx.shadowColor = p.accent ? accent : ink;
-          ctx.shadowBlur = p.accent ? light ? 2 : 6 : light ? 0 : 2;
-          const near = active && Math.hypot(p.x - active.x, p.y - active.y) < 120 ? 1 : 0;
+          ctx.shadowColor = p3.accent ? accent : ink;
+          ctx.shadowBlur = p3.accent ? light ? 2 : 6 : light ? 0 : 2;
+          const near = active && Math.hypot(p3.x - active.x, p3.y - active.y) < 120 ? 1 : 0;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius + near, 0, Math.PI * 2);
+          ctx.arc(p3.x, p3.y, p3.radius + near, 0, Math.PI * 2);
           ctx.fill();
           ctx.shadowBlur = 0;
           for (let j = i + 1; j < points.length; j++) {
-            const q = points[j], distance = Math.hypot(p.x - q.x, p.y - q.y);
+            const q = points[j], distance = Math.hypot(p3.x - q.x, p3.y - q.y);
             if (distance >= MESH_REFERENCE.connection) continue;
-            ctx.strokeStyle = p.accent || q.accent ? accent : style.getPropertyValue("--ds-mesh-line").trim();
-            ctx.globalAlpha = (1 - distance / MESH_REFERENCE.connection) * (light ? 0.28 : 0.35) * (p.accent || q.accent ? 0.9 : 1);
+            ctx.strokeStyle = p3.accent || q.accent ? accent : line;
+            ctx.globalAlpha = (1 - distance / MESH_REFERENCE.connection) * (light ? 0.28 : 0.35) * (p3.accent || q.accent ? 0.9 : 1);
             ctx.lineWidth = 0.7;
             ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
+            ctx.moveTo(p3.x, p3.y);
             ctx.lineTo(q.x, q.y);
             ctx.stroke();
           }
           if (active) {
-            const distance = Math.hypot(p.x - active.x, p.y - active.y);
+            const distance = Math.hypot(p3.x - active.x, p3.y - active.y);
             if (distance < MESH_REFERENCE.cursorRadius) {
               ctx.strokeStyle = accent;
               ctx.globalAlpha = (1 - distance / MESH_REFERENCE.cursorRadius) * 0.75;
               ctx.lineWidth = 1.1;
               ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
+              ctx.moveTo(p3.x, p3.y);
               ctx.lineTo(active.x, active.y);
               ctx.stroke();
               cursorLinks++;
@@ -16126,7 +16445,10 @@
       resize();
       loop.sync();
     };
-    const visibility = () => loop.sync();
+    const visibility = () => {
+      mouse = null;
+      loop.sync();
+    };
     const pointer = (event2) => {
       mouse = hover.matches && !reduced.matches ? cursorInMesh(event2.clientX, event2.clientY, canvas.getBoundingClientRect()) : null;
     };
@@ -16351,54 +16673,444 @@
     return role;
   }
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/stubs/notification-bell.tsx
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/notification-bell.tsx
   init_define_process_env();
   var import_jsx_runtime6 = __toESM(require_jsx_runtime());
   function NotificationBell() {
     return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("button", { type: "button", className: "jv-icon-btn", "aria-label": "Notifica\xE7\xF5es (harness)", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Bell, { size: 16, "aria-hidden": true }) });
   }
 
-  // src/components/layout/app-header.tsx
+  // src/components/layout/ava-command.tsx
+  init_define_process_env();
+
+  // src/components/layout/ava-command.css
+  init_define_process_env();
+
+  // src/components/layout/ava-command.tsx
+  var import_react8 = __toESM(require_react());
+  var import_react_dom2 = __toESM(require_react_dom());
   var import_jsx_runtime7 = __toESM(require_jsx_runtime());
+  var pageCommands = [];
+  var listeners = /* @__PURE__ */ new Set();
+  var subscribe2 = (listener) => {
+    listeners.add(listener);
+    return () => {
+      listeners.delete(listener);
+    };
+  };
+  var snapshot = () => pageCommands;
+  var serverSnapshot = () => [];
+  function AvaTopBar() {
+    const router = useRouter();
+    const [open, setOpen] = (0, import_react8.useState)(false);
+    const page = (0, import_react8.useSyncExternalStore)(subscribe2, snapshot, serverSnapshot);
+    const menu = (0, import_react8.useMemo)(() => NAVIGATION_GROUPS.flatMap((group) => group.items.filter((item) => !item.requires).map((item) => ({
+      id: `nav-${item.href}`,
+      label: `Ir para ${item.label}`,
+      hint: group.label,
+      run: () => router.push(item.href)
+    }))), [router]);
+    (0, import_react8.useEffect)(() => {
+      const onKey = (event2) => {
+        if ((event2.ctrlKey || event2.metaKey) && event2.key.toLowerCase() === "k") {
+          event2.preventDefault();
+          setOpen(true);
+        }
+      };
+      window.addEventListener("keydown", onKey);
+      return () => window.removeEventListener("keydown", onKey);
+    }, []);
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(import_jsx_runtime7.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("button", { "aria-haspopup": "dialog", "aria-label": "Pergunte \xE0 Ava ou v\xE1 para (Ctrl K)", className: "jv-ava", onClick: () => setOpen(true), type: "button", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { "aria-hidden": "true", className: "jv-ava__orb" }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "jv-ava__label", children: "Pergunte \xE0 Ava ou v\xE1 para\u2026" }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("kbd", { className: "jv-ava__kbd", children: "Ctrl K" })
+      ] }),
+      open && (0, import_react_dom2.createPortal)(
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(AvaPalette, { menu, onAskAva: () => router.push("/ava"), onClose: () => setOpen(false), page }),
+        document.body
+      )
+    ] });
+  }
+  function AvaPalette({ page, menu, onClose, onAskAva }) {
+    const [query, setQuery] = (0, import_react8.useState)("");
+    const [cursor, setCursor] = (0, import_react8.useState)(0);
+    const input = (0, import_react8.useRef)(null);
+    const all = (0, import_react8.useMemo)(() => [...page, ...menu], [menu, page]);
+    const filtered = (0, import_react8.useMemo)(() => {
+      const q = query.trim().toLowerCase();
+      return q ? all.filter((command) => command.label.toLowerCase().includes(q) || command.hint?.toLowerCase().includes(q)) : all;
+    }, [all, query]);
+    (0, import_react8.useEffect)(() => {
+      const trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      window.requestAnimationFrame(() => input.current?.focus());
+      return () => {
+        if (trigger?.isConnected) trigger.focus();
+      };
+    }, []);
+    (0, import_react8.useEffect)(() => {
+      document.getElementById(`jv-ava-opt-${cursor}`)?.scrollIntoView({ block: "nearest" });
+    }, [cursor]);
+    const run = (command) => {
+      if (!command) return;
+      onClose();
+      window.requestAnimationFrame(command.run);
+    };
+    const firstMenu = filtered.findIndex((command) => !page.includes(command));
+    return /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "jv-ava-scrim", onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+      "div",
+      {
+        "aria-label": "Pergunte \xE0 Ava ou v\xE1 para",
+        "aria-modal": "true",
+        className: "jv-ava-palette",
+        onClick: (event2) => event2.stopPropagation(),
+        role: "dialog",
+        onKeyDown: (event2) => {
+          if (event2.key === "Escape") {
+            event2.preventDefault();
+            onClose();
+          } else if (event2.key === "ArrowDown") {
+            event2.preventDefault();
+            setCursor((value) => Math.min(value + 1, filtered.length - 1));
+          } else if (event2.key === "ArrowUp") {
+            event2.preventDefault();
+            setCursor((value) => Math.max(value - 1, 0));
+          } else if (event2.key === "Enter") {
+            event2.preventDefault();
+            if (filtered.length) run(filtered[cursor]);
+            else {
+              onClose();
+              onAskAva();
+            }
+          } else if (event2.key === "Tab") event2.preventDefault();
+        },
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "jv-ava-palette__q", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { "aria-hidden": "true", className: "jv-ava__orb" }),
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("input", { "aria-activedescendant": filtered[cursor] ? `jv-ava-opt-${cursor}` : void 0, "aria-controls": "jv-ava-list", "aria-expanded": "true", "aria-label": "Pergunte \xE0 Ava ou digite para filtrar", onChange: (event2) => {
+              setQuery(event2.target.value);
+              setCursor(0);
+            }, placeholder: "Pergunte \xE0 Ava ou digite para filtrar\u2026", ref: input, role: "combobox", value: query }),
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("button", { "aria-label": "Fechar", className: "jv-ava-palette__close", onClick: onClose, type: "button", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(X, { "aria-hidden": "true", size: 16 }) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("ul", { className: "jv-ava-palette__list", id: "jv-ava-list", role: "listbox", children: [
+            filtered.map((command, index) => /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(import_react8.Fragment, { children: [
+              (index === 0 || index === firstMenu) && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("li", { className: "jv-ava-palette__group", role: "presentation", children: index === firstMenu ? "Portal" : "Nesta tela" }),
+              /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("li", { "aria-selected": index === cursor, id: `jv-ava-opt-${index}`, onClick: () => run(command), onMouseEnter: () => setCursor(index), role: "option", children: [
+                index < firstMenu || firstMenu < 0 ? /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ArrowRight, { "aria-hidden": "true", size: 14 }) : /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Search, { "aria-hidden": "true", size: 14 }),
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "jv-ava-palette__label", children: command.label }),
+                command.hint && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "jv-ava-palette__hint", children: command.hint })
+              ] })
+            ] }, command.id)),
+            filtered.length === 0 && /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("li", { "aria-selected": "true", className: "jv-ava-palette__empty", onClick: () => {
+              onClose();
+              onAskAva();
+            }, role: "option", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Sparkles, { "aria-hidden": "true", size: 14 }),
+              /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { children: [
+                "Nenhum destino com \u201C",
+                query,
+                "\u201D. ",
+                /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("b", { children: "Abrir a Ava" }),
+                " para perguntar; a resposta direta nesta barra depende do servi\xE7o de perguntas da Ava."
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Bot, { "aria-hidden": "true", size: 14 })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("p", { className: "jv-ava-palette__foot", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("kbd", { children: "\u2191" }),
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("kbd", { children: "\u2193" }),
+            " navegar \xB7 ",
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("kbd", { children: "Enter" }),
+            " abrir \xB7 ",
+            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("kbd", { children: "Esc" }),
+            " fechar"
+          ] })
+        ]
+      }
+    ) });
+  }
+
+  // src/components/layout/app-header.tsx
+  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
   function AppHeader({ context, initialTheme = "irmen-industrial-dark" }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("header", { className: "jv-top", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ShellMenuButton, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(ShellLocation, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "jv-top__tools", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "jv-top__identity", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "jv-user-chip", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(UserRound, { "aria-hidden": "true", size: 15 }),
-          /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { className: "min-w-0", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("p", { className: "jv-user-chip__name", children: context.userName }),
-            /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("p", { className: "jv-user-chip__meta", children: formatRoleLabel(context.role) })
+    return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("header", { className: "jv-top", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ShellMenuButton, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(ShellLocation, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "jv-top__tools", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(AvaTopBar, {}),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: "jv-top__identity", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "jv-user-chip", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(UserRound, { "aria-hidden": "true", size: 15 }),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "min-w-0", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("p", { className: "jv-user-chip__name", children: context.userName }),
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("p", { className: "jv-user-chip__meta", children: formatRoleLabel(context.role) })
           ] })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { className: "jv-top__theme", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(PortalThemeSelector, { initialTheme }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(NotificationBell, {}, context.email),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(LogoutButton, { compact: true })
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("div", { className: "jv-top__theme", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(PortalThemeSelector, { initialTheme }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(NotificationBell, {}, context.email),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(LogoutButton, { compact: true })
       ] })
     ] });
   }
 
   // src/components/layout/app-sidebar.tsx
   init_define_process_env();
-  var import_react8 = __toESM(require_react());
+  var import_react9 = __toESM(require_react());
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/stubs/next-link.tsx
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/next-link.tsx
   init_define_process_env();
-  var import_jsx_runtime8 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
   function Link({ href, children, prefetch, ...rest }) {
     void prefetch;
-    return /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("a", { ...rest, href, onClick: (e) => {
+    return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("a", { ...rest, href, onClick: (e) => {
       e.preventDefault();
       window.__nav.push(href);
       rest.onClick?.(e);
     }, children });
   }
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/stubs/commercial-workspace.actions.ts
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/commercial-workspace.actions.ts
   init_define_process_env();
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/h.ts
+  init_define_process_env();
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/fixtures.ts
+  init_define_process_env();
+  var states = ["received", "in_review", "formalization", "billing", "closed", "cancelled"];
+  var labels = { received: "Recebida", in_review: "Em an\xE1lise", formalization: "Formaliza\xE7\xE3o", billing: "Faturamento", closed: "Encerrada", cancelled: "Cancelada" };
+  var outcomes = ["NOT_DECIDED", "PENDING", "APPROVED", "APPROVED_WITH_CONDITIONS", "REJECTED"];
+  function op(i, long = false) {
+    const state = i % 9 === 8 ? null : states[i % states.length];
+    return {
+      operationId: `00000000-0000-4000-8000-${String(i).padStart(12, "0")}`,
+      operationNumber: `OP-SINT-2026-${String(i).padStart(4, "0")}`,
+      clientId: `c${i}`,
+      operationalStatus: "received",
+      sellerId: "s1",
+      sellerName: "Vendedor Sint\xE9tico",
+      operationAmount: i % 7 === 3 ? null : 15e4 + i * 13250,
+      clientName: long ? `Organiza\xE7\xE3o Sint\xE9tica de Engenharia, Terraplenagem e Loca\xE7\xE3o de Equipamentos Pesados N\xFAmero ${i} Ltda` : `Cliente Sint\xE9tico ${i}`,
+      observations: "",
+      createdAt: new Date(Date.UTC(2026, 8, 1 + i)).toISOString(),
+      updatedAt: null,
+      clientDocument: "",
+      city: "",
+      uf: "",
+      taxStatus: "",
+      equipment: long ? "Escavadeira hidr\xE1ulica sint\xE9tica modelo de demonstra\xE7\xE3o com descri\xE7\xE3o comprida para teste de quebra" : "Escavadeira sint\xE9tica",
+      modality: "",
+      entryValue: 0,
+      term: "",
+      banks: [],
+      documents: [],
+      creditOutcome: { outcome: outcomes[i % outcomes.length], source: i % 6 === 5 ? "NOT_APPLICABLE" : "BANKING", approvedInstitutionCount: 0, fullApprovalCount: 0, conditionalApprovalCount: 0, positiveApprovalCount: 0, institutions: [] },
+      lifecycle: state ? { state, label: labels[state], enteredAt: null, lastTransitionAt: null } : null
+    };
+  }
+  function ready(n, long = false) {
+    const operations2 = Array.from({ length: n }, (_, i) => op(i + 1, long));
+    return { success: true, data: { readModel: { operations: operations2, bankColumns: [], kpis: { totalOperations: n, awaitingDecision: 11, creditApproved: 9, creditRejected: 4, notApplicable: 6, totalVolume: long ? 98765432109876e-2 : 18734500 } }, actor: { role: "vendedor", name: "Pessoa Sint\xE9tica" } } };
+  }
+  var empty = { success: true, data: { readModel: { operations: [], bankColumns: [], kpis: { totalOperations: 0, awaitingDecision: 0, creditApproved: 0, creditRejected: 0, notApplicable: 0, totalVolume: 0 } }, actor: { role: "vendedor", name: "Pessoa Sint\xE9tica" } } };
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/h.ts
+  var w = window;
+  var p = new URLSearchParams(location.search);
+  var S = p.get("s") || "ready";
+  var later = (ms, v2) => new Promise((r2) => setTimeout(() => r2(v2), ms));
+  var never = () => new Promise(() => {
+  });
+  var uuid = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
+  var iso = (daysAgo, h = 10) => {
+    const d = /* @__PURE__ */ new Date();
+    d.setDate(d.getDate() - daysAgo);
+    d.setHours(h, 15, 0, 0);
+    return d.toISOString();
+  };
+  var civil = (daysAgo) => iso(daysAgo).slice(0, 10);
+  w.__calls = [];
+  var log = (n, a) => w.__calls.push({ n, a: JSON.parse(JSON.stringify(a ?? null)) });
+  function gate(name, ok, fail, args = []) {
+    log(name, args);
+    const only = p.get("only");
+    const s = only && !name.toLowerCase().includes(only) ? "ready" : S;
+    if (s === "loading") return never();
+    if (s === "denied") return later(40, fail.denied);
+    if (s === "error") return later(40, fail.error);
+    return later(60, ok());
+  }
+  var empty2 = S === "empty";
+  var partial = S === "partial";
+  function projection(n) {
+    const r2 = ready(n);
+    const ops = r2.data.readModel.operations;
+    r2.data.readModel.dashboardProjection = {
+      lifecycle: [{ state: "received", count: 4 }, { state: "in_review", count: 5 }, { state: "formalization", count: 3 }, { state: "billing", count: 2 }, { state: "closed", count: 2 }, { state: "cancelled", count: 1 }],
+      recent: ops.slice(0, 5),
+      timeline: ops.slice(0, 6).map((o, i) => ({ id: "t" + i, operationId: o.operationId, operationNumber: o.operationNumber, title: ["Opera\xE7\xE3o criada", "Etapa operacional alterada", "Documento anexado"][i % 3], occurredAt: iso(i) })),
+      population: { count: n, complete: true, source: "irmen_operation_read_models_v2", maximumRows: 5e3 }
+    };
+    return r2;
+  }
+  var operations = () => gate("loadOperationCenterAction", () => {
+    if (empty2) {
+      const e = JSON.parse(JSON.stringify(empty));
+      e.data.readModel.dashboardProjection = { lifecycle: [], recent: [], timeline: [], population: { count: 0, complete: true, source: "irmen_operation_read_models_v2", maximumRows: 5e3 } };
+      return e;
+    }
+    return projection(17);
+  }, { denied: { success: false, errorCode: "FORBIDDEN", safeMessage: "Acesso negado ao Centro de Opera\xE7\xF5es." }, error: { success: false, errorCode: "INFRASTRUCTURE_ERROR", safeMessage: "N\xE3o foi poss\xEDvel carregar as opera\xE7\xF5es." } });
+  var cats = { BANK_FULL: 14, BANK_PARTIAL: 7, INTERNAL_APPROVED: 5, INTERNAL_CONDITIONAL: 3 };
+  function approval(q = {}) {
+    return gate("loadDashboardCreditApprovalAction", () => {
+      const selection = q.selection ?? "ALL_APPROVED";
+      const z = empty2, inc = partial;
+      const c = z ? { BANK_FULL: 0, BANK_PARTIAL: 0, INTERNAL_APPROVED: 0, INTERNAL_CONDITIONAL: 0 } : { ...cats };
+      const approved = c.BANK_FULL + c.BANK_PARTIAL + c.INTERNAL_APPROVED + c.INTERNAL_CONDITIONAL, rejected = z ? 0 : 12, denominator = approved + rejected;
+      const pick = selection === "AS_PROPOSED" ? ["BANK_FULL"] : selection === "WITH_BREAK" ? ["BANK_PARTIAL"] : Object.keys(c);
+      const all = [];
+      let k = 0;
+      for (const key of Object.keys(c)) for (let i = 0; i < c[key]; i++) all.push({ id: uuid(100 + k), code: `OP-SINT-2026-${String(200 + k).padStart(4, "0")}`, createdDate: k % 11 === 10 ? null : civil(k * 2 + 3), outcome: key.startsWith("INTERNAL") ? "APPROVED" : "APPROVED", source: key.startsWith("BANK") ? "BANKING" : "INTERNAL", category: key, selected: pick.includes(key), k: k++ });
+      const sel = all.filter((r2) => pick.includes(r2.category));
+      return { success: true, data: {
+        contract: "OPERATION_DECIDED_APPROVAL_V1",
+        asOf: (/* @__PURE__ */ new Date()).toISOString(),
+        dateBasis: "ORIGINAL_CREATION_COHORT_CURRENT_STATE",
+        timeZone: "America/Sao_Paulo",
+        filters: { from: q.from ?? null, to: q.to ?? null, selection },
+        universeCount: z ? 0 : 64,
+        cohortCount: z ? 0 : q.from || q.to ? 38 : 64,
+        populationComplete: !inc,
+        missingOriginalCreation: inc ? 3 : 0,
+        excluded: z ? { pending: 0, notDecided: 0, cancelled: 0, notApplicable: 0, unprovenLifecycle: 0 } : { pending: 9, notDecided: 5, cancelled: 3, notApplicable: 6, unprovenLifecycle: inc ? 2 : 0 },
+        approved,
+        rejected,
+        denominator,
+        rate: inc || denominator === 0 ? null : approved / denominator,
+        selectedApproved: sel.length,
+        selectedShare: inc || denominator === 0 ? null : sel.length / denominator,
+        categories: c,
+        mixedBankApprovals: z ? 0 : 2,
+        details: sel.slice(0, 20).map(({ k: _k, ...r2 }) => r2),
+        detailsTotal: sel.length,
+        detailsHasMore: sel.length > 20,
+        decisionDateView: "NOT_AVAILABLE_FROM_CURRENT_UPDATE_TIMESTAMPS",
+        bankCycleView: "SEPARATE_NEXT_LOT_NOT_OPERATION_COUNT"
+      } };
+    }, { denied: { success: false, kind: "denied", safeMessage: "Seu perfil n\xE3o tem acesso \xE0 taxa de aprova\xE7\xE3o." }, error: { success: false, kind: "error", safeMessage: "Taxa indispon\xEDvel. Nenhum valor parcial foi apresentado." } }, [q]);
+  }
+  var residence = () => gate("loadDashboardResidenceAction", () => ({ success: true, data: {
+    asOf: (/* @__PURE__ */ new Date()).toISOString(),
+    calendarVersion: "BR-SP-2026.1",
+    timezone: "America/Sao_Paulo",
+    population: empty2 ? 0 : 17,
+    unclassifiedCount: empty2 ? 0 : 1,
+    facts: [],
+    groups: [
+      { state: "received", count: empty2 ? 0 : 4, knownCurrent: empty2 ? 0 : 4, currentPassageMeanBusinessHours: empty2 ? null : 6.5, knownPrevious: 0, previousPassagesBusinessHours: null },
+      { state: "in_review", count: empty2 ? 0 : 5, knownCurrent: empty2 ? 0 : partial ? 3 : 5, currentPassageMeanBusinessHours: empty2 ? null : 21.3, knownPrevious: 2, previousPassagesBusinessHours: empty2 ? null : 9 },
+      { state: "formalization", count: empty2 ? 0 : 3, knownCurrent: empty2 ? 0 : 3, currentPassageMeanBusinessHours: empty2 ? null : 14, knownPrevious: 0, previousPassagesBusinessHours: null },
+      { state: "billing", count: empty2 ? 0 : 2, knownCurrent: empty2 ? 0 : partial ? 0 : 2, currentPassageMeanBusinessHours: empty2 || partial ? null : 33.8, knownPrevious: 0, previousPassagesBusinessHours: null },
+      { state: "closed", count: empty2 ? 0 : 1, knownCurrent: empty2 ? 0 : 1, currentPassageMeanBusinessHours: empty2 ? null : 2, knownPrevious: 1, previousPassagesBusinessHours: empty2 ? null : 4.5 },
+      { state: "cancelled", count: 0, knownCurrent: 0, currentPassageMeanBusinessHours: null, knownPrevious: 0, previousPassagesBusinessHours: null }
+    ]
+  } }), { denied: { success: false, kind: "denied", safeMessage: "Sem permiss\xE3o para o hist\xF3rico de perman\xEAncia." }, error: { success: false, kind: "error", safeMessage: "N\xE3o foi poss\xEDvel consultar o hist\xF3rico autorizado de perman\xEAncia. Nenhum atraso foi presumido." } });
+  var commercial = (q = {}) => gate("loadDashboardCommercialAction", () => ({ success: true, data: { pipeline: [[6, 184e4], [5, 1312e3], [4, 199e4], [3, 87e4], [2, 125e4], [1, 61e4], [1, 455e3], [0, 0]].map(([count3, amount], i) => ({ id: String(i + 1), count: empty2 ? 0 : count3, amount: empty2 ? 0 : amount })), metrics: empty2 ? { openCount: 0, pipelineAmount: 0, wonCount: 0, lostCount: 0, conversionRate: null } : { openCount: 22, pipelineAmount: 8327e3, wonCount: 7, lostCount: 5, conversionRate: 7 / 12 }, asOf: (/* @__PURE__ */ new Date()).toISOString(), population: empty2 ? 0 : 34, from: q.from, to: q.to } }), { denied: { success: false, errorCode: "FORBIDDEN", safeMessage: "Seu perfil n\xE3o acessa o BI comercial." }, error: { success: false, errorCode: "INFRASTRUCTURE_ERROR", safeMessage: "Funil comercial indispon\xEDvel." } }, [q]);
+  var due = (i, d) => ({ id: "d" + i, operationId: uuid(300 + i), operationNumber: `OP-SINT-2026-${String(300 + i).padStart(4, "0")}`, title: ["Comprovante de endere\xE7o atualizado", "Faturamento dos \xFAltimos 12 meses", "Assinatura do contrato", "Nota fiscal do equipamento"][i % 4], dueAt: iso(d, 17) });
+  var pending = () => gate("loadDashboardPendingAction", () => ({ success: true, data: { openDocumentaryOperations: empty2 ? 0 : 6, openDocumentaryItems: empty2 ? 0 : 11, dueToday: empty2 ? [] : [due(1, 0), due(2, 0)], overdue: empty2 ? [] : [due(3, 4), due(4, 2), due(5, 1)], asOf: (/* @__PURE__ */ new Date()).toISOString(), operationsCount: 17, complete: true, scopeNote: "Somente pend\xEAncias das suas opera\xE7\xF5es." } }), { denied: { success: false, errorCode: "FORBIDDEN", safeMessage: "Sem acesso \xE0s pend\xEAncias." }, error: { success: false, errorCode: "INFRASTRUCTURE_ERROR", safeMessage: "Pend\xEAncias indispon\xEDveis. Nenhum total parcial foi apresentado." } });
+  var people = [
+    { id: uuid(501), name: "Marina Sint\xE9tica Duarte", jobTitle: "Diretora financeira", phone: "(11) 90000-0001", email: "marina@exemplo.invalid", consent: { PHONE: "GRANTED", MEETING: "GRANTED", WHATSAPP: "DENIED", EMAIL: "GRANTED" } },
+    { id: uuid(502), name: "Rafael Exemplo Lima", jobTitle: "Compras", phone: "(11) 90000-0002", email: null, consent: { PHONE: "GRANTED", MEETING: "UNKNOWN", WHATSAPP: "GRANTED", EMAIL: "UNKNOWN" } },
+    { id: uuid(503), name: "Contato Sint\xE9tico Sem Canais", jobTitle: null, phone: null, email: null, consent: { PHONE: "UNKNOWN", MEETING: "UNKNOWN", WHATSAPP: "UNKNOWN", EMAIL: "UNKNOWN" } }
+  ].map((x, i) => ({ ...x, clientId: uuid(1), revision: 1, createdBy: uuid(9), createdAt: iso(40 + i), updatedBy: uuid(9), updatedAt: iso(10 + i) }));
+  var rel = { denied: { success: false, kind: "denied", safeMessage: "Sem acesso a este cadastro." }, error: { success: false, kind: "error", safeMessage: "N\xE3o foi poss\xEDvel consultar. Tente novamente." } };
+  var contactPeople = (id2) => gate("loadContactPeopleAction", () => ({ success: true, data: { rows: empty2 ? [] : people, canEdit: true } }), rel, [id2]);
+  var saveContact = (input) => {
+    log("saveContactPersonAction", [input]);
+    return later(200, { success: true, data: { ...input, id: input.id ?? uuid(599), revision: input.revision + 1 } });
+  };
+  var origins = [{ kind: "OPP", id: uuid(601), label: "OPP-SINT-0042", canWrite: true }, { kind: "OP", id: uuid(602), label: "OP-SINT-2026-0117", canWrite: true }];
+  var rows = [
+    ["WHATSAPP", "REPLY_RECEIVED", 1, "Cliente confirmou interesse na escavadeira e pediu nova simula\xE7\xE3o com entrada menor.", "OPP"],
+    ["PHONE", "NO_RESPONSE", 2, "Liga\xE7\xE3o para o financeiro; caixa postal.", "OP"],
+    ["MEETING", "CONVERSATION_HELD", 6, "Visita ao canteiro. Avaliamos a frota atual e a necessidade de dois equipamentos no segundo semestre.", "OPP"],
+    ["EMAIL", "NO_RESPONSE", 9, "Envio da proposta revisada sem retorno.", "OP"],
+    ["PHONE", "CONVERSATION_HELD", 15, "Alinhamento das condi\xE7\xF5es de pagamento.", "OP"]
+  ].map(([channel, result, d, summary, kind], i) => ({ id: uuid(700 + i), originKind: kind, originId: kind === "OP" ? uuid(602) : uuid(601), originCycle: kind === "OPP" ? 1 : null, contactId: null, channel, result, happenedAt: iso(d, 9 + i), summary, source: i === 4 ? "INTEGRATED" : "MANUAL", actorId: uuid(9), actorName: "Vendedor Sint\xE9tico", createdAt: iso(d, 12) }));
+  var interactions = (q) => gate("loadRelationshipInteractionsAction", () => {
+    const r2 = empty2 ? [] : q.origin ? rows.filter((x) => x.originKind === q.origin.kind) : rows;
+    const o = q.origin ? origins.filter((x) => x.kind === q.origin.kind) : origins;
+    return { success: true, data: { origins: o, rows: r2, hasMore: !empty2 && !q.origin, lastEffectiveAt: empty2 ? null : r2.find((x) => x.result !== "NO_RESPONSE")?.happenedAt ?? null, lastAttemptAt: empty2 ? null : r2.find((x) => x.result === "NO_RESPONSE")?.happenedAt ?? null, timeZone: "America/Sao_Paulo" } };
+  }, rel, [q]);
+  var appendInteraction = (input) => {
+    log("appendManualInteractionAction", [input]);
+    return later(200, { success: true, data: { id: uuid(799) } });
+  };
+  var closedSales = (id2) => gate("loadClientClosedSalesAction", () => ({ success: true, data: { asOf: (/* @__PURE__ */ new Date()).toISOString(), count: empty2 ? 0 : 3, amount: empty2 ? 0 : 2187e3, datedCount: empty2 ? 0 : 2, rows: empty2 ? [] : [{ opportunityId: uuid(801), operationId: uuid(811), identifier: "OPP-SINT-0031", amount: 98e4, closedAt: iso(20) }, { opportunityId: uuid(802), operationId: uuid(812), identifier: "OPP-SINT-0024", amount: 742e3, closedAt: iso(75) }, { opportunityId: uuid(803), operationId: uuid(813), identifier: "OPP-SINT-0017", amount: 465e3, closedAt: null }], truncated: false } }), { denied: { success: false, kind: "denied", safeMessage: "Sem acesso comercial." }, error: { success: false, kind: "error", safeMessage: "Consulta comercial indispon\xEDvel." } }, [id2]);
+  var comments = (id2) => gate("loadClientOperationCommentsAction", () => ({ success: true, data: { rows: empty2 ? [] : [{ id: "c1", operationId: uuid(602), comment: "Mesa pediu o balan\xE7o assinado antes do envio ao banco.", truncated: false, actorName: "Analista Sint\xE9tico", occurredAt: iso(3) }, { id: "c2", operationId: uuid(602), comment: "Proposta enviada ao banco parceiro.", truncated: false, actorName: "Vendedor Sint\xE9tico", occurredAt: iso(8) }], hasMore: false } }), rel, [id2]);
+  var cand = ["Contrato social consolidado.pdf", "Faturamento 12 meses.xlsx", "Comprovante de endere\xE7o.pdf", "Documento do representante.jpg"].map((f, i) => ({ documentId: uuid(900 + i), fileName: f, documentType: i === 3 ? null : ["Contrato social", "Faturamento", "Comprovante de endere\xE7o"][i], originalInsertedAt: iso([5, 12, 33, 61][i]), sizeBytes: [482113, 92311, 1532200, 230400][i] }));
+  var reuseList = (t) => gate("listDocumentReuseAction", () => ({ success: true, data: { candidates: empty2 ? [] : cand, truncated: false, activeDocuments: p.get("active") ? 2 : 0 } }), rel, [t]);
+  var reuseCommit = (c) => {
+    log("reuseClientDocumentsAction", [c]);
+    return later(200, { success: true, data: { mode: c.mode, linked: c.documentIds.length } });
+  };
+  var oppDocs = (id2) => gate("commercialDocumentContextAction", () => ({ success: true, data: { status: "ACTIVE", documents: empty2 ? [] : [{ id: uuid(951), fileName: "Proposta assinada.pdf", classifications: ["Proposta"], analysisStatus: "Aguardando an\xE1lise" }, { id: uuid(952), fileName: "Cadastro do cliente.pdf", classifications: [], analysisStatus: null }] } }), rel, [id2]);
+  var dir = [
+    ["Construtora Sint\xE9tica Horizonte Ltda", "Horizonte Sint\xE9tica", "PJ", "Campinas", "SP", "ATIVA", 2],
+    ["Agropecu\xE1ria Exemplo Santa F\xE9 Ltda", null, "PJ", "Rio Verde", "GO", "ATIVA", 1],
+    ["Minera\xE7\xE3o Fict\xEDcia Serra Azul S.A.", "Serra Azul", "PJ", "Catal\xE3o", "GO", "ATIVA", 3],
+    ["Pavimentadora Modelo Centro-Oeste", null, "PJ", "Bras\xEDlia", "DF", "SUSPENSA", 0],
+    ["Locadora Demonstra\xE7\xE3o M\xE1quinas", "Locadora Demo", "PJ", "An\xE1polis", "GO", "ATIVA", 1],
+    ["Terraplenagem Teste Vale do Araguaia", null, "PJ", "Barra do Gar\xE7as", "MT", "ATIVA", 4],
+    ["Jo\xE3o Sint\xE9tico da Silva", null, "PF", "Goi\xE2nia", "GO", null, 0],
+    ["Transportes Exemplo Planalto Ltda", "Planalto Log", "PJ", "Uberl\xE2ndia", "MG", "BAIXADA", 0],
+    ["Engenharia Fict\xEDcia Cerrado Norte", null, "PJ", "Palmas", "TO", "ATIVA", 2]
+  ].map(([legalName, tradeName, personType, city, state, registrationStatus, ops], i) => ({ id: uuid(1e3 + i), legalName, tradeName, personType, normalizedDocument: personType === "PJ" ? `000000000001${String(10 + i).padStart(2, "0")}` : "00000000191", phone: null, email: null, address: null, neighborhood: null, city, state, postalCode: null, registrationStatus, operationsCount: ops, operationsTotalAmount: null }));
+  var clientSummaries = (input) => gate("listClientSummariesAction", () => {
+    const q = (input.search ?? "").toLocaleLowerCase("pt-BR");
+    let items = empty2 ? [] : dir.filter((c) => !q || (c.legalName + " " + (c.city ?? "")).toLocaleLowerCase("pt-BR").includes(q));
+    if (input.personType) items = items.filter((c) => c.personType === input.personType);
+    if (input.hasOperations !== void 0) items = items.filter((c) => c.operationsCount > 0 === input.hasOperations);
+    const total = items.length, pageSize = input.pageSize ?? 25, page = input.page ?? 1;
+    return { success: true, data: { items: items.slice((page - 1) * pageSize, page * pageSize), total, page, pageSize, totalPages: Math.max(1, Math.ceil(total / pageSize)), kpis: { totalClients: empty2 ? 0 : dir.length, activeClients: empty2 ? 0 : 6, totalVolume: null, clientsWithOperations: empty2 ? 0 : 6, newClientsThisMonth: empty2 ? 0 : 2 } } };
+  }, { denied: { success: false, errorCode: "FORBIDDEN", safeMessage: "Sem acesso \xE0 Central de Clientes." }, error: { success: false, errorCode: "INFRASTRUCTURE_ERROR", safeMessage: "N\xE3o foi poss\xEDvel carregar a Central de Clientes." } }, [input]);
+  var clientDetail = (id2) => {
+    log("getClientDetailAction", [id2]);
+    const c = dir.find((x) => x.id === id2) ?? dir[0];
+    const now2 = (/* @__PURE__ */ new Date()).toISOString();
+    return later(350, { success: true, data: {
+      operationReadScope: "own",
+      restrictedOtherOperationsCount: 0,
+      identity: { id: c.id, legalName: c.legalName, tradeName: c.tradeName, personType: c.personType, normalizedDocument: c.normalizedDocument, registrationStatus: c.registrationStatus, createdBy: uuid(9), createdByName: "Vendedor Sint\xE9tico", createdAt: now2, updatedAt: now2 },
+      contacts: { operational: { phone: "(11) 3000-0000", email: "compras@exemplo.invalid" }, public: { phones: [], email: null } },
+      address: { internal: { address: "Rua Exemplo, 100", neighborhood: "Centro", city: c.city, state: c.state, postalCode: null } },
+      registry: null,
+      fiscal: null,
+      qsa: [],
+      operations: [],
+      documents: [],
+      pendingItems: [],
+      timeline: [{ id: "t1", action: "client.contact_saved", actorRole: "vendedor", occurredAt: now2 }],
+      indicators: { operationsCount: c.operationsCount, totalVolume: null, volumeCoverage: null, documentsCount: 3 }
+    } });
+  };
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/commercial-workspace.actions.ts
   async function commercialAuthorityAction() {
-    return { success: false };
+    return { success: true };
+  }
+  async function commercialClientRelationshipsAction() {
+    return { success: true, data: [] };
+  }
+  async function commercialDocumentContextAction(id2) {
+    return oppDocs(id2);
+  }
+  async function commercialDocumentDownloadAction() {
+    return { success: false, safeMessage: "Download desativado no harness." };
+  }
+  async function commercialDocumentRemoveAction() {
+    return { success: true };
   }
 
   // src/components/layout/coverage-map-link.tsx
@@ -16423,11 +17135,11 @@
   }
 
   // src/components/layout/coverage-map-link.tsx
-  var import_jsx_runtime9 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime10 = __toESM(require_jsx_runtime());
   function CoverageMapLink() {
     const href = getCoverageMapUrl();
     if (!href) return null;
-    return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
       "a",
       {
         href,
@@ -16436,27 +17148,27 @@
         referrerPolicy: "no-referrer",
         className: "flex h-10 shrink-0 items-center gap-3 rounded-md px-3 text-sm font-medium text-ui-400 transition hover:bg-ui-900 hover:text-foreground lg:w-full",
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(MapPin, { "aria-hidden": "true", size: 17 }),
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(MapPin, { "aria-hidden": "true", size: 17 }),
           "\xC1reas & Localiza\xE7\xE3o"
         ]
       }
     );
   }
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/stubs/settings.actions.ts
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/settings.actions.ts
   init_define_process_env();
   async function getSettingsNavigationAction() {
     return { any: false };
   }
 
   // src/components/layout/app-sidebar.tsx
-  var import_jsx_runtime10 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
   function AppSidebar({ initialTheme = "irmen-industrial-dark", context }) {
     const pathname = usePathname();
-    const [canReadCommercial, setCanReadCommercial] = (0, import_react8.useState)(false);
-    const [canReadBi, setCanReadBi] = (0, import_react8.useState)(false);
-    const [canOpenSettings, setCanOpenSettings] = (0, import_react8.useState)(false);
-    (0, import_react8.useEffect)(() => {
+    const [canReadCommercial, setCanReadCommercial] = (0, import_react9.useState)(false);
+    const [canReadBi, setCanReadBi] = (0, import_react9.useState)(false);
+    const [canOpenSettings, setCanOpenSettings] = (0, import_react9.useState)(false);
+    (0, import_react9.useEffect)(() => {
       void commercialAuthorityAction("commercial_bi.read").then((r2) => setCanReadBi(r2.success));
       void commercialAuthorityAction("opportunity.read").then((r2) => setCanReadCommercial(r2.success));
       void getSettingsNavigationAction().then((result) => setCanOpenSettings(result.any));
@@ -16464,42 +17176,42 @@
     const allowed = { commercial: canReadCommercial, bi: canReadBi, settings: canOpenSettings };
     const groups = NAVIGATION_GROUPS.map((group) => ({ ...group, items: group.items.filter((item) => !item.requires || allowed[item.requires]) }));
     const active = activeNavigationHref(pathname, groups.flatMap((group) => group.items.map((item) => item.href)));
-    const navigation2 = /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("nav", { className: "jv-nav", "aria-label": "Navega\xE7\xE3o principal", children: groups.filter((group) => group.items.length).map((group) => /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "jv-nav__group", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "jv-nav__heading", children: group.label }),
+    const navigation2 = /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("nav", { className: "jv-nav", "aria-label": "Navega\xE7\xE3o principal", children: groups.filter((group) => group.items.length).map((group) => /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "jv-nav__group", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "jv-nav__heading", children: group.label }),
       group.items.map((item) => {
         const Icon2 = item.icon;
-        return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Link, { className: "jv-nav__link", "aria-current": active === item.href ? "page" : void 0, href: item.href, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Icon2, { "aria-hidden": "true", size: 17 }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { children: item.label })
+        return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Link, { className: "jv-nav__link", "aria-current": active === item.href ? "page" : void 0, href: item.href, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Icon2, { "aria-hidden": "true", size: 17 }),
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { children: item.label })
         ] }, item.href);
       }),
-      group.label === "Opera\xE7\xE3o" && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(CoverageMapLink, {})
+      group.label === "Opera\xE7\xE3o" && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(CoverageMapLink, {})
     ] }, group.label)) });
-    const brand = /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "jv-brand", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { className: "jv-brand__mark", "aria-hidden": "true", children: portalBranding.mark }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "min-w-0", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "jv-brand__name", children: portalBranding.displayName }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "jv-brand__env", children: portalBranding.environmentLabel })
+    const brand = /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "jv-brand", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "jv-brand__mark", "aria-hidden": "true", children: portalBranding.mark }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "min-w-0", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "jv-brand__name", children: portalBranding.displayName }),
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "jv-brand__env", children: portalBranding.environmentLabel })
       ] })
     ] });
-    return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(import_jsx_runtime10.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("aside", { className: "jv-side", "aria-label": "Menu lateral", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(import_jsx_runtime11.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("aside", { className: "jv-side", "aria-label": "Menu lateral", children: [
         brand,
         navigation2
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(ShellDrawer, { title: "Menu", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(ShellDrawer, { title: "Menu", children: [
         brand,
         navigation2,
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "jv-drawer__foot", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "jv-user-chip", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { className: "jv-user-chip__name", children: context.userName }),
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("p", { className: "jv-user-chip__meta", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "jv-drawer__foot", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "jv-user-chip", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "jv-user-chip__name", children: context.userName }),
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("p", { className: "jv-user-chip__meta", children: [
               formatRoleLabel(context.role),
               " \xB7 ",
               context.company
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PortalThemeSelector, { initialTheme })
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(PortalThemeSelector, { initialTheme })
         ] })
       ] })
     ] });
@@ -16507,9 +17219,9 @@
 
   // src/components/layout/protected-content.tsx
   init_define_process_env();
-  var import_react9 = __toESM(require_react());
+  var import_react10 = __toESM(require_react());
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/stubs/auth-browser-events.ts
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/auth-browser-events.ts
   init_define_process_env();
   function subscribeToAuthBrowserEvents() {
     return () => {
@@ -16517,10 +17229,10 @@
   }
 
   // src/components/layout/protected-content.tsx
-  var import_jsx_runtime11 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
   function ProtectedContent({ children }) {
     const router = useRouter();
-    (0, import_react9.useEffect)(() => {
+    (0, import_react10.useEffect)(() => {
       const unsubscribe = subscribeToAuthBrowserEvents((event2) => {
         if (event2.type === "logout" || event2.type === "session_expired") {
           router.replace("/login");
@@ -16529,24 +17241,24 @@
       });
       return unsubscribe;
     }, [router]);
-    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_jsx_runtime11.Fragment, { children });
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_jsx_runtime12.Fragment, { children });
   }
 
   // src/components/layout/app-shell.tsx
-  var import_jsx_runtime12 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
   function AppShell({
     children,
     headerContext,
     initialTheme = "irmen-industrial-dark"
   }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ProtectedContent, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(ShellDrawerProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { "data-portal-shell": true, className: "jv-shell text-foreground", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("a", { className: "jv-skip", href: "#conteudo", children: "Ir para o conte\xFAdo" }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(PortalAtmosphere, { initialTheme }),
-      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { "data-portal-layout": true, className: "jv-shell__layout", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(AppSidebar, { initialTheme, context: headerContext }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { "data-portal-content": true, className: "jv-shell__content", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(AppHeader, { context: headerContext, initialTheme }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("main", { id: "conteudo", tabIndex: -1, "data-portal-main": true, className: "jv-shell__main", children })
+    return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(ProtectedContent, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(ShellDrawerProvider, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { "data-portal-shell": true, className: "jv-shell text-foreground", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("a", { className: "jv-skip", href: "#conteudo", children: "Ir para o conte\xFAdo" }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(PortalAtmosphere, { initialTheme }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { "data-portal-layout": true, className: "jv-shell__layout", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(AppSidebar, { initialTheme, context: headerContext }),
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { "data-portal-content": true, className: "jv-shell__content", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(AppHeader, { context: headerContext, initialTheme }),
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("main", { id: "conteudo", tabIndex: -1, "data-portal-main": true, className: "jv-shell__main", children })
         ] })
       ] })
     ] }) }) });
@@ -16554,164 +17266,248 @@
 
   // src/components/dashboard/dashboard-home.tsx
   init_define_process_env();
+
+  // src/components/dashboard/dashboard-credit-approval.tsx
+  init_define_process_env();
   var import_react11 = __toESM(require_react());
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/stubs/operations.actions.ts
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/dashboard-credit-approval.actions.ts
   init_define_process_env();
-  async function loadOperationCenterAction() {
-    const w2 = window;
-    w2.__calls.push("loadOperationCenterAction");
-    return w2.__dash.operations(w2.__calls.filter((c) => c === "loadOperationCenterAction").length);
+  async function loadDashboardCreditApprovalAction(q = {}) {
+    return approval(q);
   }
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/stubs/browser-composition.ts
+  // src/components/dashboard/dashboard-charts.tsx
   init_define_process_env();
-  function createBrowserApplication() {
-    const w2 = window;
-    return { useCases: { countActiveBanks: { execute: () => {
-      w2.__calls.push("countActiveBanks");
-      return w2.__dash.banks(w2.__calls.filter((c) => c === "countActiveBanks").length);
-    } } } };
+  var import_jsx_runtime14 = __toESM(require_jsx_runtime());
+  var clamp = (value) => Math.min(1, Math.max(0, value));
+  function DashboardArcGauge({ value, display, caption, tone: tone2 = "arc", label }) {
+    const radius = 44, sweep = 240, circumference = 2 * Math.PI * radius, arc = circumference * sweep / 360;
+    const filled = value === null ? 0 : arc * clamp(value);
+    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("figure", { className: "dash-gauge", "data-tone": tone2, "data-empty": value === null || void 0, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("svg", { viewBox: "0 0 120 104", role: "img", "aria-label": label, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("g", { transform: "rotate(150 60 60)", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("circle", { className: "dash-gauge__track", cx: "60", cy: "60", r: radius, strokeDasharray: `${arc} ${circumference}` }),
+          value !== null && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("circle", { className: "dash-gauge__value", cx: "60", cy: "60", r: radius, strokeDasharray: `${filled} ${circumference}` })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("text", { className: "dash-gauge__num", x: "60", y: "62", textAnchor: "middle", children: display })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("figcaption", { className: "dash-gauge__cap", children: caption })
+    ] });
+  }
+  function DashboardStackBar({ segments, total, label }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "dash-stack-bar", role: "img", "aria-label": label, children: total > 0 && segments.filter((segment) => segment.value > 0).map((segment) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { className: "dash-stack-bar__part", "data-tone": segment.tone, style: { flexGrow: segment.value } }, segment.key)) });
+  }
+  function DashboardMeter({ ratio, tone: tone2 = "arc", muted = false }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { className: "dash-meter", "data-tone": tone2, "data-muted": muted || void 0, "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { style: { inlineSize: `${(clamp(ratio) * 100).toFixed(2)}%` } }) });
   }
 
-  // src/components/design-system/foundation.tsx
-  init_define_process_env();
-  var import_react10 = __toESM(require_react());
-  var import_react_dom2 = __toESM(require_react_dom());
+  // src/components/dashboard/dashboard-credit-approval.tsx
+  var import_jsx_runtime15 = __toESM(require_jsx_runtime());
+  var percent = new Intl.NumberFormat("pt-BR", { style: "percent", maximumFractionDigits: 1 });
+  var count = new Intl.NumberFormat("pt-BR");
+  var selections = [{ value: "ALL_APPROVED", label: "Todas" }, { value: "AS_PROPOSED", label: "Como proposto" }, { value: "WITH_BREAK", label: "Com quebra" }];
+  var selectionLabel = { ALL_APPROVED: "Todas as aprovadas", AS_PROPOSED: "Banc\xE1rias como proposto", WITH_BREAK: "Banc\xE1rias com quebra" };
+  var categories = [
+    { key: "BANK_FULL", label: "Banc\xE1ria integral", hint: "como proposto", tone: "c2" },
+    { key: "BANK_PARTIAL", label: "Banc\xE1ria parcial", hint: "com quebra", tone: "c3" },
+    { key: "INTERNAL_APPROVED", label: "Interna aprovada", hint: "parcelamento interno", tone: "c5" },
+    { key: "INTERNAL_CONDITIONAL", label: "Interna com condi\xE7\xF5es", hint: "n\xE3o \xE9 quebra", tone: "c4" }
+  ];
+  var inSelection = (key, selection) => selection === "ALL_APPROVED" || (selection === "AS_PROPOSED" ? key === "BANK_FULL" : key === "BANK_PARTIAL");
+  var civil2 = (value) => {
+    const m = value ? /^(\d{4})-(\d{2})-(\d{2})$/.exec(value) : null;
+    return m ? `${m[3]}/${m[2]}/${m[1]}` : "Cria\xE7\xE3o n\xE3o comprovada";
+  };
+  function DashboardCreditApproval() {
+    const [query, setQuery] = (0, import_react11.useState)({}), [result, setResult] = (0, import_react11.useState)(null), generation = (0, import_react11.useRef)(0);
+    const load = (0, import_react11.useCallback)(() => {
+      const id2 = ++generation.current;
+      setResult(null);
+      void loadDashboardCreditApprovalAction(query).then((r2) => {
+        if (id2 === generation.current) setResult(r2);
+      }).catch(() => {
+        if (id2 === generation.current) setResult({ success: false, kind: "error", safeMessage: "Taxa indispon\xEDvel." });
+      });
+    }, [query]);
+    (0, import_react11.useEffect)(() => {
+      const pending2 = generation;
+      load();
+      return () => {
+        pending2.current++;
+      };
+    }, [load]);
+    const data = result?.success ? result.data : null, selection = query.selection ?? "ALL_APPROVED", filtered = Boolean(query.from || query.to || selection !== "ALL_APPROVED");
+    const excluded = data ? [["pendentes", data.excluded.pending], ["sem decis\xE3o", data.excluded.notDecided], ["canceladas", data.excluded.cancelled], ["cr\xE9dito n\xE3o aplic\xE1vel", data.excluded.notApplicable], ["sem estado comprovado", data.excluded.unprovenLifecycle]] : [];
+    const gauge = !data ? null : !data.populationComplete ? { value: null, display: "\u2014", caption: "Cobertura insuficiente", tone: "warn" } : data.rate === null ? { value: null, display: "\u2014", caption: "Sem base no recorte", tone: "arc" } : { value: data.rate, display: percent.format(data.rate), caption: `${count.format(data.approved)} de ${count.format(data.denominator)} com decis\xE3o`, tone: "arc" };
+    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "jv-panel jv-panel--hud dash-appr", "aria-labelledby": "dashboard-credit-approval-title", "aria-busy": !result || void 0, "data-integration-id": "DASH-INT-06", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { id: "dashboard-credit-approval-title", className: "jv-section-title", children: "Aprova\xE7\xE3o de cr\xE9dito" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-ph__sub", children: "Opera\xE7\xF5es com decis\xE3o \xB7 cada opera\xE7\xE3o conta uma vez" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dash-ph__r", children: data && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-ph__hint", children: [
+          "Atualizado ",
+          new Date(data.asOf).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short" })
+        ] }) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-appr__filters", role: "group", "aria-label": "Recorte da taxa de aprova\xE7\xE3o", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { className: "ds-field dash-date", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: "Criada de" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { type: "date", className: "ds-input", value: query.from ?? "", max: query.to, onChange: (e) => setQuery({ ...query, from: e.target.value || void 0 }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("label", { className: "ds-field dash-date", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: "at\xE9" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("input", { type: "date", className: "ds-input", value: query.to ?? "", min: query.from, onChange: (e) => setQuery({ ...query, to: e.target.value || void 0 }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { id: "dash-appr-sel", children: "Aprova\xE7\xF5es" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "jv-seg jv-seg--arc", role: "group", "aria-labelledby": "dash-appr-sel", children: selections.map((option) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("button", { type: "button", "aria-pressed": selection === option.value, onClick: () => setQuery({ ...query, selection: option.value }), children: option.label }, option.value)) })
+        ] }),
+        filtered && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", className: "jv-icon-btn dash-appr__reset", onClick: () => setQuery({}), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
+          "Limpar"
+        ] })
+      ] }),
+      !result ? /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-appr__body", "aria-hidden": true, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-skeleton dash-appr__sk-gauge" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-appr__sk-rows", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-skeleton" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-skeleton" }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-skeleton" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "sr-only", children: "Consultando decis\xF5es autorizadas\u2026" })
+      ] }) : !result.success ? /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: `jv-state jv-state--${result.kind === "denied" ? "denied" : "error"}`, role: result.kind === "denied" ? void 0 : "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("strong", { children: result.kind === "denied" ? "Sem acesso \xE0 taxa de aprova\xE7\xE3o" : "Taxa de aprova\xE7\xE3o indispon\xEDvel" }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: result.safeMessage }),
+        result.kind !== "denied" && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: load, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
+          "Tentar novamente"
+        ] })
+      ] }) : data && gauge && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(import_jsx_runtime15.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-appr__body", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DashboardArcGauge, { value: gauge.value, display: gauge.display, caption: gauge.caption, tone: gauge.tone, label: gauge.value === null ? `Taxa de aprova\xE7\xE3o: ${gauge.caption}` : `Taxa de aprova\xE7\xE3o ${gauge.display}: ${gauge.caption}` }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-appr__detail", children: [
+            !data.populationComplete && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "dash-appr__warn", role: "alert", children: "H\xE1 opera\xE7\xF5es sem marco confi\xE1vel de cria\xE7\xE3o ou de estado. A taxa n\xE3o \xE9 calculada sobre uma popula\xE7\xE3o parcial." }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-appr__block", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-appr__row-head", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: "Decis\xF5es" }),
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: count.format(data.denominator) })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DashboardStackBar, { total: data.denominator, label: `${data.approved} aprovadas e ${data.rejected} reprovadas`, segments: [{ key: "approved", label: "Aprovadas", value: data.approved, tone: "good" }, { key: "rejected", label: "Reprovadas", value: data.rejected, tone: "crit" }] }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("ul", { className: "dash-legend", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("li", { "data-tone": "good", children: [
+                  "Aprovadas ",
+                  /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: count.format(data.approved) })
+                ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("li", { "data-tone": "crit", children: [
+                  "Reprovadas ",
+                  /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: count.format(data.rejected) })
+                ] })
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-appr__block", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-appr__row-head", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: "Como foram aprovadas" }),
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: count.format(data.approved) })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("ul", { className: "dash-appr__cats", children: categories.map((category) => {
+                const value = data.categories[category.key], active = inSelection(category.key, selection);
+                return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("li", { "data-tone": category.tone, "data-dim": !active || void 0, "aria-current": selection !== "ALL_APPROVED" && active ? "true" : void 0, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-appr__cat-label", children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("i", { "aria-hidden": true }),
+                    category.label,
+                    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("small", { children: category.hint })
+                  ] }),
+                  /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DashboardMeter, { ratio: data.approved ? value / data.approved : 0, tone: category.tone, muted: !active }),
+                  /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: count.format(value) })
+                ] }, category.key);
+              }) })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("p", { className: "dash-appr__slice", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-chip jv-chip--arc", children: selectionLabel[data.filters.selection] }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: count.format(data.selectedApproved) }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: data.selectedShare === null ? "sem base ou cobertura insuficiente" : `${percent.format(data.selectedShare)} das opera\xE7\xF5es com decis\xE3o` })
+            ] })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-appr__foot", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-appr__foot-label", children: "Fora do c\xE1lculo" }),
+          excluded.some(([, n]) => n > 0) ? excluded.filter(([, n]) => n > 0).map(([label, n]) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "jv-pill", children: [
+            count.format(n),
+            " ",
+            label
+          ] }, label)) : /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-pill", children: "nenhuma" }),
+          data.mixedBankApprovals > 0 && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "jv-pill jv-pill--arc", title: "Integral e parcial em bancos diferentes: a aprova\xE7\xE3o integral tem preced\xEAncia.", children: [
+            count.format(data.mixedBankApprovals),
+            " integral + parcial \xB7 conta como proposto"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-appr__cohort", children: data.filters.from || data.filters.to ? `Criadas no recorte: ${count.format(data.cohortCount)} de ${count.format(data.universeCount)}` : `${count.format(data.universeCount)} opera\xE7\xF5es no seu acesso` })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("details", { className: "dash-appr__ops", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("summary", { children: [
+            "Opera\xE7\xF5es aprovadas no recorte ",
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-pill", children: count.format(data.detailsTotal) })
+          ] }),
+          !data.details.length ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "dash-muted", children: "Nenhuma aprova\xE7\xE3o neste recorte." }) : /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dash-table", role: "region", "aria-label": "Opera\xE7\xF5es aprovadas no recorte", tabIndex: 0, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("table", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("tr", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("th", { scope: "col", children: "Opera\xE7\xE3o" }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("th", { scope: "col", children: "Aprova\xE7\xE3o" }),
+              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("th", { scope: "col", children: "Criada em" })
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("tbody", { children: data.details.map((row) => {
+              const category = categories.find((c) => c.key === row.category);
+              return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("tr", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("th", { scope: "row", children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Link, { className: "dash-op-link", href: "/operations/" + row.id, children: [
+                  row.code,
+                  /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ArrowUpRight, { size: 12, "aria-hidden": true })
+                ] }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("td", { children: category ? /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-cat-pill", "data-tone": category.tone, children: [
+                  category.label,
+                  " \xB7 ",
+                  category.hint
+                ] }) : row.outcome }),
+                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("td", { className: "dash-mono", children: civil2(row.createdDate) })
+              ] }, row.id);
+            }) })
+          ] }) }),
+          data.detailsHasMore && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("p", { className: "dash-muted", children: [
+            "Mostrando as 20 mais recentes de ",
+            count.format(data.detailsTotal),
+            ". A taxa considera todas."
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("details", { className: "dash-howto", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("summary", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Info, { size: 13, "aria-hidden": true }),
+            "Como ler este indicador"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("ul", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("li", { children: "Taxa = aprovadas \xF7 (aprovadas + reprovadas), sobre o resultado consolidado atual de cada opera\xE7\xE3o." }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("li", { children: "O per\xEDodo usa a data de cria\xE7\xE3o da opera\xE7\xE3o, em S\xE3o Paulo. N\xE3o \xE9 a data da decis\xE3o." }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("li", { children: "\u201CComo proposto\u201D e \u201CCom quebra\u201D s\xE3o partes das mesmas decis\xF5es: o denominador n\xE3o muda." }),
+            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("li", { children: "Aprova\xE7\xE3o interna com condi\xE7\xF5es \xE9 separada e n\xE3o \xE9 chamada de quebra. Aprova\xE7\xE3o n\xE3o \xE9 faturamento." })
+          ] })
+        ] })
+      ] })
+    ] });
+  }
 
-  // src/components/shared/badges/status-badge.tsx
+  // src/components/dashboard/dashboard-residence.tsx
+  init_define_process_env();
+  var import_react12 = __toESM(require_react());
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/dashboard-residence.actions.ts
+  init_define_process_env();
+  async function loadDashboardResidenceAction() {
+    return residence();
+  }
+
+  // src/modules/operation/presentation/status-presentation.contract.ts
   init_define_process_env();
 
   // src/components/shared/badges/status-presentation.tokens.ts
   init_define_process_env();
 
-  // src/components/shared/badges/status-badge.tsx
-  var import_jsx_runtime13 = __toESM(require_jsx_runtime());
-
-  // src/components/design-system/foundation.tsx
-  var import_jsx_runtime14 = __toESM(require_jsx_runtime());
-  function DesignButton({ children, intent = "secondary", size = "default", beam = false, loading = false, disabled, className = "", type = "button", ...props }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(Button, { ...props, variant: intent === "primary" ? "default" : "secondary", type, disabled: disabled || loading, "aria-busy": loading || void 0, className: `ds-button ds-button--${intent}${size === "sm" ? " ds-button--sm" : ""} ${className}`, "data-beam": beam && intent === "primary" ? "true" : void 0, children: [
-      beam && intent === "primary" && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { className: "ds-button__beam", "aria-hidden": true }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("span", { className: "ds-button__content", children: [
-        loading && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(LoaderCircle, { className: "ds-spinner", size: 16, "aria-hidden": true }),
-        children
-      ] })
-    ] });
-  }
-  function DesignState({ kind, title, children, action }) {
-    const alert = kind === "error" || kind === "denied";
-    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: `jv-state jv-state--${kind}`, role: alert ? "alert" : "status", "aria-busy": kind === "loading" || void 0, children: [
-      kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(LoaderCircle, { className: "ds-spinner", size: 18, "aria-hidden": true }),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("strong", { children: title }),
-      children && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { children }),
-      action
-    ] });
-  }
-
-  // src/components/dashboard/dashboard-presentation.ts
-  init_define_process_env();
-
-  // src/modules/operation/view-models/operation-center.view-model.ts
-  init_define_process_env();
-
-  // src/core/domain/identity/human-identifiers.ts
-  init_define_process_env();
-  function operationIdentifier(human, legacy, legacyPrefix = "OP-") {
-    if (human) return human;
-    if (legacy === null || legacy === void 0 || legacy === "") return "Opera\xE7\xE3o sem identificador";
-    const value = String(legacy);
-    return value.startsWith("OP-") ? value : `${legacyPrefix}${value}`;
-  }
-
-  // src/modules/operation/presentation/bank-action-owner.ts
-  init_define_process_env();
-
-  // src/utils/document.ts
-  init_define_process_env();
-
-  // src/utils/cnpj.ts
-  init_define_process_env();
-
-  // src/modules/operation/view-models/operation-center.view-model.ts
-  function sortOperationCenterItems(operations, sort) {
-    return [...operations].sort((left, right) => {
-      const leftTimestamp = left.createdAt ? Date.parse(left.createdAt) : Number.NEGATIVE_INFINITY;
-      const rightTimestamp = right.createdAt ? Date.parse(right.createdAt) : Number.NEGATIVE_INFINITY;
-      if (sort === "oldest") return leftTimestamp - rightTimestamp;
-      if (sort === "amount_desc") return (right.operationAmount ?? Number.NEGATIVE_INFINITY) - (left.operationAmount ?? Number.NEGATIVE_INFINITY);
-      if (sort === "amount_asc") return (left.operationAmount ?? Number.POSITIVE_INFINITY) - (right.operationAmount ?? Number.POSITIVE_INFINITY);
-      return rightTimestamp - leftTimestamp;
-    });
-  }
-
-  // src/components/dashboard/dashboard-presentation.ts
-  var DASHBOARD_PENDING_INTEGRATIONS = {
-    "DASH-INT-01": { id: "DASH-INT-01", title: "Briefing da Ava", awaiting: "Aguarda resumo di\xE1rio com origem de cada frase a partir de m\xE9tricas e pend\xEAncias can\xF4nicas." },
-    "DASH-INT-02": { id: "DASH-INT-02", title: "Recorte de per\xEDodo", awaiting: "Aguarda read model com per\xEDodo, campo de data e fuso definidos. Hoje os n\xFAmeros cobrem todo o hist\xF3rico do seu escopo." },
-    "DASH-INT-03": { id: "DASH-INT-03", title: "Meta vs realizado", awaiting: "Aguarda metas versionadas por perfil, calend\xE1rio de dias \xFAteis e proje\xE7\xE3o calculada no servidor." },
-    "DASH-INT-04": { id: "DASH-INT-04", title: "Faturamento", awaiting: "Aguarda fatos de faturamento confirmados por item. Aprova\xE7\xE3o de cr\xE9dito e pedido emitido n\xE3o contam como faturado." },
-    "DASH-INT-05": { id: "DASH-INT-05", title: "Funil comercial no painel", awaiting: "Aguarda read model comercial autorizado para o painel. O funil completo segue na tela Funil comercial." },
-    "DASH-INT-06": { id: "DASH-INT-06", title: "Taxa de aprova\xE7\xE3o de cr\xE9dito", awaiting: "Aguarda taxa com denominador, per\xEDodo e aplicabilidade definidos no servidor." },
-    "DASH-INT-07": { id: "DASH-INT-07", title: "Documenta\xE7\xE3o incompleta", awaiting: "Aguarda proje\xE7\xE3o de pend\xEAncias e completude documental por opera\xE7\xE3o." },
-    "DASH-INT-08": { id: "DASH-INT-08", title: "Precisa de a\xE7\xE3o hoje", awaiting: "Aguarda tarefas, prazos e prioridade governados, com v\xEDnculo ao registro de origem." },
-    "DASH-INT-09": { id: "DASH-INT-09", title: "Ranking da equipe", awaiting: "Aguarda metas, faturamento e pol\xEDtica de escopo de equipe aprovados." },
-    "DASH-INT-10": { id: "DASH-INT-10", title: "Linha do tempo", awaiting: "Aguarda cat\xE1logo de eventos autorizados e mecanismo de atualiza\xE7\xE3o em tempo real." },
-    "DASH-INT-11": { id: "DASH-INT-11", title: "SLA por estado operacional", awaiting: "Aguarda hist\xF3rico de fases com SLA em horas \xFAteis calculado no servidor." },
-    "DASH-INT-12": { id: "DASH-INT-12", title: "Volume financiado e desembolso", awaiting: "Aguarda fatos de desembolso e condi\xE7\xF5es contratadas. O valor de equipamento n\xE3o \xE9 volume financiado." }
-  };
-  var DASHBOARD_PENDING_KPIS = [
-    { id: "DASH-INT-03", label: "Meta do per\xEDodo" },
-    { id: "DASH-INT-04", label: "Faturado no per\xEDodo" },
-    { id: "DASH-INT-05", label: "Pipeline comercial aberto" },
-    { id: "DASH-INT-06", label: "Taxa de aprova\xE7\xE3o" },
-    { id: "DASH-INT-07", label: "Fichas incompletas" },
-    { id: "DASH-INT-12", label: "Volume financiado" }
-  ];
-  var DASHBOARD_LIFECYCLE_ORDER = ["received", "in_review", "formalization", "billing", "closed", "cancelled"];
-  var DASHBOARD_RECENT_LIMIT = 5;
-  function toOperationsRegion(result) {
-    if (!result.success) {
-      if (result.errorCode === "FORBIDDEN" || result.errorCode === "UNAUTHENTICATED") return { kind: "denied", message: result.safeMessage };
-      return { kind: "error", message: result.safeMessage };
-    }
-    const { operations, kpis } = result.data.readModel;
-    const data = { kpis, lifecycle: groupByLifecycle(operations), recent: sortOperationCenterItems(operations, "newest").slice(0, DASHBOARD_RECENT_LIMIT) };
-    if (operations.length === 0) return { kind: "empty", message: "Nenhuma opera\xE7\xE3o no seu escopo de leitura.", data };
-    return { kind: "ready", data };
-  }
-  function groupByLifecycle(operations) {
-    const counts = /* @__PURE__ */ new Map();
-    for (const operation of operations) {
-      const state = operation.lifecycle?.state;
-      const key = state && DASHBOARD_LIFECYCLE_ORDER.includes(state) ? state : "unknown";
-      counts.set(key, (counts.get(key) ?? 0) + 1);
-    }
-    const buckets = DASHBOARD_LIFECYCLE_ORDER.map((state) => ({ state, count: counts.get(state) ?? 0 }));
-    if (counts.has("unknown")) buckets.push({ state: "unknown", count: counts.get("unknown") ?? 0 });
-    return buckets;
-  }
-  var currency = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
-  var integer = new Intl.NumberFormat("pt-BR");
-  var formatDashboardCurrency = (value) => currency.format(value);
-  var formatDashboardCount = (value) => integer.format(value);
-  var DASHBOARD_UNAVAILABLE = "\u2014";
-  function dashboardGreeting(hour) {
-    if (hour >= 5 && hour < 12) return "Bom dia";
-    if (hour >= 12 && hour < 18) return "Boa tarde";
-    return "Boa noite";
-  }
-  function dashboardFirstName(userName) {
-    const trimmed = userName.trim();
-    if (!trimmed || trimmed.includes("@")) return "";
-    return trimmed.split(/\s+/)[0] ?? "";
-  }
-
-  // src/components/dashboard/dashboard-regions.tsx
-  init_define_process_env();
-
   // src/modules/operation/presentation/status-presentation.contract.ts
-  init_define_process_env();
   var operationalContracts = {
     received: contract("received", "Recebida", "info" /* Info */, "inbox"),
     in_review: contract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "search", "strong"),
@@ -16784,11 +17580,11 @@
     const original = safeStatusText(value);
     return Object.prototype.hasOwnProperty.call(creditContracts, original) ? creditContracts[original] : unknownContract(original);
   }
-  function contract(canonicalValue, label, tone, icon, emphasis = "standard") {
-    return { canonicalValue, label, tone, icon, emphasis, motion: "none", accessibilityLabel: `Status: ${label}` };
+  function contract(canonicalValue, label, tone2, icon, emphasis = "standard") {
+    return { canonicalValue, label, tone: tone2, icon, emphasis, motion: "none", accessibilityLabel: `Status: ${label}` };
   }
-  function lifecycleContract(canonicalValue, label, tone, colorHex, orbClassName) {
-    return { ...contract(canonicalValue, label, tone, null, "strong"), colorHex, orbClassName };
+  function lifecycleContract(canonicalValue, label, tone2, colorHex, orbClassName) {
+    return { ...contract(canonicalValue, label, tone2, null, "strong"), colorHex, orbClassName };
   }
   function unknownContract(original) {
     const label = original || "Status indispon\xEDvel";
@@ -16799,8 +17595,337 @@
     return value.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 80);
   }
 
+  // src/components/dashboard/dashboard-residence.tsx
+  var import_jsx_runtime16 = __toESM(require_jsx_runtime());
+  var hours = (value) => `${value.toLocaleString("pt-BR", { maximumFractionDigits: 1 })} h`;
+  var count2 = new Intl.NumberFormat("pt-BR");
+  var tone = { received: "c2", in_review: "c3", formalization: "c4", billing: "c5", closed: "good", cancelled: "crit" };
+  function DashboardResidence() {
+    const [view, setView] = (0, import_react12.useState)(null), [loading, setLoading] = (0, import_react12.useState)(true), request = (0, import_react12.useRef)(0);
+    const load = (0, import_react12.useCallback)(() => {
+      const id2 = ++request.current;
+      setLoading(true);
+      void loadDashboardResidenceAction().then((r2) => {
+        if (id2 === request.current) {
+          setView(r2);
+          setLoading(false);
+        }
+      }).catch(() => {
+        if (id2 === request.current) {
+          setView({ success: false, kind: "error", safeMessage: "Hist\xF3rico indispon\xEDvel." });
+          setLoading(false);
+        }
+      });
+    }, []);
+    (0, import_react12.useEffect)(() => {
+      const pending2 = request;
+      load();
+      return () => {
+        pending2.current++;
+      };
+    }, [load]);
+    const data = !loading && view?.success ? view.data : null;
+    const scale = data ? Math.max(0, ...data.groups.map((g) => g.currentPassageMeanBusinessHours ?? 0)) : 0;
+    return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "jv-panel jv-panel--hud dash-res", "aria-labelledby": "dashboard-residence-heading", "aria-busy": loading || void 0, "data-integration-id": "DASH-INT-11", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h2", { id: "dashboard-residence-heading", className: "jv-section-title", children: "Perman\xEAncia por estado" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "dash-ph__sub", children: "M\xE9dia da passagem atual, em horas \xFAteis \xB7 n\xE3o indica atraso nem cumprimento de SLA" }),
+        data && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "dash-ph__r", children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { className: "jv-pill", children: [
+          count2.format(data.population),
+          " opera\xE7\xF5es"
+        ] }) })
+      ] }),
+      loading ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash-res__sk", "aria-hidden": true, children: [
+        [0, 1, 2, 3, 4, 5].map((i) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "jv-skeleton" }, i)),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "sr-only", children: "Consultando hist\xF3rico de perman\xEAncia\u2026" })
+      ] }) : !view?.success ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: `jv-state jv-state--${view?.kind === "denied" ? "denied" : "error"}`, role: view?.kind === "denied" ? void 0 : "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("strong", { children: view?.kind === "denied" ? "Sem acesso ao hist\xF3rico de perman\xEAncia" : "Perman\xEAncia indispon\xEDvel" }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: view?.safeMessage }),
+        view?.kind !== "denied" && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: load, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
+          "Tentar novamente"
+        ] })
+      ] }) : data && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
+        data.population === 0 ? /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "jv-state", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("strong", { children: "Nenhuma opera\xE7\xE3o no seu escopo" }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children: "Sem opera\xE7\xF5es, n\xE3o h\xE1 perman\xEAncia a mostrar." })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("ul", { className: "dash-res__list", "aria-label": "Perman\xEAncia m\xE9dia da passagem atual por estado", children: data.groups.map((g) => {
+          const label = resolveOperationalLifecyclePresentation(g.state).label, mean = g.currentPassageMeanBusinessHours, partial2 = g.count > 0 && g.knownCurrent < g.count;
+          return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("li", { "data-tone": tone[g.state] ?? "arc", "data-empty": g.count === 0 || void 0, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { className: "dash-res__state", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("i", { "aria-hidden": true }),
+              label,
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("small", { children: [
+                count2.format(g.count),
+                " ",
+                g.count === 1 ? "opera\xE7\xE3o" : "opera\xE7\xF5es"
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardMeter, { ratio: mean !== null && scale > 0 ? mean / scale : 0, tone: tone[g.state] ?? "arc" }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("b", { className: "dash-res__val", children: g.count === 0 ? "\u2014" : mean === null ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "dash-res__na", children: "sem marco" }) : hours(mean) }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "dash-res__cov", "data-partial": partial2 || void 0, title: "Opera\xE7\xF5es com marco confi\xE1vel da passagem atual", children: g.count === 0 ? "" : `${count2.format(g.knownCurrent)}/${count2.format(g.count)} com marco` }),
+            g.count > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "dash-res__prev", children: g.previousPassagesBusinessHours === null ? "Passagens anteriores: hist\xF3rico insuficiente" : `Passagens anteriores: ${hours(g.previousPassagesBusinessHours)} acumuladas` })
+          ] }, g.state);
+        }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash-appr__foot", children: [
+          data.unclassifiedCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { className: "jv-pill jv-pill--warn", children: [
+            count2.format(data.unclassifiedCount),
+            " sem estado comprovado"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { className: "dash-appr__cohort", children: [
+            "Calend\xE1rio ",
+            data.calendarVersion,
+            " \xB7 S\xE3o Paulo \xB7 ",
+            new Date(data.asOf).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short" })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("details", { className: "dash-howto", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("summary", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Info, { size: 13, "aria-hidden": true }),
+            "Como ler este indicador"
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("ul", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: "Mostra h\xE1 quanto tempo, em horas \xFAteis, as opera\xE7\xF5es est\xE3o no estado atual. Passagens anteriores pelo mesmo estado ficam separadas." }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: "A m\xE9dia usa apenas as opera\xE7\xF5es com marco confi\xE1vel indicado em cada linha. Sem eventos suficientes, a dura\xE7\xE3o n\xE3o \xE9 estimada." }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: "N\xE3o representa atraso nem cumprimento do SLA da Mesa. Solicita\xE7\xE3o de perda n\xE3o pausa este rel\xF3gio." })
+          ] })
+        ] })
+      ] })
+    ] });
+  }
+
+  // src/components/dashboard/dashboard-home.tsx
+  var import_react15 = __toESM(require_react());
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/dashboard-pending.actions.ts
+  init_define_process_env();
+  async function loadDashboardPendingAction() {
+    return pending();
+  }
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/dashboard-commercial.actions.ts
+  init_define_process_env();
+  async function loadDashboardCommercialAction(q = {}) {
+    return commercial(q);
+  }
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/operations.actions.ts
+  init_define_process_env();
+  async function loadOperationCenterAction() {
+    return operations();
+  }
+  async function createOperationDocumentDownloadUrlAction() {
+    return { success: false, safeMessage: "Download desativado no harness." };
+  }
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/browser-composition.ts
+  init_define_process_env();
+  function createBrowserApplication() {
+    return { useCases: { countActiveBanks: { execute: () => Promise.resolve({ success: true, data: 5 }) } } };
+  }
+
+  // src/components/design-system/foundation.tsx
+  init_define_process_env();
+  var import_react13 = __toESM(require_react());
+  var import_react_dom3 = __toESM(require_react_dom());
+
+  // src/components/shared/badges/status-badge.tsx
+  init_define_process_env();
+  var import_jsx_runtime17 = __toESM(require_jsx_runtime());
+
+  // src/components/design-system/foundation.tsx
+  var import_jsx_runtime18 = __toESM(require_jsx_runtime());
+  function DesignButton({ children, intent = "secondary", size: size2 = "default", beam = false, loading = false, disabled, className = "", type = "button", ...props }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(Button, { ...props, variant: intent === "primary" ? "default" : "secondary", type, disabled: disabled || loading, "aria-busy": loading || void 0, className: `ds-button ds-button--${intent}${size2 === "sm" ? " ds-button--sm" : ""} ${className}`, "data-beam": beam && intent === "primary" ? "true" : void 0, children: [
+      beam && intent === "primary" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "ds-button__beam", "aria-hidden": true }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("span", { className: "ds-button__content", children: [
+        loading && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(LoaderCircle, { className: "ds-spinner", size: 16, "aria-hidden": true }),
+        children
+      ] })
+    ] });
+  }
+  function DesignState({ kind, title, children, action }) {
+    const alert = kind === "error" || kind === "denied";
+    return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: `jv-state jv-state--${kind}`, role: alert ? "alert" : "status", "aria-busy": kind === "loading" || void 0, children: [
+      kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(LoaderCircle, { className: "ds-spinner", size: 18, "aria-hidden": true }),
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("strong", { children: title }),
+      children && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { children }),
+      action
+    ] });
+  }
+  function DesignModalFrame({ onClose, children, className = "jv-dialog", busy = false, labelledBy, label }) {
+    const ref = (0, import_react13.useRef)(null), close = (0, import_react13.useRef)(onClose), [mounted, setMounted] = (0, import_react13.useState)(false);
+    close.current = onClose;
+    (0, import_react13.useEffect)(() => setMounted(true), []);
+    useModalIsolation(ref, mounted);
+    if (!mounted) return null;
+    return (0, import_react_dom3.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "jv-dialog-backdrop", onClick: (event2) => {
+      if (event2.target === event2.currentTarget && !busy) close.current();
+    }, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { ref, role: "dialog", "aria-modal": "true", "aria-labelledby": labelledBy, "aria-label": labelledBy ? void 0 : label, tabIndex: -1, className, onKeyDown: (event2) => handleModalKeyDown(event2, () => close.current(), busy), children }) }), document.body);
+  }
+  function DesignDialog({ title, onClose, children, busy = false, closeLabel = "Fechar", footer }) {
+    const id2 = (0, import_react13.useId)();
+    return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(DesignModalFrame, { onClose, busy, labelledBy: id2, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "jv-dialog__head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h2", { id: id2, className: "jv-dialog__title", children: title }),
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("button", { type: "button", className: "jv-icon-btn", "aria-label": closeLabel, disabled: busy, onClick: onClose, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(X, { size: 16, "aria-hidden": true }) })
+      ] }),
+      children,
+      footer
+    ] });
+  }
+  function useDesignToasts(timeout = 4500) {
+    const [toasts, setToasts] = (0, import_react13.useState)([]), seq = (0, import_react13.useRef)(0);
+    const push = (0, import_react13.useCallback)((message, tone2 = "success") => {
+      const id2 = ++seq.current;
+      setToasts((current) => [...current, { id: id2, message, tone: tone2 }]);
+      window.setTimeout(() => setToasts((current) => current.filter((toast) => toast.id !== id2)), timeout);
+    }, [timeout]);
+    return { toasts, push };
+  }
+  function DesignToasts({ toasts }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "jv-toasts", role: "status", "aria-live": "polite", children: toasts.map((toast) => /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: `jv-toast${toast.tone === "error" ? " jv-toast--error" : ""}`, children: toast.message }, toast.id)) });
+  }
+
+  // src/components/dashboard/dashboard-presentation.ts
+  init_define_process_env();
+  var DASHBOARD_PENDING_INTEGRATIONS = {
+    "DASH-INT-01": { id: "DASH-INT-01", title: "Briefing da Ava", awaiting: "Aguarda resumo di\xE1rio com origem de cada frase a partir de m\xE9tricas e pend\xEAncias can\xF4nicas." },
+    "DASH-INT-02": { id: "DASH-INT-02", title: "Recorte de per\xEDodo", awaiting: "Aguarda read model com per\xEDodo, campo de data e fuso definidos. Hoje os n\xFAmeros cobrem todo o hist\xF3rico do seu escopo." },
+    "DASH-INT-03": { id: "DASH-INT-03", title: "Meta vs realizado", awaiting: "Aguarda metas versionadas por perfil, calend\xE1rio de dias \xFAteis e proje\xE7\xE3o calculada no servidor." },
+    "DASH-INT-04": { id: "DASH-INT-04", title: "Faturamento", awaiting: "Aguarda fatos de faturamento confirmados por item. Aprova\xE7\xE3o de cr\xE9dito e pedido emitido n\xE3o contam como faturado." },
+    "DASH-INT-05": { id: "DASH-INT-05", title: "Funil comercial no painel", awaiting: "Aguarda read model comercial autorizado para o painel. O funil completo segue na tela Funil comercial." },
+    "DASH-INT-06": { id: "DASH-INT-06", title: "Taxa de aprova\xE7\xE3o de cr\xE9dito", awaiting: "Aguarda taxa com denominador, per\xEDodo e aplicabilidade definidos no servidor." },
+    "DASH-INT-07": { id: "DASH-INT-07", title: "Documenta\xE7\xE3o incompleta", awaiting: "Aguarda proje\xE7\xE3o de pend\xEAncias e completude documental por opera\xE7\xE3o." },
+    "DASH-INT-08": { id: "DASH-INT-08", title: "Precisa de a\xE7\xE3o hoje", awaiting: "Aguarda tarefas, prazos e prioridade governados, com v\xEDnculo ao registro de origem." },
+    "DASH-INT-09": { id: "DASH-INT-09", title: "Ranking da equipe", awaiting: "Aguarda metas, faturamento e pol\xEDtica de escopo de equipe aprovados." },
+    "DASH-INT-10": { id: "DASH-INT-10", title: "Linha do tempo", awaiting: "Aguarda cat\xE1logo de eventos autorizados e mecanismo de atualiza\xE7\xE3o em tempo real." },
+    "DASH-INT-11": { id: "DASH-INT-11", title: "Apura\xE7\xE3o do SLA da Mesa", awaiting: "A apura\xE7\xE3o exige os marcos can\xF4nicos da pol\xEDtica existente; tempo factual de perman\xEAncia \xE9 apresentado separadamente." },
+    "DASH-INT-12": { id: "DASH-INT-12", title: "Volume financiado e desembolso", awaiting: "Aguarda fatos de desembolso e condi\xE7\xF5es contratadas. O valor de equipamento n\xE3o \xE9 volume financiado." }
+  };
+  var DASHBOARD_PENDING_KPIS = [
+    { id: "DASH-INT-03", label: "Meta do per\xEDodo" },
+    { id: "DASH-INT-04", label: "Faturado no per\xEDodo" },
+    { id: "DASH-INT-12", label: "Volume financiado" }
+  ];
+  var DASHBOARD_RECENT_LIMIT = 5;
+  function toOperationsRegion(result) {
+    if (!result.success) {
+      if (result.errorCode === "FORBIDDEN" || result.errorCode === "UNAUTHENTICATED") return { kind: "denied", message: result.safeMessage };
+      return { kind: "error", message: result.safeMessage };
+    }
+    const { operations: operations2, kpis, dashboardProjection } = result.data.readModel;
+    if (!dashboardProjection || dashboardProjection.population.complete !== true || dashboardProjection.population.count !== kpis.totalOperations) return { kind: "error", message: "Popula\xE7\xE3o completa do painel indispon\xEDvel." };
+    const data = { kpis, ...dashboardProjection };
+    return operations2.length === 0 ? { kind: "empty", message: "Nenhuma opera\xE7\xE3o no seu escopo de leitura.", data } : { kind: "ready", data };
+  }
+  var currency = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  var integer = new Intl.NumberFormat("pt-BR");
+  var formatDashboardCurrency = (value) => value === null ? "\u2014" : currency.format(value);
+  var formatDashboardCount = (value) => integer.format(value);
+  var DASHBOARD_UNAVAILABLE = "\u2014";
+  function dashboardGreeting(hour) {
+    if (hour >= 5 && hour < 12) return "Bom dia";
+    if (hour >= 12 && hour < 18) return "Boa tarde";
+    return "Boa noite";
+  }
+  function dashboardFirstName(userName) {
+    const trimmed = userName.trim();
+    if (!trimmed || trimmed.includes("@")) return "";
+    return trimmed.split(/\s+/)[0] ?? "";
+  }
+
   // src/components/dashboard/dashboard-regions.tsx
-  var import_jsx_runtime15 = __toESM(require_jsx_runtime());
+  init_define_process_env();
+  var import_react14 = __toESM(require_react());
+
+  // src/modules/sales-funnel/constants/funnel-stages.ts
+  init_define_process_env();
+  var FUNNEL_STAGES = [
+    {
+      id: "1_OPORTUNIDADE",
+      order: 1,
+      code: "1",
+      name: "OPORTUNIDADE",
+      description: "Prospec\xE7\xE3o inicial e identifica\xE7\xE3o de interesse comercial",
+      colorClass: "border-zinc-700 bg-zinc-900/60 text-zinc-300"
+    },
+    {
+      id: "2_ATENDIMENTO",
+      order: 2,
+      code: "2",
+      name: "ATENDIMENTO",
+      description: "Primeiro contato e levantamento de necessidades do cliente",
+      colorClass: "border-blue-900/50 bg-blue-950/30 text-blue-300"
+    },
+    {
+      id: "3_PROPOSTA",
+      order: 3,
+      code: "3",
+      name: "PROPOSTA",
+      description: "Envio da proposta preliminar e especifica\xE7\xF5es da m\xE1quina",
+      colorClass: "border-cyan-900/50 bg-cyan-950/30 text-cyan-300"
+    },
+    {
+      id: "4_ACOMPANHAMENTO",
+      order: 4,
+      code: "4",
+      name: "ACOMPANHAMENTO",
+      description: "Follow-up e esclarecimento de d\xFAvidas t\xE9cnicas/comerciais",
+      colorClass: "border-amber-900/50 bg-amber-950/30 text-amber-300"
+    },
+    {
+      id: "5_NEGOCIACAO",
+      order: 5,
+      code: "5",
+      name: "NEGOCIA\xC7\xC3O",
+      description: "Ajuste de condi\xE7\xF5es comerciais, prazos e modalidade",
+      colorClass: "border-orange-900/50 bg-orange-950/30 text-orange-300"
+    },
+    {
+      id: "6_ANALISE_CREDITO",
+      order: 6,
+      code: "6",
+      name: "AN\xC1LISE DE CR\xC9DITO",
+      description: "Encaminhamento formal \xE0 mesa de cr\xE9dito (Gera Opera\xE7\xE3o OP)",
+      colorClass: "border-red-900/50 bg-red-950/30 text-red-300"
+    },
+    {
+      id: "7_FORMALIZACAO",
+      order: 7,
+      code: "7",
+      name: "FORMALIZA\xC7\xC3O",
+      description: "Formaliza\xE7\xE3o governada pelo Lifecycle da opera\xE7\xE3o; assinatura e aceite formal",
+      colorClass: "border-emerald-900/50 bg-emerald-950/30 text-emerald-300",
+      isAutomated: true
+    },
+    {
+      id: "8_FATURAMENTO",
+      order: 8,
+      code: "8",
+      name: "FATURAMENTO",
+      description: "Emiss\xE3o de NF-e, libera\xE7\xE3o e entrega do equipamento conforme o Lifecycle",
+      colorClass: "border-green-900/50 bg-green-950/30 text-green-300",
+      isAutomated: true
+    }
+  ];
+  var FUNNEL_STAGE_MAP = new Map([
+    ...FUNNEL_STAGES.map((stage) => [stage.id, stage]),
+    // Mapeamento retroativo para '7_FECHAMENTO' apontando para o card de FORMALIZAÇÃO
+    ["7_FECHAMENTO", FUNNEL_STAGES[6]]
+  ]);
+
+  // src/core/domain/identity/human-identifiers.ts
+  init_define_process_env();
+  function operationIdentifier(human, legacy, legacyPrefix = "OP-") {
+    if (human) return human;
+    if (legacy === null || legacy === void 0 || legacy === "") return "Opera\xE7\xE3o sem identificador";
+    const value = String(legacy);
+    return value.startsWith("OP-") ? value : `${legacyPrefix}${value}`;
+  }
+
+  // src/components/dashboard/dashboard-regions.tsx
+  var import_jsx_runtime19 = __toESM(require_jsx_runtime());
   var TONE = {
     ["neutral" /* Neutral */]: "",
     ["info" /* Info */]: "arc",
@@ -16811,82 +17936,82 @@
     ["negative" /* Negative */]: "crit",
     ["cancelled" /* Cancelled */]: ""
   };
-  function DashboardPendingTag({ id }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-pending-tag", "data-integration-id": id, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-pill jv-pill--warn", children: "Integra\xE7\xE3o pendente" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("code", { children: id })
+  function DashboardPendingTag({ id: id2 }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "dash-pending-tag", "data-integration-id": id2, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "jv-pill jv-pill--warn", children: "Integra\xE7\xE3o pendente" }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("code", { children: id2 })
     ] });
   }
   function DashboardKpiTile({ icon: Icon2, label, value, foot, loading = false, hud = false, arc = false }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("article", { className: `jv-panel jv-kpi dash-kpi${hud ? " jv-panel--hud" : ""}`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "jv-kpi__top", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: `jv-kpi__icon${arc ? " jv-kpi__icon--arc" : ""}`, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Icon2, { size: 16, "aria-hidden": true }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { className: "jv-kpi__label", children: label })
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("article", { className: `jv-panel jv-kpi dash-kpi${hud ? " jv-panel--hud" : ""}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "jv-kpi__top", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: `jv-kpi__icon${arc ? " jv-kpi__icon--arc" : ""}`, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Icon2, { size: 16, "aria-hidden": true }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "jv-kpi__label", children: label })
       ] }),
-      loading ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-skeleton dash-kpi__skeleton", "aria-hidden": true }) : /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "jv-kpi__value", children: value }),
-      loading && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "sr-only", children: "Carregando" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "jv-kpi__foot", children: foot })
+      loading ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "jv-skeleton dash-kpi__skeleton", "aria-hidden": true }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "jv-kpi__value", "data-long": value.length > 9 || void 0, title: value.length > 9 ? value : void 0, children: value }),
+      loading && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "sr-only", children: "Carregando" }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "jv-kpi__foot", children: foot })
     ] });
   }
   function DashboardPendingKpis() {
-    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "jv-panel dash-pending-kpis", "aria-labelledby": "dash-pending-kpis-title", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-ph", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { className: "jv-section-title", id: "dash-pending-kpis-title", children: "Indicadores aguardando integra\xE7\xE3o" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-ph__sub", children: "Previstos na refer\xEAncia aprovada, sem fonte suficiente ainda." })
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "jv-panel dash-pending-kpis", "aria-labelledby": "dash-pending-kpis-title", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "jv-section-title", id: "dash-pending-kpis-title", children: "Indicadores aguardando integra\xE7\xE3o" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-ph__sub", children: "Previstos na refer\xEAncia aprovada, sem fonte suficiente ainda." })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("ul", { className: "dash-pending-kpis__list", children: DASHBOARD_PENDING_KPIS.map((kpi) => /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("li", { "data-integration-id": kpi.id, title: DASHBOARD_PENDING_INTEGRATIONS[kpi.id].awaiting, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-pending-kpis__label", children: kpi.label }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-pending-kpis__value", "aria-label": "Indispon\xEDvel", children: DASHBOARD_UNAVAILABLE }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("code", { children: kpi.id })
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "dash-pending-kpis__list", children: DASHBOARD_PENDING_KPIS.map((kpi) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("li", { "data-integration-id": kpi.id, title: DASHBOARD_PENDING_INTEGRATIONS[kpi.id].awaiting, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-pending-kpis__label", children: kpi.label }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-pending-kpis__value", "aria-label": "Indispon\xEDvel", children: DASHBOARD_UNAVAILABLE }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("code", { children: kpi.id })
       ] }, kpi.label)) })
     ] });
   }
-  function DashboardPendingPanel({ id, title, hud = false }) {
-    const titleId = `dash-pending-${id}`;
-    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: `jv-panel dash-pending${hud ? " jv-panel--hud" : ""}`, "aria-labelledby": titleId, "data-integration-id": id, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-ph", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { className: "jv-section-title", id: titleId, children: title }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dash-ph__r", children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DashboardPendingTag, { id }) })
+  function DashboardPendingPanel({ id: id2, title, hud = false }) {
+    const titleId = `dash-pending-${id2}`;
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: `jv-panel dash-pending${hud ? " jv-panel--hud" : ""}`, "aria-labelledby": titleId, "data-integration-id": id2, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "jv-section-title", id: titleId, children: title }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dash-ph__r", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DashboardPendingTag, { id: id2 }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "dash-pending__text", children: DASHBOARD_PENDING_INTEGRATIONS[id].awaiting }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "dash-pending__value", "aria-hidden": true, children: DASHBOARD_UNAVAILABLE })
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dash-pending__text", children: DASHBOARD_PENDING_INTEGRATIONS[id2].awaiting }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dash-pending__value", "aria-hidden": true, children: DASHBOARD_UNAVAILABLE })
     ] });
   }
   function DashboardRecentOperations({ state, onRetry }) {
-    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "jv-panel dash-recent", "aria-labelledby": "dash-recent-title", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-ph", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { className: "jv-section-title", id: "dash-recent-title", children: "Opera\xE7\xF5es recentes" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-ph__sub", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "jv-panel dash-recent", "aria-labelledby": "dash-recent-title", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "jv-section-title", id: "dash-recent-title", children: "Opera\xE7\xF5es recentes" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "dash-ph__sub", children: [
           "As ",
           DASHBOARD_RECENT_LIMIT,
           " mais recentes do seu escopo \xB7 abre a ficha da opera\xE7\xE3o"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dash-ph__r", children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Link, { className: "dash-ghost-btn", href: "/operations", children: "Ver todas" }) })
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dash-ph__r", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Link, { className: "dash-ghost-btn", href: "/operations", children: "Ver todas" }) })
       ] }),
-      state.kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DesignState, { kind: "loading", title: "Carregando opera\xE7\xF5es" }),
-      state.kind === "empty" && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DesignState, { kind: "empty", title: "Nenhuma opera\xE7\xE3o ainda", children: state.message }),
-      (state.kind === "error" || state.kind === "denied") && /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-recent__unavailable", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { children: state.kind === "denied" ? "Sem acesso \xE0s opera\xE7\xF5es." : "Opera\xE7\xF5es indispon\xEDveis no momento." }),
-        state.kind === "error" && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" })
+      state.kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignState, { kind: "loading", title: "Carregando opera\xE7\xF5es" }),
+      state.kind === "empty" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignState, { kind: "empty", title: "Nenhuma opera\xE7\xE3o ainda", children: state.message }),
+      (state.kind === "error" || state.kind === "denied") && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-recent__unavailable", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: state.kind === "denied" ? "Sem acesso \xE0s opera\xE7\xF5es." : "Opera\xE7\xF5es indispon\xEDveis no momento." }),
+        state.kind === "error" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" })
       ] }),
-      state.kind === "ready" && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("ul", { className: "dash-list", children: state.data.recent.map((operation) => {
+      state.kind === "ready" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "dash-list", children: state.data.recent.map((operation) => {
         const lifecycle = operation.lifecycle ? resolveOperationalLifecyclePresentation(operation.lifecycle.state) : null;
         const credit = resolveCreditOutcomePresentation(operation.creditOutcome.outcome);
-        const tone = lifecycle ? TONE[lifecycle.tone] : "";
+        const tone2 = lifecycle ? TONE[lifecycle.tone] : "";
         const notApplicable = operation.creditOutcome.source === "NOT_APPLICABLE";
         const identifier = operationIdentifier(null, operation.operationNumber);
-        return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Link, { className: "dash-li", href: `/operations/${encodeURIComponent(operation.operationId)}`, "aria-label": `Abrir ${identifier}${operation.clientName ? `, ${operation.clientName}` : ""}`, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-sev", "data-tone": tone, "aria-hidden": true }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-li__main", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-li__t", children: operation.clientName || "Cliente n\xE3o informado" }),
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-li__s", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-mono", children: identifier }),
-              operation.equipment ? ` \xB7 ${operation.equipment}` : ""
+        return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Link, { className: "dash-li", href: `/operations/${encodeURIComponent(operation.operationId)}`, "aria-label": `Abrir ${identifier}${operation.clientName ? `, ${operation.clientName}` : ""}`, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-sev", "data-tone": tone2, "aria-hidden": true }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "dash-li__main", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-li__t", children: operation.clientName || "Cliente n\xE3o informado" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "dash-li__s", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-mono", children: identifier }),
+              operation.equipment ? ` \xB7 ${operation.equipment}` : " \xB7 Valor n\xE3o informado"
             ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-li__end", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: `jv-pill${tone ? ` jv-pill--${tone}` : ""}`, children: lifecycle ? lifecycle.label : "Sem estado operacional" }),
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("span", { className: "dash-li__meta", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "dash-li__end", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: `jv-pill${tone2 ? ` jv-pill--${tone2}` : ""}`, children: lifecycle ? lifecycle.label : "Sem estado operacional" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "dash-li__meta", children: [
               notApplicable ? "Cr\xE9dito n\xE3o aplic\xE1vel" : credit.label,
               operation.operationAmount !== null ? ` \xB7 ${formatDashboardCurrency(operation.operationAmount)}` : ""
             ] })
@@ -16898,46 +18023,187 @@
   function DashboardLifecycleStrip({ state }) {
     const buckets = state.kind === "ready" || state.kind === "empty" ? state.data.lifecycle : null;
     const total = state.kind === "ready" || state.kind === "empty" ? state.data.kpis.totalOperations : null;
-    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "jv-panel dash-lifecycle", "aria-labelledby": "dash-lifecycle-title", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-ph", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("h2", { className: "jv-section-title", id: "dash-lifecycle-title", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "jv-panel dash-lifecycle", "aria-labelledby": "dash-lifecycle-title", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("h2", { className: "jv-section-title", id: "dash-lifecycle-title", children: [
           "Estado operacional \xB7 ",
           buckets ? `${formatDashboardCount(total ?? 0)} opera\xE7\xF5es` : "\u2014"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-ph__sub", children: "Contagem por estado no seu escopo \xB7 cada estado abre a Consulta / Gest\xE3o" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-ph__r", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-ph__hint", children: "SLA por estado" }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(DashboardPendingTag, { id: "DASH-INT-11" })
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-ph__sub", children: "Contagem por estado no seu escopo \xB7 abre a lista completa, sem aplicar filtro" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-ph__r", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-ph__hint", children: "Apura\xE7\xE3o do SLA da Mesa ainda indispon\xEDvel" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DashboardPendingTag, { id: "DASH-INT-11" })
         ] })
       ] }),
-      state.kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "dash-phases", "aria-hidden": true, children: Array.from({ length: 6 }, (_, index) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jv-skeleton dash-phase dash-phase--skeleton" }, index)) }),
-      (state.kind === "error" || state.kind === "denied") && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "dash-muted", children: state.kind === "denied" ? "Sem acesso \xE0s opera\xE7\xF5es." : "Estados indispon\xEDveis no momento." }),
-      buckets && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("ol", { className: "dash-phases", children: buckets.map((bucket, index) => {
+      state.kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dash-phases", "aria-hidden": true, children: Array.from({ length: 6 }, (_, index) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "jv-skeleton dash-phase dash-phase--skeleton" }, index)) }),
+      (state.kind === "error" || state.kind === "denied") && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dash-muted", children: state.kind === "denied" ? "Sem acesso \xE0s opera\xE7\xF5es." : "Estados indispon\xEDveis no momento." }),
+      buckets && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ol", { className: "dash-phases", children: buckets.map((bucket, index) => {
         const presentation = bucket.state === "unknown" ? null : resolveOperationalLifecyclePresentation(bucket.state);
         const label = presentation ? presentation.label : "Sem estado operacional";
-        return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Link, { className: `dash-phase${bucket.state === "closed" ? " dash-phase--win" : ""}`, href: "/operations", "aria-label": `${label}: ${bucket.count} ${bucket.count === 1 ? "opera\xE7\xE3o" : "opera\xE7\xF5es"}. Abrir Consulta / Gest\xE3o`, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("small", { children: bucket.state === "unknown" ? "SEM ESTADO" : `ESTADO 0${index + 1}` }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("b", { children: label }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-phase__n", children: formatDashboardCount(bucket.count) })
+        return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Link, { className: `dash-phase${bucket.state === "closed" ? " dash-phase--win" : ""}`, href: "/operations", "aria-label": `${label}: ${bucket.count} ${bucket.count === 1 ? "opera\xE7\xE3o" : "opera\xE7\xF5es"}. Abrir Consulta / Gest\xE3o`, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("small", { children: bucket.state === "unknown" ? "SEM ESTADO" : `ESTADO 0${index + 1}` }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: label }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-phase__n", children: formatDashboardCount(bucket.count) })
         ] }) }, bucket.state);
       }) })
     ] });
   }
   function DashboardShortcuts() {
     const items = NAVIGATION_GROUPS.flatMap((group) => group.items).filter((item) => !item.requires && item.href !== "/dashboard");
-    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { className: "jv-panel dash-shortcuts", "aria-labelledby": "dash-shortcuts-title", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "dash-ph", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h2", { className: "jv-section-title", id: "dash-shortcuts-title", children: "Recursos do portal" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "dash-ph__sub", children: "Atalhos para as telas do menu. Usu\xE1rios, permiss\xF5es e bancos ficam em Configura\xE7\xF5es, conforme o seu perfil." })
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "jv-panel dash-shortcuts", "aria-labelledby": "dash-shortcuts-title", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "jv-section-title", id: "dash-shortcuts-title", children: "Recursos do portal" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-ph__sub", children: "Atalhos para as telas do menu. Usu\xE1rios, permiss\xF5es e bancos ficam em Configura\xE7\xF5es, conforme o seu perfil." })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("ul", { className: "dash-shortcuts__list", children: items.map((item) => {
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "dash-shortcuts__list", children: items.map((item) => {
         const Icon2 = item.icon;
-        return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Link, { className: "dash-shortcut", href: item.href, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Icon2, { size: 16, "aria-hidden": true }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { children: item.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(ArrowRight, { size: 14, "aria-hidden": true })
+        return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Link, { className: "dash-shortcut", href: item.href, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Icon2, { size: 16, "aria-hidden": true }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: item.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ArrowRight, { size: 14, "aria-hidden": true })
         ] }) }, item.href);
       }) })
+    ] });
+  }
+  var commercialStageName = (id2) => FUNNEL_STAGES.find((stage) => stage.code === id2)?.name ?? `Fase ${id2}`;
+  var commercialRate = new Intl.NumberFormat("pt-BR", { style: "percent", maximumFractionDigits: 1 });
+  var dueTime = new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short" });
+  function DashboardCommercialPipeline({ state, onRetry, period, onPeriodChange }) {
+    const data = state.kind === "ready" || state.kind === "empty" ? state.data : null, [measure, setMeasure] = import_react14.default.useState("count");
+    const scale = data ? Math.max(0, ...data.pipeline.map((stage) => stage[measure])) : 0;
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "jv-panel jv-panel--hud dash-pipe", "data-integration-id": "DASH-INT-05", "aria-labelledby": "dash-commercial-title", "aria-busy": state.kind === "loading" || void 0, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "jv-section-title", id: "dash-commercial-title", children: "Funil comercial" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-ph__sub", children: "Neg\xF3cios abertos por fase, no estado atual" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dash-ph__r", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Link, { className: "dash-ghost-btn", href: "/commercial-bi", children: [
+          "Ver BI",
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ArrowRight, { size: 13, "aria-hidden": true })
+        ] }) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-appr__filters", "data-integration-id": "DASH-INT-02", role: "group", "aria-label": "Recorte do funil comercial", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "ds-field dash-date", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: "Criada de" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { type: "date", className: "ds-input", value: period.from ?? "", max: period.to, onChange: (e) => onPeriodChange({ ...period, from: e.target.value || void 0 }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("label", { className: "ds-field dash-date", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: "at\xE9" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("input", { type: "date", className: "ds-input", value: period.to ?? "", min: period.from, onChange: (e) => onPeriodChange({ ...period, to: e.target.value || void 0 }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { id: "dash-pipe-measure", children: "Barras por" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "jv-seg jv-seg--arc", role: "group", "aria-labelledby": "dash-pipe-measure", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { type: "button", "aria-pressed": measure === "count", onClick: () => setMeasure("count"), children: "Quantidade" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("button", { type: "button", "aria-pressed": measure === "amount", onClick: () => setMeasure("amount"), children: "Valor" })
+          ] })
+        ] })
+      ] }),
+      state.kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-res__sk", "aria-hidden": true, children: [
+        [0, 1, 2, 3, 4, 5, 6, 7].map((i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "jv-skeleton" }, i)),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "sr-only", children: "Carregando funil comercial\u2026" })
+      ] }),
+      (state.kind === "error" || state.kind === "denied") && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignState, { kind: state.kind, title: state.kind === "denied" ? "Sem acesso ao BI comercial" : "Funil comercial indispon\xEDvel", action: state.kind === "error" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" }) : void 0, children: state.message }),
+      data && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("dl", { className: "dash-minis", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: "Abertos" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { children: formatDashboardCount(data.metrics.openCount) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: "Em negocia\xE7\xE3o" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { children: formatDashboardCurrency(data.metrics.pipelineAmount) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { "data-tone": "good", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: "Ganhos" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { children: formatDashboardCount(data.metrics.wonCount) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { "data-tone": "crit", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: "Perdidos" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { children: formatDashboardCount(data.metrics.lostCount) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: "Taxa de ganho" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { children: data.metrics.conversionRate === null ? "\u2014" : commercialRate.format(data.metrics.conversionRate) })
+          ] })
+        ] }),
+        state.kind === "empty" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignState, { kind: "empty", title: "Nenhuma oportunidade no recorte", children: state.message }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ol", { className: "dash-pipe__list", "aria-label": measure === "count" ? "Neg\xF3cios abertos por fase" : "Valor aberto por fase", children: data.pipeline.map((stage) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("li", { "data-zero": stage.count === 0 || void 0, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "dash-pipe__stage", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("small", { children: stage.id }),
+            commercialStageName(stage.id)
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DashboardMeter, { ratio: scale > 0 ? stage[measure] / scale : 0, tone: "arc" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("b", { children: formatDashboardCount(stage.count) }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-pipe__amt", children: formatDashboardCurrency(stage.amount) })
+        ] }, stage.id)) }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("p", { className: "dash-foot-note", children: [
+          formatDashboardCount(data.population),
+          " oportunidades criadas no recorte \xB7 S\xE3o Paulo \xB7 taxa de ganho = ganhos \xF7 (ganhos + perdas). Ganho comercial n\xE3o \xE9 faturamento nem caixa. Este filtro n\xE3o altera os indicadores de Opera\xE7\xF5es."
+        ] })
+      ] })
+    ] });
+  }
+  function DashboardFactualTimeline({ state }) {
+    const data = state.kind === "ready" || state.kind === "empty" ? state.data : null;
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "jv-panel dash-connected", "data-integration-id": "DASH-INT-10", "aria-labelledby": "dash-timeline-title", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "dash-ph", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "jv-section-title", id: "dash-timeline-title", children: "Hist\xF3rico recente de opera\xE7\xF5es" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dash-muted", children: "At\xE9 10 fatos registrados nas opera\xE7\xF5es que voc\xEA pode ler. Atualiza\xE7\xE3o ao carregar; comunica\xE7\xF5es e outras fontes ainda n\xE3o est\xE3o consolidadas." }),
+      state.kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignState, { kind: "loading", title: "Carregando hist\xF3rico" }),
+      (state.kind === "denied" || state.kind === "error") && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { children: state.kind === "denied" ? "Sem acesso ao hist\xF3rico das opera\xE7\xF5es." : "Hist\xF3rico indispon\xEDvel." }),
+      data && (data.timeline.length ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ol", { className: "dash-factual-timeline", children: data.timeline.map((event2) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Link, { href: `/operations/${encodeURIComponent(event2.operationId)}`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("strong", { children: event2.title }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { children: event2.operationNumber }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("time", { dateTime: event2.occurredAt, children: new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short" }).format(new Date(event2.occurredAt)) })
+      ] }) }, event2.id)) }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignState, { kind: "empty", title: "Nenhum fato operacional dispon\xEDvel no seu escopo" }))
+    ] });
+  }
+  function DashboardRegisteredPending({ state, onRetry }) {
+    const data = state.kind === "ready" || state.kind === "empty" ? state.data : null;
+    const due2 = data ? [...data.overdue.map((item) => ({ item, tone: "crit", label: "Prazo anterior a hoje" })), ...data.dueToday.map((item) => ({ item, tone: "warn", label: "Prazo hoje" }))].slice(0, 10) : [];
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "jv-panel dash-due", "data-integration-id": "DASH-INT-08", "aria-labelledby": "dash-pending-today-title", "aria-busy": state.kind === "loading" || void 0, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { id: "dash-pending-today-title", className: "jv-section-title", children: "Pend\xEAncias registradas" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-ph__sub", children: "Prazos informados na opera\xE7\xE3o \xB7 n\xE3o \xE9 agenda nem prioridade autom\xE1tica" })
+      ] }),
+      state.kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "dash-res__sk", "aria-hidden": true, children: [
+        [0, 1, 2, 3].map((i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "jv-skeleton" }, i)),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "sr-only", children: "Carregando pend\xEAncias\u2026" })
+      ] }),
+      (state.kind === "error" || state.kind === "denied") && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignState, { kind: state.kind, title: state.kind === "denied" ? "Sem acesso \xE0s pend\xEAncias" : "Pend\xEAncias indispon\xEDveis", action: state.kind === "error" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" }) : void 0, children: state.message }),
+      data && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("dl", { className: "dash-minis dash-minis--4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { "data-integration-id": "DASH-INT-07", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: "Opera\xE7\xF5es com pend\xEAncia documental" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { children: formatDashboardCount(data.openDocumentaryOperations) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: "Pend\xEAncias documentais abertas" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { children: formatDashboardCount(data.openDocumentaryItems) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { "data-tone": "warn", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: "Prazo hoje" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { children: formatDashboardCount(data.dueToday.length) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { "data-tone": "crit", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: "Prazo anterior a hoje" }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { children: formatDashboardCount(data.overdue.length) })
+          ] })
+        ] }),
+        due2.length ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ol", { className: "dash-list dash-due__list", children: due2.map(({ item, tone: tone2, label }) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Link, { className: "dash-li", href: `/operations/${encodeURIComponent(item.operationId)}`, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-sev", "data-tone": tone2, "aria-hidden": true }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "dash-li__main", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-li__t", children: item.title }),
+            /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "dash-li__s", children: [
+              item.operationNumber,
+              " \xB7 ",
+              label
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "dash-li__end", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("time", { className: "dash-li__meta", dateTime: item.dueAt, children: dueTime.format(new Date(item.dueAt)) }) })
+        ] }) }, item.id)) }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "dash-muted dash-due__empty", children: "Nenhuma pend\xEAncia com prazo hoje ou anterior a hoje no seu escopo." }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("p", { className: "dash-foot-note", children: [
+          data.scopeNote,
+          " Pend\xEAncias registradas n\xE3o medem a completude autom\xE1tica do checklist."
+        ] })
+      ] })
     ] });
   }
 
@@ -16945,230 +18211,2665 @@
   init_define_process_env();
 
   // src/components/dashboard/dashboard-home.tsx
-  var import_jsx_runtime16 = __toESM(require_jsx_runtime());
-  var PERIOD_OPTIONS = ["30 dias", "Trimestre", "Semestre", "Ano"];
+  var import_jsx_runtime20 = __toESM(require_jsx_runtime());
   function DashboardHome({ viewer }) {
-    const [operations, setOperations] = (0, import_react11.useState)({ kind: "loading" });
-    const [banks, setBanks] = (0, import_react11.useState)({ kind: "loading" });
-    const [greeting, setGreeting] = (0, import_react11.useState)("Ol\xE1");
-    const [monthLabel, setMonthLabel] = (0, import_react11.useState)("");
-    const request = (0, import_react11.useRef)(0);
-    const load = (0, import_react11.useCallback)(() => {
-      const id = ++request.current;
+    const [operations2, setOperations] = (0, import_react15.useState)({ kind: "loading" });
+    const [banks, setBanks] = (0, import_react15.useState)({ kind: "loading" });
+    const [greeting, setGreeting] = (0, import_react15.useState)("Ol\xE1");
+    const [monthLabel, setMonthLabel] = (0, import_react15.useState)("");
+    const request = (0, import_react15.useRef)(0);
+    const commercialRequest = (0, import_react15.useRef)(0);
+    const pendingRequest = (0, import_react15.useRef)(0);
+    const [pending2, setPending] = (0, import_react15.useState)({ kind: "loading" });
+    const [commercial2, setCommercial] = (0, import_react15.useState)({ kind: "loading" });
+    const [commercialPeriod, setCommercialPeriod] = (0, import_react15.useState)({});
+    const loadCommercial = (0, import_react15.useCallback)(() => {
+      const id2 = ++commercialRequest.current;
+      setCommercial({ kind: "loading" });
+      loadDashboardCommercialAction(commercialPeriod).then((result) => {
+        if (id2 !== commercialRequest.current) return;
+        setCommercial(result.success ? result.data.population ? { kind: "ready", data: result.data } : { kind: "empty", message: "Nenhum neg\xF3cio no recorte autorizado.", data: result.data } : { kind: result.errorCode === "FORBIDDEN" || result.errorCode === "UNAUTHENTICATED" ? "denied" : "error", message: result.safeMessage });
+      }).catch(() => {
+        if (id2 === commercialRequest.current) setCommercial({ kind: "error", message: "Funil comercial indispon\xEDvel." });
+      });
+    }, [commercialPeriod]);
+    (0, import_react15.useEffect)(() => {
+      const current = commercialRequest;
+      loadCommercial();
+      return () => {
+        current.current++;
+      };
+    }, [loadCommercial]);
+    const loadPending = (0, import_react15.useCallback)(() => {
+      const id2 = ++pendingRequest.current;
+      setPending({ kind: "loading" });
+      loadDashboardPendingAction().then((result) => {
+        if (id2 !== pendingRequest.current) return;
+        setPending(result.success ? { kind: "ready", data: result.data } : { kind: result.errorCode === "FORBIDDEN" || result.errorCode === "UNAUTHENTICATED" ? "denied" : "error", message: result.safeMessage });
+      }).catch(() => {
+        if (id2 === pendingRequest.current) setPending({ kind: "error", message: "Pend\xEAncias indispon\xEDveis." });
+      });
+    }, []);
+    (0, import_react15.useEffect)(() => {
+      const current = pendingRequest;
+      loadPending();
+      return () => {
+        current.current++;
+      };
+    }, [loadPending]);
+    const load = (0, import_react15.useCallback)(() => {
+      const id2 = ++request.current;
       setOperations({ kind: "loading" });
       setBanks({ kind: "loading" });
       loadOperationCenterAction().then((result) => {
-        if (request.current === id) setOperations(toOperationsRegion(result));
+        if (request.current === id2) setOperations(toOperationsRegion(result));
       }).catch(() => {
-        if (request.current === id) setOperations({ kind: "error", message: "N\xE3o foi poss\xEDvel carregar as opera\xE7\xF5es." });
+        if (request.current === id2) setOperations({ kind: "error", message: "N\xE3o foi poss\xEDvel carregar as opera\xE7\xF5es." });
       });
       createBrowserApplication().useCases.countActiveBanks.execute().then((result) => {
-        if (request.current === id) setBanks(result.success ? { kind: "ready", count: result.data } : { kind: "error" });
+        if (request.current === id2) setBanks(result.success ? { kind: "ready", count: result.data } : { kind: "error" });
       }).catch(() => {
-        if (request.current === id) setBanks({ kind: "error" });
+        if (request.current === id2) setBanks({ kind: "error" });
       });
     }, []);
-    (0, import_react11.useEffect)(() => {
-      const pending = request;
+    (0, import_react15.useEffect)(() => {
+      const pending3 = request;
       load();
-      const now = /* @__PURE__ */ new Date();
-      setGreeting(dashboardGreeting(now.getHours()));
-      setMonthLabel(new Intl.DateTimeFormat("pt-BR", { month: "long", year: "numeric" }).format(now));
+      const now2 = /* @__PURE__ */ new Date();
+      setGreeting(dashboardGreeting(now2.getHours()));
+      setMonthLabel(new Intl.DateTimeFormat("pt-BR", { month: "long", year: "numeric" }).format(now2));
       return () => {
-        pending.current++;
+        pending3.current++;
       };
     }, [load]);
     const firstName = dashboardFirstName(viewer.userName);
     const roleLabel = formatRoleLabel(viewer.role);
-    const view = operations.kind === "ready" || operations.kind === "empty" ? operations.data : null;
+    const view = operations2.kind === "ready" || operations2.kind === "empty" ? operations2.data : null;
     const kpis = view?.kpis ?? null;
-    const loading = operations.kind === "loading";
-    const value = (count) => kpis && count !== void 0 ? formatDashboardCount(count) : DASHBOARD_UNAVAILABLE;
-    return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("header", { className: "dash-head", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash-head__grow", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("p", { className: "jv-eyebrow", children: [
+    const loading = operations2.kind === "loading";
+    const value = (count3) => kpis && count3 !== void 0 ? formatDashboardCount(count3) : DASHBOARD_UNAVAILABLE;
+    return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dash", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("header", { className: "dash-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dash-head__grow", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("p", { className: "jv-eyebrow", children: [
             roleLabel,
             monthLabel ? ` \xB7 ${monthLabel}` : ""
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("h1", { className: "jv-h1", children: firstName ? `${greeting}, ${firstName}` : greeting }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "jv-lead", children: "Opera\xE7\xF5es do seu escopo, decis\xF5es de cr\xE9dito e o que ainda aguarda integra\xE7\xE3o." }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("p", { id: "dash-period-note", className: "dash-period__note", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardPendingTag, { id: "DASH-INT-02" }),
-            " Per\xEDodo: sem recorte, todo o hist\xF3rico do seu escopo."
-          ] })
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h1", { className: "jv-h1", children: firstName ? `${greeting}, ${firstName}` : greeting }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "jv-lead", children: "Opera\xE7\xF5es do seu escopo, decis\xF5es de cr\xE9dito e o que ainda aguarda integra\xE7\xE3o." }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { id: "dash-period-note", className: "dash-period__note", children: "Opera\xE7\xF5es: todo o hist\xF3rico autorizado. O recorte comercial \xE9 definido no funil abaixo." })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "dash-period", children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { role: "group", "aria-label": "Per\xEDodo (integra\xE7\xE3o pendente)", "aria-describedby": "dash-period-note", className: "jv-seg", children: PERIOD_OPTIONS.map((option) => /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("button", { type: "button", disabled: true, "aria-pressed": false, children: option }, option)) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Link, { href: "/operations/new", className: "ds-button ds-button--primary dash-cta", children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("span", { className: "ds-button__content", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Plus, { size: 16, "aria-hidden": true }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Link, { href: "/operations/new", className: "ds-button ds-button--primary dash-cta", children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("span", { className: "ds-button__content", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(Plus, { size: 16, "aria-hidden": true }),
           "Nova opera\xE7\xE3o"
         ] }) })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { className: "jv-panel dash-brief", "aria-labelledby": "dash-brief-title", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "dash-orb", "aria-hidden": true }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash-brief__body", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("p", { className: "jv-eyebrow", id: "dash-brief-title", children: "Briefing da Ava" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("p", { className: "dash-brief__text", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardPendingTag, { id: "DASH-INT-01" }),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("section", { className: "jv-panel dash-brief", "aria-labelledby": "dash-brief-title", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "dash-orb", "aria-hidden": true }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dash-brief__body", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "jv-eyebrow", id: "dash-brief-title", children: "Briefing da Ava" }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("p", { className: "dash-brief__text", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardPendingTag, { id: "DASH-INT-01" }),
             " O resumo do dia ainda n\xE3o tem fonte com origem de cada frase. Nenhum texto \xE9 gerado aqui."
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash-brief__acts", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Link, { className: "dash-link-btn", href: "/operations", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dash-brief__acts", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Link, { className: "dash-link-btn", href: "/operations", children: [
               "Consulta / Gest\xE3o",
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ArrowRight, { size: 14, "aria-hidden": true })
+              /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ArrowRight, { size: 14, "aria-hidden": true })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Link, { className: "dash-link-btn", href: "/simulator", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Link, { className: "dash-link-btn", href: "/simulator", children: [
               "Simulador de cr\xE9dito",
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ArrowRight, { size: 14, "aria-hidden": true })
+              /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ArrowRight, { size: 14, "aria-hidden": true })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Link, { className: "dash-link-btn", href: "/clients", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Link, { className: "dash-link-btn", href: "/clients", children: [
               "Clientes",
-              /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(ArrowRight, { size: 14, "aria-hidden": true })
+              /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(ArrowRight, { size: 14, "aria-hidden": true })
             ] })
           ] })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("ul", { className: "dash-health", "aria-label": "Estado das fontes do painel", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: operations.kind === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "jv-pill", children: "Opera\xE7\xF5es \xB7 carregando" }) : operations.kind === "error" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "jv-pill jv-pill--crit", children: "Opera\xE7\xF5es \xB7 erro" }) : operations.kind === "denied" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "jv-pill jv-pill--warn", children: "Opera\xE7\xF5es \xB7 sem acesso" }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "jv-pill jv-pill--good", children: "Opera\xE7\xF5es \xB7 carregadas" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("li", { children: banks.kind === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "jv-pill", children: "Bancos \xB7 carregando" }) : banks.kind === "error" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "jv-pill jv-pill--warn", children: "Bancos \xB7 indispon\xEDvel" }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "jv-pill jv-pill--good", children: banks.count === 1 ? "1 banco ativo" : `${formatDashboardCount(banks.count)} bancos ativos` }) })
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("ul", { className: "dash-health", "aria-label": "Estado das fontes do painel", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("li", { children: operations2.kind === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "jv-pill", children: "Opera\xE7\xF5es \xB7 carregando" }) : operations2.kind === "error" ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "jv-pill jv-pill--crit", children: "Opera\xE7\xF5es \xB7 erro" }) : operations2.kind === "denied" ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "jv-pill jv-pill--warn", children: "Opera\xE7\xF5es \xB7 sem acesso" }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "jv-pill jv-pill--good", children: "Opera\xE7\xF5es \xB7 carregadas" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("li", { children: banks.kind === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "jv-pill", children: "Bancos \xB7 carregando" }) : banks.kind === "error" ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "jv-pill jv-pill--warn", children: "Bancos \xB7 indispon\xEDvel" }) : /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "jv-pill jv-pill--good", children: banks.count === 1 ? "1 banco ativo" : `${formatDashboardCount(banks.count)} bancos ativos` }) })
         ] })
       ] }),
-      (operations.kind === "error" || operations.kind === "denied") && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+      (operations2.kind === "error" || operations2.kind === "denied") && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
         DesignState,
         {
-          kind: operations.kind,
-          title: operations.kind === "denied" ? "Sem acesso \xE0s opera\xE7\xF5es" : "Opera\xE7\xF5es indispon\xEDveis",
-          action: operations.kind === "error" ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DesignButton, { size: "sm", onClick: load, children: "Tentar novamente" }) : void 0,
-          children: operations.message
+          kind: operations2.kind,
+          title: operations2.kind === "denied" ? "Sem acesso \xE0s opera\xE7\xF5es" : "Opera\xE7\xF5es indispon\xEDveis",
+          action: operations2.kind === "error" ? /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DesignButton, { size: "sm", onClick: load, children: "Tentar novamente" }) : void 0,
+          children: operations2.message
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("section", { "aria-label": "Indicadores das opera\xE7\xF5es", "aria-busy": loading || void 0, className: "dash-kpis", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardKpiTile, { hud: true, icon: ClipboardList, label: "Opera\xE7\xF5es no seu escopo", loading, value: value(kpis?.totalOperations), foot: "Todas as opera\xE7\xF5es que voc\xEA pode consultar" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardKpiTile, { icon: Banknote, label: "Valor de equipamento", loading, value: kpis ? formatDashboardCurrency(kpis.totalVolume) : DASHBOARD_UNAVAILABLE, foot: "Soma do valor das opera\xE7\xF5es \xB7 n\xE3o \xE9 volume financiado", arc: true }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardKpiTile, { icon: FileSearch, label: "Aguardando decis\xE3o de cr\xE9dito", loading, value: value(kpis?.awaitingDecision), foot: "Com cr\xE9dito aplic\xE1vel" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardKpiTile, { icon: ShieldCheck, label: "Cr\xE9dito aprovado", loading, value: value(kpis?.creditApproved), foot: "Integral ou condicional \xB7 n\xE3o \xE9 faturamento", arc: true }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardKpiTile, { icon: ShieldX, label: "Cr\xE9dito reprovado", loading, value: value(kpis?.creditRejected), foot: kpis ? `${formatDashboardCount(kpis.notApplicable)} sem decis\xE3o de cr\xE9dito aplic\xE1vel` : "Decis\xE3o de cr\xE9dito" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardKpiTile, { icon: Building2, label: "Bancos parceiros ativos", loading: banks.kind === "loading", value: banks.kind === "ready" ? formatDashboardCount(banks.count) : DASHBOARD_UNAVAILABLE, foot: banks.kind === "error" ? "N\xE3o foi poss\xEDvel carregar" : "Credenciados e habilitados", arc: true })
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("section", { "aria-label": "Indicadores das opera\xE7\xF5es", "aria-busy": loading || void 0, className: "dash-kpis", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardKpiTile, { hud: true, icon: ClipboardList, label: "Opera\xE7\xF5es no seu escopo", loading, value: value(kpis?.totalOperations), foot: "Todas as opera\xE7\xF5es que voc\xEA pode consultar" }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardKpiTile, { icon: Banknote, label: "Valor de equipamento", loading, value: kpis ? formatDashboardCurrency(kpis.totalVolume) : DASHBOARD_UNAVAILABLE, foot: kpis?.totalVolume === null ? `${kpis.volumeCoverage?.knownCount ?? 0}/${kpis.totalOperations} com valor \xB7 soma conhecida ${formatDashboardCurrency(kpis.volumeCoverage?.knownAmount ?? 0)}` : "Cobertura completa \xB7 n\xE3o \xE9 volume financiado", arc: true }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardKpiTile, { icon: FileSearch, label: "Aguardando decis\xE3o de cr\xE9dito", loading, value: value(kpis?.awaitingDecision), foot: "Com cr\xE9dito aplic\xE1vel" }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardKpiTile, { icon: ShieldCheck, label: "Cr\xE9dito aprovado", loading, value: value(kpis?.creditApproved), foot: "Integral ou condicional \xB7 n\xE3o \xE9 faturamento", arc: true }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardKpiTile, { icon: ShieldX, label: "Cr\xE9dito reprovado", loading, value: value(kpis?.creditRejected), foot: kpis ? `${formatDashboardCount(kpis.notApplicable)} sem decis\xE3o de cr\xE9dito aplic\xE1vel` : "Decis\xE3o de cr\xE9dito" }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardKpiTile, { icon: Building2, label: "Bancos parceiros ativos", loading: banks.kind === "loading", value: banks.kind === "ready" ? formatDashboardCount(banks.count) : DASHBOARD_UNAVAILABLE, foot: banks.kind === "error" ? "N\xE3o foi poss\xEDvel carregar" : "Credenciados e habilitados", arc: true })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("details", { className: "dash-contract", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("summary", { children: "Como estes n\xFAmeros s\xE3o calculados" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("dl", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dt", { children: "Fonte" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dd", { children: "Read model do Centro de Opera\xE7\xF5es, montado no servidor a partir das opera\xE7\xF5es que o seu perfil pode ler. \xC9 a mesma fonte dos indicadores da Consulta / Gest\xE3o." }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dt", { children: "Escopo" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dd", { children: "Todas as opera\xE7\xF5es do seu escopo de leitura, sem pagina\xE7\xE3o nem recorte de per\xEDodo." }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dt", { children: "Valor de equipamento" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dd", { children: "Soma do valor registrado em cada opera\xE7\xE3o, contada uma vez por opera\xE7\xE3o. N\xE3o representa volume financiado, desembolso nem faturamento." }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dt", { children: "Cr\xE9dito" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dd", { children: "Resultado de cr\xE9dito consolidado de cada opera\xE7\xE3o. Aprova\xE7\xE3o n\xE3o significa faturamento nem pedido emitido." }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dt", { children: "Bancos" }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("dd", { children: "Institui\xE7\xF5es ativas no cadastro de bancos." })
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("details", { className: "dash-contract", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("summary", { children: "Como estes n\xFAmeros s\xE3o calculados" }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("dl", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dt", { children: "Fonte" }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dd", { children: "Read model do Centro de Opera\xE7\xF5es, montado no servidor a partir das opera\xE7\xF5es que o seu perfil pode ler. \xC9 a mesma fonte dos indicadores da Consulta / Gest\xE3o." }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dt", { children: "Escopo" }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dd", { children: "Todas as opera\xE7\xF5es do seu escopo de leitura, sem pagina\xE7\xE3o nem recorte de per\xEDodo." }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dt", { children: "Valor de equipamento" }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dd", { children: "Soma dos valores registrados, uma vez por opera\xE7\xE3o. Se algum valor estiver ausente, o total fica indispon\xEDvel e mostramos a cobertura e a soma conhecida. Zero registrado \xE9 um valor v\xE1lido. N\xE3o representa financiamento, desembolso ou faturamento." }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dt", { children: "Cr\xE9dito" }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dd", { children: "Resultado de cr\xE9dito consolidado de cada opera\xE7\xE3o. Aprova\xE7\xE3o n\xE3o significa faturamento nem pedido emitido." }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dt", { children: "Bancos" }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dd", { children: "Institui\xE7\xF5es ativas no cadastro de bancos." })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardPendingKpis, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash-split", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardRecentOperations, { state: operations, onRetry: load }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash-stack", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardPendingPanel, { id: "DASH-INT-03", title: "Meta vs realizado", hud: true }),
-          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardPendingPanel, { id: "DASH-INT-08", title: "Precisa de a\xE7\xE3o hoje" })
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardPendingKpis, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardCreditApproval, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dash-split", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardRecentOperations, { state: operations2, onRetry: load }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dash-stack", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardPendingPanel, { id: "DASH-INT-03", title: "Meta vs realizado", hud: true }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardRegisteredPending, { state: pending2, onRetry: loadPending })
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardLifecycleStrip, { state: operations }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "dash-pending-grid", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardPendingPanel, { id: "DASH-INT-05", title: "Funil comercial \xB7 8 fases" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardPendingPanel, { id: "DASH-INT-04", title: "Evolu\xE7\xE3o do faturamento" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardPendingPanel, { id: "DASH-INT-09", title: "Ranking da equipe" }),
-        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardPendingPanel, { id: "DASH-INT-10", title: "Linha do tempo" })
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardLifecycleStrip, { state: operations2 }),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dash-split dash-split--even", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardCommercialPipeline, { state: commercial2, onRetry: loadCommercial, period: commercialPeriod, onPeriodChange: setCommercialPeriod }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardResidence, {})
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(DashboardShortcuts, {})
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "dash-pending-grid dash-pending-grid--3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardPendingPanel, { id: "DASH-INT-04", title: "Evolu\xE7\xE3o do faturamento" }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardPendingPanel, { id: "DASH-INT-09", title: "Ranking da equipe" }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardFactualTimeline, { state: operations2 })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(DashboardShortcuts, {})
     ] });
   }
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/fixtures.ts
+  // src/modules/client/components/client-detail-view.tsx
   init_define_process_env();
-  var states = ["received", "in_review", "formalization", "billing", "closed", "cancelled"];
-  var labels = { received: "Recebida", in_review: "Em an\xE1lise", formalization: "Formaliza\xE7\xE3o", billing: "Faturamento", closed: "Encerrada", cancelled: "Cancelada" };
-  var outcomes = ["NOT_DECIDED", "PENDING", "APPROVED", "APPROVED_WITH_CONDITIONS", "REJECTED"];
-  function op(i, long = false) {
-    const state = i % 9 === 8 ? null : states[i % states.length];
-    return {
-      operationId: `00000000-0000-4000-8000-${String(i).padStart(12, "0")}`,
-      operationNumber: `OP-SINT-2026-${String(i).padStart(4, "0")}`,
-      clientId: `c${i}`,
-      operationalStatus: "received",
-      sellerId: "s1",
-      sellerName: "Vendedor Sint\xE9tico",
-      operationAmount: i % 7 === 3 ? null : 15e4 + i * 13250,
-      clientName: long ? `Organiza\xE7\xE3o Sint\xE9tica de Engenharia, Terraplenagem e Loca\xE7\xE3o de Equipamentos Pesados N\xFAmero ${i} Ltda` : `Cliente Sint\xE9tico ${i}`,
-      observations: "",
-      createdAt: new Date(Date.UTC(2026, 8, 1 + i)).toISOString(),
-      updatedAt: null,
-      clientDocument: "",
-      city: "",
-      uf: "",
-      taxStatus: "",
-      equipment: long ? "Escavadeira hidr\xE1ulica sint\xE9tica modelo de demonstra\xE7\xE3o com descri\xE7\xE3o comprida para teste de quebra" : "Escavadeira sint\xE9tica",
-      modality: "",
-      entryValue: 0,
-      term: "",
-      banks: [],
-      documents: [],
-      creditOutcome: { outcome: outcomes[i % outcomes.length], source: i % 6 === 5 ? "NOT_APPLICABLE" : "BANKING", approvedInstitutionCount: 0, fullApprovalCount: 0, conditionalApprovalCount: 0, positiveApprovalCount: 0, institutions: [] },
-      lifecycle: state ? { state, label: labels[state], enteredAt: null, lastTransitionAt: null } : null
-    };
-  }
-  function ready(n, long = false) {
-    const operations = Array.from({ length: n }, (_, i) => op(i + 1, long));
-    return { success: true, data: { readModel: { operations, bankColumns: [], kpis: { totalOperations: n, awaitingDecision: 11, creditApproved: 9, creditRejected: 4, notApplicable: 6, totalVolume: long ? 98765432109876e-2 : 18734500 } }, actor: { role: "vendedor", name: "Pessoa Sint\xE9tica" } } };
-  }
-  var empty = { success: true, data: { readModel: { operations: [], bankColumns: [], kpis: { totalOperations: 0, awaitingDecision: 0, creditApproved: 0, creditRejected: 0, notApplicable: 0, totalVolume: 0 } }, actor: { role: "vendedor", name: "Pessoa Sint\xE9tica" } } };
 
-  // ../../../tmp/claude-0/-home-user/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness/entry.tsx
-  var import_jsx_runtime17 = __toESM(require_jsx_runtime());
-  var w = window;
-  w.__calls = [];
-  w.__nav = [];
-  var params = new URLSearchParams(location.search);
-  var s = params.get("s") || "ready";
-  var theme = params.get("theme") === "slate" ? "irmen-executive-light" : "irmen-industrial-dark";
-  var later = (ms, v) => new Promise((r2) => setTimeout(() => r2(v), ms));
-  var never = () => new Promise(() => {
-  });
-  w.__dash = {
-    operations: (n) => {
-      if (s === "loading") return never();
-      if (s === "error") return later(30, { success: false, errorCode: "INFRASTRUCTURE_ERROR", safeMessage: "N\xE3o foi poss\xEDvel carregar as opera\xE7\xF5es." });
-      if (s === "denied") return later(30, { success: false, errorCode: "FORBIDDEN", safeMessage: "Acesso negado ao Centro de Opera\xE7\xF5es." });
-      if (s === "empty") return later(30, empty);
-      if (s === "throw") return later(30, null).then(() => {
-        throw new Error("network");
+  // src/modules/client/components/client-contact-people.tsx
+  init_define_process_env();
+
+  // src/modules/client/components/relationship.css
+  init_define_process_env();
+
+  // src/modules/client/components/client-contact-people.tsx
+  var import_react16 = __toESM(require_react());
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/client-relationships.actions.ts
+  init_define_process_env();
+  async function loadContactPeopleAction(id2) {
+    return contactPeople(id2);
+  }
+  async function saveContactPersonAction(i) {
+    return saveContact(i);
+  }
+  async function loadRelationshipInteractionsAction(q) {
+    return interactions(q);
+  }
+  async function appendManualInteractionAction(i) {
+    return appendInteraction(i);
+  }
+
+  // src/core/domain/clients/client-relationships.ts
+  init_define_process_env();
+  var contactChannels = ["PHONE", "MEETING", "WHATSAPP", "EMAIL"];
+  var unknownConsent = { PHONE: "UNKNOWN", MEETING: "UNKNOWN", WHATSAPP: "UNKNOWN", EMAIL: "UNKNOWN" };
+
+  // src/modules/client/components/client-contact-people.tsx
+  var import_jsx_runtime21 = __toESM(require_jsx_runtime());
+  var channelLabels = { PHONE: "Telefone", MEETING: "Reuni\xE3o", WHATSAPP: "WhatsApp", EMAIL: "E-mail" };
+  var channelIcons = { PHONE: Phone, MEETING: UsersRound, WHATSAPP: MessageCircle, EMAIL: Mail };
+  var consentLabel = { GRANTED: "consentido", DENIED: "n\xE3o consentido", UNKNOWN: "n\xE3o informado" };
+  var initials = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((w2) => w2[0]).join("").toLocaleUpperCase("pt-BR") || "?";
+  var blank = () => ({ id: null, revision: 0, name: "", jobTitle: "", phone: "", email: "", consent: { ...unknownConsent } });
+  function ClientContactPeople({ clientId }) {
+    const [result, setResult] = (0, import_react16.useState)(null), [form, setForm] = (0, import_react16.useState)(null), [busy, setBusy] = (0, import_react16.useState)(false), [message, setMessage] = (0, import_react16.useState)("");
+    const generation = (0, import_react16.useRef)(0), command = (0, import_react16.useRef)(null), nameRef = (0, import_react16.useRef)(null), openerRef = (0, import_react16.useRef)(null), restoreFocus = (0, import_react16.useRef)(false), headingRef = (0, import_react16.useRef)(null);
+    const load = (0, import_react16.useCallback)(async () => {
+      const id2 = ++generation.current;
+      setResult(null);
+      try {
+        const r2 = await loadContactPeopleAction(clientId);
+        if (id2 === generation.current) setResult(r2);
+      } catch {
+        if (id2 === generation.current) setResult({ success: false, kind: "error", safeMessage: "N\xE3o foi poss\xEDvel consultar contatos." });
+      }
+    }, [clientId]);
+    (0, import_react16.useEffect)(() => {
+      const pending2 = generation;
+      setForm(null);
+      setMessage("");
+      void load();
+      return () => {
+        pending2.current++;
+      };
+    }, [load]);
+    const formId = form?.id, formOpen = form !== null;
+    (0, import_react16.useEffect)(() => {
+      if (!formOpen && restoreFocus.current && result?.success) {
+        if (openerRef.current?.isConnected) openerRef.current.focus();
+        else headingRef.current?.focus();
+        restoreFocus.current = false;
+      }
+    }, [formOpen, result]);
+    (0, import_react16.useEffect)(() => {
+      if (formOpen) nameRef.current?.focus();
+    }, [formId, formOpen]);
+    function edit(p3, button) {
+      openerRef.current = button;
+      setMessage("");
+      command.current = null;
+      setForm(p3 ? { id: p3.id, revision: p3.revision, name: p3.name, jobTitle: p3.jobTitle ?? "", phone: p3.phone ?? "", email: p3.email ?? "", consent: { ...p3.consent } } : blank());
+    }
+    function close() {
+      restoreFocus.current = true;
+      setForm(null);
+    }
+    async function submit(event2) {
+      event2.preventDefault();
+      if (!form || busy) return;
+      const key = JSON.stringify({ clientId, ...form });
+      if (command.current?.key !== key) command.current = { key, id: crypto.randomUUID() };
+      setBusy(true);
+      setMessage("");
+      try {
+        const r2 = await saveContactPersonAction({ clientId, ...form, commandId: command.current.id });
+        if (!r2.success) {
+          setMessage(r2.safeMessage);
+          return;
+        }
+        close();
+        setMessage("Contato salvo. Consentimento registrado n\xE3o dispara nenhum envio.");
+        await load();
+      } catch {
+        setMessage("N\xE3o foi poss\xEDvel confirmar o registro. Tente novamente sem alterar os dados para preservar a mesma chave.");
+      } finally {
+        setBusy(false);
+      }
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { "aria-label": "Pessoas de contato", className: "rx", "data-integration-id": "CLI-CONTACTS-01", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "rx-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h3", { ref: headingRef, tabIndex: -1, className: "cl-sub", children: "Pessoas de contato" }),
+        result?.success && result.data.canEdit && !form && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { type: "button", className: "jv-icon-btn rx-head__btn", onClick: (e) => edit(null, e.currentTarget), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Plus, { size: 13, "aria-hidden": true }),
+          "Adicionar"
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "rx-hint", children: "Compartilhadas no cadastro do cliente. Nenhuma mensagem \xE9 enviada por aqui." }),
+      !result ? /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "rx-people", "aria-hidden": true, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "jv-skeleton rx-person-sk" }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "jv-skeleton rx-person-sk" }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "sr-only", children: "Consultando contatos\u2026" })
+      ] }) : !result.success ? /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: `jv-state jv-state--${result.kind === "denied" ? "denied" : "error"}`, role: result.kind === "denied" ? void 0 : "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("strong", { children: result.kind === "denied" ? "Sem acesso \xE0s pessoas de contato" : "Contatos indispon\xEDveis" }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: result.safeMessage }),
+        result.kind !== "denied" && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: () => void load(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
+          "Consultar novamente"
+        ] })
+      ] }) : !result.data.rows.length ? /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "jv-state", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("strong", { children: "Nenhuma pessoa de contato cadastrada" }),
+        result.data.canEdit && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: "Use \u201CAdicionar\u201D para registrar quem atende pelo cliente." })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("ul", { className: "rx-people", children: result.data.rows.map((p3) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("li", { className: "rx-person", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "rx-avatar", "aria-hidden": true, children: initials(p3.name) }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "rx-person__main", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("strong", { className: "rx-person__name", children: p3.name }),
+          p3.jobTitle && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "rx-person__role", children: p3.jobTitle }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { className: "rx-person__lines", children: [
+            p3.phone && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("a", { href: "tel:" + p3.phone.replace(/[^+\d]/g, ""), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Phone, { size: 12, "aria-hidden": true }),
+              p3.phone
+            ] }),
+            p3.email && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("a", { href: "mailto:" + p3.email, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Mail, { size: 12, "aria-hidden": true }),
+              p3.email
+            ] }),
+            !p3.phone && !p3.email && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: "Canais n\xE3o informados" })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("ul", { className: "rx-consent", "aria-label": `Consentimento de ${p3.name} por canal`, children: contactChannels.map((k) => {
+            const Icon2 = channelIcons[k], state = p3.consent[k];
+            return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("li", { "data-state": state, title: `${channelLabels[k]}: ${consentLabel[state]}`, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Icon2, { size: 12, "aria-hidden": true }),
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: channelLabels[k] }),
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { className: "sr-only", children: [
+                ": ",
+                consentLabel[state]
+              ] })
+            ] }, k);
+          }) })
+        ] }),
+        result.data.canEdit && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { type: "button", disabled: busy, className: "jv-icon-btn", "aria-label": `Editar contato ${p3.name}`, onClick: (e) => edit(p3, e.currentTarget), children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Pencil, { size: 13, "aria-hidden": true }) })
+      ] }, p3.id)) }),
+      result?.success && result.data.rows.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("p", { className: "rx-legend", "aria-hidden": true, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { "data-state": "GRANTED", children: "consentido" }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { "data-state": "DENIED", children: "n\xE3o consentido" }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { "data-state": "UNKNOWN", children: "n\xE3o informado" })
+      ] }),
+      form && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("form", { onSubmit: (event2) => void submit(event2), className: "rx-form", "aria-label": form.id ? "Editar pessoa de contato" : "Nova pessoa de contato", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("fieldset", { disabled: busy, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "rx-form__head", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("legend", { children: form.id ? "Editar contato" : "Novo contato" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { type: "button", className: "jv-icon-btn", "aria-label": "Cancelar", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(X, { size: 14, "aria-hidden": true }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: "Nome" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { ref: nameRef, required: true, maxLength: 200, className: "ds-input", value: form.name, onChange: (e) => setForm({ ...form, name: e.target.value }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: "Cargo" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { maxLength: 200, className: "ds-input", value: form.jobTitle, onChange: (e) => setForm({ ...form, jobTitle: e.target.value }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: "Telefone" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { type: "tel", maxLength: 100, className: "ds-input", value: form.phone, onChange: (e) => setForm({ ...form, phone: e.target.value }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: "E-mail" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("input", { type: "email", maxLength: 254, className: "ds-input", value: form.email, onChange: (e) => setForm({ ...form, email: e.target.value }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("fieldset", { className: "rx-form__wide rx-consent-edit", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("legend", { children: "Consentimento por canal" }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "rx-hint", children: "Registre somente o que o cliente informou. Ter telefone ou e-mail n\xE3o significa consentimento." }),
+          contactChannels.map((k) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("label", { className: "ds-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { children: channelLabels[k] }),
+            /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("select", { className: "ds-input", value: form.consent[k], onChange: (e) => setForm({ ...form, consent: { ...form.consent, [k]: e.target.value } }), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("option", { value: "UNKNOWN", children: "N\xE3o informado" }),
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("option", { value: "GRANTED", children: "Consentimento informado" }),
+              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("option", { value: "DENIED", children: "N\xE3o consentido" })
+            ] })
+          ] }, k))
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "rx-form__acts rx-form__wide", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { className: "ds-button ds-button--primary", type: "submit", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "ds-button__content", children: busy ? "Salvando\u2026" : "Salvar contato" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("button", { type: "button", className: "ds-button", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "ds-button__content", children: "Cancelar" }) })
+        ] })
+      ] }) }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { role: "status", className: "rx-msg", children: message })
+    ] });
+  }
+
+  // src/modules/client/components/relationship-interactions.tsx
+  init_define_process_env();
+  var import_react17 = __toESM(require_react());
+  var import_jsx_runtime22 = __toESM(require_jsx_runtime());
+  var stamp = new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short", timeStyle: "short" });
+  var day = new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short" });
+  var date = (v2) => v2 ? stamp.format(new Date(v2)) : "Nenhum registro no seu acesso";
+  var resultLabel = { CONVERSATION_HELD: "Conversa realizada", REPLY_RECEIVED: "Resposta recebida", NO_RESPONSE: "Tentativa sem resposta" };
+  var channelIcon = { PHONE: Phone, MEETING: UsersRound, WHATSAPP: MessageCircle, EMAIL: Mail };
+  var effectiveFor = (channel) => channel === "PHONE" || channel === "MEETING" ? "CONVERSATION_HELD" : "REPLY_RECEIVED";
+  var originPath = (kind, id2) => (kind === "OP" ? "/operations/" : "/sales-funnel/") + id2;
+  var originName = { OP: "Opera\xE7\xE3o", OPP: "Oportunidade" };
+  function ago(v2) {
+    if (!v2) return null;
+    const days = Math.floor((Date.now() - new Date(v2).getTime()) / 864e5);
+    return days <= 0 ? "hoje" : days === 1 ? "h\xE1 1 dia" : `h\xE1 ${days} dias`;
+  }
+  function useInteractions(query) {
+    const [result, setResult] = (0, import_react17.useState)(null), generation = (0, import_react17.useRef)(0), key = JSON.stringify(query);
+    const load = (0, import_react17.useCallback)(async () => {
+      const id2 = ++generation.current;
+      setResult(null);
+      try {
+        const r2 = await loadRelationshipInteractionsAction(JSON.parse(key));
+        if (id2 === generation.current) setResult(r2);
+      } catch {
+        if (id2 === generation.current) setResult({ success: false, kind: "error", safeMessage: "N\xE3o foi poss\xEDvel consultar intera\xE7\xF5es." });
+      }
+    }, [key]);
+    (0, import_react17.useEffect)(() => {
+      const pending2 = generation;
+      void load();
+      return () => {
+        pending2.current++;
+      };
+    }, [load]);
+    (0, import_react17.useEffect)(() => {
+      const refresh = () => void load();
+      window.addEventListener("irmen:relationship-recorded", refresh);
+      return () => window.removeEventListener("irmen:relationship-recorded", refresh);
+    }, [load]);
+    return { result, load };
+  }
+  function ClientLastContact({ clientId }) {
+    const { result } = useInteractions({ clientId });
+    if (!result) return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-last", role: "status", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "jv-skeleton rx-last__sk" }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "sr-only", children: "Consultando\u2026" })
+    ] });
+    if (!result.success) return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-last", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("b", { className: "cl-stat__value", "aria-hidden": true, children: "\u2014" }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "cl-stat__foot", children: result.kind === "denied" ? "Sem acesso" : "Indispon\xEDvel" })
+    ] });
+    const { lastEffectiveAt, lastAttemptAt } = result.data;
+    return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-last", "data-integration-id": "CLI-LASTCONTACT-01", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("b", { className: "cl-stat__value", children: lastEffectiveAt ? day.format(new Date(lastEffectiveAt)) : "\u2014" }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "cl-stat__foot", children: lastEffectiveAt ? `Contato efetivo ${ago(lastEffectiveAt)}` : "Nenhum contato efetivo registrado" }),
+      lastAttemptAt && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { className: "rx-last__attempt", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("i", { "aria-hidden": true }),
+        "Tentativa sem resposta ",
+        ago(lastAttemptAt)
+      ] })
+    ] });
+  }
+  function RelationshipInteractions({ query }) {
+    const { result, load } = useInteractions(query), [open, setOpen] = (0, import_react17.useState)(false), [originKey, setOriginKey] = (0, import_react17.useState)(""), [channel, setChannel] = (0, import_react17.useState)("PHONE"), [outcome, setOutcome] = (0, import_react17.useState)("CONVERSATION_HELD"), [localTime, setLocalTime] = (0, import_react17.useState)(""), [summary, setSummary] = (0, import_react17.useState)(""), [busy, setBusy] = (0, import_react17.useState)(false), [message, setMessage] = (0, import_react17.useState)("");
+    const [show, setShow] = (0, import_react17.useState)("ALL"), [channelFilter, setChannelFilter] = (0, import_react17.useState)("ALL");
+    const command = (0, import_react17.useRef)(null), opener = (0, import_react17.useRef)(null), originRef = (0, import_react17.useRef)(null), restoreFocus = (0, import_react17.useRef)(false);
+    const writable = result?.success ? result.data.origins.filter((o) => o.canWrite) : [];
+    (0, import_react17.useEffect)(() => {
+      if (open) originRef.current?.focus();
+    }, [open]);
+    (0, import_react17.useEffect)(() => {
+      if (!open && restoreFocus.current && result?.success && opener.current) {
+        opener.current.focus();
+        restoreFocus.current = false;
+      }
+    }, [open, result]);
+    const queryKey = JSON.stringify(query);
+    (0, import_react17.useEffect)(() => {
+      setOpen(false);
+      setOriginKey("");
+      setSummary("");
+      setMessage("");
+      setShow("ALL");
+      setChannelFilter("ALL");
+      command.current = null;
+    }, [queryKey]);
+    const onlyOrigin = writable.length === 1 ? writable[0].kind + ":" + writable[0].id : "";
+    (0, import_react17.useEffect)(() => {
+      if (open && onlyOrigin && !originKey) setOriginKey(onlyOrigin);
+    }, [open, onlyOrigin, originKey]);
+    function close() {
+      restoreFocus.current = true;
+      setOpen(false);
+    }
+    function pickChannel(next) {
+      setChannel(next);
+      if (outcome !== "NO_RESPONSE") setOutcome(effectiveFor(next));
+    }
+    async function submit(event2) {
+      event2.preventDefault();
+      if (busy) return;
+      const selected = writable.find((o) => o.kind + ":" + o.id === originKey);
+      if (!selected) {
+        setMessage("Selecione uma origem dispon\xEDvel.");
+        return;
+      }
+      const origin = { kind: selected.kind, id: selected.id }, payload = { origin, contactId: null, channel, result: outcome, localTime, summary }, key = JSON.stringify(payload);
+      if (command.current?.key !== key) command.current = { key, id: crypto.randomUUID() };
+      setBusy(true);
+      setMessage("");
+      try {
+        const r2 = await appendManualInteractionAction({ ...payload, commandId: command.current.id });
+        if (!r2.success) {
+          setMessage(r2.safeMessage);
+          if (r2.kind === "conflict") await load();
+          return;
+        }
+        setSummary("");
+        setLocalTime("");
+        command.current = null;
+        close();
+        setMessage("Intera\xE7\xE3o registrada.");
+        window.dispatchEvent(new CustomEvent("irmen:relationship-recorded"));
+      } catch {
+        setMessage("N\xE3o foi poss\xEDvel confirmar. Repetir os mesmos dados mant\xE9m a chave para evitar duplica\xE7\xE3o.");
+      } finally {
+        setBusy(false);
+      }
+    }
+    const rows2 = result?.success ? result.data.rows.filter((r2) => (show === "ALL" || show === "ATTEMPT" === (r2.result === "NO_RESPONSE")) && (channelFilter === "ALL" || r2.channel === channelFilter)) : [];
+    const filtered = show !== "ALL" || channelFilter !== "ALL";
+    const labelOf = (kind, id2) => result?.success ? result.data.origins.find((o) => o.kind === kind && o.id === id2)?.label : void 0;
+    return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("section", { className: "rx", "aria-label": "Contatos e tentativas", "data-integration-id": "CLI-COMMS-01", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h3", { className: "cl-sub", children: "Contatos e tentativas" }),
+        result?.success && !open && writable.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { ref: opener, type: "button", className: "ds-button ds-button--primary rx-add", onClick: () => {
+          setOpen(true);
+          setMessage("");
+        }, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { className: "ds-button__content", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Plus, { size: 14, "aria-hidden": true }),
+          "Registrar contato"
+        ] }) })
+      ] }),
+      !result ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-sk", "aria-hidden": true, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "jv-skeleton" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "jv-skeleton" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "jv-skeleton" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "sr-only", children: "Consultando intera\xE7\xF5es\u2026" })
+      ] }) : !result.success ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: `jv-state jv-state--${result.kind === "denied" ? "denied" : "error"}`, role: result.kind === "denied" ? void 0 : "alert", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("strong", { children: result.kind === "denied" ? "Sem acesso \xE0s intera\xE7\xF5es" : "Intera\xE7\xF5es indispon\xEDveis" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: result.safeMessage }),
+        result.kind !== "denied" && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: () => void load(), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
+          "Consultar novamente"
+        ] })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(import_jsx_runtime22.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("dl", { className: "rx-summary", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { "data-tone": "good", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("dt", { children: "\xDAltimo contato efetivo" }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("dd", { children: date(result.data.lastEffectiveAt) }),
+            result.data.lastEffectiveAt && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: ago(result.data.lastEffectiveAt) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { "data-tone": "warn", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("dt", { children: "\xDAltima tentativa sem resposta" }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("dd", { children: date(result.data.lastAttemptAt) }),
+            result.data.lastAttemptAt && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: ago(result.data.lastAttemptAt) })
+          ] })
+        ] }),
+        open && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("form", { onSubmit: (event2) => void submit(event2), className: "rx-form", "aria-label": "Registrar contato", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("fieldset", { disabled: busy, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-form__head", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("legend", { children: "Novo registro" }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "button", className: "jv-icon-btn", "aria-label": "Cancelar registro", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(X, { size: 14, "aria-hidden": true }) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "ds-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: "Origem" }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("select", { ref: originRef, required: true, className: "ds-input", value: originKey, onChange: (e) => setOriginKey(e.target.value), children: [
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("option", { value: "", children: "Selecione a oportunidade ou opera\xE7\xE3o" }),
+              writable.map((o) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("option", { value: o.kind + ":" + o.id, children: [
+                originName[o.kind],
+                " \xB7 ",
+                o.label
+              ] }, o.kind + o.id))
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "ds-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { id: "rx-channel-label", children: "Canal" }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "jv-seg jv-seg--arc rx-seg", role: "group", "aria-labelledby": "rx-channel-label", children: contactChannels.map((k) => {
+              const Icon2 = channelIcon[k];
+              return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("button", { type: "button", "aria-pressed": channel === k, onClick: () => pickChannel(k), children: [
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Icon2, { size: 14, "aria-hidden": true }),
+                channelLabels[k]
+              ] }, k);
+            }) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "ds-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { id: "rx-result-label", children: "Resultado" }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "jv-seg jv-seg--arc rx-seg", role: "group", "aria-labelledby": "rx-result-label", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "button", "aria-pressed": outcome !== "NO_RESPONSE", "data-tone": "good", onClick: () => setOutcome(effectiveFor(channel)), children: resultLabel[effectiveFor(channel)] }),
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "button", "aria-pressed": outcome === "NO_RESPONSE", "data-tone": "warn", onClick: () => setOutcome("NO_RESPONSE"), children: resultLabel.NO_RESPONSE })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "ds-field", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: "Quando aconteceu (hor\xE1rio de S\xE3o Paulo)" }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { required: true, type: "datetime-local", className: "ds-input", value: localTime, onChange: (e) => setLocalTime(e.target.value) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "ds-field rx-form__wide", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: "Resumo" }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("textarea", { required: true, maxLength: 2e3, rows: 3, className: "ds-input", value: summary, onChange: (e) => setSummary(e.target.value), placeholder: "O essencial do contato, sem transcrever a conversa" })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "rx-hint rx-form__wide", children: "Nada \xE9 enviado ao cliente. Autor e hor\xE1rio do registro s\xE3o gravados automaticamente, e o registro n\xE3o pode ser editado depois." }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-form__acts rx-form__wide", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "submit", className: "ds-button ds-button--primary", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "ds-button__content", children: busy ? "Salvando\u2026" : "Salvar registro" }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "button", className: "ds-button", onClick: close, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "ds-button__content", children: "Cancelar" }) })
+          ] })
+        ] }) }),
+        !writable.length && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "rx-hint", children: "Nenhuma origem dispon\xEDvel para novo registro no seu acesso. Depois da convers\xE3o, registre na opera\xE7\xE3o vinculada." }),
+        result.data.rows.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-filters", role: "group", "aria-label": "Filtrar registros exibidos", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "jv-seg jv-seg--arc rx-seg rx-seg--sm", children: ["ALL", "EFFECTIVE", "ATTEMPT"].map((k) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "button", "aria-pressed": show === k, onClick: () => setShow(k), children: k === "ALL" ? "Todos" : k === "EFFECTIVE" ? "Efetivos" : "Tentativas" }, k)) }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "jv-seg jv-seg--arc rx-seg rx-seg--sm", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "button", "aria-pressed": channelFilter === "ALL", onClick: () => setChannelFilter("ALL"), children: "Todos os canais" }),
+            contactChannels.map((k) => {
+              const Icon2 = channelIcon[k];
+              return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("button", { type: "button", "aria-pressed": channelFilter === k, "aria-label": channelLabels[k], title: channelLabels[k], onClick: () => setChannelFilter(k), children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Icon2, { size: 13, "aria-hidden": true }) }, k);
+            })
+          ] }),
+          filtered && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { className: "rx-count", role: "status", children: [
+            rows2.length,
+            " de ",
+            result.data.rows.length,
+            " exibidos"
+          ] })
+        ] }),
+        !result.data.rows.length ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "jv-state", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("strong", { children: "Nenhum contato registrado" }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: "Os contatos e tentativas das origens dispon\xEDveis aparecem aqui." })
+        ] }) : !rows2.length ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "rx-hint", children: "Nenhum registro exibido com estes filtros." }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("ol", { className: "rx-tl", children: rows2.map((r2) => {
+          const Icon2 = channelIcon[r2.channel], attempt = r2.result === "NO_RESPONSE", label = labelOf(r2.originKind, r2.originId);
+          return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("li", { className: "rx-tl__item", "data-tone": attempt ? "warn" : "good", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "rx-tl__dot", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(Icon2, { size: 13 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-tl__body", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "rx-tl__top", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("strong", { children: channelLabels[r2.channel] }),
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: `jv-pill ${attempt ? "jv-pill--warn" : "jv-pill--good"}`, children: resultLabel[r2.result] }),
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("time", { dateTime: r2.happenedAt, children: date(r2.happenedAt) })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "rx-tl__text", children: r2.summary }),
+              /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("p", { className: "rx-tl__meta", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: r2.actorName ?? "Autor registrado" }),
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+                  "registrado ",
+                  date(r2.createdAt)
+                ] }),
+                r2.source !== "MANUAL" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { children: "integrado" }),
+                r2.originCycle ? /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+                  "ciclo ",
+                  r2.originCycle
+                ] }) : null,
+                /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("a", { className: "rx-tl__origin", href: originPath(r2.originKind, r2.originId), children: [
+                  originName[r2.originKind],
+                  label ? ` ${label}` : "",
+                  /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(ArrowUpRight, { size: 12, "aria-hidden": true })
+                ] })
+              ] })
+            ] })
+          ] }, r2.id);
+        }) }),
+        result.data.hasMore && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "rx-hint", children: "Exibidas as 50 intera\xE7\xF5es mais recentes. As datas de \xFAltimo contato consideram todo o universo autorizado, dentro do limite t\xE9cnico." })
+      ] }),
+      message && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { role: "status", className: "rx-msg", children: message })
+    ] });
+  }
+
+  // src/modules/client/components/client-operation-comments.tsx
+  init_define_process_env();
+  var import_react18 = __toESM(require_react());
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/client-operation-comments.actions.ts
+  init_define_process_env();
+  async function loadClientOperationCommentsAction(id2) {
+    return comments(id2);
+  }
+
+  // src/modules/client/components/client-operation-comments.tsx
+  var import_jsx_runtime23 = __toESM(require_jsx_runtime());
+  function ClientOperationComments({ clientId }) {
+    const [result, setResult] = (0, import_react18.useState)(null), generation = (0, import_react18.useRef)(0);
+    const load = (0, import_react18.useCallback)(() => {
+      const id2 = ++generation.current;
+      setResult(null);
+      void loadClientOperationCommentsAction(clientId).then((r2) => {
+        if (id2 === generation.current) setResult(r2);
+      }).catch(() => {
+        if (id2 === generation.current) setResult({ success: false, kind: "error", safeMessage: "Coment\xE1rios indispon\xEDveis." });
       });
-      if (s === "race") return n === 1 ? later(30, { success: false, errorCode: "INFRASTRUCTURE_ERROR", safeMessage: "N\xE3o foi poss\xEDvel carregar as opera\xE7\xF5es." }) : later(60, ready(3));
-      if (s === "long") return later(30, ready(40, true));
-      return later(30, ready(17));
+    }, [clientId]);
+    (0, import_react18.useEffect)(() => {
+      const pending2 = generation;
+      load();
+      return () => {
+        pending2.current++;
+      };
+    }, [load]);
+    return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "mt-3", "aria-label": "Coment\xE1rios nas opera\xE7\xF5es autorizadas", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h3", { className: "cl-sub", children: "Coment\xE1rios nas opera\xE7\xF5es autorizadas" }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "mb-2 text-xs text-[color:var(--jv-fg-3)]", children: "Coment\xE1rios internos das opera\xE7\xF5es. N\xE3o contam como contato com o cliente." }),
+      !result ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { role: "status", className: "flex flex-col gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "jv-skeleton block h-10" }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "jv-skeleton block h-10" }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "sr-only", children: "Consultando coment\xE1rios\u2026" })
+      ] }) : !result.success ? /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { role: result.kind === "error" ? "alert" : void 0, className: "text-sm", children: result.safeMessage }),
+        result.kind !== "denied" && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { type: "button", className: "min-h-11 underline", onClick: load, children: "Atualizar coment\xE1rios" })
+      ] }) : !result.data.rows.length ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "text-sm text-[color:var(--jv-fg-3)]", children: "Nenhum coment\xE1rio nas opera\xE7\xF5es dispon\xEDveis no seu acesso." }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)(import_jsx_runtime23.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("ol", { className: "cl-list", children: result.data.rows.map((r2) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("li", { className: "cl-li", children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "cl-li__body", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { className: "whitespace-pre-wrap break-words text-sm", children: [
+            r2.comment,
+            r2.truncated ? "\u2026" : ""
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { className: "cl-li__s", children: [
+            r2.actorName ?? "Autor n\xE3o informado",
+            " \xB7 ",
+            new Date(r2.occurredAt).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("a", { className: "cl-link inline-flex min-h-8 items-center", href: "/operations/" + r2.operationId, children: "Abrir opera\xE7\xE3o" })
+        ] }) }, r2.id)) }),
+        result.data.hasMore && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "text-xs text-[color:var(--jv-fg-3)]", children: "Exibidos os 20 coment\xE1rios mais recentes; consulte o hist\xF3rico completo na opera\xE7\xE3o de origem." })
+      ] })
+    ] });
+  }
+
+  // src/modules/client/components/client-closed-sales.tsx
+  init_define_process_env();
+  var import_react19 = __toESM(require_react());
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/client-closed-sales.actions.ts
+  init_define_process_env();
+  async function loadClientClosedSalesAction(id2) {
+    return closedSales(id2);
+  }
+
+  // src/modules/client/components/client-closed-sales.tsx
+  var import_jsx_runtime24 = __toESM(require_jsx_runtime());
+  var money = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  var day2 = new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short" });
+  function ClientClosedSales({ clientId }) {
+    const [result, setResult] = (0, import_react19.useState)(null);
+    (0, import_react19.useEffect)(() => {
+      let active = true;
+      setResult(null);
+      void loadClientClosedSalesAction(clientId).then((r2) => {
+        if (active) setResult(r2);
+      }).catch(() => {
+        if (active) setResult({ success: false, kind: "error", safeMessage: "Consulta comercial indispon\xEDvel." });
+      });
+      return () => {
+        active = false;
+      };
+    }, [clientId]);
+    if (!result) return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "rx-last", role: "status", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "jv-skeleton rx-last__sk" }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "sr-only", children: "Consultando\u2026" })
+    ] });
+    if (!result.success) return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "rx-last", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("b", { className: "cl-stat__value", "aria-hidden": true, children: "\u2014" }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "cl-stat__foot", role: result.kind === "error" ? "alert" : void 0, children: result.safeMessage })
+    ] });
+    const d = result.data;
+    return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "rx-last", "data-integration-id": "CLI-PURCHASES-01", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("b", { className: "cl-stat__value", children: d.count }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "rx-sales__amount", children: money.format(d.amount) }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "cl-stat__foot", children: "Valor comercial \xB7 n\xE3o \xE9 faturamento fiscal nem caixa" }),
+      d.rows.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("details", { className: "rx-sales", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("summary", { children: "Ver vendas" }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("ol", { children: d.rows.map((row) => /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("li", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("a", { href: "/operations/" + row.operationId, children: [
+            row.identifier,
+            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ArrowUpRight, { size: 11, "aria-hidden": true })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { children: money.format(row.amount) }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("time", { dateTime: row.closedAt ?? void 0, children: row.closedAt ? day2.format(new Date(row.closedAt)) : "sem data" })
+        ] }, row.opportunityId)) }),
+        d.datedCount < d.count && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("p", { children: [
+          d.datedCount,
+          " de ",
+          d.count,
+          " com data de encerramento comprovada."
+        ] }),
+        d.truncated && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: "Exibidas as 20 primeiras; os totais consideram todas." })
+      ] })
+    ] });
+  }
+
+  // src/modules/client/components/client-detail-view.tsx
+  var import_react21 = __toESM(require_react());
+
+  // src/modules/client/components/client-commercial-relationships.tsx
+  init_define_process_env();
+  var import_react20 = __toESM(require_react());
+
+  // src/modules/client/presentation/client-query-state.ts
+  init_define_process_env();
+  function clientQueryFailureKind(result) {
+    return result.errorCode === "FORBIDDEN" || result.errorCode === "UNAUTHENTICATED" ? "denied" : "error";
+  }
+
+  // src/core/domain/commercial/commercial-workflow.ts
+  init_define_process_env();
+
+  // src/core/domain/commercial/commercial-money.ts
+  init_define_process_env();
+
+  // src/core/domain/commercial/commercial-workflow.ts
+  function currentOperationLink(opportunity) {
+    return opportunity.operationLink?.cycle === opportunity.cycle ? opportunity.operationLink : null;
+  }
+  function projectCommercialState(opportunity) {
+    const link = currentOperationLink(opportunity);
+    if (link?.lifecycle === "closed") return { stage: 8, status: "WON", includedInConversion: link.disposition !== "ADMINISTRATIVE_CANCELLATION" };
+    if (opportunity.status === "LOST") return { stage: opportunity.commercialStage, status: "LOST", includedInConversion: link?.disposition !== "ADMINISTRATIVE_CANCELLATION" && opportunity.lossCategory !== "ADMINISTRATIVE_CANCELLATION" };
+    if (link?.lifecycle === "cancelled") return { stage: opportunity.commercialStage, status: "CANCELLED", includedInConversion: false };
+    if (link) {
+      return { stage: link.lifecycle === "formalization" ? 7 : link.lifecycle === "billing" ? 8 : 6, status: "OPEN", includedInConversion: true };
+    }
+    return { stage: opportunity.commercialStage, status: "OPEN", includedInConversion: opportunity.lossCategory !== "ADMINISTRATIVE_CANCELLATION" };
+  }
+
+  // src/modules/client/components/client-commercial-relationships.tsx
+  var import_jsx_runtime25 = __toESM(require_jsx_runtime());
+  var statusLabel = { OPEN: "Em aberto", WON: "Ganha", LOST: "Perdida", CANCELLED: "Cancelada" };
+  var statusTone = { OPEN: "jv-pill", WON: "jv-pill jv-pill--good", LOST: "jv-pill jv-pill--crit", CANCELLED: "jv-pill" };
+  var money2 = (value) => value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  function useClientCommercialRelationships(clientId) {
+    const [state, setState] = (0, import_react20.useState)({ kind: "loading" }), [canCreate, setCanCreate] = (0, import_react20.useState)(false);
+    (0, import_react20.useEffect)(() => {
+      let alive = true;
+      setState({ kind: "loading" });
+      setCanCreate(false);
+      void commercialClientRelationshipsAction(clientId).then((r2) => {
+        if (alive) setState(r2.success ? { kind: "available", rows: r2.data } : { kind: clientQueryFailureKind(r2), message: r2.safeMessage });
+      }).catch(() => {
+        if (alive) setState({ kind: "error", message: "N\xE3o foi poss\xEDvel consultar os neg\xF3cios." });
+      });
+      void commercialAuthorityAction("opportunity.create").then((r2) => {
+        if (alive) setCanCreate(r2.success);
+      }).catch(() => {
+        if (alive) setCanCreate(false);
+      });
+      return () => {
+        alive = false;
+      };
+    }, [clientId]);
+    return { state, canCreate };
+  }
+  function openOpportunitiesCount(state) {
+    return state.kind === "available" ? state.rows.filter((r2) => projectCommercialState(r2.opportunity).status === "OPEN").length : null;
+  }
+  function ClientCommercialRelationships({ clientId, state, canCreate }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("section", { className: "jv-panel", "aria-labelledby": "cl-deals-title", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "cl-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { id: "cl-deals-title", children: "Neg\xF3cios" }),
+        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "cl-ph__sub", children: "Oportunidades no seu escopo comercial" }),
+        canCreate && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "cl-ph__end", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("a", { className: "cl-btn cl-btn--sm", href: "/sales-funnel/new?clientId=" + encodeURIComponent(clientId), children: "Nova oportunidade" }) })
+      ] }),
+      state.kind === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DesignState, { kind: "loading", title: "Consultando neg\xF3cios autorizados\u2026" }) : state.kind === "denied" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DesignState, { kind: "denied", title: "Sem acesso", children: state.message }) : state.kind === "error" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DesignState, { kind: "error", title: "Erro na consulta", children: state.message }) : state.rows.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(DesignState, { kind: "empty", title: "Nenhuma oportunidade no seu escopo." }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("ul", { className: "cl-list", children: state.rows.map((r2) => {
+        const projected = projectCommercialState(r2.opportunity).status;
+        return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("li", { className: "cl-li", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "cl-li__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Briefcase, { size: 14 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "cl-li__body", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("a", { className: "cl-link cl-mono", href: "/sales-funnel/" + r2.opportunity.id, children: r2.opportunity.humanIdentifier }),
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { className: "cl-li__s", children: [
+              "Ciclo ",
+              r2.opportunity.cycle,
+              " \xB7 ",
+              r2.seller.displayName,
+              " \xB7 ",
+              r2.branch?.name ?? "Sem filial"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("a", { className: "cl-link", href: "/sales-funnel/orders/new?opportunity=" + r2.opportunity.id, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(ExternalLink, { size: 12, "aria-hidden": true }),
+              "Consultar pedido e vers\xF5es"
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "cl-li__end", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: statusTone[projected], children: statusLabel[projected] }),
+            /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "cl-mono", children: money2(r2.opportunity.amount) })
+          ] })
+        ] }, r2.opportunity.id);
+      }) })
+    ] });
+  }
+
+  // src/modules/client/components/restricted-operations-notice.tsx
+  init_define_process_env();
+  var import_jsx_runtime26 = __toESM(require_jsx_runtime());
+  function restrictedOperationsMessage(count3) {
+    if (!Number.isSafeInteger(count3) || count3 <= 0) return null;
+    return count3 === 1 ? "Existe 1 outra opera\xE7\xE3o vinculada a este cliente, tratada por outro vendedor." : `Existem ${count3} outras opera\xE7\xF5es vinculadas a este cliente, tratadas por outros vendedores.`;
+  }
+  function RestrictedOperationsNotice({ count: count3 }) {
+    const message = restrictedOperationsMessage(count3);
+    return message ? /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "mb-3 rounded border border-ui-800 bg-ui-900/50 p-3 text-xs text-ui-400", children: message }) : null;
+  }
+
+  // src/modules/client/components/client-fiscal-history.tsx
+  init_define_process_env();
+
+  // src/modules/client/components/client-fiscal-presentation.ts
+  init_define_process_env();
+  var fiscalConfirmationLabels = {
+    PUBLIC_SOURCE_CONFIRMED: "Confirmado por fonte p\xFAblica",
+    DOCUMENT_CONFIRMED: "Confirmado por documento",
+    HUMAN_CONFIRMED: "Confirmado por pessoa respons\xE1vel",
+    AI_SUGGESTED: "Sugerido pela intelig\xEAncia artificial",
+    UNKNOWN: "Ainda n\xE3o confirmado"
+  };
+  var fiscalRegimeLabels = {
+    SIMPLES_NACIONAL: "Simples Nacional",
+    LUCRO_REAL: "Lucro real",
+    LUCRO_PRESUMIDO: "Lucro presumido",
+    UNKNOWN: "Regime tribut\xE1rio ainda n\xE3o confirmado"
+  };
+  var missing = "N\xE3o informado";
+  var integer2 = (value) => typeof value === "number" && Number.isSafeInteger(value) && value >= 0 ? value : null;
+  function fiscalHistoryRows(history) {
+    return history.map((row, index) => {
+      const year = integer2(row.year);
+      const count3 = integer2(row.bookkeepingCount);
+      const text = typeof row.taxationForm === "string" ? row.taxationForm.trim() : "";
+      const regime = text ? text.replaceAll("_", " ").toLocaleLowerCase("pt-BR").replace(/^\p{L}/u, (c) => c.toLocaleUpperCase("pt-BR")) : missing;
+      return { index, year, yearLabel: year === null ? missing : String(year), regime, bookkeeping: count3 === null ? missing : String(count3) };
+    }).sort((a, b) => (b.year ?? -1) - (a.year ?? -1) || a.index - b.index);
+  }
+  var registrationTones = {
+    ATIVA: "good",
+    ATIVO: "good",
+    SUSPENSA: "warn",
+    SUSPENSO: "warn",
+    INATIVA: "warn",
+    INATIVO: "warn",
+    INAPTA: "crit",
+    INAPTO: "crit",
+    BAIXADA: "crit",
+    BAIXADO: "crit",
+    NULA: "crit",
+    NULO: "crit"
+  };
+  function registrationStatusPresentation(status) {
+    const raw = typeof status === "string" ? status.trim() : "";
+    if (!raw) return { label: "N\xE3o informada", tone: "neutral", informed: false };
+    const key = raw.normalize("NFD").replace(/\p{M}/gu, "").toLocaleUpperCase("pt-BR");
+    const label = raw.toLocaleLowerCase("pt-BR").replace(/^\p{L}/u, (c) => c.toLocaleUpperCase("pt-BR"));
+    return { label, tone: registrationTones[key] ?? "neutral", informed: true };
+  }
+
+  // src/modules/client/components/client-fiscal-history.tsx
+  var import_jsx_runtime27 = __toESM(require_jsx_runtime());
+  function ClientFiscalHistory({ history }) {
+    if (!history.length) return null;
+    return /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("details", { className: "mt-3", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("summary", { className: "cursor-pointer text-xs text-ui-400", children: [
+        "Hist\xF3rico tribut\xE1rio (",
+        history.length,
+        ")"
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("div", { className: "mt-2 max-h-64 overflow-auto rounded border border-ui-800", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("table", { className: "w-full text-left text-xs text-ui-300", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("caption", { className: "sr-only", children: "Hist\xF3rico tribut\xE1rio por ano, do mais recente ao mais antigo" }),
+        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("thead", { className: "bg-ui-900 text-ui-400", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("tr", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("th", { scope: "col", className: "p-3", children: "Ano" }),
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("th", { scope: "col", className: "p-3", children: "Regime tribut\xE1rio" }),
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("th", { scope: "col", className: "p-3", children: "Escritura\xE7\xF5es" })
+        ] }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("tbody", { children: fiscalHistoryRows(history).map((row) => /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("tr", { className: "border-t border-ui-800", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("th", { scope: "row", className: "p-3 font-medium", children: row.yearLabel }),
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("td", { className: "p-3", children: row.regime }),
+          /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("td", { className: "p-3", children: row.bookkeeping })
+        ] }, row.index)) })
+      ] }) })
+    ] });
+  }
+
+  // src/modules/client/components/client-region-state.tsx
+  init_define_process_env();
+
+  // src/modules/client/components/client-pending-integrations.ts
+  init_define_process_env();
+  var allStates = ["loading", "empty", "error", "denied", "available"];
+  var clientPendingIntegrations = {
+    "CLI-CONTACTS-01": {
+      id: "CLI-CONTACTS-01",
+      region: "Contatos",
+      awaiting: "Cadastro de pessoas do cliente com cargo, canais e consentimento.",
+      contract: {
+        fields: ["contactId uuid", "clientId uuid", "name", "role", "channels[] {kind, value, verifiedAt}", "consent {whatsapp, email, recordedAt}", "isPrimary", "source", "createdAt/updatedAt/version"],
+        actions: ["list contacts by client", "create contact", "update contact", "archive contact"],
+        states: allStates,
+        authorization: "Capability e escopo pr\xF3prios para leitura e escrita de contatos (n\xE3o aprovados no invent\xE1rio); servidor decide own/all.",
+        dependency: "DTO, port, use cases, RPC e pol\xEDtica D01 de contatos humanos. Telefone operacional, contato p\xFAblico e QSA n\xE3o substituem esta fonte.",
+        acceptance: "Lista e cadastro persistem e releem do backend; UUID alheio negado; nenhum contato derivado de QSA ou telefone."
+      }
     },
-    banks: (n) => {
-      if (s === "loading") return never();
-      if (s === "bankerr" || s === "error") return later(30, { success: false, error: new Error("x") });
-      if (s === "race") return n === 1 ? later(1500, { success: true, data: 77 }) : later(40, { success: true, data: 3 });
-      return later(30, { success: true, data: 5 });
+    "CLI-CHECKLIST-01": {
+      id: "CLI-CHECKLIST-01",
+      region: "Checklist da Mesa",
+      awaiting: "Checklist consolidado do cliente com os documentos exigidos pela Mesa.",
+      contract: {
+        fields: ["requirementId", "requirementName", "status RECEIVED|PENDING|EXPIRED|WAIVED", "evidenceDocumentId", "sourceOperationId?", "updatedAt"],
+        actions: ["read consolidated checklist by client"],
+        states: allStates,
+        authorization: "Leitura conforme escopo do cliente e das opera\xE7\xF5es vinculadas; upload n\xE3o equivale a aprova\xE7\xE3o.",
+        dependency: "Proje\xE7\xE3o cliente/documento master sobre bank_requirement_checklist_items e documentos master (CLI-DOCS-MASTER-01).",
+        acceptance: "Contagem recebidos/exigidos vem da proje\xE7\xE3o do servidor; nenhum X/Y calculado na tela."
+      }
+    },
+    "CLI-DOCS-MASTER-01": {
+      id: "CLI-DOCS-MASTER-01",
+      region: "Documentos master do cliente",
+      awaiting: "Documentos pr\xF3prios do cadastro do cliente, independentes de opera\xE7\xE3o.",
+      contract: {
+        fields: ["documentId uuid", "clientId uuid", "requirementId", "fileName", "mimeType", "sizeBytes", "sha256", "reviewStatus", "validUntil", "version", "createdAt"],
+        actions: ["list by client", "upload", "signed download", "replace version"],
+        states: allStates,
+        authorization: "Capability e escopo de documentos master (n\xE3o aprovados); download por URL assinada do servidor.",
+        dependency: "Tabela, storage e ciclo de vida de documento master; os documentos de opera\xE7\xE3o continuam separados.",
+        acceptance: "Documento de opera\xE7\xE3o nunca aparece como documento master; upload rele\xEDdo com hash e vers\xE3o."
+      }
+    },
+    "CLI-IMPORT-01": {
+      id: "CLI-IMPORT-01",
+      region: "Importar planilha",
+      awaiting: "Importa\xE7\xE3o de clientes por planilha com pr\xE9via, deduplica\xE7\xE3o e relat\xF3rio.",
+      contract: {
+        fields: ["importId uuid", "fileName", "rows", "accepted", "rejected[] {row, reason}", "duplicates[]", "status", "createdBy", "createdAt"],
+        actions: ["upload file", "preview", "confirm import", "download report"],
+        states: allStates,
+        authorization: "Capability de importa\xE7\xE3o CRM (n\xE3o aprovada).",
+        dependency: "Use case de importa\xE7\xE3o idempotente com deduplica\xE7\xE3o por documento e trilha de auditoria.",
+        acceptance: "Nenhum sucesso exibido antes da confirma\xE7\xE3o persistida; duplicidade n\xE3o cria novo cliente."
+      }
+    },
+    "CLI-LASTCONTACT-01": {
+      id: "CLI-LASTCONTACT-01",
+      region: "\xDAltimo contato",
+      awaiting: "Data da \xFAltima intera\xE7\xE3o registrada com o cliente.",
+      contract: {
+        fields: ["lastInteractionAt", "channel", "actorId"],
+        actions: ["read with client profile"],
+        states: allStates,
+        authorization: "Mesmo escopo da timeline de comunica\xE7\xF5es.",
+        dependency: "Derivado da fonte can\xF4nica de comunica\xE7\xF5es (CLI-COMMS-01).",
+        acceptance: 'Sem comunica\xE7\xE3o registrada mostra estado vazio, nunca "hoje" ou data estimada.'
+      }
+    },
+    "CLI-COMMS-01": {
+      id: "CLI-COMMS-01",
+      region: "Comunica\xE7\xF5es na linha do tempo",
+      awaiting: "Mensagens, liga\xE7\xF5es e pedidos da Mesa ligados ao cliente.",
+      contract: {
+        fields: ["eventId", "channel WHATSAPP|EMAIL|CALL|DESK|NOTE", "summary", "direction", "occurredAt", "actorId", "visibility"],
+        actions: ["list by client, paginated"],
+        states: allStates,
+        authorization: "Escopo por carteira/conversa; nota interna nunca exposta ao cliente.",
+        dependency: "Cat\xE1logo can\xF4nico de atividades e comunica\xE7\xE3o; a timeline factual atual continua sendo exibida.",
+        acceptance: "Eventos v\xEAm do backend com origem; nenhum evento de exemplo."
+      }
+    },
+    "CLI-WHATSAPP-01": {
+      id: "CLI-WHATSAPP-01",
+      region: "WhatsApp",
+      awaiting: "Envio por WhatsApp oficial a um contato com consentimento.",
+      contract: {
+        fields: ["contactId", "channelId", "templateId?", "conversationId"],
+        actions: ["open conversation", "send template", "charge pending documents"],
+        states: allStates,
+        authorization: "Capability de envio e consentimento do contato.",
+        dependency: "Integra\xE7\xE3o WhatsApp e contatos humanos (CLI-CONTACTS-01).",
+        acceptance: "Bot\xE3o habilitado s\xF3 com canal e consentimento confirmados pelo servidor."
+      }
+    },
+    "CLI-TASK-01": {
+      id: "CLI-TASK-01",
+      region: "Tarefa",
+      awaiting: "Cria\xE7\xE3o de tarefa ligada ao cliente ou a um neg\xF3cio.",
+      contract: {
+        fields: ["taskId", "clientId", "opportunityId?", "title", "dueAt", "assigneeId", "status"],
+        actions: ["create task", "list tasks by client"],
+        states: allStates,
+        authorization: "Capability de tarefas; respons\xE1vel validado no servidor.",
+        dependency: "M\xF3dulo de tarefas e agenda.",
+        acceptance: "Tarefa criada s\xF3 ap\xF3s persist\xEAncia confirmada e releitura."
+      }
+    },
+    "CLI-PURCHASES-01": {
+      id: "CLI-PURCHASES-01",
+      region: "Comprado (hist\xF3rico)",
+      awaiting: "Faturamento l\xEDquido confirmado por cliente.",
+      contract: {
+        fields: ["netBilledAmount", "currency", "itemsCount", "lastBilledAt", "source"],
+        actions: ["read with client profile"],
+        states: allStates,
+        authorization: "Escopo financeiro do cliente; agrega\xE7\xE3o no read model.",
+        dependency: "Confirma\xE7\xE3o de faturamento por item com estorno; PED emitido ou volume de opera\xE7\xE3o n\xE3o comprovam compra.",
+        acceptance: "Valor vem de fato faturado; volume em opera\xE7\xF5es continua em indicador separado."
+      }
+    },
+    "CLI-PROFILE-01": {
+      id: "CLI-PROFILE-01",
+      region: "Perfil do cliente",
+      awaiting: "Classifica\xE7\xE3o do cliente definida por pol\xEDtica aprovada.",
+      contract: {
+        fields: ["profileCode", "policyVersion", "decidedBy", "decidedAt", "rationale"],
+        actions: ["read", "set profile (human)"],
+        states: allStates,
+        authorization: "Escritor humano/can\xF4nico definido em pol\xEDtica; leitura conforme escopo.",
+        dependency: "Pol\xEDtica de classifica\xE7\xE3o e hist\xF3rico; n\xE3o existe score A/B/C no Portal.",
+        acceptance: "Nenhuma classifica\xE7\xE3o exibida sem fonte e vers\xE3o de pol\xEDtica."
+      }
+    },
+    "CLI-PORTFOLIO-01": {
+      id: "CLI-PORTFOLIO-01",
+      region: "Carteira e respons\xE1vel",
+      awaiting: "Respons\xE1vel comercial e carteira do cliente.",
+      contract: {
+        fields: ["ownerId", "ownerDisplayName", "branchId", "assignedAt"],
+        actions: ["read", "reassign"],
+        states: allStates,
+        authorization: "Leitura conforme escopo; reatribui\xE7\xE3o por capability pr\xF3pria.",
+        dependency: "V\xEDnculo can\xF4nico cliente\u2194vendedor/filial; n\xE3o se infere equipe.",
+        acceptance: 'Filtro "Minha carteira" e coluna respons\xE1vel usam o mesmo v\xEDnculo do servidor.'
+      }
+    },
+    "CLI-GROUP-01": {
+      id: "CLI-GROUP-01",
+      region: "Grupo econ\xF4mico",
+      awaiting: "V\xEDnculos expl\xEDcitos de grupo econ\xF4mico, matriz e filiais.",
+      contract: {
+        fields: ["groupId", "groupName", "members[] {clientId, relation}", "source", "confirmedBy"],
+        actions: ["read", "link/unlink (human)"],
+        states: allStates,
+        authorization: "Capability pr\xF3pria; QSA externo n\xE3o cria v\xEDnculo.",
+        dependency: "Modelo de grupo econ\xF4mico; o contrato atual retorna economicGroup sempre nulo.",
+        acceptance: "V\xEDnculo exibido s\xF3 quando confirmado e persistido."
+      }
+    },
+    "CLI-FILTERS-01": {
+      id: "CLI-FILTERS-01",
+      region: "Filtros da lista",
+      awaiting: "Filtros por carteira, pend\xEAncia, situa\xE7\xE3o e opera\xE7\xE3o aplicados no servidor.",
+      contract: {
+        fields: ["filters {portfolio, pending, registrationStatus, hasOperations, personType, ownerId}", "counts per filter"],
+        actions: ["list with filters", "saved views"],
+        states: allStates,
+        authorization: "Mesmo escopo da listagem atual; contagens calculadas no servidor.",
+        dependency: "Extens\xE3o de ClientSummaryFilters e de irmen_list_client_summaries (hoje s\xF3 busca textual).",
+        acceptance: "Contagem do filtro bate com o total paginado; nenhum filtro apenas visual."
+      }
+    },
+    "CLI-LIST-INSIGHTS-01": {
+      id: "CLI-LIST-INSIGHTS-01",
+      region: "Indicadores de qualidade cadastral",
+      awaiting: "Clientes sem intera\xE7\xE3o recente, com cadastro incompleto ou poss\xEDvel duplicidade.",
+      contract: {
+        fields: ["withoutRecentInteraction", "incompleteRegistry", "possibleDuplicates", "rulesVersion"],
+        actions: ["read with list KPIs"],
+        states: allStates,
+        authorization: "Mesmo escopo dos KPIs da listagem.",
+        dependency: "Regras can\xF4nicas de completude/duplicidade e fonte de comunica\xE7\xF5es (CLI-COMMS-01).",
+        acceptance: "Indicador mostra n\xFAmero s\xF3 quando calculado pelo servidor com vers\xE3o de regra."
+      }
     }
   };
-  var root = null;
-  function mount(scenario, slate) {
-    s = scenario;
-    theme = slate ? "irmen-executive-light" : "irmen-industrial-dark";
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.classList.toggle("dark", !slate);
-    w.__calls = [];
-    w.__nav = [];
-    root?.unmount();
-    root = (0, import_client.createRoot)(document.getElementById("root"));
-    root.render(
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(AppShell, { initialTheme: theme, headerContext: { userName: params.get("name") ?? "Pessoa Sint\xE9tica", email: "pessoa@exemplo.invalid", company: "IRMEN", role: params.get("role") ?? "vendedor" }, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(DashboardHome, { viewer: { userName: params.get("name") ?? "Pessoa Sint\xE9tica", role: params.get("role") ?? "vendedor" } }) }, scenario + theme)
+  function clientPendingIntegration(id2) {
+    return clientPendingIntegrations[id2];
+  }
+
+  // src/modules/client/components/client-region-state.tsx
+  var import_jsx_runtime28 = __toESM(require_jsx_runtime());
+  function ClientPendingNotice({ id: id2 }) {
+    const pending2 = clientPendingIntegration(id2);
+    return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "cl-pending", role: "note", "data-pending-id": id2, "aria-label": `${pending2.region}: integra\xE7\xE3o pendente`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "cl-pending__head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "cl-pending__tag", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(PlugZap, { size: 13, "aria-hidden": true }),
+          "Integra\xE7\xE3o pendente"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "cl-pending__id", children: id2 })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { children: pending2.awaiting })
+    ] });
+  }
+  function ClientPendingValue({ id: id2 }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "cl-pending-value", "data-pending-id": id2, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "cl-pending-value__dash", "aria-hidden": true, children: "\u2014" }),
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "cl-pending-value__note", children: [
+        "Integra\xE7\xE3o pendente \xB7 ",
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("b", { children: id2 })
+      ] })
+    ] });
+  }
+  function ClientPendingButton({ id: id2, icon, children, small = false }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("button", { type: "button", className: `cl-btn${small ? " cl-btn--sm" : ""}`, disabled: true, "data-pending-id": id2, title: `Integra\xE7\xE3o pendente \xB7 ${id2}`, children: [
+      icon,
+      children,
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("span", { className: "sr-only", children: [
+        " (integra\xE7\xE3o pendente, ",
+        id2,
+        ")"
+      ] })
+    ] });
+  }
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/client-registry-reconciliation.tsx
+  init_define_process_env();
+  function ClientRegistryReconciliation() {
+    return null;
+  }
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/financial-dossier-panel.tsx
+  init_define_process_env();
+  function FinancialDossierPanel() {
+    return null;
+  }
+
+  // src/utils/document.ts
+  init_define_process_env();
+
+  // src/utils/cnpj.ts
+  init_define_process_env();
+  function normalizeCnpj(value) {
+    if (!value) return "";
+    return value.replace(/\s/g, "").replace(/\D/g, "");
+  }
+  function isValidCnpj(value) {
+    if (!value) return false;
+    if (/[^0-9./\s-]/.test(value)) return false;
+    const clean = normalizeCnpj(value);
+    if (clean.length !== 14) return false;
+    if (/^(\d)\1+$/.test(clean)) return false;
+    const calcDigit = (base2, weights) => {
+      let sum = 0;
+      for (let i = 0; i < weights.length; i++) {
+        sum += parseInt(base2[i], 10) * weights[i];
+      }
+      const remainder = sum % 11;
+      return remainder < 2 ? 0 : 11 - remainder;
+    };
+    const base = clean.slice(0, 12);
+    const weights1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    const d1 = calcDigit(base, weights1);
+    const weights2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+    const d2 = calcDigit(base + d1, weights2);
+    return clean.slice(12) === `${d1}${d2}`;
+  }
+
+  // src/utils/document.ts
+  function isValidCpf(value) {
+    if (!value) return false;
+    const clean = value.replace(/\D/g, "");
+    if (clean.length !== 11) return false;
+    if (/^(\d)\1+$/.test(clean)) return false;
+    const calcDigit = (base2, maxWeight) => {
+      let sum = 0;
+      for (let i = 0; i < base2.length; i++) {
+        sum += parseInt(base2[i], 10) * (maxWeight - i);
+      }
+      const remainder = sum * 10 % 11;
+      return remainder === 10 || remainder === 11 ? 0 : remainder;
+    };
+    const base = clean.slice(0, 9);
+    const d1 = calcDigit(base, 10);
+    const d2 = calcDigit(base + d1, 11);
+    return clean.slice(9) === `${d1}${d2}`;
+  }
+  function maskCpfCnpj(v2) {
+    const clean = v2.replace(/\D/g, "");
+    if (clean.length <= 11) {
+      let r2 = "";
+      for (let i = 0; i < clean.length; i++) {
+        if (i === 3 || i === 6) r2 += ".";
+        if (i === 9) r2 += "-";
+        r2 += clean[i];
+      }
+      return r2;
+    } else {
+      const truncated = clean.substring(0, 14);
+      let r2 = "";
+      for (let i = 0; i < truncated.length; i++) {
+        if (i === 2 || i === 5) r2 += ".";
+        if (i === 8) r2 += "/";
+        if (i === 12) r2 += "-";
+        r2 += truncated[i];
+      }
+      return r2;
+    }
+  }
+  function maskPhone(v2) {
+    const clean = v2.replace(/\D/g, "").substring(0, 11);
+    let r2 = "";
+    if (clean.length > 0) {
+      r2 += "(";
+    }
+    for (let i = 0; i < clean.length; i++) {
+      if (i === 2) r2 += ") ";
+      if (clean.length === 11) {
+        if (i === 7) r2 += "-";
+      } else {
+        if (i === 6) r2 += "-";
+      }
+      r2 += clean[i];
+    }
+    return r2;
+  }
+
+  // src/modules/operation/components/status/index.ts
+  init_define_process_env();
+
+  // src/modules/operation/components/status/canonical-status-badges.tsx
+  init_define_process_env();
+
+  // src/modules/operation/presentation/credit-decision-summary.presentation.ts
+  init_define_process_env();
+
+  // src/modules/operation/components/status/canonical-status-badges.tsx
+  var import_jsx_runtime29 = __toESM(require_jsx_runtime());
+  function OperationalLifecycleIndicator({ value, className }) {
+    const presentation = resolveOperationalLifecyclePresentation(value);
+    return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("span", { "aria-label": presentation.accessibilityLabel, className: cn("inline-flex items-center gap-2 text-sm font-bold tracking-wide text-ui-100", className), children: [
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { "aria-hidden": "true", className: cn("h-2.5 w-2.5 shrink-0 rounded-full", presentation.orbClassName) }),
+      /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { children: presentation.label })
+    ] });
+  }
+
+  // src/modules/client/components/client-detail-view.tsx
+  var import_jsx_runtime30 = __toESM(require_jsx_runtime());
+  var money3 = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  var date2 = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "2-digit", year: "numeric" });
+  var dateTime = new Intl.DateTimeFormat("pt-BR", { dateStyle: "short", timeStyle: "short" });
+  var showDate = (value, withTime = false) => {
+    if (!value) return "\u2014";
+    const civil3 = !withTime ? /^(\d{4})-(\d{2})-(\d{2})$/.exec(value) : null;
+    if (civil3) return `${civil3[3]}/${civil3[2]}/${civil3[1]}`;
+    const parsed = new Date(value);
+    return Number.isNaN(parsed.getTime()) ? "\u2014" : (withTime ? dateTime : date2).format(parsed);
+  };
+  var yesNo = (value) => value === null ? "N\xE3o informado" : value ? "Sim" : "N\xE3o";
+  var initials2 = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join("").toLocaleUpperCase("pt-BR") || "?";
+  var toneClass = { good: "jv-pill jv-pill--good", warn: "jv-pill jv-pill--warn", crit: "jv-pill jv-pill--crit", neutral: "jv-pill" };
+  function Panel({ title, icon: Icon2, sub, end, children, id: id2 }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("section", { className: "jv-panel", "aria-labelledby": id2, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-ph", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("h2", { id: id2, className: "inline-flex items-center gap-2", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Icon2, { size: 14, className: "text-[color:var(--jv-brand)]", "aria-hidden": true }),
+          title
+        ] }),
+        sub && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-ph__sub", children: sub }),
+        end && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-ph__end", children: end })
+      ] }),
+      children
+    ] });
+  }
+  function Facts({ items }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("dl", { className: "cl-facts", children: items.map(([label, value]) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("dt", { children: label }),
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("dd", { children: value ?? "\u2014" })
+    ] }, label)) });
+  }
+  function Stat({ label, children, foot }) {
+    return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-stat", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-stat__label", children: label }),
+      children,
+      foot && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-stat__foot", children: foot })
+    ] });
+  }
+  var timelineLabel = (action) => ({ "client.contact_saved": "Contato cadastral atualizado", "operation.created": "Opera\xE7\xE3o criada", "operation.lifecycle.transitioned": "Etapa operacional alterada", "client.company_enrichment.persisted": "Cadastro p\xFAblico atualizado", "client.registry_reconciliation.accept_external": "Dados externos conciliados", "client.registry_reconciliation.keep_current": "Dados internos preservados" })[action] ?? action;
+  function ClientDetailView({ detail: detail2, onBack, onEdit, onRegistryDecided }) {
+    const { identity, contacts, address, registry, fiscal, qsa, operations: operations2, documents, pendingItems, timeline, indicators } = detail2;
+    const commercial2 = useClientCommercialRelationships(identity.id);
+    const openDeals = openOpportunitiesCount(commercial2.state);
+    const [downloadState, setDownloadState] = (0, import_react21.useState)(null);
+    const downloadGeneration = (0, import_react21.useRef)(0);
+    (0, import_react21.useEffect)(() => {
+      downloadGeneration.current += 1;
+      setDownloadState(null);
+      return () => {
+        downloadGeneration.current += 1;
+      };
+    }, [identity.id]);
+    const download = async (operationId, documentId) => {
+      const generation = ++downloadGeneration.current;
+      setDownloadState({ id: documentId, kind: "busy" });
+      try {
+        const result = await createOperationDocumentDownloadUrlAction({ operationId, documentId });
+        if (generation !== downloadGeneration.current) return;
+        if (!result.success) return setDownloadState({ id: documentId, kind: "error", message: result.safeMessage });
+        setDownloadState(null);
+        window.open(result.data.signedUrl, "_blank", "noopener,noreferrer");
+      } catch {
+        if (generation !== downloadGeneration.current) return;
+        setDownloadState({ id: documentId, kind: "error", message: "N\xE3o foi poss\xEDvel gerar o link do arquivo." });
+      }
+    };
+    const companyAge = registry?.openedAt ? Math.max(0, (/* @__PURE__ */ new Date()).getFullYear() - new Date(registry.openedAt).getFullYear()) : null;
+    const documentLabel = maskCpfCnpj(identity.normalizedDocument);
+    const location2 = address.internal.city && address.internal.state ? `${address.internal.city}/${address.internal.state}` : "Localiza\xE7\xE3o n\xE3o informada";
+    const status = registrationStatusPresentation(identity.registrationStatus);
+    return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-col", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("section", { className: "jv-panel jv-panel--hud", "aria-labelledby": "cl-identity-name", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("button", { type: "button", className: "cl-back", onClick: onBack, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ArrowLeft, { size: 13, "aria-hidden": true }),
+          "Central de Clientes"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-identity", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-logo", "aria-hidden": true, children: initials2(identity.legalName) }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-identity__main", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h2", { id: "cl-identity-name", className: "cl-identity__name", children: identity.legalName }),
+            identity.tradeName && identity.tradeName !== identity.legalName && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-identity__trade", children: identity.tradeName }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-identity__doc", children: [
+              identity.personType === "PJ" ? "CNPJ" : "CPF",
+              " ",
+              documentLabel,
+              " \xB7 ",
+              location2
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-identity__pills", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "jv-pill jv-pill--arc", children: identity.personType === "PJ" ? "Pessoa jur\xEDdica" : "Pessoa f\xEDsica" }),
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("span", { className: toneClass[status.tone], children: [
+                "Situa\xE7\xE3o cadastral: ",
+                status.label
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "jv-pill", "data-pending-id": "CLI-PROFILE-01", children: "Perfil: integra\xE7\xE3o pendente" }),
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "jv-pill", "data-pending-id": "CLI-PORTFOLIO-01", children: "Carteira: integra\xE7\xE3o pendente" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-uuid mt-2", children: [
+              "ID ",
+              identity.id
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-identity__actions", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingButton, { id: "CLI-WHATSAPP-01", icon: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(MessageCircle, { size: 14, "aria-hidden": true }), children: "WhatsApp" }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingButton, { id: "CLI-TASK-01", icon: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(SquareCheckBig, { size: 14, "aria-hidden": true }), children: "Tarefa" }),
+            commercial2.canCreate && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("a", { className: "ds-button ds-button--primary", href: `/sales-funnel/new?clientId=${encodeURIComponent(identity.id)}`, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("span", { className: "ds-button__content", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Plus, { size: 14, "aria-hidden": true }),
+              "Oportunidade"
+            ] }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(DesignButton, { onClick: () => {
+              window.location.href = `/operations/new?clientId=${encodeURIComponent(identity.id)}`;
+            }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Plus, { size: 14, "aria-hidden": true }),
+              "Nova Opera\xE7\xE3o"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(DesignButton, { onClick: onEdit, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(PenLine, { size: 14, "aria-hidden": true }),
+              "Editar cadastro"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-identity__note", "data-pending-id": "CLI-WHATSAPP-01 CLI-TASK-01", children: "WhatsApp e Tarefa ainda n\xE3o est\xE3o dispon\xEDveis." })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g4 mt-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Vendas comerciais conclu\xEDdas", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientClosedSales, { clientId: identity.id }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Neg\xF3cios abertos", foot: commercial2.state.kind === "available" ? "No seu escopo comercial" : void 0, children: openDeals !== null ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("b", { className: "cl-stat__value", children: openDeals }) : commercial2.state.kind === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-stat__value", role: "status", "aria-label": "Carregando", children: "\u2026" }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(import_jsx_runtime30.Fragment, { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-stat__value", "aria-hidden": true, children: "\u2014" }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-stat__foot", children: commercial2.state.kind === "denied" ? "Sem acesso" : "Erro na consulta" })
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Documentos do cadastro", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingValue, { id: "CLI-DOCS-MASTER-01" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "\xDAltimo contato efetivo", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientLastContact, { clientId: identity.id }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g3 cl-stats-extra", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Opera\xE7\xF5es", foot: detail2.operationReadScope === "own" ? "Somente as suas" : void 0, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("b", { className: "cl-stat__value", children: indicators.operationsCount }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Volume em opera\xE7\xF5es", foot: indicators.totalVolume === null && indicators.volumeCoverage ? `${indicators.volumeCoverage.knownCount}/${indicators.volumeCoverage.totalCount} com valor \xB7 soma conhecida ${money3.format(indicators.volumeCoverage.knownAmount)}` : void 0, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("b", { className: "cl-stat__value", children: indicators.totalVolume === null ? "\u2014" : money3.format(indicators.totalVolume) }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Stat, { label: "Documentos operacionais", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("b", { className: "cl-stat__value", children: indicators.documentsCount }) })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-contacts", title: "Contatos", icon: Phone, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientContactPeople, { clientId: identity.id }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub", children: "Contato operacional \xB7 cadastro interno" }),
+          !contacts.operational.phone && !contacts.operational.email ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum contato operacional informado." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Telefone", contacts.operational.phone], ["E-mail", contacts.operational.email]] }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub", children: "Contato p\xFAblico cadastral" }),
+          contacts.public.phones.length === 0 && !contacts.public.email ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum contato p\xFAblico dispon\xEDvel." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Telefones", contacts.public.phones.join(" \xB7 ") || "\u2014"], ["E-mail", contacts.public.email], ["Fonte", registry?.source ?? "\u2014"]] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-checklist", title: "Checklist da Mesa", icon: SquareCheckBig, sub: "Exigidos para an\xE1lise de cr\xE9dito", end: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingButton, { small: true, id: "CLI-WHATSAPP-01", icon: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(MessageCircle, { size: 13, "aria-hidden": true }), children: "Cobrar pend\xEAncias" }), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingNotice, { id: "CLI-CHECKLIST-01" }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub", children: "Pend\xEAncias operacionais registradas" }),
+          pendingItems.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhuma pend\xEAncia operacional registrada." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "text-sm", children: [
+            pendingItems.length,
+            " pend\xEAncia(s) nas opera\xE7\xF5es vinculadas. Abra a opera\xE7\xE3o para gest\xE3o completa."
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Panel, { id: "cl-relationship", title: "Relacionamento", icon: MessageCircle, sub: "Contatos efetivos e tentativas registrados nas oportunidades e opera\xE7\xF5es", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(RelationshipInteractions, { query: { clientId: identity.id } }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientCommercialRelationships, { clientId: identity.id, state: commercial2.state, canCreate: commercial2.canCreate }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-timeline", title: "Linha do tempo", icon: History, sub: "Eventos factuais registrados para o cliente", children: [
+          timeline.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum evento registrado para o cliente." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("ol", { className: "cl-list", children: timeline.map((event2) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("li", { className: "cl-li", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-li__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(History, { size: 13 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-li__body", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-li__t", children: timelineLabel(event2.action) }),
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s", children: [
+                event2.actorRole ?? "Sistema",
+                " \xB7 ",
+                showDate(event2.occurredAt, true)
+              ] })
+            ] })
+          ] }, event2.id)) }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientOperationComments, { clientId: identity.id })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-g2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-identification", title: "Identifica\xE7\xE3o e endere\xE7o", icon: MapPin, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Tipo", identity.personType === "PJ" ? "Pessoa Jur\xEDdica" : "Pessoa F\xEDsica"], ["Documento", documentLabel], ["Situa\xE7\xE3o cadastral", status.label], ["Criado por", identity.createdByName ?? identity.createdBy], ["Criado em", showDate(identity.createdAt, true)], ["Atualizado em", showDate(identity.updatedAt, true)], ["Logradouro", address.internal.address], ["Bairro", address.internal.neighborhood], ["Cidade / UF", address.internal.city ? [address.internal.city, address.internal.state].filter(Boolean).join(" / ") : null], ["CEP", address.internal.postalCode]] }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-source", children: "Fonte: cadastro interno" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Panel, { id: "cl-group", title: "Grupo econ\xF4mico e empresas", icon: Building2, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingNotice, { id: "CLI-GROUP-01" }) })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-fiscal", title: "Cadastro p\xFAblico e fiscal", icon: Landmark, children: [
+        registry ? /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(import_jsx_runtime30.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Data de abertura", showDate(registry.openedAt)], ["Idade aproximada", companyAge === null ? "\u2014" : `${companyAge} anos`], ["Situa\xE7\xE3o desde", showDate(registry.registrationStatusAt)], ["Matriz / filial", registry.headquartersBranchIdentifier], ["Natureza jur\xEDdica", registry.legalNature], ["Porte", registry.companySize], ["Capital social", registry.shareCapital === null ? "\u2014" : money3.format(registry.shareCapital)], ["CNAE principal", [registry.primaryActivityCode, registry.primaryActivityDescription].filter(Boolean).join(" \u2014 ") || "\u2014"], ["C\xF3digo IBGE", registry.ibgeCityCode]] }),
+          registry.secondaryActivities.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("details", { className: "cl-details mt-3", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("summary", { children: [
+              "CNAEs secund\xE1rios (",
+              registry.secondaryActivities.length,
+              ")"
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("ul", { className: "mt-2 space-y-1 text-xs text-[color:var(--jv-fg-2)]", children: registry.secondaryActivities.map((item) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("li", { children: [
+              item.code,
+              " \u2014 ",
+              item.description ?? "Sem descri\xE7\xE3o"
+            ] }, item.code)) })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-source", children: [
+            "Fonte: BrasilAPI \xB7 consultado em ",
+            showDate(registry.queriedAt, true)
+          ] })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Cadastro p\xFAblico ainda n\xE3o consultado ou indispon\xEDvel." }),
+        fiscal && /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "mt-4 border-t border-[color:var(--jv-line)] pt-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Facts, { items: [["Optante pelo Simples", yesNo(fiscal.simplesOption)], ["MEI", yesNo(fiscal.meiOption)], ["Regime tribut\xE1rio", fiscalRegimeLabels[fiscal.taxRegime]], ["Confirma\xE7\xE3o", fiscalConfirmationLabels[fiscal.confirmationStatus]]] }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientFiscalHistory, { history: fiscal.taxHistory })
+        ] }),
+        identity.personType === "PJ" && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientRegistryReconciliation, { clientId: identity.id, document: identity.normalizedDocument, onDecided: () => onRegistryDecided?.() }, identity.id)
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Panel, { id: "cl-qsa", title: "Quadro societ\xE1rio e pessoas relacionadas", icon: UsersRound, sub: "Dado p\xFAblico de s\xF3cios e administradores; n\xE3o \xE9 lista de contatos", children: qsa.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum s\xF3cio ou administrador dispon\xEDvel." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-qsa", children: qsa.map((person) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("article", { className: "cl-card", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-li__t font-semibold", children: person.name }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-li__s", children: [person.partnerType, person.qualification].filter(Boolean).join(" \xB7 ") || "V\xEDnculo n\xE3o informado" }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s mt-1", children: [
+          "Entrada: ",
+          showDate(person.joinedAt)
+        ] }),
+        person.maskedDocument && /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s", children: [
+          "Documento mascarado: ",
+          person.maskedDocument
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: `mt-2 ${person.confirmationStatus === "HUMAN_CONFIRMED" ? "jv-pill jv-pill--good" : "jv-pill jv-pill--warn"}`, children: person.confirmationStatus === "HUMAN_CONFIRMED" ? "Confirmado internamente" : "Sugerido externamente" }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s mt-2", children: [
+          person.source,
+          " \xB7 ",
+          showDate(person.queriedAt, true)
+        ] })
+      ] }, person.id)) }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-operations", title: "Opera\xE7\xF5es e equipamentos vinculados", icon: Tractor, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(RestrictedOperationsNotice, { count: detail2.restrictedOtherOperationsCount }),
+        operations2.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: detail2.operationReadScope === "own" ? "Nenhuma opera\xE7\xE3o sua vinculada a este cliente." : "Nenhuma opera\xE7\xE3o vinculada." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { children: operations2.map((operation) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("article", { className: "cl-card", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-card__head", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "min-w-0", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "flex flex-wrap items-center gap-2", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("strong", { className: "cl-mono text-[color:var(--jv-fg)]", children: operation.number }),
+                /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "w-44 max-w-full shrink-0 text-left", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(OperationalLifecycleIndicator, { value: operation.lifecycleState }) })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s mt-1", children: [
+                operation.modality,
+                " \xB7 ",
+                showDate(operation.openedAt)
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("strong", { className: "cl-mono text-[color:var(--jv-fg)]", children: operation.value === null ? "Valor n\xE3o informado" : money3.format(operation.value) }),
+              /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("a", { "aria-label": `Abrir ${operation.number}`, className: "jv-icon-btn", href: `/operations/${operation.id}`, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ExternalLink, { size: 15, "aria-hidden": true }) })
+            ] })
+          ] }),
+          operation.equipmentItems.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-card__equip", children: operation.equipmentItems.map((item) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("strong", { className: "text-[color:var(--jv-fg)]", children: item.modelCode }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s", children: [
+              item.category,
+              " \xB7 ",
+              item.quantity,
+              " un."
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-li__s", children: item.itemTotal === null ? "Valor n\xE3o informado" : money3.format(item.itemTotal) })
+          ] }, item.id)) }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-card__foot", children: [
+            "Vendedor: ",
+            operation.sellerName ?? "\u2014",
+            " \xB7 Respons\xE1vel: ",
+            operation.responsibleName ?? "\u2014",
+            " \xB7 ",
+            operation.documentCount,
+            " documento(s) \xB7 ",
+            operation.pendingCount,
+            " pend\xEAncia(s)"
+          ] })
+        ] }, operation.id)) })
+      ] }),
+      operations2.length === 0 || detail2.operationReadScope === "own" ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Panel, { id: "cl-dossier", title: "Dossi\xEA financeiro", icon: Landmark, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: detail2.operationReadScope === "own" && operations2.length > 0 ? "Consulte uma opera\xE7\xE3o sua para visualizar os dados financeiros autorizados." : "Nenhuma an\xE1lise financeira dispon\xEDvel.", children: detail2.operationReadScope === "own" && operations2.length > 0 ? null : "Consulte uma opera\xE7\xE3o autorizada para visualizar o dossi\xEA financeiro." }) }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(FinancialDossierPanel, { clientId: identity.id }),
+      /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(Panel, { id: "cl-documents", title: "Documentos", icon: FileText, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub mt-0", children: "Documentos master do cliente" }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(ClientPendingNotice, { id: "CLI-DOCS-MASTER-01" }),
+        /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "cl-sub", children: "Documentos vinculados a opera\xE7\xF5es" }),
+        documents.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(DesignState, { kind: "empty", title: "Nenhum documento operacional." }) : /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("ul", { className: "cl-list", children: documents.map((item) => /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("li", { className: "cl-li", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cl-li__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(FileText, { size: 13 }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cl-li__body", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "cl-li__t break-all", children: item.fileName }),
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("p", { className: "cl-li__s", children: [
+              item.operationNumber,
+              " \xB7 ",
+              showDate(item.createdAt, true)
+            ] }),
+            downloadState?.id === item.id && downloadState.kind === "error" && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { role: "alert", className: "cl-li__s text-[color:var(--jv-crit)]", children: downloadState.message })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cl-li__end", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("button", { type: "button", className: "cl-link", disabled: downloadState?.id === item.id && downloadState.kind === "busy", onClick: () => void download(item.operationId, item.id), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Download, { size: 13, "aria-hidden": true }),
+            downloadState?.id === item.id && downloadState.kind === "busy" ? "Gerando link\u2026" : "Baixar arquivo"
+          ] }) })
+        ] }, item.id)) })
+      ] })
+    ] });
+  }
+
+  // src/modules/sales-funnel/components/commercial-opportunity-documents.tsx
+  init_define_process_env();
+
+  // src/modules/operation/components/document-reuse.css
+  init_define_process_env();
+
+  // src/modules/operation/components/document-reuse-picker.tsx
+  init_define_process_env();
+  var import_react22 = __toESM(require_react());
+  var import_react_dom4 = __toESM(require_react_dom());
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/document-reuse.actions.ts
+  init_define_process_env();
+  async function listDocumentReuseAction(t) {
+    return reuseList(t);
+  }
+  async function reuseClientDocumentsAction(c) {
+    return reuseCommit(c);
+  }
+
+  // src/modules/operation/components/document-reuse-picker.tsx
+  var import_jsx_runtime31 = __toESM(require_jsx_runtime());
+  var inserted = new Intl.DateTimeFormat("pt-BR", { timeZone: "America/Sao_Paulo", dateStyle: "short" });
+  var age = (v2) => {
+    const days = Math.floor((Date.now() - new Date(v2).getTime()) / 864e5);
+    return days <= 0 ? "hoje" : days === 1 ? "h\xE1 1 dia" : `h\xE1 ${days} dias`;
+  };
+  var size = (bytes) => bytes >= 1048576 ? `${(bytes / 1048576).toFixed(1)} MB` : `${(bytes / 1024).toFixed(1)} KB`;
+  function DocumentReusePicker({ target, ready: ready2 = true, activeDocuments = 0, prepareTarget, onCompleted }) {
+    const key = JSON.stringify(target), heading = (0, import_react22.useId)(), root = (0, import_react22.useRef)(null), dialog = (0, import_react22.useRef)(null);
+    const [data, setData] = (0, import_react22.useState)(null), [state, setState] = (0, import_react22.useState)("loading");
+    const [open, setOpen] = (0, import_react22.useState)(false), [selected, setSelected] = (0, import_react22.useState)([]), [mode, setMode] = (0, import_react22.useState)("REUSE"), [replace, setReplace] = (0, import_react22.useState)(false);
+    const [busy, setBusy] = (0, import_react22.useState)(false), [message, setMessage] = (0, import_react22.useState)(""), [reload, setReload] = (0, import_react22.useState)(0), [revision, setRevision] = (0, import_react22.useState)(0);
+    const seen = (0, import_react22.useRef)(""), generation = (0, import_react22.useRef)(0), command = (0, import_react22.useRef)(null);
+    useModalIsolation(dialog, open);
+    (0, import_react22.useEffect)(() => {
+      const pending2 = generation, sequence = ++pending2.current;
+      setData(null);
+      setSelected([]);
+      setOpen(false);
+      setMessage("");
+      if (!ready2) {
+        setState("ready");
+        return;
+      }
+      setState("loading");
+      void listDocumentReuseAction(JSON.parse(key)).then((r2) => {
+        if (sequence !== pending2.current) return;
+        if (r2.success) {
+          setData(r2.data);
+          setState("ready");
+        } else {
+          setState(r2.kind === "denied" ? "denied" : "error");
+          setMessage(r2.safeMessage);
+        }
+      }).catch(() => {
+        if (sequence === pending2.current) {
+          setState("error");
+          setMessage("N\xE3o foi poss\xEDvel consultar documentos. Tente novamente.");
+        }
+      });
+      return () => {
+        pending2.current++;
+      };
+    }, [key, ready2, reload]);
+    (0, import_react22.useEffect)(() => {
+      if (!ready2 || !data?.candidates.length || seen.current === key) return;
+      const element = root.current;
+      if (!element) return;
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          seen.current = key;
+          setOpen(true);
+          observer.disconnect();
+        }
+      }, { threshold: 0.1 });
+      observer.observe(element);
+      return () => observer.disconnect();
+    }, [key, ready2, data]);
+    const count3 = Math.max(activeDocuments, data?.activeDocuments ?? 0);
+    async function confirm() {
+      const selection = mode === "REUSE" ? selected : [], identity = JSON.stringify({ key, mode, selection: [...selection].sort(), replace, revision });
+      if (command.current?.key !== identity) command.current = { key: identity, id: crypto.randomUUID() };
+      const commandId = command.current.id, sequence = generation.current;
+      setBusy(true);
+      setMessage("");
+      try {
+        const actual = prepareTarget ? await prepareTarget(mode) : target;
+        const r2 = await reuseClientDocumentsAction({ target: actual, mode, documentIds: selection, commandId, confirmReplacement: replace });
+        if (sequence !== generation.current) return;
+        if (!r2.success) {
+          setMessage(r2.safeMessage);
+          return;
+        }
+        await onCompleted(r2.data);
+        setRevision((v2) => v2 + 1);
+        setOpen(false);
+        setSelected([]);
+        setReplace(false);
+        setMessage(mode === "REUSE" ? "Documentos vinculados. A an\xE1lise e o checklist seguem o contexto atual." : "Conjunto novo iniciado. Envie os documentos necess\xE1rios para esta opera\xE7\xE3o.");
+        setReload((v2) => v2 + 1);
+      } catch {
+        if (sequence === generation.current) setMessage("N\xE3o foi poss\xEDvel concluir. Atualize a consulta antes de tentar novamente.");
+      } finally {
+        setBusy(false);
+      }
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { ref: root, className: "dr", "aria-label": "Reaproveitamento de documentos", "data-integration-id": "CLI-DOCS-MASTER-01", children: [
+      !ready2 ? /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "dr-hint", children: "Selecione o cliente e o vendedor para consultar documentos que podem ser reaproveitados." }) : state === "loading" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-bar", role: "status", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "jv-skeleton dr-sk" }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "sr-only", children: "Consultando documentos autorizados\u2026" })
+      ] }) : state === "error" || state === "denied" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: `dr-bar dr-bar--${state}`, role: state === "error" ? "alert" : void 0, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { children: message }),
+        state === "error" && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: () => setReload((v2) => v2 + 1), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
+          "Tentar novamente"
+        ] })
+      ] }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-bar", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dr-bar__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Files, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dr-bar__text", children: data?.candidates.length ? /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(import_jsx_runtime31.Fragment, { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("b", { children: [
+            data.candidates.length,
+            " ",
+            data.candidates.length === 1 ? "documento recente" : "documentos recentes"
+          ] }),
+          " deste cliente podem ser reaproveitados"
+        ] }) : "Nenhum documento recente para reaproveitar. Envie novos documentos." }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: "dr-bar__acts", children: [
+          !!data?.candidates.length && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "ds-button ds-button--primary", disabled: busy, onClick: () => {
+            setMode("REUSE");
+            setOpen(true);
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "ds-button__content", children: "Reaproveitar" }) }),
+          count3 > 0 && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "ds-button", disabled: busy, onClick: () => {
+            setMode("NEW_SET");
+            setOpen(true);
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "ds-button__content", children: "Iniciar conjunto novo" }) })
+        ] })
+      ] }),
+      message && state === "ready" && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { role: "status", className: "dr-msg", children: message }),
+      open && typeof document !== "undefined" && (0, import_react_dom4.createPortal)(/* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "jv-dialog-backdrop", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { ref: dialog, role: "dialog", "aria-modal": "true", "aria-labelledby": heading, tabIndex: -1, onKeyDown: (e) => handleModalKeyDown(e, () => setOpen(false), busy), className: "jv-dialog dr-dialog", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "jv-dialog__head", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "jv-eyebrow", children: "Documentos do cliente" }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h2", { id: heading, className: "jv-dialog__title", children: "Este cliente tem documentos enviados recentemente" })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "jv-icon-btn", "aria-label": "Fechar", disabled: busy, onClick: () => setOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(X, { size: 15, "aria-hidden": true }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "dr-lead", children: "Documentos do mesmo CPF/CNPJ e vendedor, enviados h\xE1 at\xE9 90 dias. Reaproveitar n\xE3o renova a data nem transfere aprova\xE7\xF5es ou itens do checklist." }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-modes", role: "group", "aria-label": "Como seguir", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", "aria-pressed": mode === "REUSE", disabled: busy, onClick: () => setMode("REUSE"), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Files, { size: 16, "aria-hidden": true }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { children: "Reaproveitar" }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("small", { children: "Vincular documentos existentes" })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", "aria-pressed": mode === "NEW_SET", disabled: busy, onClick: () => setMode("NEW_SET"), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(FilePlus2, { size: 16, "aria-hidden": true }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { children: "Enviar novos" }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("small", { children: "Come\xE7ar um conjunto novo" })
+            ] })
+          ] })
+        ] }),
+        mode === "REUSE" ? /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("fieldset", { className: "dr-list", disabled: busy, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("legend", { children: [
+            "Escolha at\xE9 20 documentos ",
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: "jv-pill jv-pill--arc", children: [
+              selected.length,
+              " selecionado",
+              selected.length === 1 ? "" : "s"
+            ] })
+          ] }),
+          data?.candidates.map((d) => {
+            const checked = selected.includes(d.documentId);
+            return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("label", { className: "dr-doc", "data-checked": checked || void 0, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("input", { type: "checkbox", className: "dr-doc__input", checked, disabled: !checked && selected.length >= 20, onChange: (e) => setSelected((current) => e.target.checked ? [...current, d.documentId] : current.filter((id2) => id2 !== d.documentId)) }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dr-doc__box", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(Check, { size: 12 }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "dr-doc__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(FileText, { size: 16 }) }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: "dr-doc__main", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("b", { children: d.fileName }),
+                /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { children: [
+                  d.documentType ?? "Tipo ainda n\xE3o classificado",
+                  " \xB7 ",
+                  size(d.sizeBytes)
+                ] })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("span", { className: "dr-doc__when", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("time", { dateTime: d.originalInsertedAt, children: inserted.format(new Date(d.originalInsertedAt)) }),
+                /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("small", { children: age(d.originalInsertedAt) })
+              ] })
+            ] }, d.documentId);
+          }),
+          data?.truncated && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { role: "status", className: "dr-hint", children: "Mostrando os 100 documentos mais recentes." })
+        ] }) : /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-newset", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { children: "O conjunto atual ser\xE1 encerrado aqui, com hist\xF3rico preservado. Nenhum documento da origem \xE9 alterado. Envie os documentos necess\xE1rios e complete o checklist vigente." }),
+          count3 > 0 && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("label", { className: "dr-confirm", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("input", { type: "checkbox", checked: replace, disabled: busy, onChange: (e) => setReplace(e.target.checked) }),
+            "Confirmo substituir o conjunto atual, preservando o hist\xF3rico."
+          ] })
+        ] }),
+        message && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { role: "alert", className: "dr-error", children: message }),
+        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "dr-acts", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "ds-button ds-button--primary", disabled: busy || mode === "REUSE" && !selected.length || mode === "NEW_SET" && count3 > 0 && !replace, onClick: () => void confirm(), children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "ds-button__content", children: busy ? "Validando\u2026" : mode === "REUSE" ? "Confirmar reaproveitamento" : "Confirmar conjunto novo" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("button", { type: "button", className: "ds-button", disabled: busy, onClick: () => setOpen(false), children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "ds-button__content", children: "Cancelar" }) }),
+          message && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("button", { type: "button", className: "jv-icon-btn", disabled: busy, onClick: () => {
+            setOpen(false);
+            setReload((v2) => v2 + 1);
+          }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(RotateCcw, { size: 13, "aria-hidden": true }),
+            "Atualizar lista"
+          ] })
+        ] })
+      ] }) }), document.body)
+    ] });
+  }
+
+  // src/modules/sales-funnel/components/commercial-opportunity-documents.tsx
+  var import_react23 = __toESM(require_react());
+  var import_jsx_runtime32 = __toESM(require_jsx_runtime());
+  function CommercialOpportunityDocuments({ opportunityId, canRegister }) {
+    const [context, setContext] = (0, import_react23.useState)(null), [busy, setBusy] = (0, import_react23.useState)(false), [error, setError] = (0, import_react23.useState)("");
+    const load = (0, import_react23.useCallback)(async () => {
+      const r2 = await commercialDocumentContextAction(opportunityId);
+      if (r2.success) setContext(r2.data);
+      else setError(r2.safeMessage);
+    }, [opportunityId]);
+    (0, import_react23.useEffect)(() => {
+      void load();
+    }, [load]);
+    async function upload(file) {
+      setBusy(true);
+      setError("");
+      const data = new FormData();
+      data.set("file", file);
+      data.set("idempotencyKey", crypto.randomUUID());
+      try {
+        const response = await fetch("/api/opportunities/" + encodeURIComponent(opportunityId) + "/documents", { method: "POST", body: data });
+        const r2 = await response.json();
+        if (!r2.success) setError(r2.safeMessage ?? "N\xE3o foi poss\xEDvel enviar.");
+        await load();
+      } catch {
+        setError("Conex\xE3o interrompida. Consulte os anexos antes de tentar enviar novamente.");
+      } finally {
+        setBusy(false);
+      }
+    }
+    async function download(documentId) {
+      const r2 = await commercialDocumentDownloadAction(opportunityId, documentId);
+      if (r2.success) window.open(r2.data, "_blank", "noopener,noreferrer");
+      else setError(r2.safeMessage);
+    }
+    async function remove(documentId) {
+      if (!window.confirm("Inativar este anexo, preservando hist\xF3rico e Storage?")) return;
+      const r2 = await commercialDocumentRemoveAction(opportunityId, documentId);
+      if (r2.success) await load();
+      else setError(r2.safeMessage);
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("section", { className: "dr dr-opp", "aria-labelledby": "opp-docs-title", "data-integration-id": "CLI-DOCS-MASTER-01.REUSE.OPP", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "dr-opp__head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("h2", { id: "opp-docs-title", children: "Documentos da oportunidade" }),
+        context && /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "jv-pill", children: [
+          context.documents.length,
+          " no ciclo atual"
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "dr-hint", children: "Os anexos acompanham a oportunidade e seguem para a opera\xE7\xE3o na convers\xE3o, com hist\xF3rico preservado." }),
+      canRegister && context?.status !== "PROMOTED" && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(DocumentReusePicker, { target: { opportunityId }, activeDocuments: context?.documents.length ?? 0, onCompleted: async () => {
+        await load();
+      } }),
+      canRegister && context?.status !== "PROMOTED" && /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("label", { className: "dr-upload", "data-busy": busy || void 0, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Paperclip, { size: 15, "aria-hidden": true }),
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { children: [
+          busy ? "Enviando\u2026" : "Anexar documento",
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("small", { children: "PDF, imagem, DOCX ou XLSX" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("input", { disabled: busy, type: "file", accept: ".pdf,.jpg,.jpeg,.png,.webp,.docx,.xlsx", onChange: (e) => {
+          const file = e.target.files?.[0];
+          if (file) void upload(file);
+          e.currentTarget.value = "";
+        } })
+      ] }),
+      busy && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { role: "status", className: "sr-only", children: "Enviando\u2026" }),
+      error && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { role: "alert", className: "dr-error", children: error }),
+      !!context?.documents.length && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("ul", { className: "dr-files", children: context.documents.map((d) => /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("li", { className: "dr-file", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "dr-doc__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(FileText, { size: 16 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "dr-doc__main", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("b", { children: d.fileName }),
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { children: [
+            d.classifications.length ? d.classifications.join(" + ") : "Ainda n\xE3o classificado",
+            " \xB7 ",
+            d.analysisStatus ?? "Sem an\xE1lise"
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("span", { className: "dr-file__acts", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("button", { type: "button", className: "jv-icon-btn", onClick: () => void download(d.id), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Download, { size: 13, "aria-hidden": true }),
+            "Abrir"
+          ] }),
+          canRegister && context.status === "ACTIVE" && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("button", { type: "button", className: "jv-icon-btn dr-file__rm", "aria-label": `Inativar anexo ${d.fileName}`, onClick: () => void remove(d.id), children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Trash2, { size: 13, "aria-hidden": true }) })
+        ] })
+      ] }, d.id)) }),
+      context && !context.documents.length && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "dr-hint", children: "Nenhum documento no ciclo atual." })
+    ] });
+  }
+
+  // src/app/(protected)/clients/page.tsx
+  init_define_process_env();
+  var import_react25 = __toESM(require_react());
+  var import_react_dom5 = __toESM(require_react_dom());
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/new-operation-client.actions.ts
+  init_define_process_env();
+  async function listClientSummariesAction(input) {
+    return clientSummaries(input);
+  }
+  async function lookupClientRegistryAction() {
+    return { success: false, errorCode: "INFRASTRUCTURE_ERROR", safeMessage: "Consulta desativada no harness." };
+  }
+  async function persistClientCompanyEnrichmentAction() {
+    return { success: false, safeMessage: "Desativado no harness." };
+  }
+  async function createNewOperationClientAction() {
+    return { success: false, safeMessage: "Cadastro desativado no harness." };
+  }
+  async function updateNewOperationClientAction() {
+    return { success: false, safeMessage: "Edi\xE7\xE3o desativada no harness." };
+  }
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/stubs/client-detail.actions.ts
+  init_define_process_env();
+  async function getClientDetailAction(id2) {
+    return clientDetail(id2);
+  }
+
+  // src/modules/client/components/clients-list.tsx
+  init_define_process_env();
+  var import_react24 = __toESM(require_react());
+
+  // src/modules/client/components/client-workspace.css
+  init_define_process_env();
+
+  // src/modules/client/components/clients-list.tsx
+  var import_jsx_runtime33 = __toESM(require_jsx_runtime());
+  var toneClass2 = { good: "jv-pill jv-pill--good", warn: "jv-pill jv-pill--warn", crit: "jv-pill jv-pill--crit", neutral: "jv-pill" };
+  var browseViews = [
+    { id: "list", label: "Lista", icon: List },
+    { id: "cards", label: "Cards", icon: LayoutGrid }
+  ];
+  var initials3 = (name) => name.split(/\s+/).filter(Boolean).slice(0, 2).map((word) => word[0]).join("").toLocaleUpperCase("pt-BR") || "?";
+  function ClientsOverview({ kpis, kpisAvailable, onOpenCreateModal }) {
+    const value = (n) => kpisAvailable && n !== void 0 ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("strong", { className: "jv-kpi__value", children: n.toLocaleString("pt-BR") }) : /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("strong", { className: "jv-kpi__value", "aria-label": "Indispon\xEDvel", children: "\u2014" });
+    return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(import_jsx_runtime33.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("header", { className: "cl-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-head__text", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-eyebrow", children: "CRM \xB7 Cadastro master" }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("h1", { className: "jv-h1", children: "Central de Clientes" }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-lead", children: "Cadastro, situa\xE7\xE3o p\xFAblica e fiscal, neg\xF3cios, opera\xE7\xF5es e documentos de cada cliente, dentro do seu escopo de acesso." })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-head__actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ClientPendingButton, { id: "CLI-IMPORT-01", icon: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Upload, { size: 14, "aria-hidden": true }), children: "Importar planilha" }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(DesignButton, { intent: "primary", onClick: onOpenCreateModal, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Plus, { size: 14, "aria-hidden": true }),
+            "Novo cliente"
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("section", { "aria-label": "Indicadores de clientes", className: "jv-kpis", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon jv-kpi__icon--arc", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Users, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Total de clientes" })
+          ] }),
+          value(kpis?.totalClients)
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(UserCheck, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Clientes ativos" })
+          ] }),
+          value(kpis?.activeClients)
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon jv-kpi__icon--arc", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Star, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Novos no m\xEAs" })
+          ] }),
+          value(kpis?.newClientsThisMonth)
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Activity, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Com opera\xE7\xE3o" })
+          ] }),
+          value(kpis?.clientsWithOperations)
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-panel jv-kpi", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "jv-kpi__top", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "jv-kpi__icon jv-kpi__icon--arc", "aria-hidden": true, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(SlidersHorizontal, { size: 16 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "jv-kpi__label", children: "Sem intera\xE7\xE3o \xB7 incompletos \xB7 duplicidades" })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ClientPendingValue, { id: "CLI-LIST-INSIGHTS-01" })
+        ] })
+      ] })
+    ] });
+  }
+  function pageWindow(current, total) {
+    if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+    const pages = new Set([1, total, current - 1, current, current + 1].filter((n) => n >= 1 && n <= total));
+    const sorted = [...pages].sort((a, b) => a - b);
+    return sorted.flatMap((n, i) => i > 0 && n - sorted[i - 1] > 1 ? ["gap", n] : [n]);
+  }
+  function ClientsList({ filters = {}, onFiltersChange, clients, totalItems, totalPages, currentPage, itemsPerPage, searchTerm, selectedClientId, loading, loaded, error, onRetry, onSearchChange, onPageChange, onItemsPerPageChange, onSelectClient, layout = "rail" }) {
+    const first = totalItems > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0;
+    const last = Math.min(currentPage * itemsPerPage, totalItems);
+    const [railFiltersOpen, setRailFiltersOpen] = (0, import_react24.useState)(false);
+    const activeFilters = [filters.personType, filters.registrationStatus, filters.hasOperations].filter((value) => value !== void 0).length;
+    const showFilters = layout === "browse" || railFiltersOpen;
+    const [browseView, setBrowseView] = (0, import_react24.useState)("list");
+    const view = layout === "browse" ? browseView : "list";
+    const renderClient = (client, index) => {
+      const status = registrationStatusPresentation(client.registrationStatus);
+      const place = client.city ? [client.city, client.state].filter(Boolean).join("/") : "Cidade n\xE3o informada";
+      return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("li", { style: { "--cl-i": Math.min(index, 12) }, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", className: "cl-org", "data-client-id": client.id, "data-tone": status.tone, "aria-current": client.id === selectedClientId ? "true" : void 0, onClick: () => onSelectClient(client.id), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-av", "aria-hidden": true, children: initials3(client.legalName) }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__body", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-org__who", children: client.legalName }),
+          client.tradeName && client.tradeName !== client.legalName && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-org__line cl-org__line--trade", children: client.tradeName }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__line cl-org__line--doc", children: [
+            client.personType,
+            " \xB7 ",
+            maskCpfCnpj(client.normalizedDocument)
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-org__line cl-org__line--place", children: place })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__end", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: toneClass2[status.tone], children: status.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__ops", children: [
+            client.operationsCount,
+            " op."
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-org__go", "aria-hidden": true, children: [
+            "Abrir",
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ArrowUpRight, { size: 13 })
+          ] })
+        ] })
+      ] }) }, client.id);
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("section", { className: `jv-panel cl-orgs cl-orgs--${layout}`, "aria-labelledby": "cl-orgs-title", "data-layout": layout, "data-view": view, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("h2", { id: "cl-orgs-title", className: "sr-only", children: "Lista de clientes" }),
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__search", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "ds-field", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Buscar" }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "jv-search", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Search, { size: 15, "aria-hidden": true }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { type: "search", className: "ds-input", value: searchTerm, onChange: (e) => onSearchChange(e.target.value), placeholder: "Nome, CPF/CNPJ, cidade ou endere\xE7o" })
+        ] })
+      ] }) }),
+      onFiltersChange && layout === "rail" && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", className: "cl-chip cl-rail-toggle", "aria-expanded": railFiltersOpen, "aria-controls": "cl-canonical-filters", onClick: () => setRailFiltersOpen((open) => !open), children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(SlidersHorizontal, { size: 13, "aria-hidden": true }),
+        "Filtros",
+        activeFilters > 0 && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-rail-toggle__n", children: activeFilters })
+      ] }),
+      onFiltersChange && showFilters && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { id: "cl-canonical-filters", className: "cl-canonical-filters", "data-integration-id": "CLI-FILTERS-01", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Pessoa" }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("select", { className: "ds-input", value: filters.personType ?? "all", onChange: (e) => onFiltersChange({ ...filters, personType: e.target.value === "all" ? void 0 : e.target.value }), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "all", children: "PF e PJ" }),
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "PF", children: "Pessoa f\xEDsica" }),
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "PJ", children: "Pessoa jur\xEDdica" })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Situa\xE7\xE3o cadastral exata" }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { className: "ds-input", placeholder: "Todas as situa\xE7\xF5es", value: filters.registrationStatus ?? "", onChange: (e) => onFiltersChange({ ...filters, registrationStatus: e.target.value || void 0 }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "ds-field", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Opera\xE7\xF5es no seu escopo" }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("select", { className: "ds-input", value: filters.hasOperations === void 0 ? "all" : String(filters.hasOperations), onChange: (e) => onFiltersChange({ ...filters, hasOperations: e.target.value === "all" ? void 0 : e.target.value === "true" }), children: [
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "all", children: "Com e sem opera\xE7\xE3o" }),
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "true", children: "Com opera\xE7\xE3o vis\xEDvel" }),
+            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: "false", children: "Sem opera\xE7\xE3o vis\xEDvel" })
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "cl-canonical-filters__missing", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { type: "checkbox", checked: filters.registrationStatus === "", onChange: (e) => onFiltersChange({ ...filters, registrationStatus: e.target.checked ? "" : void 0 }) }),
+          " Situa\xE7\xE3o n\xE3o informada"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "cl-canonical-filters__note", children: "Lista e indicadores seguem os filtros. Pend\xEAncias operacionais exigem sua autoriza\xE7\xE3o pr\xF3pria. \u201CSem opera\xE7\xE3o vis\xEDvel\u201D n\xE3o afirma aus\xEAncia de opera\xE7\xF5es fora do seu acesso." })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-orgs__chips", role: "group", "aria-label": "Recortes da lista", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", className: "cl-chip", "aria-pressed": !filters.personType && filters.registrationStatus === void 0 && filters.hasOperations === void 0 && filters.hasOpenPending === void 0, onClick: () => onFiltersChange?.({}), children: "Todos" }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", className: "cl-chip", disabled: true, "data-pending-id": "CLI-PORTFOLIO-01", title: "Integra\xE7\xE3o pendente \xB7 CLI-PORTFOLIO-01", children: [
+          "Minha carteira",
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "sr-only", children: " (integra\xE7\xE3o pendente, CLI-PORTFOLIO-01)" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", className: "cl-chip", "aria-pressed": filters.hasOpenPending === true, onClick: () => onFiltersChange?.({ ...filters, hasOpenPending: filters.hasOpenPending === true ? void 0 : true }), children: "Com pend\xEAncia operacional aberta vis\xEDvel" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-orgs__meta", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: loaded ? `${totalItems.toLocaleString("pt-BR")} ${totalItems === 1 ? "cliente" : "clientes"}` : "\u2014" }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { role: "status", "aria-live": "polite", children: loading && loaded ? "Atualizando\u2026" : "" }),
+        layout === "browse" && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cl-views", role: "group", "aria-label": "Exibir clientes como", children: browseViews.map(({ id: id2, label, icon: Icon2 }) => /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("button", { type: "button", "aria-pressed": browseView === id2, onClick: () => setBrowseView(id2), children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Icon2, { size: 13, "aria-hidden": true }),
+          label
+        ] }, id2)) })
+      ] }),
+      error && loaded && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__state", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignState, { kind: "error", title: "Lista n\xE3o atualizada", action: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" }), children: error }) }),
+      !loaded ? error ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__state", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignState, { kind: "error", title: "N\xE3o foi poss\xEDvel carregar a Central de Clientes.", action: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignButton, { size: "sm", onClick: onRetry, children: "Tentar novamente" }), children: error }) }) : /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__state", role: "status", "aria-busy": "true", "aria-label": "Carregando clientes", children: [0, 1, 2, 3, 4].map((i) => /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "jv-skeleton my-2 h-[54px]" }, i)) }) : clients.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("div", { className: "cl-orgs__state", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(DesignState, { kind: "empty", title: searchTerm.trim() || filters.personType || filters.registrationStatus !== void 0 || filters.hasOperations !== void 0 || filters.hasOpenPending !== void 0 ? "Nenhum cliente encontrado para a busca e os filtros." : "Nenhum cliente cadastrado." }) }) : /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(import_jsx_runtime33.Fragment, { children: [
+        view === "list" && layout === "browse" && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cl-cols", "aria-hidden": true, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Cliente" }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Documento" }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Cidade" }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { children: "Situa\xE7\xE3o \xB7 opera\xE7\xF5es" })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("ul", { className: "cl-orgs__list", children: clients.map(renderClient) })
+      ] }),
+      loaded && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("nav", { className: "cl-pager", "aria-label": "Pagina\xE7\xE3o da lista de clientes", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { children: [
+          first,
+          "\u2013",
+          last,
+          " de ",
+          totalItems.toLocaleString("pt-BR")
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cl-pager__pages", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", "aria-label": "P\xE1gina anterior", onClick: () => onPageChange(currentPage - 1), disabled: currentPage <= 1, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ChevronLeft, { size: 14, "aria-hidden": true }) }),
+          pageWindow(currentPage, totalPages).map((page, i) => page === "gap" ? /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { "aria-hidden": true, children: "\u2026" }, `gap-${i}`) : /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", "aria-label": `P\xE1gina ${page}`, "aria-current": page === currentPage ? "page" : void 0, onClick: () => onPageChange(page), children: page }, page)),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("button", { type: "button", "aria-label": "Pr\xF3xima p\xE1gina", onClick: () => onPageChange(currentPage + 1), disabled: currentPage >= totalPages || totalPages === 0, children: /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(ChevronRight, { size: 14, "aria-hidden": true }) })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("label", { className: "cl-pager__size", children: [
+          "Por p\xE1gina",
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("select", { value: itemsPerPage, onChange: (e) => onItemsPerPageChange(Number(e.target.value)), children: [10, 25, 50, 100].map((size2) => /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("option", { value: size2, children: size2 }, size2)) })
+        ] })
+      ] })
+    ] });
+  }
+
+  // src/modules/client/components/client-form-dialog.tsx
+  init_define_process_env();
+  var import_jsx_runtime34 = __toESM(require_jsx_runtime());
+  var emptyClientForm = { customerDocument: "", customerName: "", tradeName: "", phone: "", email: "", address: "", neighborhood: "", cep: "", city: "", uf: "", taxStatus: "" };
+  var statusOptions = [["", "N\xE3o informada"], ["Ativa", "Ativa"], ["Inativa", "Inativa / Suspensa"], ["Inapta", "Inapta"]];
+  function ClientFormDialog({ mode, form, setForm, saving, notice, onClose, onSubmit, onLookup, lookingUp = false }) {
+    const set = (field) => (value) => setForm((prev) => ({ ...prev, [field]: value }));
+    const options = statusOptions.some(([value]) => value === form.taxStatus) ? statusOptions : [...statusOptions, [form.taxStatus, `${form.taxStatus} (valor atual)`]];
+    const busy = saving || lookingUp;
+    return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(
+      DesignDialog,
+      {
+        title: mode === "create" ? "Cadastrar novo cliente" : "Editar cadastro do cliente",
+        onClose,
+        busy,
+        footer: /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "cl-dialog-foot", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(DesignButton, { disabled: busy, onClick: onClose, children: "Cancelar" }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(DesignButton, { intent: "primary", loading: saving, disabled: busy, onClick: onSubmit, children: mode === "create" ? "Cadastrar cliente" : "Salvar altera\xE7\xF5es" })
+        ] }),
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "cl-dialog-lead", children: mode === "create" ? "Preencha os dados abaixo. Para CNPJ, a consulta preenche os campos com a fonte p\xFAblica e o Cadastro Master." : "Altere os dados cadastrais do cliente selecionado. O documento n\xE3o pode ser alterado." }),
+          notice && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: `ds-notice${notice.tone === "error" ? " ds-notice--error" : ""}`, role: notice.tone === "error" ? "alert" : "status", children: notice.message }),
+          /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("form", { className: "cl-form", onSubmit: (event2) => {
+            event2.preventDefault();
+            if (!busy) onSubmit();
+          }, noValidate: true, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Raz\xE3o social / nome *" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", required: true, autoComplete: "organization", value: form.customerName, onChange: (e) => set("customerName")(e.target.value), placeholder: "Nome completo ou raz\xE3o social" })
+            ] }),
+            mode === "create" ? /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "CPF / CNPJ *" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "cl-form__doc", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", required: true, inputMode: "numeric", value: form.customerDocument, onChange: (e) => set("customerDocument")(maskCpfCnpj(e.target.value)), placeholder: "00.000.000/0001-00" }),
+                /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(DesignButton, { size: "sm", onClick: onLookup, loading: lookingUp, disabled: busy, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(Search, { size: 14, "aria-hidden": true }),
+                  "Consultar"
+                ] })
+              ] })
+            ] }) : /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "CPF / CNPJ (bloqueado)" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", value: form.customerDocument, readOnly: true, "aria-readonly": "true" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Nome fantasia" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", value: form.tradeName, onChange: (e) => set("tradeName")(e.target.value), placeholder: "Se diferente da raz\xE3o social" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Situa\xE7\xE3o cadastral" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("select", { disabled: busy, className: "ds-input", value: form.taxStatus, onChange: (e) => set("taxStatus")(e.target.value), children: options.map(([value, label]) => /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("option", { value, children: label }, value || "empty")) })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Telefone operacional" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", type: "tel", autoComplete: "tel", value: form.phone, onChange: (e) => set("phone")(maskPhone(e.target.value)), placeholder: "(11) 99999-9999" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "E-mail operacional" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", type: "email", autoComplete: "email", value: form.email, onChange: (e) => set("email")(e.target.value), placeholder: "cliente@email.com" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field cl-span-4", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Endere\xE7o" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", autoComplete: "street-address", value: form.address, onChange: (e) => set("address")(e.target.value), placeholder: "Rua, avenida, n\xFAmero" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field cl-span-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Bairro" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", value: form.neighborhood, onChange: (e) => set("neighborhood")(e.target.value), placeholder: "Centro" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "Cidade" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", autoComplete: "address-level2", value: form.city, onChange: (e) => set("city")(e.target.value), placeholder: "Cidade" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field cl-span-1", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "UF" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", autoComplete: "address-level1", maxLength: 2, value: form.uf, onChange: (e) => set("uf")(e.target.value), placeholder: "UF" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("label", { className: "ds-field cl-span-2", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { children: "CEP" }),
+              /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("input", { disabled: busy, className: "ds-input", inputMode: "numeric", autoComplete: "postal-code", value: form.cep, onChange: (e) => set("cep")(e.target.value), placeholder: "13300-000" })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("button", { type: "submit", hidden: true, "aria-hidden": true, tabIndex: -1 })
+          ] })
+        ]
+      }
     );
   }
-  w.__mountDashboard = mount;
-  mount(s, theme === "irmen-executive-light");
+
+  // src/app/(protected)/clients/page.tsx
+  var import_jsx_runtime35 = __toESM(require_jsx_runtime());
+  function withLayoutTransition(update) {
+    const doc = typeof document === "undefined" ? null : document;
+    const reduced = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (!doc?.startViewTransition || reduced) {
+      update();
+      return new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+    }
+    return doc.startViewTransition(() => (0, import_react_dom5.flushSync)(update)).finished.catch(() => void 0);
+  }
+  function revealOpenedClient() {
+    const narrow = window.matchMedia?.("(max-width: 860px)").matches;
+    const target = document.querySelector(narrow ? ".cl-detail-col" : ".cl-workspace");
+    if (!target) return;
+    const top = target.getBoundingClientRect().top;
+    if (narrow ? Math.abs(top - 84) > 24 : top < 0) target.scrollIntoView({ block: "start" });
+  }
+  function ClientsPage() {
+    const [viewMode, setViewMode] = (0, import_react25.useState)("list");
+    const [selectedClientId, setSelectedClientId] = (0, import_react25.useState)(null);
+    const [selectedClientDetail, setSelectedClientDetail] = (0, import_react25.useState)(null);
+    const [searchTerm, setSearchTerm] = (0, import_react25.useState)("");
+    const [filters, setFilters] = (0, import_react25.useState)({});
+    const [currentPage, setCurrentPage] = (0, import_react25.useState)(1);
+    const [itemsPerPage, setItemsPerPage] = (0, import_react25.useState)(25);
+    const [clientsPageData, setClientsPageData] = (0, import_react25.useState)(null);
+    const [loading, setLoading] = (0, import_react25.useState)(true);
+    const [loadError, setLoadError] = (0, import_react25.useState)("");
+    const [detailLoading, setDetailLoading] = (0, import_react25.useState)(false);
+    const [detailError, setDetailError] = (0, import_react25.useState)("");
+    const [detailFailureKind, setDetailFailureKind] = (0, import_react25.useState)("error");
+    const lookupGeneration = (0, import_react25.useRef)(0);
+    const loadRequestId = (0, import_react25.useRef)(0);
+    const detailRequestId = (0, import_react25.useRef)(0);
+    const { toasts, push: pushToast } = useDesignToasts();
+    const [isCreateClientModalOpen, setIsCreateClientModalOpen] = (0, import_react25.useState)(false);
+    const [modalClientForm, setModalClientForm] = (0, import_react25.useState)(emptyClientForm);
+    const [createNotice, setCreateNotice] = (0, import_react25.useState)(null);
+    const [searchingModalCnpj, setSearchingModalCnpj] = (0, import_react25.useState)(false);
+    const [savingClient, setSavingClient] = (0, import_react25.useState)(false);
+    const [pendingCompanyEnrichment, setPendingCompanyEnrichment] = (0, import_react25.useState)(null);
+    const [isEditClientModalOpen, setIsEditClientModalOpen] = (0, import_react25.useState)(false);
+    const [editClientForm, setEditClientForm] = (0, import_react25.useState)(emptyClientForm);
+    const [editNotice, setEditNotice] = (0, import_react25.useState)(null);
+    const loadData = (0, import_react25.useCallback)(async () => {
+      const requestId = ++loadRequestId.current;
+      setLoading(true);
+      setLoadError("");
+      try {
+        const result = await listClientSummariesAction({
+          ...filters,
+          search: searchTerm,
+          page: currentPage,
+          pageSize: itemsPerPage
+        });
+        if (requestId !== loadRequestId.current) return;
+        if (!result.success) {
+          console.error("Erro ao consultar Central de Clientes:", result.safeMessage);
+          setLoadError(result.safeMessage);
+          if (clientQueryFailureKind(result) === "denied") setClientsPageData(null);
+          return;
+        }
+        setClientsPageData(result.data);
+      } catch (err) {
+        if (requestId !== loadRequestId.current) return;
+        console.error("Erro inesperado ao carregar dados da Central:", err);
+        setLoadError("N\xE3o foi poss\xEDvel carregar a Central de Clientes.");
+      } finally {
+        if (requestId === loadRequestId.current) setLoading(false);
+      }
+    }, [searchTerm, currentPage, itemsPerPage, filters]);
+    (0, import_react25.useEffect)(() => {
+      void loadData();
+      return () => {
+        loadRequestId.current += 1;
+      };
+    }, [loadData]);
+    const loadClientDetail = (0, import_react25.useCallback)(async (clientId) => {
+      const requestId = ++detailRequestId.current;
+      setDetailLoading(true);
+      setDetailError("");
+      try {
+        const result = await getClientDetailAction(clientId);
+        if (requestId !== detailRequestId.current) return false;
+        if (!result.success) {
+          setSelectedClientDetail(null);
+          setDetailError(result.safeMessage);
+          setDetailFailureKind(clientQueryFailureKind(result));
+          return false;
+        }
+        setSelectedClientDetail(result.data);
+        return true;
+      } catch {
+        if (requestId === detailRequestId.current) {
+          setSelectedClientDetail(null);
+          setDetailError("N\xE3o foi poss\xEDvel carregar o dossi\xEA do cliente.");
+          setDetailFailureKind("error");
+        }
+      } finally {
+        if (requestId === detailRequestId.current) setDetailLoading(false);
+      }
+    }, []);
+    const handleSelectClient = (0, import_react25.useCallback)(async (id2) => {
+      void withLayoutTransition(() => {
+        setSelectedClientId(id2);
+        setSelectedClientDetail((prev) => prev?.identity.id === id2 ? prev : null);
+        setViewMode("detail");
+      }).then(revealOpenedClient);
+      window.history.replaceState(null, "", `/clients?clientId=${encodeURIComponent(id2)}`);
+      if (await loadClientDetail(id2)) requestAnimationFrame(revealOpenedClient);
+    }, [loadClientDetail]);
+    (0, import_react25.useEffect)(() => {
+      const clientId = new URLSearchParams(window.location.search).get("clientId")?.trim();
+      if (clientId) void handleSelectClient(clientId);
+    }, [handleSelectClient]);
+    const handleBackToCentral = (0, import_react25.useCallback)(() => {
+      const previous = selectedClientId;
+      detailRequestId.current += 1;
+      window.history.replaceState(null, "", "/clients");
+      void withLayoutTransition(() => {
+        setViewMode("list");
+        setSelectedClientId(null);
+        setSelectedClientDetail(null);
+        setDetailLoading(false);
+        setDetailError("");
+      }).then(() => {
+        const card = previous ? document.querySelector(`.cl-org[data-client-id="${CSS.escape(previous)}"]`) : null;
+        card?.focus({ preventScroll: false });
+      });
+    }, [selectedClientId]);
+    (0, import_react25.useEffect)(() => {
+      lookupGeneration.current += 1;
+      return () => {
+        lookupGeneration.current += 1;
+      };
+    }, [isCreateClientModalOpen, modalClientForm.customerDocument]);
+    function handleOpenCreateClientModal() {
+      setModalClientForm(emptyClientForm);
+      setCreateNotice(null);
+      setIsCreateClientModalOpen(true);
+      setPendingCompanyEnrichment(null);
+    }
+    async function handleModalCnpjLookup() {
+      const rawCnpj = modalClientForm.customerDocument.replace(/\D/g, "");
+      if (!rawCnpj || rawCnpj.length !== 14) {
+        setCreateNotice({ tone: "error", message: "Digite um CNPJ v\xE1lido de 14 d\xEDgitos para consulta." });
+        return;
+      }
+      const generation = ++lookupGeneration.current;
+      setSearchingModalCnpj(true);
+      setCreateNotice(null);
+      try {
+        const result = await lookupClientRegistryAction(rawCnpj);
+        if (generation !== lookupGeneration.current) return;
+        if (!result.success) throw new Error(result.safeMessage);
+        const data = result.effective ?? result.master;
+        if (!data) throw new Error("CNPJ n\xE3o localizado");
+        setModalClientForm((prev) => ({
+          ...prev,
+          customerName: data.legalName,
+          tradeName: data.tradeName || data.legalName,
+          phone: result.master?.phone || prev.phone,
+          email: result.master?.email || prev.email,
+          address: data.address || "",
+          neighborhood: data.neighborhood || "",
+          city: data.city || "",
+          uf: data.state || "",
+          cep: data.postalCode || "",
+          taxStatus: ("taxStatus" in data ? data.taxStatus : data.registrationStatus) || ""
+        }));
+        setPendingCompanyEnrichment(result.enrichment);
+        setCreateNotice({ tone: "info", message: result.externalVerificationUnavailable ? "Fonte externa indispon\xEDvel. Dados do Cadastro Master carregados sem confirma\xE7\xE3o externa." : "Dados consultados para pr\xE9via. O cadastro s\xF3 ser\xE1 alterado ao salvar." });
+      } catch {
+        if (generation !== lookupGeneration.current) return;
+        setCreateNotice({ tone: "error", message: "N\xE3o foi poss\xEDvel consultar o CNPJ automaticamente. Preencha os dados manualmente." });
+      } finally {
+        if (generation === lookupGeneration.current) setSearchingModalCnpj(false);
+      }
+    }
+    async function handleSaveClient() {
+      if (!modalClientForm.customerDocument.trim() || !modalClientForm.customerName.trim()) {
+        setCreateNotice({ tone: "error", message: "Raz\xE3o social e CPF/CNPJ s\xE3o obrigat\xF3rios." });
+        return;
+      }
+      const doc = normalizeCnpj(modalClientForm.customerDocument);
+      if (doc.length === 14) {
+        if (!isValidCnpj(modalClientForm.customerDocument)) {
+          setCreateNotice({ tone: "error", message: "CNPJ inv\xE1lido. Verifique os dados informados." });
+          return;
+        }
+      } else if (doc.length === 11) {
+        if (!isValidCpf(modalClientForm.customerDocument)) {
+          setCreateNotice({ tone: "error", message: "CPF inv\xE1lido. Verifique os dados informados." });
+          return;
+        }
+      } else {
+        setCreateNotice({ tone: "error", message: "Documento deve possuir 11 d\xEDgitos (CPF) ou 14 d\xEDgitos (CNPJ)." });
+        return;
+      }
+      setSavingClient(true);
+      setCreateNotice(null);
+      try {
+        const result = await createNewOperationClientAction({
+          personType: doc.length === 11 ? "PF" : "PJ",
+          normalizedDocument: doc,
+          legalName: modalClientForm.customerName,
+          tradeName: modalClientForm.tradeName || modalClientForm.customerName,
+          phone: modalClientForm.phone,
+          email: modalClientForm.email,
+          address: modalClientForm.address,
+          neighborhood: modalClientForm.neighborhood,
+          city: modalClientForm.city,
+          state: modalClientForm.uf,
+          postalCode: modalClientForm.cep,
+          taxStatus: modalClientForm.taxStatus
+        });
+        if (!result.success) {
+          throw new Error(result.safeMessage);
+        }
+        if (result.clientId && pendingCompanyEnrichment?.cnpj === doc) {
+          const enrichmentResult = await persistClientCompanyEnrichmentAction(result.clientId, pendingCompanyEnrichment);
+          if (!enrichmentResult.success) {
+            pushToast(`Cliente cadastrado. O enriquecimento externo ficou pendente: ${enrichmentResult.safeMessage}`, "error");
+          }
+        }
+        pushToast("Cliente cadastrado com sucesso.");
+        setIsCreateClientModalOpen(false);
+        await loadData();
+      } catch (err) {
+        setCreateNotice({ tone: "error", message: "Erro ao cadastrar cliente: " + (err instanceof Error ? err.message : "falha inesperada.") });
+      } finally {
+        setSavingClient(false);
+      }
+    }
+    function handleOpenEditClientModal() {
+      if (!selectedClientDetail) return;
+      const client = selectedClientDetail.identity;
+      const contact = selectedClientDetail.contacts.operational;
+      const address = selectedClientDetail.address.internal;
+      setEditClientForm({
+        customerDocument: maskCpfCnpj(client.normalizedDocument),
+        customerName: client.legalName,
+        tradeName: client.tradeName || client.legalName,
+        phone: contact.phone || "",
+        email: contact.email || "",
+        address: address.address || "",
+        neighborhood: address.neighborhood || "",
+        cep: address.postalCode || "",
+        city: address.city || "",
+        uf: address.state || "",
+        taxStatus: client.registrationStatus ?? ""
+      });
+      setEditNotice(null);
+      setIsEditClientModalOpen(true);
+    }
+    async function handleUpdateClient() {
+      if (!editClientForm.customerName.trim()) {
+        setEditNotice({ tone: "error", message: "Raz\xE3o social \xE9 obrigat\xF3ria." });
+        return;
+      }
+      if (!selectedClientId) {
+        setEditNotice({ tone: "error", message: "Cliente n\xE3o selecionado." });
+        return;
+      }
+      setSavingClient(true);
+      setEditNotice(null);
+      try {
+        const result = await updateNewOperationClientAction({
+          clientId: selectedClientId,
+          legalName: editClientForm.customerName,
+          tradeName: editClientForm.tradeName || editClientForm.customerName,
+          phone: editClientForm.phone,
+          email: editClientForm.email,
+          address: editClientForm.address,
+          neighborhood: editClientForm.neighborhood,
+          city: editClientForm.city,
+          state: editClientForm.uf,
+          postalCode: editClientForm.cep,
+          taxStatus: editClientForm.taxStatus
+        });
+        if (!result.success) throw new Error(result.safeMessage);
+        pushToast("Cadastro do cliente atualizado com sucesso.");
+        setIsEditClientModalOpen(false);
+        await loadData();
+        await loadClientDetail(selectedClientId);
+      } catch (err) {
+        setEditNotice({ tone: "error", message: "Erro ao atualizar cadastro: " + (err instanceof Error ? err.message : "falha inesperada.") });
+      } finally {
+        setSavingClient(false);
+      }
+    }
+    const handleRegistryDecided = (0, import_react25.useCallback)(async () => {
+      await loadData();
+      return selectedClientId ? await loadClientDetail(selectedClientId) === true : false;
+    }, [loadData, loadClientDetail, selectedClientId]);
+    const selected = viewMode === "detail" && selectedClientId !== null;
+    const detailMatches = selectedClientDetail !== null && selectedClientDetail.identity.id === selectedClientId;
+    return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "cl-page", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(ClientsOverview, { kpis: clientsPageData?.kpis ?? null, kpisAvailable: clientsPageData !== null && !loadError && !loading, onOpenCreateModal: handleOpenCreateClientModal }),
+      /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "cl-workspace", "data-selected": selected ? "true" : "false", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+          ClientsList,
+          {
+            filters,
+            onFiltersChange: (value) => {
+              setFilters(value);
+              setCurrentPage(1);
+            },
+            clients: clientsPageData?.items ?? [],
+            totalItems: clientsPageData?.total ?? 0,
+            totalPages: clientsPageData?.totalPages ?? 0,
+            currentPage,
+            itemsPerPage,
+            searchTerm,
+            selectedClientId: selected ? selectedClientId : null,
+            loading,
+            loaded: clientsPageData !== null,
+            error: loadError,
+            onRetry: () => void loadData(),
+            onSearchChange: (val) => {
+              setSearchTerm(val);
+              setCurrentPage(1);
+            },
+            onPageChange: setCurrentPage,
+            onItemsPerPageChange: (size2) => {
+              setItemsPerPage(size2);
+              setCurrentPage(1);
+            },
+            onSelectClient: handleSelectClient,
+            layout: selected ? "rail" : "browse"
+          }
+        ),
+        selected && /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "cl-col cl-detail-col", children: [
+          detailMatches && selectedClientDetail ? /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+            ClientDetailView,
+            {
+              detail: selectedClientDetail,
+              onBack: handleBackToCentral,
+              onEdit: handleOpenEditClientModal,
+              onRegistryDecided: handleRegistryDecided
+            }
+          ) : detailError ? /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("section", { className: "jv-panel", "aria-label": "Detalhe do cliente", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignState, { kind: detailFailureKind, title: detailFailureKind === "denied" ? "Sem acesso ao cliente" : "N\xE3o foi poss\xEDvel abrir o cliente.", action: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "flex flex-wrap justify-center gap-2", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignButton, { size: "sm", onClick: () => selectedClientId && void loadClientDetail(selectedClientId), children: "Tentar novamente" }),
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignButton, { size: "sm", intent: "ghost", onClick: handleBackToCentral, children: "Voltar \xE0 lista" })
+          ] }), children: detailError }) }) : /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("section", { className: "jv-panel", "aria-label": "Detalhe do cliente", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignState, { kind: "loading", title: "Carregando detalhes do cliente\u2026" }) }),
+          detailLoading && detailMatches && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { role: "status", className: "sr-only", children: "Atualizando detalhes do cliente\u2026" })
+        ] })
+      ] }),
+      isCreateClientModalOpen && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+        ClientFormDialog,
+        {
+          mode: "create",
+          form: modalClientForm,
+          setForm: setModalClientForm,
+          saving: savingClient,
+          notice: createNotice,
+          onClose: () => setIsCreateClientModalOpen(false),
+          onSubmit: () => void handleSaveClient(),
+          onLookup: () => void handleModalCnpjLookup(),
+          lookingUp: searchingModalCnpj
+        }
+      ),
+      isEditClientModalOpen && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+        ClientFormDialog,
+        {
+          mode: "edit",
+          form: editClientForm,
+          setForm: setEditClientForm,
+          saving: savingClient,
+          notice: editNotice,
+          onClose: () => setIsEditClientModalOpen(false),
+          onSubmit: () => void handleUpdateClient()
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(DesignToasts, { toasts })
+    ] });
+  }
+
+  // ../../../tmp/claude-0/-home-user-portal-irmen-v2/64698068-2df1-52b9-9d37-8e99a026fba3/scratchpad/harness-rev02/entry.tsx
+  var import_jsx_runtime36 = __toESM(require_jsx_runtime());
+  var p2 = new URLSearchParams(location.search);
+  var v = p2.get("v") || (typeof __SCENE__ === "string" ? __SCENE__ : "dash");
+  window.__hv = v;
+  var slate = p2.get("theme") === "slate";
+  var theme = slate ? "irmen-executive-light" : "irmen-industrial-dark";
+  document.documentElement.dataset.theme = theme;
+  document.documentElement.classList.toggle("dark", !slate);
+  if (p2.get("rm")) document.documentElement.dataset.reducedMotion = "1";
+  var id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
+  var now = (/* @__PURE__ */ new Date()).toISOString();
+  var detail = {
+    operationReadScope: "own",
+    restrictedOtherOperationsCount: 0,
+    identity: { id: id(1), legalName: "Construtora Sint\xE9tica Horizonte Ltda", tradeName: "Horizonte Sint\xE9tica", personType: "PJ", normalizedDocument: "00000000000191", registrationStatus: "ATIVA", createdBy: id(9), createdByName: "Vendedor Sint\xE9tico", createdAt: now, updatedAt: now },
+    contacts: { operational: { phone: "(11) 3000-0000", email: "compras@exemplo.invalid" }, public: { phones: [], email: null } },
+    address: { internal: { address: "Rua Exemplo, 100", neighborhood: "Centro", city: "Campinas", state: "SP", postalCode: "13000-000" } },
+    registry: null,
+    fiscal: null,
+    qsa: [],
+    operations: [],
+    documents: [],
+    pendingItems: [],
+    timeline: [{ id: "t1", action: "client.contact_saved", actorRole: "vendedor", occurredAt: now }, { id: "t2", action: "operation.created", actorRole: "vendedor", occurredAt: now }],
+    indicators: { operationsCount: 2, totalVolume: 1722e3, volumeCoverage: null, documentsCount: 6 }
+  };
+  var header = { userName: "Pessoa Sint\xE9tica", email: "pessoa@exemplo.invalid", company: "IRMEN", role: "vendedor" };
+  function Scene() {
+    if (v === "dash") return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DashboardHome, { viewer: { userName: "Pessoa Sint\xE9tica", role: "vendedor" } });
+    if (v === "clients") return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(ClientsPage, {});
+    if (v === "client") return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { className: "cl-page", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "cl-workspace", "data-selected": "true", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("section", { className: "jv-panel", "aria-label": "Lista de clientes (dubl\xEA fora do escopo)", style: { minHeight: 420 }, children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("p", { style: { fontSize: 12, opacity: 0.6 }, children: "Lista de clientes \xB7 fora do escopo deste lote" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { className: "cl-col", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(ClientDetailView, { detail, onBack: () => {
+      }, onEdit: () => {
+      } }) })
+    ] }) });
+    if (v === "op") return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { maxWidth: 760 }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("section", { "aria-label": "Comunica\xE7\xE3o da Opera\xE7\xE3o", className: "flex flex-col justify-between rounded-xl border border-ui-800/90 bg-ui-surface p-4 sm:p-5 shadow-sm space-y-4 min-w-0", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(RelationshipInteractions, { query: { origin: { kind: "OP", id: id(602) } } }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { style: { height: 16 } }),
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(DocumentReusePicker, { target: { operationId: id(602) }, onCompleted: async () => {
+      } })
+    ] });
+    if (v === "opp") return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { maxWidth: 820, display: "flex", flexDirection: "column", gap: 16 }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(RelationshipInteractions, { query: { origin: { kind: "OPP", id: id(601) } } }),
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(CommercialOpportunityDocuments, { opportunityId: id(601), canRegister: true })
+    ] });
+    return null;
+  }
+  window.__scene = { v, s: S, theme };
+  (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime36.jsx)(AppShell, { initialTheme: theme, headerContext: header, children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Scene, {}) }));
 })();
 /*! Bundled license information:
 
@@ -17231,29 +20932,63 @@ lucide-react/dist/esm/shared/src/utils.js:
 lucide-react/dist/esm/defaultAttributes.js:
 lucide-react/dist/esm/Icon.js:
 lucide-react/dist/esm/createLucideIcon.js:
+lucide-react/dist/esm/icons/activity.js:
+lucide-react/dist/esm/icons/arrow-left.js:
 lucide-react/dist/esm/icons/arrow-right.js:
+lucide-react/dist/esm/icons/arrow-up-right.js:
 lucide-react/dist/esm/icons/banknote.js:
 lucide-react/dist/esm/icons/bell.js:
 lucide-react/dist/esm/icons/bot.js:
+lucide-react/dist/esm/icons/briefcase.js:
 lucide-react/dist/esm/icons/building-2.js:
 lucide-react/dist/esm/icons/chart-column.js:
+lucide-react/dist/esm/icons/check.js:
+lucide-react/dist/esm/icons/chevron-left.js:
+lucide-react/dist/esm/icons/chevron-right.js:
 lucide-react/dist/esm/icons/clipboard-list.js:
+lucide-react/dist/esm/icons/download.js:
+lucide-react/dist/esm/icons/external-link.js:
 lucide-react/dist/esm/icons/file-archive.js:
+lucide-react/dist/esm/icons/file-plus-2.js:
 lucide-react/dist/esm/icons/file-search.js:
 lucide-react/dist/esm/icons/file-text.js:
+lucide-react/dist/esm/icons/files.js:
+lucide-react/dist/esm/icons/history.js:
 lucide-react/dist/esm/icons/house.js:
+lucide-react/dist/esm/icons/info.js:
+lucide-react/dist/esm/icons/landmark.js:
+lucide-react/dist/esm/icons/layout-grid.js:
+lucide-react/dist/esm/icons/list.js:
 lucide-react/dist/esm/icons/loader-circle.js:
 lucide-react/dist/esm/icons/log-out.js:
+lucide-react/dist/esm/icons/mail.js:
 lucide-react/dist/esm/icons/map-pin.js:
 lucide-react/dist/esm/icons/menu.js:
+lucide-react/dist/esm/icons/message-circle.js:
 lucide-react/dist/esm/icons/moon.js:
 lucide-react/dist/esm/icons/package-check.js:
+lucide-react/dist/esm/icons/paperclip.js:
+lucide-react/dist/esm/icons/pen-line.js:
+lucide-react/dist/esm/icons/pencil.js:
+lucide-react/dist/esm/icons/phone.js:
+lucide-react/dist/esm/icons/plug-zap.js:
 lucide-react/dist/esm/icons/plus.js:
+lucide-react/dist/esm/icons/rotate-ccw.js:
+lucide-react/dist/esm/icons/search.js:
 lucide-react/dist/esm/icons/settings.js:
 lucide-react/dist/esm/icons/shield-check.js:
 lucide-react/dist/esm/icons/shield-x.js:
+lucide-react/dist/esm/icons/sliders-horizontal.js:
+lucide-react/dist/esm/icons/sparkles.js:
+lucide-react/dist/esm/icons/square-check-big.js:
+lucide-react/dist/esm/icons/star.js:
 lucide-react/dist/esm/icons/sun.js:
+lucide-react/dist/esm/icons/tractor.js:
+lucide-react/dist/esm/icons/trash-2.js:
+lucide-react/dist/esm/icons/upload.js:
+lucide-react/dist/esm/icons/user-check.js:
 lucide-react/dist/esm/icons/user-round.js:
+lucide-react/dist/esm/icons/users-round.js:
 lucide-react/dist/esm/icons/users.js:
 lucide-react/dist/esm/icons/workflow.js:
 lucide-react/dist/esm/icons/x.js:
