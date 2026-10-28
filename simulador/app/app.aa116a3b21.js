@@ -20375,7 +20375,7 @@ svg .tag.sel { fill: #b91c2f; }
         <tr data-num="${r2.num}"><td>${r2.num}</td><td>${r2.date}</td><td class="num">${currency(r2.installment)}</td><td class="num">${currency(r2.amortization)}</td><td class="num">${currency(r2.interest)}</td><td class="num strong">${currency(balance)}</td></tr>`;
     const scheduleHtml = t > 5 ? `${schedule.slice(0, 3).map((r2) => line(r2, r2.balance)).join("")}
         <tr class="gap"><td colspan="6">\u2026 parcelas 4 a ${t - 1} seguem o mesmo cronograma \u2026</td></tr>${line(schedule[t - 1], 0)}` : schedule.map((r2) => line(r2, r2.balance)).join("");
-    return shell({ title: `Plano de pagamento em ${t}x`, mode: `Prazo \xFAnico \xB7 ${t} meses`, issuedAt }, `
+    return shell({ title: "Plano de pagamento", mode: `Prazo \xFAnico \xB7 ${t} meses`, issuedAt }, `
   <section class="facts">
     <div><span class="eyebrow">Valor do equipamento</span><b data-k="val">${currency(simulation.val)}</b></div>
     <div><span class="eyebrow">Entrada comercial</span><b><span data-k="entry">${currency(simulation.entry)}</span> <small data-k="entryPercent">(${pct(simulation.entryPercent)})</small></b></div>

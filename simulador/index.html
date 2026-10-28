@@ -63,7 +63,7 @@
     function fit() { var h = Math.max(360, window.innerHeight - bar.offsetHeight - (state.v === 'split' ? 24 : 0)) + 'px'; a.style.height = h; b.style.height = h; }
     window.addEventListener('resize', fit);
     function src(view) {
-      return 'app/index.html?preview=1&view=' + view + (state.slate ? '&theme=slate' : '') + (state.a === 'denied' ? '&admin=denied' : '') +
+      return 'app/index.html?v=aa116a3b21&preview=1&view=' + view + (state.slate ? '&theme=slate' : '') + (state.a === 'denied' ? '&admin=denied' : '') +
         (state.c === 'embedded' ? '&embedded=1' : '') + (state.c === 'op' ? '&sp=' + encodeURIComponent(OP) : '');
     }
     function set(el, url) { if (el.getAttribute('src') !== url) el.setAttribute('src', url); }
