@@ -20189,6 +20189,33 @@
     <circle cx="${px(term).toFixed(2)}" cy="${py(0).toFixed(2)}" r="${o.labels ? 3.2 : 2.2}" class="end"/>
   </svg>`;
   }
+  var TERM_TONES = ["#a7b1bc", "#8592a0", "#64717f", "#45515e", "#27313c"];
+  function termsChart(series, selectedTerm) {
+    const width = 640, height = 320, padLeft = 78, padRight = 22, padTop = 16, padBottom = 30;
+    const gw = width - padLeft - padRight, gh = height - padTop - padBottom;
+    const maxTerm = Math.max(1, ...series.map((item) => item.term));
+    const top = Math.max(1, ...series.map((item) => item.balances[0] ?? 0));
+    const px = (month) => padLeft + month / maxTerm * gw;
+    const py = (value) => padTop + gh - value / top * gh;
+    const base = (padTop + gh).toFixed(2);
+    const grid = [0, 0.25, 0.5, 0.75, 1].map((f) => `<line x1="${padLeft}" x2="${width - padRight}" y1="${(padTop + gh * f).toFixed(2)}" y2="${(padTop + gh * f).toFixed(2)}" class="${f === 1 ? "base" : "grid"}"/>`).join("");
+    const yLabels = [[top, 0], [top / 2, 0.5], [0, 1]].map(([value, f]) => `<text x="${padLeft - 8}" y="${(padTop + gh * f + 3).toFixed(2)}" text-anchor="end">${value === 0 ? "R$ 0,00" : currency(value)}</text>`).join("");
+    const ticks = [0, ...series.map((item) => item.term)];
+    const xLabels = ticks.map((month) => `<line x1="${px(month).toFixed(2)}" x2="${px(month).toFixed(2)}" y1="${base}" y2="${(padTop + gh + 4).toFixed(2)}" class="base"/><text x="${px(month).toFixed(2)}" y="${(padTop + gh + 15).toFixed(2)}" text-anchor="middle">${month}</text>`).join("") + `<text x="${width - padRight}" y="${(padTop + gh + 27).toFixed(2)}" text-anchor="end">meses</text>`;
+    const ordered = [...series].sort((a, b) => Number(a.term === selectedTerm) - Number(b.term === selectedTerm));
+    const lines = ordered.map((item) => {
+      const index = series.indexOf(item), selected = item.term === selectedTerm;
+      const d = item.balances.map((value, month) => `${month ? "L" : "M"}${px(month).toFixed(2)},${py(value).toFixed(2)}`).join(" ");
+      const area = selected ? `<path d="${d} L${px(item.term).toFixed(2)},${base} L${padLeft},${base} Z" fill="url(#gterms)"/>` : "";
+      const tone = selected ? "#b91c2f" : TERM_TONES[index % TERM_TONES.length];
+      return `<g data-term="${item.term}">${area}<path d="${d}" fill="none" stroke="${tone}" stroke-width="${selected ? 2.4 : 1.4}" stroke-linejoin="round"/><circle cx="${px(item.term).toFixed(2)}" cy="${base}" r="${selected ? 3.4 : 2.6}" fill="${tone}"/><text x="${px(item.term).toFixed(2)}" y="${(padTop + gh - 8).toFixed(2)}" text-anchor="middle" class="tag${selected ? " sel" : ""}">${item.term}x</text></g>`;
+    }).join("");
+    return `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Saldo devedor de cada prazo">
+    <defs><linearGradient id="gterms" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#b91c2f" stop-opacity=".16"/><stop offset="100%" stop-color="#b91c2f" stop-opacity="0"/></linearGradient></defs>
+    ${grid}${yLabels}${xLabels}${lines}
+    <circle cx="${padLeft}" cy="${py(top).toFixed(2)}" r="3" class="dot"/>
+  </svg>`;
+  }
   var capitalize = (value) => value.charAt(0).toUpperCase() + value.slice(1);
   function issueFacts(issuedAt) {
     const date = capitalize(issuedAt.toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "2-digit", year: "numeric" }));
@@ -20268,13 +20295,14 @@ tr.sel td:first-child { box-shadow: inset 3px 0 0 #b91c2f; }
 td.num, th.num { text-align: right; }
 .strong { font-weight: 600; }
 .red { color: #b91c2f; }
-.minis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3mm; }
-.mini { border: 1px solid #d5dbe3; border-radius: 6px; padding: 2.6mm 2.6mm 2mm; }
-.mini.sel { border-color: #b91c2f; box-shadow: inset 0 3px 0 #b91c2f; background: #fffafa; }
-.mini b { display: block; font: 700 13px ${display}"Segoe UI", Arial, sans-serif; }
-.mini span { display: block; margin-bottom: 1.6mm; color: #b91c2f; font: 600 10.5px ${display}"Segoe UI", Arial, sans-serif; }
-.mini small { display: block; margin-top: 2mm; padding-top: 1.6mm; border-top: 1px solid #e3e8ee; color: #5a6673; font: 600 7.5px ${display}"Segoe UI", Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
-.mini em { display: block; margin-top: .6mm; font-style: normal; font-size: 10px; font-weight: 600; }
+svg .tag { font: 700 9px ${display}"Segoe UI", Arial, sans-serif; fill: #3f4b58; }
+svg .tag.sel { fill: #b91c2f; }
+.legend { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2mm; margin-top: 3mm; padding-top: 2.6mm; border-top: 1px solid #e3e8ee; }
+.legend div { display: flex; flex-direction: column; gap: .6mm; padding-left: 2.6mm; border-left: 3px solid var(--tone); }
+.legend b { font: 700 11px ${display}"Segoe UI", Arial, sans-serif; }
+.legend span { font-size: 9.5px; color: #3f4b58; }
+.legend small { font-size: 8.5px; color: #5a6673; }
+.legend .sel b, .legend .sel span { color: #b91c2f; font-weight: 600; }
 .obs { margin: auto 0 0; padding: 2.4mm 3.5mm; border-left: 3px solid #b91c2f; background: #f6f8fa; border-radius: 0 6px 6px 0; color: #3f4b58; font-size: 8.5px; line-height: 1.5; }
 .foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 3mm; border-top: 1.5px solid #0f1722; color: #5a6673; font-size: 8.5px; }
 .foot .logo { height: 9px; width: auto; }
@@ -20308,7 +20336,6 @@ td.num, th.num { text-align: right; }
   function buildSimulatorProposalHtml(simulation, nominalRate, selectedTerm, simplified = false, assets = { css: "", display: "", body: "", logoUrl: "" }, issuedAt = /* @__PURE__ */ new Date()) {
     const rate = pct(parsePercent(nominalRate));
     if (simplified) {
-      const top = Math.max(1, ...simulation.rows.map((row2) => row2.financed));
       const rows = simulation.rows.map((r2) => `
         <tr${r2.t === selectedTerm ? ' class="sel"' : ""} data-term="${r2.t}">
           <td class="strong">${r2.t}x</td>
@@ -20318,10 +20345,8 @@ td.num, th.num { text-align: right; }
           <td class="num strong red" data-k="installment">${currency(r2.installment)}</td>
           <td class="num" data-k="total">${currency(r2.total)}</td>
         </tr>`).join("");
-      const minis = simulation.rows.map((r2) => {
-        const detailed = buildDetailedSchedule(r2);
-        return `<div class="mini${r2.t === selectedTerm ? " sel" : ""}"><b>${r2.t}x</b><span>${currency(r2.installment)}</span>${balanceChart([r2.financed, ...detailed.map((item) => item.balance)], r2.t, top, { width: 150, height: 150, padLeft: 2, padBottom: 2, labels: false, id: `g${r2.t}` })}<small>Total pago</small><em>${currency(r2.total)}</em></div>`;
-      }).join("");
+      const series = simulation.rows.map((r2) => ({ term: r2.t, balances: [r2.financed, ...buildDetailedSchedule(r2).map((item) => item.balance)] }));
+      const legend = simulation.rows.map((r2, index) => `<div${r2.t === selectedTerm ? ' class="sel"' : ""} style="--tone: ${r2.t === selectedTerm ? "#b91c2f" : TERM_TONES[index % TERM_TONES.length]}"><b>${r2.t}x</b><span>${currency(r2.installment)}/m\xEAs</span><small>Total ${currency(r2.total)}</small></div>`).join("");
       return shell({ title: "Comparativo de prazos", mode: `${simulation.rows.length} prazos \xB7 ${simulation.rows[0]?.t ?? 0} a ${simulation.rows[simulation.rows.length - 1]?.t ?? 0} meses`, issuedAt }, `
   <section class="facts">
     <div><span class="eyebrow">Valor do equipamento</span><b data-k="val">${currency(simulation.val)}</b></div>
@@ -20337,8 +20362,9 @@ td.num, th.num { text-align: right; }
     </table>
   </section>
   <section class="box">
-    <div class="box__head"><h2>Evolu\xE7\xE3o do saldo devedor por prazo</h2><span>Mesma escala nos cinco gr\xE1ficos \xB7 do total financiado \xE0 quita\xE7\xE3o</span></div>
-    <div class="minis">${minis}</div>
+    <div class="box__head"><h2>Evolu\xE7\xE3o do saldo devedor por prazo</h2><span>Do total financiado \xE0 quita\xE7\xE3o \xB7 prazo selecionado em destaque</span></div>
+    ${termsChart(series, selectedTerm)}
+    <div class="legend">${legend}</div>
   </section>`, assets);
     }
     const row = selectSimulatorRow(simulation, selectedTerm);
@@ -20349,7 +20375,7 @@ td.num, th.num { text-align: right; }
         <tr data-num="${r2.num}"><td>${r2.num}</td><td>${r2.date}</td><td class="num">${currency(r2.installment)}</td><td class="num">${currency(r2.amortization)}</td><td class="num">${currency(r2.interest)}</td><td class="num strong">${currency(balance)}</td></tr>`;
     const scheduleHtml = t > 5 ? `${schedule.slice(0, 3).map((r2) => line(r2, r2.balance)).join("")}
         <tr class="gap"><td colspan="6">\u2026 parcelas 4 a ${t - 1} seguem o mesmo cronograma \u2026</td></tr>${line(schedule[t - 1], 0)}` : schedule.map((r2) => line(r2, r2.balance)).join("");
-    return shell({ title: "Simula\xE7\xE3o de parcelamento", mode: `Prazo \xFAnico \xB7 ${t} meses`, issuedAt }, `
+    return shell({ title: `Plano de pagamento em ${t}x`, mode: `Prazo \xFAnico \xB7 ${t} meses`, issuedAt }, `
   <section class="facts">
     <div><span class="eyebrow">Valor do equipamento</span><b data-k="val">${currency(simulation.val)}</b></div>
     <div><span class="eyebrow">Entrada comercial</span><b><span data-k="entry">${currency(simulation.entry)}</span> <small data-k="entryPercent">(${pct(simulation.entryPercent)})</small></b></div>
