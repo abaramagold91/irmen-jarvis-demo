@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Simulador JARVIS · SIM-UI-01-REV02</title>
+<style>
+  /* Single dark control bar above the real Portal shell; the shell keeps its own Dark/Slate tokens. */
+  :root { --pv-bg: #06080c; --pv-bar: #0d121a; --pv-line: rgba(140,190,220,.24); --pv-fg: #e8eef4; --pv-muted: #a3b0bd; --pv-on: #b91c2f; --pv-warn: #f2b84b; color-scheme: dark; }
+  html, body { margin: 0; } body { background: var(--pv-bg); color: var(--pv-fg); font-family: "IBM Plex Sans", system-ui, sans-serif; }
+  .pv-bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 80; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding-block: 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); background: var(--pv-bar); border-bottom: 1px solid var(--pv-line); font: 12.5px/1.3 "IBM Plex Sans", system-ui, sans-serif; }
+  .pv-note { color: var(--pv-warn); }
+  .pv-group { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+  .pv-group span { color: var(--pv-muted); margin-right: 2px; }
+  .pv-bar button, .pv-bar a { min-height: 30px; padding: 4px 10px; border: 1px solid var(--pv-line); border-radius: 6px; background: transparent; color: var(--pv-fg); font: inherit; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; box-sizing: border-box; }
+  .pv-bar button[aria-pressed="true"] { background: var(--pv-on); border-color: var(--pv-on); color: #fff; }
+  .pv-bar :is(button, a):focus-visible { outline: 2px solid #3fd0ff; outline-offset: 2px; }
+  .pv-frames { display: grid; grid-template-columns: 1fr; }
+  .pv-frames[data-split="true"] { grid-template-columns: 1fr 1fr; gap: 2px; background: var(--pv-line); }
+  @media (max-width: 900px) { .pv-frames[data-split="true"] { grid-template-columns: 1fr; } }
+  .pv-frame { display: block; width: 100%; border: 0; background: var(--pv-bg); }
+  .pv-cap { padding: 4px 12px; font-size: 11.5px; color: var(--pv-muted); background: var(--pv-bar); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div class="pv-bar" role="region" aria-label="Controles do laboratório">
+  <div class="pv-group" role="group" aria-label="Tela" id="pv-scr">
+    <span>Tela</span>
+    <button type="button" data-v="new" aria-pressed="true">Nova (SIM-UI-01)</button>
+    <button type="button" data-v="base" aria-pressed="false">Homologada (antes)</button>
+    <button type="button" data-v="split" aria-pressed="false">Lado a lado</button>
+  </div>
+  <div class="pv-group" role="group" aria-label="Contexto" id="pv-ctx">
+    <span>Contexto</span>
+    <button type="button" data-c="free" aria-pressed="true">Avulso</button>
+    <button type="button" data-c="op" aria-pressed="false">Aberto de uma operação</button>
+    <button type="button" data-c="embedded" aria-pressed="false">Embutido em Nova Operação</button>
+  </div>
+  <div class="pv-group" role="group" aria-label="Permissão" id="pv-adm">
+    <span>Taxa padrão</span>
+    <button type="button" data-a="ok" aria-pressed="true">Crédito</button>
+    <button type="button" data-a="denied" aria-pressed="false">Sem permissão</button>
+  </div>
+  <div class="pv-group" role="group" aria-label="Tema" id="pv-thm">
+    <span>Tema</span>
+    <button type="button" data-t="dark" aria-pressed="true">Dark</button>
+    <button type="button" data-t="slate" aria-pressed="false">Slate</button>
+  </div>
+  <a href="testes.html">Testes do laboratório (136/136)</a>
+  <span class="pv-note" id="pv-note">Laboratório isolado · dados fictícios · motor de cálculo real · nada é salvo</span>
+</div>
+<div class="pv-frames" id="pv-frames">
+  <div><div class="pv-cap" id="pv-cap-a" hidden></div><iframe class="pv-frame" id="pv-a" title="Simulador"></iframe></div>
+  <div id="pv-b-wrap" hidden><div class="pv-cap">Homologada (antes) · mesma entrada, mesmos valores</div><iframe class="pv-frame" id="pv-b" title="Simulador homologado"></iframe></div>
+</div>
+<script>
+  (function () {
+    var state = { v: 'new', c: 'free', a: 'ok', slate: false };
+    var OP = 'operationId=11111111-2222-4333-8444-555555555555&equipmentValue=640000&entryValue=128000&commercialRate=0.0165&term=48';
+    var bar = document.querySelector('.pv-bar'), a = document.getElementById('pv-a'), b = document.getElementById('pv-b');
+    function fit() { var h = Math.max(360, window.innerHeight - bar.offsetHeight - (state.v === 'split' ? 24 : 0)) + 'px'; a.style.height = h; b.style.height = h; }
+    window.addEventListener('resize', fit);
+    function src(view) {
+      return 'app/index.html?preview=1&view=' + view + (state.slate ? '&theme=slate' : '') + (state.a === 'denied' ? '&admin=denied' : '') +
+        (state.c === 'embedded' ? '&embedded=1' : '') + (state.c === 'op' ? '&sp=' + encodeURIComponent(OP) : '');
+    }
+    function set(el, url) { if (el.getAttribute('src') !== url) el.setAttribute('src', url); }
+    function render() {
+      [['#pv-scr', 'v'], ['#pv-ctx', 'c'], ['#pv-adm', 'a']].forEach(function (g) {
+        document.querySelectorAll(g[0] + ' button').forEach(function (x) { x.setAttribute('aria-pressed', String(x.dataset[g[1]] === state[g[1]])); });
+      });
+      document.querySelectorAll('#pv-thm button').forEach(function (x) { x.setAttribute('aria-pressed', String((x.dataset.t === 'slate') === state.slate)); });
+      var split = state.v === 'split';
+      document.getElementById('pv-frames').dataset.split = String(split);
+      document.getElementById('pv-b-wrap').hidden = !split;
+      var cap = document.getElementById('pv-cap-a'); cap.hidden = !split; cap.textContent = 'Nova (SIM-UI-01) · a parte nova é só apresentação';
+      set(a, src(state.v === 'base' ? 'base' : 'new'));
+      if (split) set(b, src('base'));
+      document.documentElement.dataset.theme = state.slate ? 'irmen-executive-light' : 'irmen-industrial-dark';
+      fit();
+    }
+    ['pv-scr', 'pv-ctx', 'pv-adm', 'pv-thm'].forEach(function (id) {
+      document.getElementById(id).addEventListener('click', function (e) {
+        var x = e.target.closest('button'); if (!x) return;
+        if (x.dataset.v) state.v = x.dataset.v; if (x.dataset.c) state.c = x.dataset.c; if (x.dataset.a) state.a = x.dataset.a; if (x.dataset.t) state.slate = x.dataset.t === 'slate';
+        render();
+      });
+    });
+    render();
+  })();
+</script>
+</body>
+</html>

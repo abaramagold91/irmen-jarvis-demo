@@ -3,6 +3,7 @@
 Prévia estática e demonstrativa do protótipo visual **Portal IRMEN Jarvis**.
 
 - Acesso: <https://abaramagold91.github.io/irmen-jarvis-demo/>
+- Simulador JARVIS (SIM-UI-01-REV02), laboratório com a tela nova e a homologada lado a lado: <https://abaramagold91.github.io/irmen-jarvis-demo/simulador/> · [testes](https://abaramagold91.github.io/irmen-jarvis-demo/simulador/testes.html)
 - Todos os dados são fictícios. Não há backend, login, credenciais nem conexão com o sistema oficial.
 - Sem CDN: ECharts 5.5.0 e as fontes (Chakra Petch, IBM Plex Sans, JetBrains Mono) estão em `vendor/`, com as licenças.
 
