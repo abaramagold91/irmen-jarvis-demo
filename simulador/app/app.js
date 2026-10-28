@@ -42,7 +42,7 @@
   var define_process_env_default;
   var init_define_process_env = __esm({
     "<define:process.env>"() {
-      define_process_env_default = {};
+      define_process_env_default = { NEXT_PUBLIC_PROPOSAL_LOGO_PATH: "images/irmen-sany-logo.png" };
     }
   });
 
@@ -20126,337 +20126,263 @@
     ] });
   }
 
+  // src/modules/operation/components/simulator/simulator-proposal-document.ts
+  init_define_process_env();
+
+  // src/config/proposal-issuer.ts
+  init_define_process_env();
+  var proposalIssuer = Object.freeze({
+    portalName: define_process_env_default.NEXT_PUBLIC_PROPOSAL_PORTAL_NAME?.trim() || "Portal IRMEN",
+    legalName: define_process_env_default.NEXT_PUBLIC_PROPOSAL_LEGAL_NAME?.trim() || "IRMEN M\xE1quinas e Equipamentos Ltda.",
+    taxId: define_process_env_default.NEXT_PUBLIC_PROPOSAL_TAX_ID?.trim() || "10.657.159/0001-37",
+    logoPath: define_process_env_default.NEXT_PUBLIC_PROPOSAL_LOGO_PATH?.trim() || "/images/irmen-sany-logo.png",
+    logoAlt: define_process_env_default.NEXT_PUBLIC_PROPOSAL_LOGO_ALT?.trim() || "IRMEN SANY",
+    /** Days the printed conditions remain valid after issue; 0 = valid on the issue date only (rates move daily). */
+    validityDays: Math.max(0, Math.trunc(Number(define_process_env_default.NEXT_PUBLIC_PROPOSAL_VALIDITY_DAYS ?? "0")) || 0)
+  });
+
+  // src/modules/operation/components/simulator/simulator-proposal-document.ts
+  var currency = (val) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(val);
+  var pct = (val) => `${val.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
+  var escapeHtml = (value) => value.replace(/[&<>"']/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch]);
+  var DISCLAIMER2 = `<b>Aten\xE7\xE3o:</b> Esta simula\xE7\xE3o comercial \xE9 de car\xE1ter meramente informativo e n\xE3o constitui proposta de cr\xE9dito vinculante.
+  Os valores reais est\xE3o sujeitos \xE0 an\xE1lise de cr\xE9dito cadastral, garantias requeridas, taxas de CET (Custo Efetivo Total),
+  pol\xEDticas vigentes e flutua\xE7\xE3o das taxas dos bancos parceiros na data da contrata\xE7\xE3o.`;
+  function collectProposalAssets(doc = document) {
+    const root = getComputedStyle(doc.documentElement);
+    const display = root.getPropertyValue("--font-display").trim();
+    const body = root.getPropertyValue("--font-body").trim();
+    const wanted = new Set([display, body].flatMap((value) => value.split(",")).map((name) => name.trim().replace(/^["']|["']$/g, "")).filter(Boolean));
+    const faces = [];
+    for (const sheet of Array.from(doc.styleSheets)) {
+      let rules;
+      try {
+        rules = sheet.cssRules;
+      } catch {
+        continue;
+      }
+      const base = sheet.href ?? doc.baseURI;
+      for (const rule of Array.from(rules)) {
+        if (!(rule instanceof CSSFontFaceRule)) continue;
+        const family = rule.style.getPropertyValue("font-family").trim().replace(/^["']|["']$/g, "");
+        if (!wanted.has(family)) continue;
+        faces.push(rule.cssText.replace(/url\((["']?)([^"')]+)\1\)/g, (_match, _quote, url) => `url("${new URL(url, base).href}")`));
+      }
+    }
+    return { css: faces.join("\n"), display, body, logoUrl: new URL(proposalIssuer.logoPath, doc.baseURI).href };
+  }
+  function balanceChart(balances, term, top, o) {
+    const gw = o.width - o.padLeft - 8, gh = o.height - 8 - o.padBottom;
+    const px = (month) => o.padLeft + month / term * gw;
+    const py = (value) => 8 + gh - value / top * gh;
+    const line = balances.map((value, month) => `${month ? "L" : "M"}${px(month).toFixed(2)},${py(value).toFixed(2)}`).join(" ");
+    const area = `${line} L${px(term).toFixed(2)},${(8 + gh).toFixed(2)} L${o.padLeft},${(8 + gh).toFixed(2)} Z`;
+    const grid = [0, 0.5, 1].map((f) => `<line x1="${o.padLeft}" x2="${o.width - 8}" y1="${(8 + gh * f).toFixed(2)}" y2="${(8 + gh * f).toFixed(2)}" class="${f === 1 ? "base" : "grid"}"/>`).join("");
+    const yLabels = o.labels ? [[top, 0], [top / 2, 0.5], [0, 1]].map(([value, f]) => `<text x="${o.padLeft - 8}" y="${(8 + gh * f + 3).toFixed(2)}" text-anchor="end">${value === 0 ? "R$ 0,00" : currency(value)}</text>`).join("") : "";
+    const xLabels = o.labels ? [0, 0.25, 0.5, 0.75, 1].map((f) => `<text x="${px(term * f).toFixed(2)}" y="${(8 + gh + 14).toFixed(2)}" text-anchor="middle">${f === 0 ? "0" : Math.round(term * f)}</text>`).join("") : "";
+    return `<svg viewBox="0 0 ${o.width} ${o.height}" role="img" aria-label="Saldo devedor em ${term} meses">
+    <defs><linearGradient id="${o.id}" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#b91c2f" stop-opacity=".22"/><stop offset="100%" stop-color="#b91c2f" stop-opacity="0"/></linearGradient></defs>
+    ${grid}${yLabels}${xLabels}
+    <path d="${area}" fill="url(#${o.id})"/>
+    <path d="${line}" class="line"/>
+    <circle cx="${px(0).toFixed(2)}" cy="${py(balances[0] ?? 0).toFixed(2)}" r="${o.labels ? 3.2 : 2.2}" class="dot"/>
+    <circle cx="${px(term).toFixed(2)}" cy="${py(0).toFixed(2)}" r="${o.labels ? 3.2 : 2.2}" class="end"/>
+  </svg>`;
+  }
+  var capitalize = (value) => value.charAt(0).toUpperCase() + value.slice(1);
+  function issueFacts(issuedAt) {
+    const date = capitalize(issuedAt.toLocaleDateString("pt-BR", { weekday: "long", day: "2-digit", month: "2-digit", year: "numeric" }));
+    const time = issuedAt.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+    const until = new Date(issuedAt.getTime() + proposalIssuer.validityDays * 864e5).toLocaleDateString("pt-BR");
+    return { date, time, validity: proposalIssuer.validityDays === 0 ? `${until} \xB7 condi\xE7\xF5es do dia` : until };
+  }
+  function shell(issue, body, assets) {
+    const portal = escapeHtml(proposalIssuer.portalName), legal = escapeHtml(proposalIssuer.legalName), taxId = escapeHtml(proposalIssuer.taxId);
+    const logo = assets.logoUrl ? `<img class="logo" src="${escapeHtml(assets.logoUrl)}" alt="${escapeHtml(proposalIssuer.logoAlt)}">` : `<b class="logo-text d">${portal}</b>`;
+    const display = assets.display ? `${assets.display}, ` : "";
+    const text = assets.body ? `${assets.body}, ` : "";
+    const facts = issueFacts(issue.issuedAt);
+    const fileTitle = `${issue.title} \xB7 ${proposalIssuer.portalName} \xB7 ${issue.issuedAt.toLocaleDateString("pt-BR").replace(/\//g, "-")}`;
+    return `<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${escapeHtml(fileTitle)}</title>
+<style>
+${assets.css}
+/* Zero page margin: the browser has no room for its own header and footer (date, title, about:blank, page count). */
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; color: #0f1722; background: #e6eaf0; font: 10.5px/1.45 ${text}"Segoe UI", Arial, sans-serif; font-variant-numeric: tabular-nums; }
+.sheet { position: relative; width: 210mm; height: 297mm; margin: 16px auto; padding: 12mm 13mm 9mm; background: #fff; box-shadow: 0 8px 30px rgba(20,40,60,.12); display: flex; flex-direction: column; gap: 5.2mm; overflow: hidden; }
+.sheet::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 2.2mm; background: linear-gradient(90deg, #b91c2f 0 62%, #0f1722 62% 100%); }
+@media print { body { background: #fff; } .sheet { margin: 0; box-shadow: none; page-break-after: avoid; break-after: avoid; } }
+.d { font-family: ${display}"Segoe UI", Arial, sans-serif; }
+.eyebrow { font: 600 8px/1.2 ${display}"Segoe UI", Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #5a6673; }
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding-top: 2mm; }
+.brand .logo { display: block; height: 15px; width: auto; }
+.brand .logo-text { font-size: 18px; letter-spacing: .04em; }
+.brand small { display: flex; align-items: center; gap: 6px; margin-top: 2.4mm; font: 600 8px/1 ${display}"Segoe UI", Arial, sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #b91c2f; }
+.brand small::before { content: ""; width: 14px; height: 1.5px; background: #b91c2f; }
+.title { text-align: right; }
+.title h1 { margin: 1.5mm 0 0; font: 700 20px/1.1 ${display}"Segoe UI", Arial, sans-serif; letter-spacing: .01em; }
+.issue { display: grid; grid-template-columns: 1.5fr .7fr 1.2fr 1.3fr; border-top: 1.5px solid #0f1722; border-bottom: 1px solid #d5dbe3; }
+.issue div { padding: 2mm 3mm 2mm 0; }
+.issue div + div { padding-left: 3mm; border-left: 1px solid #e3e8ee; }
+.issue b { display: block; margin-top: 1mm; font-size: 10px; font-weight: 600; }
+.issue .valid b { color: #b91c2f; }
+.facts { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid #d5dbe3; border-radius: 6px; overflow: hidden; }
+.facts div { padding: 2.6mm 3.2mm; background: #f6f8fa; border-left: 1px solid #d5dbe3; }
+.facts div:first-child { border-left: 0; }
+.facts b { display: block; margin-top: 1.2mm; font: 600 12.5px/1.2 ${display}"Segoe UI", Arial, sans-serif; }
+.facts small { color: #5a6673; font: 400 9.5px ${text}"Segoe UI", Arial, sans-serif; }
+.hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 4mm; }
+.hero__main { position: relative; padding: 4.2mm 5mm; border: 1px solid #ecc7cc; border-left: 4px solid #b91c2f; border-radius: 6px; background: linear-gradient(135deg, #fdf1f2, #fff 72%); }
+.hero__main .hero__v { margin: 2mm 0 1.2mm; font: 700 31px/1 ${display}"Segoe UI", Arial, sans-serif; color: #b91c2f; letter-spacing: -.01em; }
+.hero__main .hero__v small { font-size: 12px; font-weight: 600; color: #5a6673; margin-left: 4px; }
+.hero__main p { margin: 0; color: #3f4b58; font-size: 10px; }
+.kpis { display: grid; grid-template-rows: repeat(3, 1fr); border: 1px solid #d5dbe3; border-radius: 6px; overflow: hidden; }
+.kpis div { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 2mm 4mm; border-top: 1px solid #d5dbe3; }
+.kpis div:first-child { border-top: 0; }
+.kpis b { font: 600 13px ${display}"Segoe UI", Arial, sans-serif; }
+.box { border: 1px solid #d5dbe3; border-radius: 6px; padding: 3.4mm 4mm 3mm; }
+.box__head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 2.4mm; }
+.box__head h2 { display: flex; align-items: center; gap: 6px; margin: 0; font: 600 10px ${display}"Segoe UI", Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+.box__head h2::before { content: ""; width: 3px; height: 10px; background: #b91c2f; }
+.box__head span { color: #5a6673; font-size: 8.5px; }
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+svg text { fill: #5a6673; font-size: 8.5px; font-family: ${text}"Segoe UI", Arial, sans-serif; }
+svg .grid { stroke: #e3e8ee; stroke-width: 1; stroke-dasharray: 3 3; }
+svg .base { stroke: #b8c2cd; stroke-width: 1; }
+svg .line { fill: none; stroke: #b91c2f; stroke-width: 2; stroke-linejoin: round; }
+svg .dot { fill: #fff; stroke: #b91c2f; stroke-width: 1.6; }
+svg .end { fill: #0f1722; }
+table { width: 100%; border-collapse: collapse; }
+th { padding: 2mm 2.5mm; background: #f6f8fa; border-bottom: 1.5px solid #0f1722; color: #3f4b58; font: 600 8px ${display}"Segoe UI", Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; text-align: left; }
+td { padding: 1.8mm 2.5mm; border-bottom: 1px solid #e3e8ee; font-size: 10px; }
+tr.gap td { color: #8592a0; letter-spacing: .08em; background: #fafbfc; }
+tr.sel td { background: #fdf1f2; font-weight: 600; }
+tr.sel td:first-child { box-shadow: inset 3px 0 0 #b91c2f; }
+td.num, th.num { text-align: right; }
+.strong { font-weight: 600; }
+.red { color: #b91c2f; }
+.minis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 3mm; }
+.mini { border: 1px solid #d5dbe3; border-radius: 6px; padding: 2.6mm 2.6mm 2mm; }
+.mini.sel { border-color: #b91c2f; box-shadow: inset 0 3px 0 #b91c2f; background: #fffafa; }
+.mini b { display: block; font: 700 13px ${display}"Segoe UI", Arial, sans-serif; }
+.mini span { display: block; margin-bottom: 1.6mm; color: #b91c2f; font: 600 10.5px ${display}"Segoe UI", Arial, sans-serif; }
+.mini small { display: block; margin-top: 2mm; padding-top: 1.6mm; border-top: 1px solid #e3e8ee; color: #5a6673; font: 600 7.5px ${display}"Segoe UI", Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.mini em { display: block; margin-top: .6mm; font-style: normal; font-size: 10px; font-weight: 600; }
+.obs { margin: auto 0 0; padding: 2.4mm 3.5mm; border-left: 3px solid #b91c2f; background: #f6f8fa; border-radius: 0 6px 6px 0; color: #3f4b58; font-size: 8.5px; line-height: 1.5; }
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-top: 3mm; border-top: 1.5px solid #0f1722; color: #5a6673; font-size: 8.5px; }
+.foot .logo { height: 9px; width: auto; }
+.foot .who { display: flex; align-items: center; gap: 8px; }
+.foot .who span { padding-left: 8px; border-left: 1px solid #d5dbe3; font: 600 8px/1 ${display}"Segoe UI", Arial, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #b91c2f; }
+.foot strong { color: #0f1722; font-weight: 600; }
+</style>
+</head>
+<body>
+<main class="sheet">
+  <header class="head">
+    <div class="brand">${logo}<small>${portal} \xB7 Simulador de cr\xE9dito</small></div>
+    <div class="title"><span class="eyebrow">Simula\xE7\xE3o comercial</span><h1>${escapeHtml(issue.title)}</h1></div>
+  </header>
+  <section class="issue" aria-label="Emiss\xE3o">
+    <div><span class="eyebrow">Emitida em</span><b data-k="issued-date">${escapeHtml(facts.date)}</b></div>
+    <div><span class="eyebrow">Hor\xE1rio</span><b data-k="issued-time">${escapeHtml(facts.time)}</b></div>
+    <div class="valid"><span class="eyebrow">V\xE1lida at\xE9</span><b data-k="valid-until">${escapeHtml(facts.validity)}</b></div>
+    <div><span class="eyebrow">Modalidade</span><b>${escapeHtml(issue.mode)}</b></div>
+  </section>
+  ${body}
+  <p class="obs">${DISCLAIMER2}</p>
+  <footer class="foot">
+    <div class="who">${assets.logoUrl ? logo.replace('class="logo"', 'class="logo" aria-hidden="true"') : ""}<span>${portal} \xB7 Simulador</span></div>
+    <div data-k="issuer"><strong>${legal}</strong> \xB7 CNPJ ${taxId}</div>
+  </footer>
+</main>
+</body>
+</html>`;
+  }
+  function buildSimulatorProposalHtml(simulation, nominalRate, selectedTerm, simplified = false, assets = { css: "", display: "", body: "", logoUrl: "" }, issuedAt = /* @__PURE__ */ new Date()) {
+    const rate = pct(parsePercent(nominalRate));
+    if (simplified) {
+      const top = Math.max(1, ...simulation.rows.map((row2) => row2.financed));
+      const rows = simulation.rows.map((r2) => `
+        <tr${r2.t === selectedTerm ? ' class="sel"' : ""} data-term="${r2.t}">
+          <td class="strong">${r2.t}x</td>
+          <td class="num" data-k="iof">${currency(r2.iof)}</td>
+          <td class="num" data-k="tac">${currency(simulation.tac)}</td>
+          <td class="num" data-k="financed">${currency(r2.financed)}</td>
+          <td class="num strong red" data-k="installment">${currency(r2.installment)}</td>
+          <td class="num" data-k="total">${currency(r2.total)}</td>
+        </tr>`).join("");
+      const minis = simulation.rows.map((r2) => {
+        const detailed = buildDetailedSchedule(r2);
+        return `<div class="mini${r2.t === selectedTerm ? " sel" : ""}"><b>${r2.t}x</b><span>${currency(r2.installment)}</span>${balanceChart([r2.financed, ...detailed.map((item) => item.balance)], r2.t, top, { width: 150, height: 150, padLeft: 2, padBottom: 2, labels: false, id: `g${r2.t}` })}<small>Total pago</small><em>${currency(r2.total)}</em></div>`;
+      }).join("");
+      return shell({ title: "Comparativo de prazos", mode: `${simulation.rows.length} prazos \xB7 ${simulation.rows[0]?.t ?? 0} a ${simulation.rows[simulation.rows.length - 1]?.t ?? 0} meses`, issuedAt }, `
+  <section class="facts">
+    <div><span class="eyebrow">Valor do equipamento</span><b data-k="val">${currency(simulation.val)}</b></div>
+    <div><span class="eyebrow">Entrada</span><b><span data-k="entry">${currency(simulation.entry)}</span> <small data-k="entryPercent">(${pct(simulation.entryPercent)})</small></b></div>
+    <div><span class="eyebrow">Saldo base</span><b data-k="principal">${currency(simulation.principal)}</b></div>
+    <div><span class="eyebrow">Taxa nominal mensal</span><b data-k="rate">${rate}</b></div>
+  </section>
+  <section class="box">
+    <div class="box__head"><h2>Proje\xE7\xF5es por prazo</h2><span>Proposta comercial para m\xFAltiplos prazos \xB7 mesma entrada, taxa e TAC</span></div>
+    <table>
+      <thead><tr><th>Prazo</th><th class="num">IOF estimado (PJ)</th><th class="num">TAC</th><th class="num">Total financiado</th><th class="num">Parcela mensal</th><th class="num">Total geral pago</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  </section>
+  <section class="box">
+    <div class="box__head"><h2>Evolu\xE7\xE3o do saldo devedor por prazo</h2><span>Mesma escala nos cinco gr\xE1ficos \xB7 do total financiado \xE0 quita\xE7\xE3o</span></div>
+    <div class="minis">${minis}</div>
+  </section>`, assets);
+    }
+    const row = selectSimulatorRow(simulation, selectedTerm);
+    const t = row.t;
+    const cost = row.total - simulation.principal;
+    const schedule = buildDetailedSchedule(row);
+    const line = (r2, balance) => `
+        <tr data-num="${r2.num}"><td>${r2.num}</td><td>${r2.date}</td><td class="num">${currency(r2.installment)}</td><td class="num">${currency(r2.amortization)}</td><td class="num">${currency(r2.interest)}</td><td class="num strong">${currency(balance)}</td></tr>`;
+    const scheduleHtml = t > 5 ? `${schedule.slice(0, 3).map((r2) => line(r2, r2.balance)).join("")}
+        <tr class="gap"><td colspan="6">\u2026 parcelas 4 a ${t - 1} seguem o mesmo cronograma \u2026</td></tr>${line(schedule[t - 1], 0)}` : schedule.map((r2) => line(r2, r2.balance)).join("");
+    return shell({ title: "Simula\xE7\xE3o de parcelamento", mode: `Prazo \xFAnico \xB7 ${t} meses`, issuedAt }, `
+  <section class="facts">
+    <div><span class="eyebrow">Valor do equipamento</span><b data-k="val">${currency(simulation.val)}</b></div>
+    <div><span class="eyebrow">Entrada comercial</span><b><span data-k="entry">${currency(simulation.entry)}</span> <small data-k="entryPercent">(${pct(simulation.entryPercent)})</small></b></div>
+    <div><span class="eyebrow">Taxa mensal</span><b data-k="rate">${rate}</b></div>
+    <div><span class="eyebrow">Prazo</span><b data-k="term">${t} meses</b></div>
+  </section>
+  <section class="hero">
+    <div class="hero__main">
+      <span class="eyebrow">Valor da parcela</span>
+      <p class="hero__v"><span data-k="installment">${currency(row.installment)}</span><small>/m\xEAs</small></p>
+      <p>${t} parcelas mensais \xB7 1\xBA vencimento em ${schedule[0]?.date ?? "\u2014"}</p>
+    </div>
+    <div class="kpis">
+      <div><span class="eyebrow">Valor financiado</span><b data-k="principal">${currency(simulation.principal)}</b></div>
+      <div><span class="eyebrow">Total a pagar</span><b data-k="total">${currency(row.total)}</b></div>
+      <div><span class="eyebrow">Custo total</span><b data-k="cost">${currency(cost)}</b></div>
+    </div>
+  </section>
+  <section class="box">
+    <div class="box__head"><h2>Evolu\xE7\xE3o do saldo devedor (${t} meses)</h2><span>Saldo inicial com IOF e TAC financiados \xB7 da libera\xE7\xE3o \xE0 quita\xE7\xE3o</span></div>
+    ${balanceChart([row.financed, ...schedule.map((item) => item.balance)], t, row.financed || 1e5, { width: 640, height: 250, padLeft: 78, padBottom: 18, labels: true, id: "gsel" })}
+  </section>
+  <section class="box">
+    <div class="box__head"><h2>Tabela de parcelas (valores aproximados)</h2><span>Resumo do cronograma</span></div>
+    <table>
+      <thead><tr><th>#</th><th>Vencimento</th><th class="num">Parcela</th><th class="num">Amortiza\xE7\xE3o</th><th class="num">Juros</th><th class="num">Saldo devedor</th></tr></thead>
+      <tbody>${scheduleHtml}</tbody>
+    </table>
+  </section>`, assets);
+  }
+
   // src/modules/operation/components/simulator-page.tsx
   var import_jsx_runtime19 = __toESM(require_jsx_runtime());
-  function buildPdfHtml(simulation, nominalRate, selectedTerm, simplified = false) {
-    const today = (/* @__PURE__ */ new Date()).toLocaleDateString("pt-BR");
-    const currency = (val) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(val);
-    const pct = (val) => `${val.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
-    if (simplified) {
-      const rowsHtml = simulation.rows.map(
-        (r2) => `
-        <tr>
-          <td><b>${r2.t}x</b></td>
-          <td>${currency(r2.iof)}</td>
-          <td>${currency(simulation.tac)}</td>
-          <td>${currency(r2.financed)}</td>
-          <td><b>${currency(r2.installment)}</b></td>
-          <td>${currency(r2.total)}</td>
-        </tr>`
-      ).join("");
-      return `
-      <!doctype html>
-      <html>
-      <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Simula\xE7\xE3o de Cr\xE9dito - Simulador IRMEN</title>
-        <style>
-          * { box-sizing: border-box; }
-          body { font-family: Arial, sans-serif; margin: 30px; color: #111; line-height: 1.4; }
-          .head { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 4px solid #ed1c24; padding-bottom: 15px; margin-bottom: 20px; }
-          .brand { font-weight: 900; font-size: 28px; letter-spacing: -1px; }
-          .brand span { color: #ed1c24; display: block; font-size: 32px; }
-          .muted { color: #555; font-size: 12px; margin-top: 4px; }
-          
-          .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; width: 100%; }
-          .card { border: 1px solid #ddd; border-radius: 6px; padding: 12px; background: #fafafa; min-height: 84px; display: flex; flex-direction: column; justify-content: space-between; }
-          .card span { display: block; font-size: 10px; text-transform: uppercase; color: #666; font-weight: bold; }
-          .card b { display: block; font-size: 17px; margin-top: auto; color: #000; white-space: nowrap; }
-          
-          table { width: 100%; border-collapse: collapse; margin-top: 25px; }
-          th { background: #111; color: #fff; font-size: 11px; text-transform: uppercase; padding: 10px; }
-          td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 11px; }
-          tr:nth-child(even) { background: #f9f9f9; }
-          
-          .footer { margin-top: 40px; border-top: 2px solid #ed1c24; padding-top: 10px; font-size: 11px; color: #666; display: flex; justify-content: space-between; width: 100%; }
-          .obs { font-size: 11px; color: #555; margin-top: 25px; border-left: 3px solid #ccc; padding-left: 10px; }
-        </style>
-      </head>
-      <body>
-        <div class="head">
-          <div>
-            <div class="brand">SIMULADOR<span>IRMEN</span></div>
-            <div class="muted">Plataforma Operacional de Cr\xE9dito</div>
-          </div>
-          <div style="text-align: right">
-            <h2 style="margin: 0; color: #111;">Simula\xE7\xE3o Comercial</h2>
-            <div class="muted">Gerado em ${today}</div>
-          </div>
-        </div>
-        
-        <div style="font-size: 12px; margin-bottom: 20px; color: #444;">
-          <b>Equipamento:</b> Proposta comercial para m\xFAltiplos prazos &nbsp;|&nbsp; 
-          <b>Taxa Mensal Base:</b> ${pct(parsePercent(nominalRate))}
-        </div>
-
-        <div class="card-grid">
-          <div class="card">
-            <span>Valor do Equipamento</span>
-            <b>${currency(simulation.val)}</b>
-          </div>
-          <div class="card">
-            <span>Entrada (${pct(simulation.entryPercent)})</span>
-            <b>${currency(simulation.entry)}</b>
-          </div>
-          <div class="card">
-            <span>Saldo Base</span>
-            <b>${currency(simulation.principal)}</b>
-          </div>
-          <div class="card">
-            <span>Taxa Nominal Mensal</span>
-            <b>${pct(parsePercent(nominalRate))}</b>
-          </div>
-        </div>
-        
-        <div style="font-weight: bold; font-size: 12px; margin-top: 20px; color: #111;">
-          Proje\xE7\xF5es por Prazo Estimadas (Tabela Comparativa)
-        </div>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Prazo</th>
-              <th>IOF Estimado (PJ)</th>
-              <th>TAC</th>
-              <th>Total Financiado</th>
-              <th>Parcela Mensal (PMT)</th>
-              <th>Total Geral Pago</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${rowsHtml}
-          </tbody>
-        </table>
-        
-        <p class="obs">
-          <b>Aten\xE7\xE3o:</b> Esta simula\xE7\xE3o comercial \xE9 de car\xE1ter meramente informativo e n\xE3o constitui proposta de cr\xE9dito vinculante. 
-          Os valores reais est\xE3o sujeitos \xE0 an\xE1lise de cr\xE9dito cadastral, garantias requeridas, taxas de CET (Custo Efetivo Total), 
-          pol\xEDticas vigentes e flutua\xE7\xE3o das taxas dos bancos parceiros na data da contrata\xE7\xE3o.
-        </p>
-        
-        <div class="footer">
-          <span>IRMEN M\xE1quinas e Equipamentos Ltda. - CNPJ: 12.345.678/0001-90</span>
-          <span>P\xE1gina 1 de 1</span>
-        </div>
-      </body>
-      </html>
-    `;
-    }
-    const selectedRow = simulation.rows.find((r2) => r2.t === selectedTerm) || simulation.rows[2];
-    const t = selectedRow.t;
-    const iof = selectedRow.iof;
-    const financed = selectedRow.financed;
-    const installment = selectedRow.installment;
-    const total = selectedRow.total;
-    const cost = total - simulation.principal;
-    let saldo = financed;
-    const schedule = selectedRow.schedule.map((row) => {
-      saldo = Math.max(0, saldo - row.principal);
-      return { num: row.num, date: row.date, installment: row.installment, amortization: row.principal, interest: row.interest, balance: saldo };
-    });
-    const width = 600;
-    const height = 130;
-    const paddingLeft = 90;
-    const paddingRight = 10;
-    const paddingTop = 10;
-    const paddingBottom = 20;
-    const graphWidth = width - paddingLeft - paddingRight;
-    const graphHeight = height - paddingTop - paddingBottom;
-    const coordinates = [];
-    coordinates.push(`${paddingLeft},${paddingTop}`);
-    for (let i = 1; i <= t; i++) {
-      const x2 = paddingLeft + i / t * graphWidth;
-      const y = paddingTop + graphHeight - schedule[i - 1].balance / financed * graphHeight;
-      coordinates.push(`${x2},${y}`);
-    }
-    const linePath2 = `M ${coordinates.join(" L ")}`;
-    const areaPath = `${linePath2} L ${paddingLeft + graphWidth},${paddingTop + graphHeight} L ${paddingLeft},${paddingTop + graphHeight} Z`;
-    let scheduleHtml = "";
-    if (t > 5) {
-      for (let i = 0; i < 3; i++) {
-        const r2 = schedule[i];
-        scheduleHtml += `
-        <tr>
-          <td>${r2.num}</td>
-          <td>${r2.date}</td>
-          <td>${currency(r2.installment)}</td>
-          <td>${currency(r2.amortization)}</td>
-          <td>${currency(r2.interest)}</td>
-          <td>${currency(r2.balance)}</td>
-        </tr>`;
-      }
-      scheduleHtml += `
-      <tr style="color: #666; font-style: italic; background: #fafafa;">
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>`;
-      const last = schedule[t - 1];
-      scheduleHtml += `
-      <tr>
-        <td>${last.num}</td>
-        <td>${last.date}</td>
-        <td>${currency(last.installment)}</td>
-        <td>${currency(last.amortization)}</td>
-        <td>${currency(last.interest)}</td>
-        <td>${currency(0)}</td>
-      </tr>`;
-    } else {
-      schedule.forEach((r2) => {
-        scheduleHtml += `
-        <tr>
-          <td>${r2.num}</td>
-          <td>${r2.date}</td>
-          <td>${currency(r2.installment)}</td>
-          <td>${currency(r2.amortization)}</td>
-          <td>${currency(r2.interest)}</td>
-          <td>${currency(r2.balance)}</td>
-        </tr>`;
-      });
-    }
-    return `
-    <!doctype html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Simula\xE7\xE3o de Cr\xE9dito - Simulador IRMEN</title>
-      <style>
-        * { box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; margin: 30px; color: #111; line-height: 1.4; }
-        .head { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 4px solid #ed1c24; padding-bottom: 15px; margin-bottom: 20px; }
-        .brand { font-weight: 900; font-size: 28px; letter-spacing: -1px; }
-        .brand span { color: #ed1c24; display: block; font-size: 32px; }
-        .muted { color: #555; font-size: 12px; margin-top: 4px; }
-        
-        .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; width: 100%; }
-        .card { border: 1px solid #ddd; border-radius: 6px; padding: 12px; background: #fafafa; min-height: 84px; display: flex; flex-direction: column; justify-content: space-between; }
-        .card span { display: block; font-size: 10px; text-transform: uppercase; color: #666; font-weight: bold; }
-        .card b { display: block; font-size: 17px; margin-top: auto; color: #000; white-space: nowrap; }
-        
-        .chart-box { border: 1px solid #ddd; border-radius: 6px; padding: 12px; background: #fafafa; margin: 20px 0; }
-        .chart-box h4 { margin: 0 0 10px 0; font-size: 11px; text-transform: uppercase; color: #111; font-weight: bold; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 25px; }
-        th { background: #111; color: #fff; font-size: 11px; text-transform: uppercase; padding: 10px; }
-        td { border: 1px solid #ddd; padding: 10px; text-align: left; font-size: 11px; }
-        tr:nth-child(even) { background: #f9f9f9; }
-        
-        .footer { margin-top: 40px; border-top: 2px solid #ed1c24; padding-top: 10px; font-size: 11px; color: #666; display: flex; justify-content: space-between; width: 100%; }
-        .obs { font-size: 11px; color: #555; margin-top: 25px; border-left: 3px solid #ccc; padding-left: 10px; }
-      </style>
-    </head>
-    <body>
-      <div class="head">
-        <div>
-          <div class="brand">SIMULADOR<span>IRMEN</span></div>
-          <div class="muted">Plataforma Operacional de Cr\xE9dito</div>
-        </div>
-        <div style="text-align: right">
-          <h2 style="margin: 0; color: #111;">Simula\xE7\xE3o de Parcelamento</h2>
-          <div class="muted">Gerado em ${today}</div>
-        </div>
-      </div>
-      
-      <div style="font-size: 12px; margin-bottom: 20px; color: #444;">
-        <b>Valor do Equipamento:</b> ${currency(simulation.val)} &nbsp;|&nbsp; 
-        <b>Entrada Comercial:</b> ${currency(simulation.entry)} (${pct(simulation.entryPercent)}) &nbsp;|&nbsp; 
-        <b>Taxa Mensal:</b> ${pct(parsePercent(nominalRate))} &nbsp;|&nbsp;
-        <b>Prazo Ativo:</b> ${t} meses
-      </div>
-
-      <div class="card-grid">
-        <div class="card">
-          <span>Valor Financiado</span>
-          <b>${currency(simulation.principal)}</b>
-        </div>
-        <div class="card">
-          <span>Valor da Parcela</span>
-          <b style="color: #ed1c24;">${currency(installment)}</b>
-        </div>
-        <div class="card">
-          <span>Total a Pagar</span>
-          <b>${currency(total)}</b>
-        </div>
-        <div class="card">
-          <span>Custo Total</span>
-          <b>${currency(cost)}</b>
-        </div>
-      </div>
-      
-      <div style="font-weight: bold; font-size: 12px; margin-top: 20px; color: #111;">
-        Tabela de Parcelas (Valores Aproximados)
-      </div>
-
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Vencimento</th>
-            <th>Parcela</th>
-            <th>Amortiza\xE7\xE3o</th>
-            <th>Juros</th>
-            <th>Saldo Devedor</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${scheduleHtml}
-        </tbody>
-      </table>
-
-      <div class="chart-box">
-        <h4>Evolu\xE7\xE3o do Saldo Devedor (${t} meses)</h4>
-        <svg viewBox="0 0 ${width} ${height}" style="width: 100%; height: auto; overflow: visible;">
-          <!-- Grid Lines -->
-          <line x1="${paddingLeft}" y1="${paddingTop}" x2="${width - paddingRight}" y2="${paddingTop}" stroke="#eee" stroke-width="1" stroke-dasharray="3" />
-          <line x1="${paddingLeft}" y1="${paddingTop + graphHeight / 2}" x2="${width - paddingRight}" y2="${paddingTop + graphHeight / 2}" stroke="#eee" stroke-width="1" stroke-dasharray="3" />
-          <line x1="${paddingLeft}" y1="${paddingTop + graphHeight}" x2="${width - paddingRight}" y2="${paddingTop + graphHeight}" stroke="#ccc" stroke-width="1" />
-
-          <!-- Y Axis Labels -->
-          <text x="${paddingLeft - 8}" y="${paddingTop + 4}" fill="#666" font-size="8" text-anchor="end">${currency(financed)}</text>
-          <text x="${paddingLeft - 8}" y="${paddingTop + graphHeight / 2 + 3}" fill="#666" font-size="8" text-anchor="end">${currency(financed / 2)}</text>
-          <text x="${paddingLeft - 8}" y="${paddingTop + graphHeight + 3}" fill="#666" font-size="8" text-anchor="end">R$ 0,00</text>
-
-          <!-- X Axis Labels -->
-          <text x="${paddingLeft}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">0</text>
-          <text x="${paddingLeft + graphWidth / 4}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">${Math.round(t / 4)}</text>
-          <text x="${paddingLeft + graphWidth / 2}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">${Math.round(t / 2)}</text>
-          <text x="${paddingLeft + 3 * graphWidth / 4}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">${Math.round(3 * t / 4)}</text>
-          <text x="${paddingLeft + graphWidth}" y="${paddingTop + graphHeight + 12}" fill="#666" font-size="8" text-anchor="middle">${t}</text>
-
-          <!-- Area -->
-          <path d="${areaPath}" fill="url(#gradPdf)" opacity="0.1" />
-
-          <!-- Line -->
-          <path d="${linePath2}" fill="none" stroke="#ed1c24" stroke-width="2" />
-
-          <defs>
-            <linearGradient id="gradPdf" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#ed1c24" />
-              <stop offset="100%" stop-color="#ed1c24" stop-opacity="0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      
-      <p class="obs">
-        <b>Aten\xE7\xE3o:</b> Esta simula\xE7\xE3o comercial \xE9 de car\xE1ter meramente informativo e n\xE3o constitui proposta de cr\xE9dito vinculante. 
-        Os valores reais est\xE3o sujeitos \xE0 an\xE1lise de cr\xE9dito cadastral, garantias requeridas, taxas de CET (Custo Efetivo Total), 
-        pol\xEDticas vigentes e flutua\xE7\xE3o das taxas dos bancos parceiros na data da contrata\xE7\xE3o.
-      </p>
-      
-      <div class="footer">
-        <span>IRMEN M\xE1quinas e Equipamentos Ltda. - CNPJ: 12.345.678/0001-90</span>
-        <span>P\xE1gina 1 de 1</span>
-      </div>
-    </body>
-    </html>
-  `;
-  }
   function formatCurrency(value) {
     return new Intl.NumberFormat("pt-BR", {
       currency: "BRL",
@@ -20589,7 +20515,7 @@
     );
     function handlePrint() {
       if (simulation.inputError) return alert(simulation.inputError);
-      const baseHtml = buildPdfHtml(simulation, nominalRate, selectedTerm, simplifiedPdf);
+      const baseHtml = buildSimulatorProposalHtml(simulation, nominalRate, selectedTerm, simplifiedPdf, collectProposalAssets());
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
       );
@@ -20611,9 +20537,9 @@
           "</body>",
           `  <script>
             window.onload = () => {
-              setTimeout(() => {
+              (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(() => {
                 window.print();
-              }, 500);
+              }, 500));
             };
           <\/script>
         </body>`
@@ -20631,8 +20557,8 @@
           "</body>",
           `  <script>
             window.onload = () => {
-              window.print();
               window.onafterprint = () => window.close();
+              (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => window.print());
             };
           <\/script>
         </body>`
@@ -20694,20 +20620,20 @@
   init_define_process_env();
   var import_react16 = __toESM(require_react());
   var import_jsx_runtime20 = __toESM(require_jsx_runtime());
-  function buildPdfHtml2(simulation, nominalRate, selectedTerm, simplified = false) {
+  function buildPdfHtml(simulation, nominalRate, selectedTerm, simplified = false) {
     const today = (/* @__PURE__ */ new Date()).toLocaleDateString("pt-BR");
-    const currency = (val) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(val);
-    const pct = (val) => `${val.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
+    const currency2 = (val) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(val);
+    const pct2 = (val) => `${val.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%`;
     if (simplified) {
       const rowsHtml = simulation.rows.map(
         (r2) => `
         <tr>
           <td><b>${r2.t}x</b></td>
-          <td>${currency(r2.iof)}</td>
-          <td>${currency(simulation.tac)}</td>
-          <td>${currency(r2.financed)}</td>
-          <td><b>${currency(r2.installment)}</b></td>
-          <td>${currency(r2.total)}</td>
+          <td>${currency2(r2.iof)}</td>
+          <td>${currency2(simulation.tac)}</td>
+          <td>${currency2(r2.financed)}</td>
+          <td><b>${currency2(r2.installment)}</b></td>
+          <td>${currency2(r2.total)}</td>
         </tr>`
       ).join("");
       return `
@@ -20753,25 +20679,25 @@
         
         <div style="font-size: 12px; margin-bottom: 20px; color: #444;">
           <b>Equipamento:</b> Proposta comercial para m\xFAltiplos prazos &nbsp;|&nbsp; 
-          <b>Taxa Mensal Base:</b> ${pct(parsePercent2(nominalRate))}
+          <b>Taxa Mensal Base:</b> ${pct2(parsePercent3(nominalRate))}
         </div>
 
         <div class="card-grid">
           <div class="card">
             <span>Valor do Equipamento</span>
-            <b>${currency(simulation.val)}</b>
+            <b>${currency2(simulation.val)}</b>
           </div>
           <div class="card">
-            <span>Entrada (${pct(simulation.entryPercent)})</span>
-            <b>${currency(simulation.entry)}</b>
+            <span>Entrada (${pct2(simulation.entryPercent)})</span>
+            <b>${currency2(simulation.entry)}</b>
           </div>
           <div class="card">
             <span>Saldo Base</span>
-            <b>${currency(simulation.principal)}</b>
+            <b>${currency2(simulation.principal)}</b>
           </div>
           <div class="card">
             <span>Taxa Nominal Mensal</span>
-            <b>${pct(parsePercent2(nominalRate))}</b>
+            <b>${pct2(parsePercent3(nominalRate))}</b>
           </div>
         </div>
         
@@ -20846,10 +20772,10 @@
         <tr>
           <td>${r2.num}</td>
           <td>${r2.date}</td>
-          <td>${currency(r2.installment)}</td>
-          <td>${currency(r2.amortization)}</td>
-          <td>${currency(r2.interest)}</td>
-          <td>${currency(r2.balance)}</td>
+          <td>${currency2(r2.installment)}</td>
+          <td>${currency2(r2.amortization)}</td>
+          <td>${currency2(r2.interest)}</td>
+          <td>${currency2(r2.balance)}</td>
         </tr>`;
       }
       scheduleHtml += `
@@ -20866,10 +20792,10 @@
       <tr>
         <td>${last.num}</td>
         <td>${last.date}</td>
-        <td>${currency(last.installment)}</td>
-        <td>${currency(last.amortization)}</td>
-        <td>${currency(last.interest)}</td>
-        <td>${currency(0)}</td>
+        <td>${currency2(last.installment)}</td>
+        <td>${currency2(last.amortization)}</td>
+        <td>${currency2(last.interest)}</td>
+        <td>${currency2(0)}</td>
       </tr>`;
     } else {
       schedule.forEach((r2) => {
@@ -20877,10 +20803,10 @@
         <tr>
           <td>${r2.num}</td>
           <td>${r2.date}</td>
-          <td>${currency(r2.installment)}</td>
-          <td>${currency(r2.amortization)}</td>
-          <td>${currency(r2.interest)}</td>
-          <td>${currency(r2.balance)}</td>
+          <td>${currency2(r2.installment)}</td>
+          <td>${currency2(r2.amortization)}</td>
+          <td>${currency2(r2.interest)}</td>
+          <td>${currency2(r2.balance)}</td>
         </tr>`;
       });
     }
@@ -20929,28 +20855,28 @@
       </div>
       
       <div style="font-size: 12px; margin-bottom: 20px; color: #444;">
-        <b>Valor do Equipamento:</b> ${currency(simulation.val)} &nbsp;|&nbsp; 
-        <b>Entrada Comercial:</b> ${currency(simulation.entry)} (${pct(simulation.entryPercent)}) &nbsp;|&nbsp; 
-        <b>Taxa Mensal:</b> ${pct(parsePercent2(nominalRate))} &nbsp;|&nbsp;
+        <b>Valor do Equipamento:</b> ${currency2(simulation.val)} &nbsp;|&nbsp; 
+        <b>Entrada Comercial:</b> ${currency2(simulation.entry)} (${pct2(simulation.entryPercent)}) &nbsp;|&nbsp; 
+        <b>Taxa Mensal:</b> ${pct2(parsePercent3(nominalRate))} &nbsp;|&nbsp;
         <b>Prazo Ativo:</b> ${t} meses
       </div>
 
       <div class="card-grid">
         <div class="card">
           <span>Valor Financiado</span>
-          <b>${currency(simulation.principal)}</b>
+          <b>${currency2(simulation.principal)}</b>
         </div>
         <div class="card">
           <span>Valor da Parcela</span>
-          <b style="color: #ed1c24;">${currency(installment)}</b>
+          <b style="color: #ed1c24;">${currency2(installment)}</b>
         </div>
         <div class="card">
           <span>Total a Pagar</span>
-          <b>${currency(total)}</b>
+          <b>${currency2(total)}</b>
         </div>
         <div class="card">
           <span>Custo Total</span>
-          <b>${currency(cost)}</b>
+          <b>${currency2(cost)}</b>
         </div>
       </div>
       
@@ -20983,8 +20909,8 @@
           <line x1="${paddingLeft}" y1="${paddingTop + graphHeight}" x2="${width - paddingRight}" y2="${paddingTop + graphHeight}" stroke="#ccc" stroke-width="1" />
 
           <!-- Y Axis Labels -->
-          <text x="${paddingLeft - 8}" y="${paddingTop + 4}" fill="#666" font-size="8" text-anchor="end">${currency(financed)}</text>
-          <text x="${paddingLeft - 8}" y="${paddingTop + graphHeight / 2 + 3}" fill="#666" font-size="8" text-anchor="end">${currency(financed / 2)}</text>
+          <text x="${paddingLeft - 8}" y="${paddingTop + 4}" fill="#666" font-size="8" text-anchor="end">${currency2(financed)}</text>
+          <text x="${paddingLeft - 8}" y="${paddingTop + graphHeight / 2 + 3}" fill="#666" font-size="8" text-anchor="end">${currency2(financed / 2)}</text>
           <text x="${paddingLeft - 8}" y="${paddingTop + graphHeight + 3}" fill="#666" font-size="8" text-anchor="end">R$ 0,00</text>
 
           <!-- X Axis Labels -->
@@ -21028,7 +20954,7 @@
     const parsed = Number(normalized);
     return Number.isFinite(parsed) ? parsed : 0;
   }
-  function parsePercent2(value) {
+  function parsePercent3(value) {
     const parsed = Number(value.replace(/[^\d,.-]/g, "").replace(",", "."));
     return Number.isFinite(parsed) ? parsed : 0;
   }
@@ -21171,7 +21097,7 @@
     const simulation = (0, import_react16.useMemo)(() => {
       const val = parseMoney2(equipmentValue);
       const entry = parseMoney2(entryValue);
-      const inputRate = parsePercent2(nominalRate) / 100;
+      const inputRate = parsePercent3(nominalRate) / 100;
       const tac = parseMoney2(tacValue);
       const inputError = [equipmentValue, entryValue, nominalRate, tacValue].every(hasCompleteSimulatorNumericInput2) ? validateSimulatorUiInput2({ assetValue: val, downPayment: entry, monthlyRate: inputRate, tac }) : "Preencha os valores da simula\xE7\xE3o.";
       if (inputError) {
@@ -21230,7 +21156,7 @@
     }, [equipmentValue, entryValue, nominalRate, tacValue]);
     function handlePrint() {
       if (simulation.inputError) return alert(simulation.inputError);
-      const baseHtml = buildPdfHtml2(simulation, nominalRate, selectedTerm, simplifiedPdf);
+      const baseHtml = buildPdfHtml(simulation, nominalRate, selectedTerm, simplifiedPdf);
       const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         navigator.userAgent
       );
