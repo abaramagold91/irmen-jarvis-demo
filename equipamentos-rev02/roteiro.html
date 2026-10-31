@@ -1,0 +1,23 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roteiro Centro de Equipamentos</title><style>:root{color-scheme:dark}body{margin:0;font:15px/1.55 system-ui,sans-serif;background:#06080c;color:#e8eef4}main{max-width:820px;margin:0 auto;padding:32px 16px}h1{font-size:24px;margin:0 0 6px}h2{font-size:14px;margin:24px 0 8px;color:#3fd0ff;letter-spacing:.08em;text-transform:uppercase}p,li{color:#a3b0bd}.warn{border:1px solid #f2b84b;background:rgba(242,184,75,.12);color:#e8eef4;padding:10px 14px;border-radius:10px}ul.l{padding:0;list-style:none;display:grid;gap:8px}ul.l a{display:block;padding:12px 14px;border:1px solid rgba(140,190,220,.24);border-radius:10px;color:#3fd0ff;text-decoration:none}ul.l a:hover{border-color:#3fd0ff}small{display:block;color:#8592a0}b{color:#e8eef4}</style></head><body><main>
+<p style="letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:#3fd0ff">Portal IRMEN · JARVIS · Centro de Equipamentos REV02 (versão final)</p><h1>Roteiro de teste · Centro de Equipamentos REV02</h1><p><b>Novo na REV02:</b> nos cards com zoom (categorias e vitrine de modelos) aparecem só as cantoneiras de baixo, que abrem para fora no hover. No destaque do modelo as quatro cantoneiras ficam na borda da imagem também no celular. A barra de categorias acompanha a rolagem logo abaixo do cabeçalho.</p>
+<p class="warn">Laboratório sem servidor. As categorias, os modelos e as especificações são os do cadastro canônico de equipamentos, com identificadores sintéticos. As imagens foram recortadas dos prints de produção: todas as 12 categorias e 8 escavadeiras (SY16C a SY135C). Os demais modelos mostram um quadro de prévia; no portal, cada um usa a imagem cadastrada. O botão Catálogo não baixa o PDF aqui.</p>
+<h2>Categorias · /equipments</h2><ul class="l">
+<li><a href="./">Grade de categorias · Dark<small>A categoria com mais modelos abre em destaque. Passe o mouse: o card sobe, acende as cantoneiras e um feixe de luz cruza a imagem. Clique em uma categoria: a imagem do card se transforma no banner da categoria.</small></a></li>
+<li><a href="./?theme=slate">Grade de categorias · Slate</a></li>
+<li><a href="./">Busca global<small>Digite “sy2” ou “SCP” no campo do topo. Enter abre o primeiro resultado direto no destaque do modelo.</small></a></li>
+</ul>
+<h2>Dentro da categoria</h2><ul class="l">
+<li><a href="./?categoria=escavadeira">Escavadeiras · Dark<small>Trilho com todas as categorias no topo, banner, indicadores e régua de porte (1,6 t a 125 t). Toque num ponto da régua para abrir o modelo.</small></a></li>
+<li><a href="./?theme=slate&categoria=escavadeira">Escavadeiras · Slate</a></li>
+<li><a href="./?categoria=escavadeira&modelo=SY55C">Destaque do modelo SY55C<small>Use as setas ← → do teclado ou Anterior/Próximo para percorrer a linha. Esc fecha.</small></a></li>
+<li><a href="./?categoria=empilhadeira">Empilhadeiras<small>Os rótulos acompanham o dado: capacidade de carga e carga útil, em vez de peso e caçamba. Troque para Tabela para comparar.</small></a></li>
+<li><a href="./?categoria=vibroacabadora">Vibroacabadoras<small>Largura de trabalho no lugar de peso.</small></a></li>
+<li><a href="./?categoria=manipulador-telescopico">Manipuladores telescópicos<small>Uma só máquina: sem régua, altura máxima como dado.</small></a></li>
+</ul>
+<h2>Celular</h2><ul class="l"><li><a href="./">Abra no celular<small>Uma coluna de categorias, dois pôsteres por linha, tabela em cartões e destaque em tela cheia.</small></a></li></ul>
+<h2>Estados</h2><ul class="l">
+<li><a href="./?s=carregando">Carregando</a></li><li><a href="./?s=erro">Erro ao carregar</a></li><li><a href="./?s=vazio">Sem categorias ativas</a></li>
+<li><a href="./?s=sem-imagem&categoria=escavadeira">Modelo sem imagem cadastrada</a></li>
+</ul>
+<p>Código: branch <b>jarvis/equipamentos-rev02</b> sobre a <b>jarvis/rev07</b>. A administração do catálogo (Configurações → Equipamentos) não muda.</p>
+</main></body></html>
