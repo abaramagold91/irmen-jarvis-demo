@@ -9754,29 +9754,6 @@ body {
       var(--jv-arc-soft),
       transparent 65%);
 }
-.jvs-hero__grid {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    linear-gradient(var(--jv-line) 1px, transparent 1px),
-    linear-gradient(
-      90deg,
-      var(--jv-line) 1px,
-      transparent 1px);
-  background-size: 28px 28px;
-  -webkit-mask-image:
-    radial-gradient(
-      ellipse 70% 100% at 25% 30%,
-      black,
-      transparent 75%);
-  mask-image:
-    radial-gradient(
-      ellipse 70% 100% at 25% 30%,
-      black,
-      transparent 75%);
-}
 .jvs-eyebrow {
   display: flex;
   align-items: center;
@@ -10380,7 +10357,6 @@ a.jvs-tile:focus-visible .jvs-corners {
   }
 }
 @media print {
-  .jvs-hero__grid,
   .jvs-hero::before {
     display: none;
   }

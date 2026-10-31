@@ -18725,17 +18725,14 @@
       window.addEventListener("irmen:authorization-changed", load);
       return () => window.removeEventListener("irmen:authorization-changed", load);
     }, [load]);
-    const hero = /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("header", { className: "jvs-panel jvs-hero", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "jvs-hero__grid", "aria-hidden": "true" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("p", { className: "jvs-eyebrow", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Settings, { size: 14, "aria-hidden": true }),
-          "Administra\xE7\xE3o"
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h1", { className: "jvs-title", children: "Configura\xE7\xF5es" }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "jvs-lead", children: "Fontes can\xF4nicas e controles administrativos dispon\xEDveis para o seu acesso." })
-      ] })
-    ] });
+    const hero = /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("header", { className: "jvs-panel jvs-hero", children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("p", { className: "jvs-eyebrow", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Settings, { size: 14, "aria-hidden": true }),
+        "Administra\xE7\xE3o"
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("h1", { className: "jvs-title", children: "Configura\xE7\xF5es" }),
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("p", { className: "jvs-lead", children: "Fontes can\xF4nicas e controles administrativos dispon\xEDveis para o seu acesso." })
+    ] }) });
     if (error) return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "jvs", children: [
       hero,
       /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { role: "alert", className: "jv-state jv-state--error", children: [
@@ -19126,7 +19123,6 @@
     ] }) });
     return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "jvs-admin adm-users", children: [
       /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("header", { className: "jvs-panel jvs-hero", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "jvs-hero__grid", "aria-hidden": "true" }),
         /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("p", { className: "jvs-eyebrow", children: [
             /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(KeyRound, { size: 14, "aria-hidden": true }),
@@ -20036,7 +20032,7 @@
     ] }) });
     return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "jvs-admin", children: [
       /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("header", { className: "jvs-panel jvs-hero adm-hero", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "jvs-hero__grid", "aria-hidden": "true" }),
+        "      ",
         /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "flex flex-wrap items-start justify-between gap-4", children: [
           /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { children: [
             /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("p", { className: "jvs-eyebrow", children: [
@@ -20577,7 +20573,6 @@
     const visible = filterBranches(rows, query, status), activeCount = rows.filter((r2) => r2.active).length;
     return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(DesignSurface, { children: [
       /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("header", { className: "ds-page-heading jvs-panel jvs-hero adm-branch-hero", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { className: "jvs-hero__grid", "aria-hidden": "true" }),
         /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("p", { className: "jvs-eyebrow", children: [
             /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(Building2, { size: 14, "aria-hidden": true }),
@@ -20884,7 +20879,7 @@
     ] }) });
     return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "jvs-admin", children: [
       /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("header", { className: "jvs-panel jvs-hero adm-hero", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "jvs-hero__grid", "aria-hidden": "true" }),
+        "      ",
         /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "flex items-start justify-between gap-4", children: [
           /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { children: [
             /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "jvs-eyebrow", children: "Configura\xE7\xF5es" }),
@@ -21339,7 +21334,7 @@
     if (mode === "administration" && !canAdmin) return /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", { className: "jvs-admin", children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", { className: "jv-state jv-state--denied", role: "alert", children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("strong", { children: "Acesso negado \xE0 administra\xE7\xE3o do cat\xE1logo." }) }) });
     return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "jvs-admin adm-catalog", children: [
       /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("header", { className: "jvs-panel jvs-hero adm-hero", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "jvs-hero__grid", "aria-hidden": "true" }),
+        "        ",
         /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "flex flex-wrap items-start justify-between gap-4", children: [
           /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { children: [
             /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "jvs-eyebrow", children: mode === "administration" ? "Configura\xE7\xF5es \xB7 Cat\xE1logo administrativo" : "Equipamentos" }),

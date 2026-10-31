@@ -17506,7 +17506,6 @@
     };
     const FeedbackIcon = exportTone === "good" ? CircleCheck : exportTone === "warn" ? TriangleAlert : CircleX;
     const hero = /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("header", { className: "jvs-panel jvs-hero", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "jvs-hero__grid", "aria-hidden": "true" }),
       /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("p", { className: "jvs-eyebrow", children: [
           /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(ChartColumn, { size: 14, "aria-hidden": "true" }),
@@ -18016,7 +18015,6 @@
     const dimensionKey = dimension === "seller" ? "sellerId" : dimension === "branch" ? "branchId" : "modalityKey";
     return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("section", { className: "ds-foundation bi-workspace", "aria-label": "BI comercial", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "ds-content", children: [
       /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("header", { className: "jvs-panel jvs-hero bi-hero", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "jvs-hero__grid", "aria-hidden": "true" }),
         /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("p", { className: "jvs-eyebrow", children: [
             /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(ChartColumn, { size: 14, "aria-hidden": true }),
