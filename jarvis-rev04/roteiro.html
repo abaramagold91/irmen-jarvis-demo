@@ -1,0 +1,20 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roteiro REV04</title><style>:root{color-scheme:dark}body{margin:0;font:15px/1.55 system-ui,sans-serif;background:#06080c;color:#e8eef4}main{max-width:820px;margin:0 auto;padding:32px 16px}h1{font-size:24px;margin:0 0 6px}h2{font-size:14px;margin:24px 0 8px;color:#3fd0ff;letter-spacing:.08em;text-transform:uppercase}p,li{color:#a3b0bd}.warn{border:1px solid #f2b84b;background:rgba(242,184,75,.12);color:#e8eef4;padding:10px 14px;border-radius:10px}ul.l{padding:0;list-style:none;display:grid;gap:8px}ul.l a{display:block;padding:12px 14px;border:1px solid rgba(140,190,220,.24);border-radius:10px;color:#3fd0ff;text-decoration:none}ul.l a:hover{border-color:#3fd0ff}small{display:block;color:#8592a0}code{color:#e8eef4}</style></head><body><main>
+<p style="letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:#3fd0ff">Portal IRMEN · JARVIS REV04</p><h1>Roteiro de teste da REV04</h1>
+<p class="warn">Laboratório com dados sintéticos. Nenhuma ação chega ao Supabase, à AVA real ou ao Storage. Os botões respondem com dublês: provam a tela, não a integração.</p>
+<p><b style="color:#e8eef4">Novo na REV04:</b> bolinha da AVA igual à do cabeçalho, com arcos girando; luz azul e vermelha correndo na borda inteira enquanto a AVA trabalha (painel do upload, Pergunte à AVA e o Ctrl K do cabeçalho); Pergunte à AVA em destaque; abas da fila no padrão; fila menos colorida; barra de rolagem JARVIS no Funil; Gerar Pedido Comercial na barra do topo da Nova Operação; endereço centralizado.</p>
+<h2>Nova Operação</h2><ul class="l">
+<li><a href="./?screen=new">Nova Operação · Dark<small>Consulte o CNPJ 11222333000181 para ver o bloco de dados do cliente; preencha e clique em Criar Operação para ver processando → sucesso → transição em 5 s.</small></a></li>
+<li><a href="./?screen=new&theme=slate">Nova Operação · Slate</a></li>
+<li><a href="./?screen=new&nop=createerror">Nova Operação · cenário de erro do servidor<small>Preencha tudo e crie: aparece o aviso vermelho com a mensagem do servidor.</small></a></li>
+</ul>
+<p>Dicas: clique em Criar Operação com a tela vazia para ver a filial obrigatória; escolha a filial e clique de novo para ver o aviso amarelo com as pendências. Ao anexar arquivos, observe o Ctrl K do cabeçalho animar enquanto a AVA analisa. Anexe arquivos com "revisao" ou "ata" no nome para ver revisão e documento fora do checklist no painel AVA.</p>
+<h2>Central AVA · /ava</h2><ul class="l">
+<li><a href="./?screen=ava">Central AVA · Dark<small>Clique numa pergunta do Pergunte à AVA para ver a luz correndo na borda. Revisar abre a gaveta com o seletor JARVIS.</small></a></li>
+<li><a href="./?screen=ava&theme=slate">Central AVA · Slate</a></li>
+<li><a href="./?screen=ava&ava=empty">Central AVA · fila vazia</a></li>
+<li><a href="./?screen=ava&ava=loading">Central AVA · carregando</a></li>
+</ul>
+<h2>Painel AVA no detalhe da operação</h2><ul class="l"><li><a href="./?screen=opdoc">Recorte de anexos da operação<small>Só a área de anexos; o restante do detalhe não faz parte desta revisão.</small></a></li></ul>
+<h2>Funil (dropdowns e barra de rolagem) e Mesa</h2><ul class="l"><li><a href="./?screen=funnel">Funil · filtros Vendedor e Status</a></li><li><a href="./?screen=requests">Solicitações à Mesa · decisão</a></li></ul>
+<p>O menu lateral navega entre Nova Operação, Funil comercial e AVA.</p>
+</main></body></html>
