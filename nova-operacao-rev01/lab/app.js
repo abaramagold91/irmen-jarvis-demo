@@ -25173,18 +25173,29 @@ Cancelar: manter cadastro atual`);
     const [activeStep, setActiveStep] = (0, import_react22.useState)("nop-cliente");
     const [dropActive, setDropActive] = (0, import_react22.useState)(false);
     (0, import_react22.useEffect)(() => {
-      if (typeof IntersectionObserver === "undefined") return;
-      const ratios = /* @__PURE__ */ new Map();
-      const observer = new IntersectionObserver((entries) => {
-        for (const entry of entries) ratios.set(entry.target.id, entry.isIntersecting ? entry.intersectionRatio : 0);
-        const current = NEW_OPERATION_STEPS.find((step) => (ratios.get(step.id) ?? 0) > 0);
-        if (current) setActiveStep(current.id);
-      }, { rootMargin: "-160px 0px -55% 0px", threshold: [0, 0.01, 0.2] });
-      for (const step of NEW_OPERATION_STEPS) {
-        const element = document.getElementById(step.id);
-        if (element) observer.observe(element);
-      }
-      return () => observer.disconnect();
+      let frame = 0;
+      const update = () => {
+        frame = 0;
+        const line = window.innerHeight * 0.4;
+        const atEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+        let current = NEW_OPERATION_STEPS[0].id;
+        for (const step of NEW_OPERATION_STEPS) {
+          const element = document.getElementById(step.id);
+          if (element && (element.getBoundingClientRect().top <= line || atEnd)) current = step.id;
+        }
+        setActiveStep(current);
+      };
+      const schedule = () => {
+        if (!frame) frame = window.requestAnimationFrame(update);
+      };
+      update();
+      window.addEventListener("scroll", schedule, { passive: true });
+      window.addEventListener("resize", schedule);
+      return () => {
+        window.cancelAnimationFrame(frame);
+        window.removeEventListener("scroll", schedule);
+        window.removeEventListener("resize", schedule);
+      };
     }, []);
     function goToStep(id) {
       const element = document.getElementById(id);

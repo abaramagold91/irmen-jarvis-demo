@@ -10132,7 +10132,7 @@ body {
   .nop-layout {
     grid-template-columns: minmax(0, 1fr) 280px;
   }
-  .nop-summary {
+  .nop-layout > .nop-summary {
     position: sticky;
     top: calc(var(--nop-sticky) + 76px);
   }
@@ -10961,6 +10961,7 @@ textarea.nop-input {
   animation: nop-pulse 1.4s ease-in-out infinite;
 }
 .nop-summary {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -10997,9 +10998,6 @@ textarea.nop-input {
   border-left: 0;
   border-top: 0;
   border-bottom-right-radius: var(--jv-radius);
-}
-.nop-summary {
-  position: relative;
 }
 .nop-summary h2 {
   margin: 0;
