@@ -1,0 +1,24 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roteiro Lote A</title><style>:root{color-scheme:dark}body{margin:0;font:15px/1.55 system-ui,sans-serif;background:#06080c;color:#e8eef4}main{max-width:820px;margin:0 auto;padding:32px 16px}h1{font-size:24px;margin:0 0 6px}h2{font-size:14px;margin:24px 0 8px;color:#3fd0ff;letter-spacing:.08em;text-transform:uppercase}p,li{color:#a3b0bd}.warn{border:1px solid #f2b84b;background:rgba(242,184,75,.12);color:#e8eef4;padding:10px 14px;border-radius:10px}ul.l{padding:0;list-style:none;display:grid;gap:8px}ul.l a{display:block;padding:12px 14px;border:1px solid rgba(140,190,220,.24);border-radius:10px;color:#3fd0ff;text-decoration:none}ul.l a:hover{border-color:#3fd0ff}small{display:block;color:#8592a0}b{color:#e8eef4}</style></head><body><main>
+<p style="letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:#3fd0ff">Portal IRMEN · JARVIS · Fechamento · Lote A REV01</p><h1>Roteiro de teste · Relatórios e BI comercial</h1>
+<p>As duas telas existentes no padrão JARVIS, montadas com o AppShell e os componentes reais do portal. O BI calcula os indicadores com o <b>domínio real</b> do produto (mesmas fórmulas, limites e rótulos) sobre registros sintéticos.</p>
+<p class="warn">Laboratório sem servidor. Nomes, CNPJs, valores e datas são sintéticos e não representam dados reais. A impressão é registrada pelo laboratório em vez de abrir uma janela, e o CSV é baixado com dados sintéticos.</p>
+<h2>Relatórios · /reports</h2><ul class="l">
+<li><a href="./?tela=relatorios">Relatórios · Dark<small>Filtros com o dropdown JARVIS (teclado: Tab, Enter, setas). “Limpar filtros” aparece quando há filtro ativo. Exportar CSV e Imprimir mostram o resultado na própria tela.</small></a></li>
+<li><a href="./?tela=relatorios&theme=slate">Relatórios · Slate</a></li>
+<li><a href="./?tela=relatorios&papel=vendedor">Perfil vendedor<small>O filtro de vendedor fica travado em “Filtrado para suas vendas”, como hoje.</small></a></li>
+<li><a href="./?tela=relatorios&popup=bloqueado">Impressão com pop-up bloqueado<small>Clique em Imprimir Relatório: aparece o aviso na tela, sem alert().</small></a></li>
+<li><a href="./?tela=relatorios&s=carregando">Carregando</a></li>
+<li><a href="./?tela=relatorios&s=erro">Erro de consulta</a></li>
+<li><a href="./?tela=relatorios&s=negado">Sem acesso</a></li>
+<li><a href="./?tela=relatorios&s=vazio">Sem registros</a></li>
+</ul>
+<h2>BI comercial · /commercial-bi</h2><ul class="l">
+<li><a href="./?tela=bi">BI comercial · Dark<small>Clique numa etapa do “Pipeline por etapa” ou numa barra da distribuição: vira filtro (chip) e a consulta recalcula. Clique de novo para desfazer. O segmentado troca Vendedor/Filial/Modalidade.</small></a></li>
+<li><a href="./?tela=bi&theme=slate">BI comercial · Slate</a></li>
+<li><a href="./?tela=bi&s=carregando">Carregando</a></li>
+<li><a href="./?tela=bi&s=erro">Erro de consulta (com “Tentar novamente”)</a></li>
+<li><a href="./?tela=bi&s=negado">Sem acesso</a></li>
+<li><a href="./?tela=bi&s=vazio">Nenhuma oportunidade</a></li>
+</ul>
+<p>Pacote: <code>entregas/jarvis-lote-a-relatorios-bi-rev01/</code> · branch <code>jarvis/fechamento-lote-a</code> sobre <code>45ccd7a</code>.</p>
+</main></body></html>
