@@ -1,0 +1,39 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roteiro Relatório PDF e Oportunidade</title><style>:root{color-scheme:dark}body{margin:0;font:15px/1.55 system-ui,sans-serif;background:#06080c;color:#e8eef4}main{max-width:820px;margin:0 auto;padding:32px 16px}h1{font-size:24px;margin:0 0 6px}h2{font-size:14px;margin:24px 0 8px;color:#3fd0ff;letter-spacing:.08em;text-transform:uppercase}p,li{color:#a3b0bd}.warn{border:1px solid #f2b84b;background:rgba(242,184,75,.12);color:#e8eef4;padding:10px 14px;border-radius:10px}ul.l{padding:0;list-style:none;display:grid;gap:8px}ul.l a{display:block;padding:12px 14px;border:1px solid rgba(140,190,220,.24);border-radius:10px;color:#3fd0ff;text-decoration:none}ul.l a:hover{border-color:#3fd0ff}small{display:block;color:#8592a0}b{color:#e8eef4}</style></head><body><main>
+<p style="letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:#3fd0ff">Portal IRMEN · JARVIS · REL-PDF-01 e OPP-VIS-01 REV01 (para aprovação)</p><h1>Roteiro de teste · PDF do Relatório e Nova/Editar Oportunidade</h1>
+<p>As duas telas rodam com o código da branch <b>jarvis/rel-pdf-opp-vis-rev01</b>. Ao lado de cada uma há a versão <b>antes</b> (base e8fff23) para comparar.</p>
+<p class="warn">Laboratório sem servidor e com dados sintéticos. Salvar, converter e excluir não gravam nada; só mostram o resultado que o portal mostraria. Nenhum e-mail é enviado e a Ava não é chamada.</p>
+<h2>OPP-VIS-01 · Nova / Editar Oportunidade</h2><ul class="l">
+<li><a href="oportunidade/?opp=new">Nova oportunidade · Dark<small>Mesmo padrão da Nova Operação: barra de etapas no topo (01 Cliente, 02 Equipamentos, 03 Condição, 04 Pré-elegibilidade) e resumo fixo à direita. Tente salvar vazio para ver as validações.</small></a></li>
+<li><a href="oportunidade/?opp=new&theme=slate">Nova oportunidade · Slate</a></li>
+<li><a href="oportunidade/?opp=edit">Editar oportunidade<small>Cliente, filial, vendedor e itens já preenchidos.</small></a></li>
+<li><a href="oportunidade/?opp=edit&s=longo">Editar com valores longos<small>Razão social, e-mail e valores grandes para ver se nada estoura.</small></a></li>
+<li><a href="oportunidade/?opp=convert">Converter em operação<small>Abre a confirmação da conversão.</small></a></li>
+<li><a href="oportunidade/?opp=convert-nobranch">Converter sem filial<small>Mostra o bloqueio por falta de filial.</small></a></li>
+<li><a href="oportunidade-antes/?opp=new">Antes · Nova oportunidade (como está hoje)</a></li>
+<li><a href="oportunidade-antes/?opp=edit">Antes · Editar oportunidade</a></li>
+</ul>
+<h2>Estados da oportunidade</h2><ul class="l">
+<li><a href="oportunidade/?opp=new&s=loading">Carregando<small>Listas de clientes, filiais e vendedores ficam carregando.</small></a></li>
+<li><a href="oportunidade/?opp=new&s=error">Erro ao carregar clientes<small>Busque um cliente para ver a mensagem.</small></a></li>
+<li><a href="oportunidade/?opp=edit&s=save-error">Erro ao salvar<small>Clique em Salvar.</small></a></li>
+<li><a href="oportunidade/?opp=edit&s=slow">Salvando (ocupado)<small>Clique em Salvar: o botão fica ocupado e o formulário não perde o que foi digitado.</small></a></li>
+</ul>
+<h2>REL-PDF-01 · PDF do Relatório de Operações</h2><ul class="l">
+<li><a href="relatorios/?n=1">Relatórios com 1 operação<small>Clique em <b>Imprimir Relatório</b>. Abre a janela de impressão real do navegador; escolha "Salvar como PDF" para ver o arquivo.</small></a></li>
+<li><a href="relatorios/?n=60">Relatórios com 60 operações<small>O PDF sai com várias páginas, cabeçalho da tabela repetido e "Página X de Y" no rodapé de cada uma.</small></a></li>
+<li><a href="relatorios/?n=137">Relatórios com 137 operações</a></li>
+<li><a href="relatorios/?n=60&theme=slate">Relatórios · Slate<small>O PDF é sempre claro; só a tela muda.</small></a></li>
+<li><a href="relatorios/?s=empty">Sem operações</a></li>
+<li><a href="relatorios-antes/?n=60">Antes · Relatórios com 60 operações (PDF de hoje)</a></li>
+</ul>
+<h2>PDFs já gerados (para abrir direto)</h2><ul class="l">
+<li><a href="pdfs/rel-01-uma-linha.pdf">Novo · 1 operação</a></li>
+<li><a href="pdfs/rel-02-60-linhas.pdf">Novo · 60 operações (5 páginas)</a></li>
+<li><a href="pdfs/rel-03-137-linhas.pdf">Novo · 137 operações (9 páginas)</a></li>
+<li><a href="pdfs/rel-04-vazio.pdf">Novo · sem operações</a></li>
+<li><a href="pdfs/rel-05-filtros.pdf">Novo · com filtros aplicados</a></li>
+<li><a href="pdfs/base-02-60-linhas.pdf">Antes · 60 operações</a></li>
+</ul>
+<h2>Celular</h2><ul class="l"><li><a href="oportunidade/?opp=new">Abra no celular<small>As etapas viram uma coluna e o resumo desce para o fim, com Salvar e Voltar.</small></a></li></ul>
+<p>Nada disso está no Portal. A integração na tela de Relatórios é a sugerida ao Codex, aplicada só neste laboratório.</p>
+</main></body></html>
