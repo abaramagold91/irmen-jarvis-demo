@@ -1,0 +1,28 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roteiro REV03 Correções</title><style>:root{color-scheme:dark}body{margin:0;font:15px/1.55 system-ui,sans-serif;background:#06080c;color:#e8eef4}main{max-width:820px;margin:0 auto;padding:32px 16px}h1{font-size:24px;margin:0 0 6px}h2{font-size:14px;margin:26px 0 8px;color:#3fd0ff;letter-spacing:.08em;text-transform:uppercase}p,li{color:#a3b0bd}.warn{border:1px solid #f2b84b;background:rgba(242,184,75,.12);color:#e8eef4;padding:10px 14px;border-radius:10px}ul.l{padding:0;list-style:none;display:grid;gap:8px}ul.l a{display:block;padding:12px 14px;border:1px solid rgba(140,190,220,.24);border-radius:10px;color:#3fd0ff;text-decoration:none}ul.l a:hover{border-color:#3fd0ff}small{display:block;color:#8592a0}b{color:#e8eef4}.n{display:inline-block;min-width:22px;color:#06080c;background:#3fd0ff;border-radius:6px;text-align:center;font-weight:700;margin-right:6px}</style></head><body><main>
+<p style="letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:#3fd0ff">Portal IRMEN · JARVIS · OPP-VIS-01 REV03 (só as correções 9 a 11)</p><h1>Roteiro de homologação · correções 9, 10 e 11</h1>
+<p>Só o que mudou depois da REV02. O restante (correções 1 a 8, relatório e celular) você já aprovou e não precisa testar de novo.</p>
+<p class="warn">Laboratório sem servidor e com dados sintéticos. Nada é gravado. A leitura da AVA é simulada (sem chamada paga) e os bancos têm selos sintéticos no lugar dos logos.</p>
+
+<h2><span class="n">9</span>Tipo de equipamento antes do modelo</h2><ul class="l">
+<li><a href="oportunidade/?opp=new">Nova oportunidade · bloco 02<small>Clique em Adicionar equipamento. O item abre com Tipo de Equipamento em “Selecione” e Modelo em “Selecione um modelo”, travado. Escolha “Rolos compactadores”: aparece a imagem da categoria e o Modelo lista só os rolos. Ao escolher o modelo, aparece a imagem da máquina, o Peso/Capacidade e “Baixar Catálogo PDF”. Trocar o tipo limpa o modelo.</small></a></li>
+<li><a href="oportunidade/?opp=edit">Editar oportunidade<small>Itens já salvos abrem com o tipo preenchido a partir do modelo.</small></a></li>
+</ul>
+
+<h2><span class="n">10</span>Painel AVA · Inteligência documental</h2><ul class="l">
+<li><a href="oportunidade/?opp=edit">Editar oportunidade · bloco 04<small>Logo ao abrir, o painel AVA aparece analisando: símbolo com os anéis girando, indicador animado ao lado do aviso e contadores (Documentos, Análises pendentes, Identificados, Revisões, Falhas). Em cerca de 10 segundos os arquivos terminam: “Contrato social” e “Balanço” ficam identificados e “Digitalização 0042.pdf” pede revisão.</small></a></li>
+<li><a href="oportunidade/?opp=edit">Classificar documento<small>Depois da leitura, clique em “Classificar documento” na Digitalização 0042, escolha um tipo e confirme: a linha passa para “Classificação humana” e os contadores mudam.</small></a></li>
+<li><a href="oportunidade/?opp=edit">Anexar um arquivo<small>Selecione qualquer PDF: ele entra em “AVA está analisando este documento…” e o painel volta a animar.</small></a></li>
+</ul>
+<p><small>Na criação ainda não existe oportunidade, então os arquivos ficam “Será enviado ao salvar” e o painel aparece quando a oportunidade abrir para edição, como no rascunho da Nova Operação.</small></p>
+
+<h2><span class="n">11</span>Campos sem valor de exemplo</h2><ul class="l">
+<li><a href="oportunidade/?opp=new">Nova oportunidade<small>Qtd vem 1; Ano mostra “Ano”; Valor Unitário e Entrada em R$ mostram “R$ 0,00” apagado; Entrada em % mostra “Informe o %”; Modalidade abre vazia (“Selecione uma modalidade”). Escolha Financiamento Bancário: Prazo mostra “Nº de parcelas”. Em Parcelamento IRMEN, Quantidade de parcelas também.</small></a></li>
+<li><a href="oportunidade/?opp=new">Salvar sem modalidade<small>Clique em Salvar: o quadro amarelo lista “Modalidade da Operação” entre as pendências.</small></a></li>
+</ul>
+
+<h2>Celular e tema</h2><ul class="l">
+<li><a href="oportunidade/?opp=edit">Abra no celular<small>Tipo e modelo um abaixo do outro, cada um com sua imagem.</small></a></li>
+<li><a href="oportunidade/?opp=edit&theme=slate">Editar oportunidade · Slate</a></li>
+</ul>
+<p>Código: branch <b>jarvis/rel-pdf-opp-vis-rev01</b>, commit 69de31c. Nada foi para o Portal.</p>
+</main></body></html>
