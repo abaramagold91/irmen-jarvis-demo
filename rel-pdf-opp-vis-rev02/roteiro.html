@@ -1,0 +1,59 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roteiro REV02 Correções</title><style>:root{color-scheme:dark}body{margin:0;font:15px/1.55 system-ui,sans-serif;background:#06080c;color:#e8eef4}main{max-width:820px;margin:0 auto;padding:32px 16px}h1{font-size:24px;margin:0 0 6px}h2{font-size:14px;margin:26px 0 8px;color:#3fd0ff;letter-spacing:.08em;text-transform:uppercase}p,li{color:#a3b0bd}.warn{border:1px solid #f2b84b;background:rgba(242,184,75,.12);color:#e8eef4;padding:10px 14px;border-radius:10px}ul.l{padding:0;list-style:none;display:grid;gap:8px}ul.l a{display:block;padding:12px 14px;border:1px solid rgba(140,190,220,.24);border-radius:10px;color:#3fd0ff;text-decoration:none}ul.l a:hover{border-color:#3fd0ff}small{display:block;color:#8592a0}b{color:#e8eef4}.n{display:inline-block;min-width:22px;color:#06080c;background:#3fd0ff;border-radius:6px;text-align:center;font-weight:700;margin-right:6px}</style></head><body><main>
+<p style="letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:#3fd0ff">Portal IRMEN · JARVIS · REL-PDF-01 e OPP-VIS-01 REV02 (correções para aprovação)</p><h1>Roteiro de verificação · as 8 correções</h1>
+<p>Cada bloco abaixo é uma correção que você pediu, com o link que leva direto ao ponto e o que conferir. A versão anterior (REV01) continua publicada para comparar.</p>
+<p class="warn">Laboratório sem servidor e com dados sintéticos. Salvar, converter, anexar e excluir não gravam nada. A leitura da AVA é simulada (sem chamada paga) e os bancos são instituições sintéticas com selos no lugar dos logos cadastrados.</p>
+
+<h2><span class="n">1</span>Imagem do modelo renderizada, sem fundo</h2><ul class="l">
+<li><a href="oportunidade/?opp=edit">Editar oportunidade · bloco 02<small>SY26U e SY135C aparecem com a imagem renderizada de fundo transparente, no mesmo quadro da Nova Operação. Troque o modelo para ver outras máquinas (escavadeiras, empilhadeiras, pás, caminhões, rolos…).</small></a></li>
+<li><a href="../rel-pdf-opp-vis-rev01/oportunidade/?opp=edit">REV01 · como estava (imagem de vitrine)</a></li>
+</ul>
+<p><small>No código, a Oportunidade já pedia a mesma mídia da Nova Operação (imagem compacta do cadastro). O erro estava no laboratório, que usava a imagem de vitrine; agora usa recortes sem fundo das imagens do próprio repositório. Cinco modelos sem imagem no repositório mostram o quadro de prévia.</small></p>
+
+<h2><span class="n">2</span>Máscara de moeda no preço unitário</h2><ul class="l">
+<li><a href="oportunidade/?opp=new">Nova oportunidade · bloco 02<small>Adicione um equipamento e digite 200000 no Preço unitário: aparece R$ 200.000,00 enquanto digita. Backspace apaga o último dígito; colar “200.000,50” também funciona.</small></a></li>
+</ul>
+
+<h2><span class="n">3</span>Modalidade na mesma ordem e com os mesmos nomes</h2><ul class="l">
+<li><a href="oportunidade/?opp=new">Abrir o seletor de Modalidade (bloco 03)<small>Consórcio IRMEN, Financiamento Bancário, Financiamento Próprio do Cliente, Outros, Parcelamento IRMEN, Recursos do Cliente / À Vista. A lista vem do mesmo catálogo da Nova Operação.</small></a></li>
+</ul>
+
+<h2><span class="n">4</span>Correntista Itaú como caixa de marcação</h2><ul class="l">
+<li><a href="oportunidade/?opp=convert">Conversão com Financiamento Bancário<small>A caixa “Cliente correntista Itaú?” aparece logo abaixo da Modalidade, alinhada. Troque para outra modalidade e ela some.</small></a></li>
+</ul>
+
+<h2><span class="n">5</span>Entrada em R$ e em %</h2><ul class="l">
+<li><a href="oportunidade/?opp=edit">Editar oportunidade · bloco 03<small>Digite 20 em “Entrada em %”: a Entrada em R$ é calculada sobre o total. Digite um valor em R$ e o % acompanha. Abaixo, Valor da Operação e Valor Financiado, como na Nova Operação. Prazo (com “x”) só em Financiamento Bancário e Quantidade de parcelas só em Parcelamento IRMEN.</small></a></li>
+<li><a href="oportunidade/?opp=edit&s=longo">Com valores longos</a></li>
+</ul>
+
+<h2><span class="n">6</span>Documentos e pré-elegibilidade no padrão da Nova Operação</h2><ul class="l">
+<li><a href="oportunidade/?opp=edit">Editar oportunidade · bloco 04<small>Quadro de upload JARVIS e, ao lado, os bancos com logo e status. Anexe um PDF (de preferência com “contrato”, “balanço” ou “faturamento” no nome): ele aparece “Em leitura pela AVA” e em poucos segundos “Identificado pela AVA”.</small></a></li>
+<li><a href="oportunidade/?opp=new">Nova oportunidade<small>Na criação o arquivo fica “Será enviado ao salvar” e sobe logo depois que a oportunidade é criada.</small></a></li>
+<li><a href="oportunidade/?opp=edit&s=upload-error">Envio recusado</a></li>
+</ul>
+<p><small>Onde os documentos ficam: a tela usa a rota de documentos da própria oportunidade, que grava no rascunho canônico dela (o mesmo tipo de rascunho da Nova Operação). Na conversão esse rascunho é promovido para a operação, e o que for anexado depois soma no mesmo lugar. Não há armazenamento novo nem mudança de backend.</small></p>
+
+<h2><span class="n">7</span>Quadros vermelho, amarelo e verde</h2><ul class="l">
+<li><a href="oportunidade/?opp=new">Amarelo · campos pendentes<small>Clique em Salvar com o formulário vazio.</small></a></li>
+<li><a href="oportunidade/?opp=new&s=error">Vermelho · erro do Cadastro Master<small>Abre sozinho ao carregar.</small></a></li>
+<li><a href="oportunidade/?opp=edit&s=save-error">Vermelho · erro ao salvar<small>Clique em Salvar oportunidade.</small></a></li>
+<li><a href="oportunidade/?opp=edit&s=slow">Processando<small>Clique em Salvar oportunidade.</small></a></li>
+<li><a href="oportunidade/?opp=new">Verde · oportunidade criada<small>Preencha cliente, filial e um equipamento com preço e salve: aparece o número da oportunidade e a contagem para abrir.</small></a></li>
+<li><a href="oportunidade/?opp=convert">Verde · conversão<small>Revisar confirmação → Confirmar encaminhamento.</small></a></li>
+<li><a href="oportunidade/?opp=convert-nobranch">Amarelo · conversão sem filial</a></li>
+</ul>
+
+<h2><span class="n">8</span>Rodapé do PDF do Relatório</h2><ul class="l">
+<li><a href="pdfs/rel-02-60-linhas.pdf">PDF com 60 operações (5 páginas)<small>Cada página só com “Página X de Y” à direita. A marca IRMEN · SANY · PORTAL · RELATÓRIOS fecha o documento, como no PDF do Simulador. Saiu a linha com data e hora.</small></a></li>
+<li><a href="pdfs/rel-03-137-linhas.pdf">PDF com 137 operações (9 páginas)</a></li>
+<li><a href="pdfs/rel-01-uma-linha.pdf">PDF com 1 operação</a></li>
+<li><a href="pdfs/rel-04-vazio.pdf">PDF sem operações</a></li>
+<li><a href="relatorios/?n=60">Gerar pela tela de Relatórios<small>Clique em Imprimir Relatório e escolha “Salvar como PDF”.</small></a></li>
+</ul>
+
+<h2>Celular e tema</h2><ul class="l">
+<li><a href="oportunidade/?opp=edit&theme=slate">Editar oportunidade · Slate</a></li>
+<li><a href="oportunidade/?opp=edit&s=longo">Abra no celular<small>Etapas em linha, campos em coluna e o resumo no fim, com Salvar e Voltar.</small></a></li>
+</ul>
+<p>Código: branch <b>jarvis/rel-pdf-opp-vis-rev01</b>, commit 2657e2f. Nada foi para o Portal.</p>
+</main></body></html>
