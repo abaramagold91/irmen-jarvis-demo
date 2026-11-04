@@ -14350,6 +14350,43 @@
 
   // ../../../tmp/claude-0/-home-user/6a85e62f-f60d-5629-b822-a929d71fc358/scratchpad/lab/entry-od.tsx
   init_define_process_env();
+
+  // src/modules/operation/contracts/lifecycle-transition.contract.ts
+  init_define_process_env();
+  var LIFECYCLE_TRANSITIONS = {
+    received: [
+      { command: "start_review", target: "in_review", label: "Em an\xE1lise", reasonRequired: false },
+      { command: "cancel", target: "cancelled", label: "Cancelada", reasonRequired: true }
+    ],
+    in_review: [
+      { command: "advance_formalization", target: "formalization", label: "Formaliza\xE7\xE3o", reasonRequired: false },
+      { command: "cancel", target: "cancelled", label: "Cancelada", reasonRequired: true }
+    ],
+    formalization: [
+      { command: "return_review", target: "in_review", label: "Em an\xE1lise", reasonRequired: true },
+      { command: "advance_billing", target: "billing", label: "Faturamento", reasonRequired: false },
+      { command: "cancel", target: "cancelled", label: "Cancelada", reasonRequired: true }
+    ],
+    billing: [
+      { command: "return_formalization", target: "formalization", label: "Formaliza\xE7\xE3o", reasonRequired: true },
+      { command: "close", target: "closed", label: "Encerrada", reasonRequired: false },
+      { command: "cancel", target: "cancelled", label: "Cancelada", reasonRequired: true }
+    ],
+    closed: [
+      { command: "reopen_closed", target: "billing", label: "Reabrir em Faturamento", reasonRequired: true }
+    ],
+    cancelled: [
+      { command: "reopen_cancelled", target: "received", label: "Reabrir na etapa anterior", reasonRequired: true }
+    ]
+  };
+  function lifecycleTransitionOptions(state) {
+    return LIFECYCLE_TRANSITIONS[state];
+  }
+  function authorizedLifecycleTransitionOptions(state, commands) {
+    return lifecycleTransitionOptions(state).filter((option) => commands.includes(option.command));
+  }
+
+  // ../../../tmp/claude-0/-home-user/6a85e62f-f60d-5629-b822-a929d71fc358/scratchpad/lab/entry-od.tsx
   var import_client = __toESM(require_client());
 
   // src/components/layout/app-shell.tsx
@@ -14730,6 +14767,15 @@
     ["path", { d: "M16 17H8", key: "z1uh3a" }]
   ]);
 
+  // node_modules/lucide-react/dist/esm/icons/file-x-2.js
+  init_define_process_env();
+  var FileX2 = createLucideIcon("FileX2", [
+    ["path", { d: "M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4", key: "1pf5j1" }],
+    ["path", { d: "M14 2v4a2 2 0 0 0 2 2h4", key: "tnqrlb" }],
+    ["path", { d: "m8 12.5-5 5", key: "b853mi" }],
+    ["path", { d: "m3 12.5 5 5", key: "1qls4r" }]
+  ]);
+
   // node_modules/lucide-react/dist/esm/icons/flag.js
   init_define_process_env();
   var Flag = createLucideIcon("Flag", [
@@ -14752,6 +14798,22 @@
     ["path", { d: "m8 8 6-6", key: "18bi4p" }],
     ["path", { d: "m9 7 8 8", key: "5jnvq1" }],
     ["path", { d: "m21 11-8-8", key: "z4y7zo" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/git-commit-horizontal.js
+  init_define_process_env();
+  var GitCommitHorizontal = createLucideIcon("GitCommitHorizontal", [
+    ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }],
+    ["line", { x1: "3", x2: "9", y1: "12", y2: "12", key: "1dyftd" }],
+    ["line", { x1: "15", x2: "21", y1: "12", y2: "12", key: "oup4p8" }]
+  ]);
+
+  // node_modules/lucide-react/dist/esm/icons/history.js
+  init_define_process_env();
+  var History = createLucideIcon("History", [
+    ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
+    ["path", { d: "M3 3v5h5", key: "1xhq8a" }],
+    ["path", { d: "M12 7v5l4 2", key: "1fdv2h" }]
   ]);
 
   // node_modules/lucide-react/dist/esm/icons/house.js
@@ -43535,8 +43597,8 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     ] });
   }
   function DesignState({ kind, title, children, action }) {
-    const alert2 = kind === "error" || kind === "denied";
-    return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: `jv-state jv-state--${kind}`, role: alert2 ? "alert" : "status", "aria-busy": kind === "loading" || void 0, children: [
+    const alert = kind === "error" || kind === "denied";
+    return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: `jv-state jv-state--${kind}`, role: alert ? "alert" : "status", "aria-busy": kind === "loading" || void 0, children: [
       kind === "loading" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(LoaderCircle, { className: "ds-spinner", size: 18, "aria-hidden": true }),
       /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("strong", { children: title }),
       children && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { children }),
@@ -43563,6 +43625,54 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       children,
       footer
     ] });
+  }
+  function DesignConfirmDialog({ options, busy = false, onConfirm, onCancel }) {
+    const id = (0, import_react18.useId)(), describedBy = `${id}-d`, inputId = `${id}-i`;
+    const [value, setValue] = (0, import_react18.useState)(options.input?.defaultValue ?? "");
+    const blocked = Boolean(options.input?.required && !value.trim());
+    const field = options.input && (options.input.multiline ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("textarea", { id: inputId, className: "jv-confirm__input", rows: 3, placeholder: options.input.placeholder, maxLength: options.input.maxLength, value, disabled: busy, onChange: (event2) => setValue(event2.target.value) }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("input", { id: inputId, className: "jv-confirm__input", placeholder: options.input.placeholder, maxLength: options.input.maxLength, value, disabled: busy, onChange: (event2) => setValue(event2.target.value), onKeyDown: (event2) => {
+      if (event2.key === "Enter" && !blocked && !busy) {
+        event2.preventDefault();
+        onConfirm(value.trim());
+      }
+    } }));
+    return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(DesignModalFrame, { onClose: onCancel, busy, labelledBy: id, className: "jv-dialog jv-confirm", role: "alertdialog", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "jv-confirm__head", children: [
+        options.icon && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "jv-confirm__icon", "aria-hidden": true, children: options.icon }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "jv-confirm__titles", children: [
+          options.eyebrow && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "jv-confirm__eyebrow", children: options.eyebrow }),
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { id, className: "jv-dialog__title", children: options.title })
+        ] })
+      ] }),
+      options.description && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { id: describedBy, className: "jv-confirm__desc", children: options.description }),
+      options.body,
+      options.input && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("label", { className: "jv-confirm__field", htmlFor: inputId, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { children: [
+          options.input.label,
+          options.input.required && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("i", { "aria-hidden": true, children: " *" })
+        ] }),
+        field
+      ] }),
+      options.note && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "jv-confirm__note", children: options.note }),
+      /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "jv-confirm__acts", children: [
+        !options.acknowledge && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DesignButton, { intent: "ghost", disabled: busy, onClick: onCancel, children: options.cancelLabel ?? "Cancelar" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DesignButton, { intent: "primary", beam: true, loading: busy, disabled: blocked, onClick: () => onConfirm(value.trim()), children: options.confirmLabel })
+      ] })
+    ] });
+  }
+  function useDesignConfirm() {
+    const [request, setRequest] = (0, import_react18.useState)(null);
+    const prompt = (0, import_react18.useCallback)((options) => new Promise((resolve) => setRequest({ options, resolve })), []);
+    const confirm = (0, import_react18.useCallback)(async (options) => await prompt(options) !== null, [prompt]);
+    const settle2 = (value) => {
+      request?.resolve(value);
+      setRequest(null);
+    };
+    const dialog = request ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DesignConfirmDialog, { options: request.options, onConfirm: (value) => settle2(value), onCancel: () => settle2(null) }) : null;
+    const inform = (0, import_react18.useCallback)((options) => {
+      void prompt({ ...options, confirmLabel: options.confirmLabel ?? "Entendi", acknowledge: true });
+    }, [prompt]);
+    return { confirm, prompt, inform, dialog };
   }
 
   // src/components/design-system/jv-select.tsx
@@ -44943,41 +45053,6 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   var completeOperationStageAction = (...a) => window.__lab.act("completeOperationStageAction", a, "operation-workflow.actions.ts");
   var loadOperationStageCompletionsAction = (...a) => window.__lab.act("loadOperationStageCompletionsAction", a, "operation-workflow.actions.ts");
 
-  // src/modules/operation/contracts/lifecycle-transition.contract.ts
-  init_define_process_env();
-  var LIFECYCLE_TRANSITIONS = {
-    received: [
-      { command: "start_review", target: "in_review", label: "Em an\xE1lise", reasonRequired: false },
-      { command: "cancel", target: "cancelled", label: "Cancelada", reasonRequired: true }
-    ],
-    in_review: [
-      { command: "advance_formalization", target: "formalization", label: "Formaliza\xE7\xE3o", reasonRequired: false },
-      { command: "cancel", target: "cancelled", label: "Cancelada", reasonRequired: true }
-    ],
-    formalization: [
-      { command: "return_review", target: "in_review", label: "Em an\xE1lise", reasonRequired: true },
-      { command: "advance_billing", target: "billing", label: "Faturamento", reasonRequired: false },
-      { command: "cancel", target: "cancelled", label: "Cancelada", reasonRequired: true }
-    ],
-    billing: [
-      { command: "return_formalization", target: "formalization", label: "Formaliza\xE7\xE3o", reasonRequired: true },
-      { command: "close", target: "closed", label: "Encerrada", reasonRequired: false },
-      { command: "cancel", target: "cancelled", label: "Cancelada", reasonRequired: true }
-    ],
-    closed: [
-      { command: "reopen_closed", target: "billing", label: "Reabrir em Faturamento", reasonRequired: true }
-    ],
-    cancelled: [
-      { command: "reopen_cancelled", target: "received", label: "Reabrir na etapa anterior", reasonRequired: true }
-    ]
-  };
-  function lifecycleTransitionOptions(state) {
-    return LIFECYCLE_TRANSITIONS[state];
-  }
-  function authorizedLifecycleTransitionOptions(state, commands) {
-    return lifecycleTransitionOptions(state).filter((option) => commands.includes(option.command));
-  }
-
   // src/modules/operation/view-models/operation-history.presentation.ts
   init_define_process_env();
 
@@ -45031,12 +45106,12 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     const cancelled = current === "cancelled", currentIndex = steps.findIndex((step) => step.state === current);
     return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("ol", { "aria-label": "Etapas do workflow operacional", className: "grid grid-cols-1 gap-3 py-1 sm:grid-flow-col sm:auto-cols-fr sm:grid-cols-none sm:gap-2", children: [
       steps.map((step, index) => {
-        const past = !cancelled && index < currentIndex, active2 = !cancelled && index === currentIndex, stage = resolveOperationalLifecyclePresentation(step.state).cssColor;
+        const past = !cancelled && index < currentIndex, active2 = !cancelled && index === currentIndex, stage2 = resolveOperationalLifecyclePresentation(step.state).cssColor;
         return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("li", { "aria-current": active2 ? "step" : void 0, className: "relative flex min-w-0 items-center gap-3 text-left sm:flex-col sm:gap-0 sm:text-center", children: [
           index < steps.length - 1 && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { "aria-hidden": "true", className: `absolute left-1/2 right-[-50%] top-3.5 hidden h-0.5 sm:block ${past ? "bg-emerald-500/60" : "bg-ui-800"}` }),
-          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { "aria-hidden": "true", className: `relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold shadow-md ${cancelled ? "border border-ui-800 bg-ui-900 text-ui-600" : active2 ? "text-white ring-2" : past ? "bg-emerald-600 text-primary-foreground ring-1 ring-emerald-500/30" : "border border-ui-800 bg-ui-900 text-ui-500"}`, style: active2 ? { background: stage, "--tw-ring-color": `color-mix(in srgb, ${stage} 30%, transparent)` } : void 0, children: past ? /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Check, { size: 12 }) : index + 1 }),
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { "aria-hidden": "true", className: `relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold shadow-md ${cancelled ? "border border-ui-800 bg-ui-900 text-ui-600" : active2 ? "text-white ring-2" : past ? "bg-emerald-600 text-primary-foreground ring-1 ring-emerald-500/30" : "border border-ui-800 bg-ui-900 text-ui-500"}`, style: active2 ? { background: stage2, "--tw-ring-color": `color-mix(in srgb, ${stage2} 30%, transparent)` } : void 0, children: past ? /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Check, { size: 12 }) : index + 1 }),
           /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("span", { className: "min-w-0 space-y-0.5 sm:mt-1.5", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: `block whitespace-normal break-words text-sm font-bold sm:text-[11px] ${active2 ? "" : past ? "text-ui-200" : "text-ui-500"}`, style: active2 ? { color: stage } : void 0, children: step.label }),
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: `block whitespace-normal break-words text-sm font-bold sm:text-[11px] ${active2 ? "" : past ? "text-ui-200" : "text-ui-500"}`, style: active2 ? { color: stage2 } : void 0, children: step.label }),
             /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: "block text-xs font-semibold uppercase text-ui-500 sm:text-[9px]", children: cancelled ? "Interrompida" : active2 ? step.state === "closed" ? "FIM" : "ATUAL" : past ? "OK" : "Pendente" })
           ] })
         ] }, step.state);
@@ -45113,6 +45188,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     const [command, setCommand] = (0, import_react29.useState)("");
     const [reason, setReason] = (0, import_react29.useState)("");
     const [pending, setPending] = (0, import_react29.useState)(false);
+    const [confirming, setConfirming] = (0, import_react29.useState)(null);
     const submitting = (0, import_react29.useRef)(false);
     const submission = (0, import_react29.useRef)(null);
     const [completion, setCompletion] = (0, import_react29.useState)(null);
@@ -45155,24 +45231,30 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
         props.notify("Motivo obrigat\xF3rio", "Informe o motivo desta transi\xE7\xE3o.", props.readModel.identity.operationNumber);
         return;
       }
-      if (!window.confirm(`Alterar a etapa para ${selected.label}?`)) return;
+      setConfirming(selected);
+    };
+    const perform = async () => {
+      const selected2 = confirming;
+      if (!selected2 || submitting.current) return;
       submitting.current = true;
       setPending(true);
       try {
-        const payload = JSON.stringify([props.operationId, selected.command, reason.trim()]);
+        const payload = JSON.stringify([props.operationId, selected2.command, reason.trim()]);
         if (submission.current?.payload !== payload) submission.current = { payload, id: crypto.randomUUID() };
         const result = await transitionOperationLifecycleAction({
           operationId: props.operationId,
-          command: selected.command,
+          command: selected2.command,
           reason: reason.trim() || void 0,
           correlationId: submission.current.id
         });
         if (!result.success) throw new Error(result.safeMessage);
-        props.notify("Etapa atualizada", `A opera\xE7\xE3o agora est\xE1 em ${selected.label}.`, props.readModel.identity.operationNumber);
+        props.notify("Etapa atualizada", `A opera\xE7\xE3o agora est\xE1 em ${selected2.label}.`, props.readModel.identity.operationNumber);
+        setConfirming(null);
         setCommand("");
         setReason("");
         await props.onReload();
       } catch (error62) {
+        setConfirming(null);
         props.notify("Erro", error62 instanceof Error ? error62.message : "N\xE3o foi poss\xEDvel alterar a etapa.", props.readModel.identity.operationNumber);
       } finally {
         submitting.current = false;
@@ -45258,7 +45340,67 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
           ] })
         ] })
       ] }),
-      props.footer
+      props.footer,
+      confirming && current && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+        DesignConfirmDialog,
+        {
+          busy: pending,
+          onCancel: () => {
+            if (!submitting.current) setConfirming(null);
+          },
+          onConfirm: () => void perform(),
+          options: lifecycleConfirmOptions(confirming, current, reason.trim())
+        }
+      )
+    ] });
+  }
+  function lifecycleConfirmOptions(option, current, reason) {
+    const kind = option.command === "cancel" ? "cancel" : option.command === "close" ? "close" : option.command.startsWith("return_") ? "return" : option.command.startsWith("reopen_") ? "reopen" : "advance";
+    const copy = {
+      advance: { title: "Confirmar avan\xE7o de etapa", verb: "Avan\xE7ar para", description: "A opera\xE7\xE3o passa para a pr\xF3xima etapa do workflow." },
+      return: { title: "Confirmar retorno de etapa", verb: "Voltar para", description: "A opera\xE7\xE3o volta para a etapa anterior do workflow." },
+      reopen: { title: "Confirmar reabertura", verb: "Reabrir em", description: "A opera\xE7\xE3o volta a ficar ativa no workflow." },
+      close: { title: "Confirmar encerramento", verb: "Encerrar opera\xE7\xE3o", description: "A opera\xE7\xE3o \xE9 conclu\xEDda e sai do fluxo ativo." },
+      cancel: { title: "Confirmar cancelamento", verb: "Cancelar opera\xE7\xE3o", description: "A opera\xE7\xE3o \xE9 encerrada sem progress\xE3o." }
+    }[kind];
+    return {
+      eyebrow: "Workflow da opera\xE7\xE3o",
+      title: copy.title,
+      description: copy.description,
+      icon: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(GitCommitHorizontal, { size: 20 }),
+      confirmLabel: kind === "close" || kind === "cancel" ? copy.verb : `${copy.verb} ${resolveOperationalLifecyclePresentation(option.target).label}`,
+      cancelLabel: "Manter etapa atual",
+      body: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(LifecycleTransitionSummary, { from: current, reason: option.reasonRequired || reason ? reason : null, to: option.target }),
+      note: /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)(import_jsx_runtime36.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(History, { "aria-hidden": true, size: 13 }),
+        "A mudan\xE7a fica registrada na Timeline com seu usu\xE1rio e hor\xE1rio."
+      ] })
+    };
+  }
+  function LifecycleTransitionSummary({ from, to, reason }) {
+    const origin = resolveOperationalLifecyclePresentation(from), target = resolveOperationalLifecyclePresentation(to);
+    return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "jv-confirm__body", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "lc-move", "aria-label": `De ${origin.label} para ${target.label}`, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("span", { className: "lc-move__stage", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("small", { children: "Etapa atual" }),
+          /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("b", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("i", { "aria-hidden": true, className: origin.orbClassName }),
+            origin.label
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(ArrowRight, { "aria-hidden": true, className: "lc-move__arrow", size: 18 }),
+        /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("span", { className: "lc-move__stage lc-move__stage--to", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("small", { children: "Nova etapa" }),
+          /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("b", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("i", { "aria-hidden": true, className: target.orbClassName }),
+            target.label
+          ] })
+        ] })
+      ] }),
+      reason && /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("p", { className: "lc-move__reason", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("small", { children: "Motivo" }),
+        reason
+      ] })
     ] });
   }
   function lifecycleTransitionSelectOption(option) {
@@ -45266,6 +45408,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     return { value: option.command, label: option.label, hint, color: resolveOperationalLifecyclePresentation(option.target).cssColor, tag: option.reasonRequired ? "Exige motivo" : void 0 };
   }
   function OperationCommunicationSection(props) {
+    const { inform, dialog: noticeDialog } = useDesignConfirm();
     const [message, setMessage] = (0, import_react29.useState)("");
     const [sending, setSending] = (0, import_react29.useState)(false);
     const [listening, setListening] = (0, import_react29.useState)(false);
@@ -45301,7 +45444,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     }, []);
     const toggleVoice = () => {
       if (!recognitionRef.current) {
-        alert("Reconhecimento de voz n\xE3o suportado neste navegador.");
+        inform({ eyebrow: "Comunica\xE7\xE3o", title: "Ditado por voz indispon\xEDvel", description: "Reconhecimento de voz n\xE3o suportado neste navegador.", icon: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(MicOff, { size: 20 }) });
         return;
       }
       if (listening) {
@@ -45372,6 +45515,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       }
     };
     return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("section", { "aria-label": "Comunica\xE7\xE3o da Opera\xE7\xE3o", className: "flex flex-col justify-between rounded-xl border border-ui-800/90 bg-ui-surface p-4 sm:p-5 shadow-sm space-y-4 min-w-0", children: [
+      noticeDialog,
       !props.hideInteractions && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(RelationshipInteractions, { query: { origin: { kind: "OP", id: props.operationId } } }),
       /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "flex items-center justify-between border-b border-ui-800/80 pb-3", children: [
@@ -47266,22 +47410,22 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   function LifecycleTrack({ lifecycle }) {
     const current = lifecycle?.state;
     const cancelled = current === "cancelled";
-    const currentIndex = STAGES.findIndex((stage) => stage.state === current);
+    const currentIndex = STAGES.findIndex((stage2) => stage2.state === current);
     const since = lifecycle?.enteredAt ? dateTimeLabel(lifecycle.enteredAt) : null;
     return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("div", { className: "odx-track", "data-cancelled": cancelled || void 0, children: [
       /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("ol", { "aria-label": "Etapas do workflow operacional", className: "odx-track__list", children: [
-        STAGES.map((stage, index) => {
+        STAGES.map((stage2, index) => {
           const past = !cancelled && index < currentIndex;
           const active2 = !cancelled && index === currentIndex;
-          const status2 = !lifecycle ? "Indispon\xEDvel" : cancelled ? "Interrompida" : active2 ? stage.state === "closed" ? "FIM" : "ATUAL" : past ? "OK" : "Pendente";
-          return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("li", { "aria-current": active2 ? "step" : void 0, className: "odx-track__step", "data-stage": stage.state, "data-state": active2 ? "active" : past ? "done" : "todo", children: [
+          const status2 = !lifecycle ? "Indispon\xEDvel" : cancelled ? "Interrompida" : active2 ? stage2.state === "closed" ? "FIM" : "ATUAL" : past ? "OK" : "Pendente";
+          return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("li", { "aria-current": active2 ? "step" : void 0, className: "odx-track__step", "data-stage": stage2.state, "data-state": active2 ? "active" : past ? "done" : "todo", children: [
             /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { "aria-hidden": "true", className: "odx-track__bar" }),
             /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("span", { className: "odx-track__label", children: [
               /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { "aria-hidden": "true", className: "odx-track__icon", children: past ? /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Check, { size: 11 }) : active2 ? /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(CircleDot, { size: 11 }) : index + 1 }),
-              stage.label
+              stage2.label
             ] }),
             /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { className: "odx-track__status", children: status2 })
-          ] }, stage.state);
+          ] }, stage2.state);
         }),
         cancelled && /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("li", { "aria-current": "step", className: "odx-track__step", "data-state": "cancelled", children: [
           /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { "aria-hidden": "true", className: "odx-track__bar" }),
@@ -47999,6 +48143,8 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     return null;
   }
   function BankChecklistDetailDialog({ bank: bank2, checklist: checklist2, eligibilityState, filter, mode, onClose, onFilterChange, onReload, canReview = false, open: open2 }) {
+    const { prompt, dialog: confirmDialog } = useDesignConfirm();
+    const [reviewMessage, setReviewMessage] = (0, import_react41.useState)(null);
     const [viewer, setViewer] = (0, import_react41.useState)(null);
     const [viewerMessage, setViewerMessage] = (0, import_react41.useState)(null);
     const openDocument = async (documentId) => {
@@ -48019,6 +48165,8 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     };
     return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { "aria-modal": "true", className: "fixed inset-0 z-[80] flex items-end justify-center bg-black/75 p-0 backdrop-blur-sm sm:items-center sm:p-6", role: "dialog", children: [
       /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("section", { className: "flex max-h-[96dvh] w-full max-w-4xl flex-col overflow-hidden rounded-t-xl border border-ui-700 bg-ui-surface shadow-2xl sm:max-h-[88dvh] sm:rounded-xl", children: [
+        confirmDialog,
+        reviewMessage && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("p", { role: "alert", className: "border-b border-ui-800 px-4 py-2 text-xs text-tone-red-300", children: reviewMessage }),
         /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("header", { className: "flex shrink-0 items-center gap-3 border-b border-ui-800 p-4 sm:p-5", children: [
           /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(FinancialInstitutionIdentity, { institutionId: bank2.id, logoAlt: bank2.logoAlt, logoRef: bank2.logoRef, name: bank2.name, size: "standard", updatedAt: bank2.updatedAt, variant: "frameless" }),
           /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "min-w-0 flex-1", children: [
@@ -48069,11 +48217,12 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
                   /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("span", { className: "text-ui-300", children: requirement.review.reason })
                 ] }),
                 mode === "PERSISTED" && canReview && ["PROVIDED", "ACCEPTED"].includes(requirement.state) && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("button", { className: "mt-2 rounded border border-ui-700 px-2 py-1 text-[10px] font-semibold text-ui-300 hover:border-red-500 hover:text-tone-red-400", onClick: async () => {
-                  const reason = window.prompt("Informe o motivo da rejei\xE7\xE3o documental:")?.trim();
+                  setReviewMessage(null);
+                  const reason = (await prompt({ eyebrow: "Checklist documental", title: "Marcar documento como inadequado", description: requirement.label ? `${requirement.label}: o documento volta a ficar pendente e o motivo aparece na revis\xE3o.` : "O documento volta a ficar pendente e o motivo aparece na revis\xE3o.", icon: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(FileX2, { size: 20 }), input: { label: "Motivo da rejei\xE7\xE3o documental", placeholder: "Ex.: documento ileg\xEDvel, fora da validade", required: true, multiline: true, maxLength: 500 }, confirmLabel: "Marcar como inadequado", cancelLabel: "Voltar" }))?.trim();
                   if (!reason) return;
                   const result = await rejectOperationDocumentRequirementAction(requirement.id, reason);
                   if (!result.success) {
-                    window.alert(result.safeMessage);
+                    setReviewMessage(result.safeMessage);
                     return;
                   }
                   await onReload?.();
@@ -49402,14 +49551,29 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   var ok = (data, ms = 60) => new Promise((r2) => setTimeout(() => r2({ success: true, data }), ms));
   var nBanks = Number(q.get("banks") ?? 4);
   var relato = q.get("relato");
+  var stage = q.get("etapa") ?? "in_review";
+  var LABEL = { received: "Recebida", in_review: "Em an\xE1lise", formalization: "Formaliza\xE7\xE3o", billing: "Faturamento", closed: "Encerrada", cancelled: "Cancelada" };
+  var ALL_COMMANDS = Array.from(new Set(Object.values(LIFECYCLE_TRANSITIONS).flat().map((o) => o.command)));
+  var moves = [];
   var acts = {
+    transitionOperationLifecycleAction: (a) => {
+      const { command, reason } = a[0];
+      const option = LIFECYCLE_TRANSITIONS[stage].find((o) => o.command === command);
+      if (!option) return ok({}, 300).then(() => ({ success: false, safeMessage: "Transi\xE7\xE3o n\xE3o permitida." }));
+      const from = stage;
+      stage = option.target;
+      moves.unshift({ from, to: stage, reason, at: (/* @__PURE__ */ new Date()).toISOString() });
+      return new Promise((r2) => setTimeout(() => r2({ success: true }), 700));
+    },
     loadOperationDetailAction: (a) => {
       const m = buildFixture(a[0], nBanks);
       if (relato === "longo") m.initialReport = LONG;
+      m.lifecycle = { ...m.lifecycle, state: stage, label: LABEL[stage], enteredAt: moves[0]?.at ?? m.lifecycle.enteredAt, lastTransitionAt: moves[0]?.at ?? m.lifecycle.lastTransitionAt };
+      m.timeline = [...moves.map((mv, i) => ({ id: "mv" + (moves.length - i), action: "Status", title: `Opera\xE7\xE3o em ${LABEL[mv.to].toLowerCase()}`, description: `${LABEL[mv.from]} \u2192 ${LABEL[mv.to]}${mv.reason ? " \xB7 Motivo: " + mv.reason : ""}`, actor: { id: "u1", displayName: "Pessoa Sint\xE9tica", role: "coordenador_credito" }, previousStatus: mv.from, newStatus: mv.to, occurredAt: mv.at })), ...m.timeline];
       return ok({ readModel: m });
     },
     loadOperationCommercialResolutionAction: () => ok({ operationId: OP_ID, version: 7, state: "in_review", canRecordLoss: true, canResume: false, pendingRequest: false, opportunityId: "opp-421" }),
-    loadOperationLifecyclePermissions: () => Promise.resolve({ success: true, commands: ["advance_formalization", "cancel"] }),
+    loadOperationLifecyclePermissions: () => Promise.resolve({ success: true, commands: ALL_COMMANDS }),
     loadOperationModalityContextAction: () => ok({
       modalityKey: "bank_financing",
       updatedAt: "2026-10-21T12:00:00Z",
@@ -49548,9 +49712,12 @@ lucide-react/dist/esm/icons/file-archive.js:
 lucide-react/dist/esm/icons/file-check.js:
 lucide-react/dist/esm/icons/file-spreadsheet.js:
 lucide-react/dist/esm/icons/file-text.js:
+lucide-react/dist/esm/icons/file-x-2.js:
 lucide-react/dist/esm/icons/flag.js:
 lucide-react/dist/esm/icons/gauge.js:
 lucide-react/dist/esm/icons/gavel.js:
+lucide-react/dist/esm/icons/git-commit-horizontal.js:
+lucide-react/dist/esm/icons/history.js:
 lucide-react/dist/esm/icons/house.js:
 lucide-react/dist/esm/icons/inbox.js:
 lucide-react/dist/esm/icons/info.js:

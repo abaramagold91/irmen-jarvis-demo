@@ -7424,6 +7424,226 @@ html::-webkit-scrollbar-thumb {
   padding:0;
 }
 
+/* ── Confirmation (DesignConfirmDialog) ── neutral by design: no approve/reject/warning hue, arc only as the system accent. */
+
+.jv-confirm {
+  position: relative;
+  width: min(500px, 100%);
+  gap: 16px;
+  padding: 22px 22px 18px;
+  overflow: hidden;
+}
+
+.jv-confirm::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--jv-arc), transparent);
+  opacity: .7;
+}
+
+.jv-confirm__head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.jv-confirm__icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  border-radius: 12px;
+  border: 1px solid var(--jv-line-2);
+  background: linear-gradient(180deg, var(--jv-bg-2), var(--jv-panel-solid));
+  color: var(--jv-fg-2);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--jv-fg) 8%, transparent);
+}
+
+.jv-confirm__titles {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.jv-confirm__eyebrow {
+  font: 700 10.5px var(--jv-f-display);
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--jv-fg-3);
+}
+
+.jv-confirm__desc {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--jv-fg-2);
+}
+
+.jv-confirm__note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  font-size: 12px;
+  color: var(--jv-fg-3);
+}
+
+.jv-confirm__acts {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--jv-line);
+}
+
+.jv-confirm__list {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 10px 12px;
+  list-style: none;
+  border: 1px solid var(--jv-line);
+  border-radius: 10px;
+  background: var(--jv-bg-2);
+  font-size: 12.5px;
+}
+
+.jv-confirm__list li {
+  display: grid;
+  gap: 2px;
+}
+
+.jv-confirm__list b {
+  font: 700 10.5px var(--jv-f-display);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--jv-fg-3);
+}
+
+.jv-confirm__list span {
+  color: var(--jv-fg-2);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 480px) {
+  .jv-confirm__acts > * {
+    flex: 1 1 100%;
+  }
+}
+
+/* Lifecycle transition summary inside the confirmation: stage colours only on the orbs, frame stays neutral. */
+
+.lc-move {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: stretch;
+  gap: 10px;
+}
+
+.lc-move__stage {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--jv-line);
+  border-radius: 10px;
+  background: var(--jv-bg-2);
+}
+
+.lc-move__stage--to {
+  border-color: var(--jv-line-2);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--jv-fg) 4%, var(--jv-bg-2)), var(--jv-bg-2));
+}
+
+.lc-move__stage small, .lc-move__reason small {
+  font: 700 10px var(--jv-f-display);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--jv-fg-3);
+}
+
+.lc-move__stage b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--jv-fg);
+  overflow-wrap: anywhere;
+}
+
+.lc-move__stage b i {
+  width: 10px;
+  height: 10px;
+  flex: none;
+  border-radius: 50%;
+}
+
+.lc-move__arrow {
+  align-self: center;
+  color: var(--jv-fg-3);
+}
+
+.lc-move__reason {
+  display: grid;
+  gap: 4px;
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  border-left: 2px solid var(--jv-line-2);
+  background: var(--jv-bg-2);
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  color: var(--jv-fg-2);
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 420px) {
+  .lc-move {
+    grid-template-columns: 1fr;
+  }
+
+  .lc-move__arrow {
+    justify-self: center;
+    transform: rotate(90deg);
+  }
+}
+
+.jv-confirm__field {
+  display: grid;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--jv-fg-2);
+}
+
+.jv-confirm__field i {
+  font-style: normal;
+  color: var(--jv-fg-3);
+}
+
+.jv-confirm__input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--jv-line-2);
+  border-radius: 10px;
+  background: var(--jv-bg-2);
+  color: var(--jv-fg);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 400;
+  resize: vertical;
+}
+
+.jv-confirm__input:focus {
+  outline: none;
+  border-color: var(--jv-arc);
+  box-shadow: 0 0 0 3px var(--jv-arc-soft);
+}
+
 :root {
   --ui-50: 250 250 250;
   --ui-100: 244 244 245;
