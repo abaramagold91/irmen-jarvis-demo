@@ -43456,7 +43456,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     warning: "border-amber-500/35 bg-amber-500/10 text-tone-amber-300 [[data-theme=irmen-executive-light]_&]:text-amber-800",
     danger: "border-red-500/30 bg-red-500/10 text-tone-red-300 [[data-theme=irmen-executive-light]_&]:text-red-800",
     deep_blue: "border-blue-500/25 bg-blue-500/10 text-tone-blue-400 [[data-theme=irmen-executive-light]_&]:text-blue-800",
-    violet: "border-violet-500/30 bg-violet-500/10 text-tone-violet-300 [[data-theme=irmen-executive-light]_&]:text-violet-800"
+    magenta: "border-fuchsia-500/30 bg-fuchsia-500/10 text-fuchsia-300 [[data-theme=irmen-executive-light]_&]:text-fuchsia-800"
   };
   var solidToneClasses = {
     neutral: "border-zinc-500 bg-zinc-700 text-white",
@@ -43470,7 +43470,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     warning: "border-amber-300 bg-amber-400 text-amber-950",
     danger: "border-red-400 bg-red-500 text-white",
     deep_blue: "border-blue-400 bg-blue-700 text-white",
-    violet: "border-violet-400 bg-violet-600 text-white"
+    magenta: "border-fuchsia-400 bg-fuchsia-600 text-white"
   };
   var icons = {
     inbox: Inbox,
@@ -44474,7 +44474,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   var operationalContracts = {
     received: contract("received", "Recebida", "info" /* Info */, "inbox"),
     in_review: contract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "search", "strong"),
-    formalization: contract("formalization", "Formaliza\xE7\xE3o", "violet" /* Violet */, "check-partial"),
+    formalization: contract("formalization", "Formaliza\xE7\xE3o", "magenta" /* Magenta */, "check-partial"),
     billing: contract("billing", "Faturamento", "conditional" /* Conditional */, "clock", "strong"),
     closed: contract("closed", "Encerrada", "positive" /* Positive */, "check"),
     cancelled: contract("cancelled", "Cancelada", "cancelled" /* Cancelled */, "ban")
@@ -44490,7 +44490,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   var lifecycleContracts = {
     received: lifecycleContract("received", "Recebida", "info" /* Info */, "#8C93FF"),
     in_review: lifecycleContract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "#3FD0FF"),
-    formalization: lifecycleContract("formalization", "Formaliza\xE7\xE3o", "violet" /* Violet */, "#B39BFF"),
+    formalization: lifecycleContract("formalization", "Formaliza\xE7\xE3o", "magenta" /* Magenta */, "#F472D0"),
     billing: lifecycleContract("billing", "Faturamento", "conditional" /* Conditional */, "#2FD3C0"),
     closed: lifecycleContract("closed", "Encerrada", "positive" /* Positive */, "#34C38F"),
     cancelled: lifecycleContract("cancelled", "Cancelada", "cancelled" /* Cancelled */, "#8592A0")
@@ -45031,12 +45031,12 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     const cancelled = current === "cancelled", currentIndex = steps.findIndex((step) => step.state === current);
     return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("ol", { "aria-label": "Etapas do workflow operacional", className: "grid grid-cols-1 gap-3 py-1 sm:grid-flow-col sm:auto-cols-fr sm:grid-cols-none sm:gap-2", children: [
       steps.map((step, index) => {
-        const past = !cancelled && index < currentIndex, active2 = !cancelled && index === currentIndex;
+        const past = !cancelled && index < currentIndex, active2 = !cancelled && index === currentIndex, stage = resolveOperationalLifecyclePresentation(step.state).cssColor;
         return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("li", { "aria-current": active2 ? "step" : void 0, className: "relative flex min-w-0 items-center gap-3 text-left sm:flex-col sm:gap-0 sm:text-center", children: [
           index < steps.length - 1 && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { "aria-hidden": "true", className: `absolute left-1/2 right-[-50%] top-3.5 hidden h-0.5 sm:block ${past ? "bg-emerald-500/60" : "bg-ui-800"}` }),
-          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { "aria-hidden": "true", className: `relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold shadow-md ${cancelled ? "border border-ui-800 bg-ui-900 text-ui-600" : active2 ? "bg-blue-600 text-foreground ring-2 ring-blue-500/30" : past ? "bg-emerald-600 text-primary-foreground ring-1 ring-emerald-500/30" : "border border-ui-800 bg-ui-900 text-ui-500"}`, children: past ? /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Check, { size: 12 }) : index + 1 }),
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { "aria-hidden": "true", className: `relative z-10 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-bold shadow-md ${cancelled ? "border border-ui-800 bg-ui-900 text-ui-600" : active2 ? "text-white ring-2" : past ? "bg-emerald-600 text-primary-foreground ring-1 ring-emerald-500/30" : "border border-ui-800 bg-ui-900 text-ui-500"}`, style: active2 ? { background: stage, "--tw-ring-color": `color-mix(in srgb, ${stage} 30%, transparent)` } : void 0, children: past ? /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Check, { size: 12 }) : index + 1 }),
           /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("span", { className: "min-w-0 space-y-0.5 sm:mt-1.5", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: `block whitespace-normal break-words text-sm font-bold sm:text-[11px] ${active2 ? "text-tone-blue-400" : past ? "text-ui-200" : "text-ui-500"}`, children: step.label }),
+            /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: `block whitespace-normal break-words text-sm font-bold sm:text-[11px] ${active2 ? "" : past ? "text-ui-200" : "text-ui-500"}`, style: active2 ? { color: stage } : void 0, children: step.label }),
             /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: "block text-xs font-semibold uppercase text-ui-500 sm:text-[9px]", children: cancelled ? "Interrompida" : active2 ? step.state === "closed" ? "FIM" : "ATUAL" : past ? "OK" : "Pendente" })
           ] })
         ] }, step.state);

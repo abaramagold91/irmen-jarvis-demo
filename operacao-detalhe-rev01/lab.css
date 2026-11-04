@@ -2636,6 +2636,15 @@ body {
   border-color: rgb(6 78 59 / 0.5);
 }
 
+.border-fuchsia-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(232 121 249 / var(--tw-border-opacity, 1));
+}
+
+.border-fuchsia-500\/30 {
+  border-color: rgb(217 70 239 / 0.3);
+}
+
 .border-green-900\/50 {
   border-color: rgb(20 83 45 / 0.5);
 }
@@ -2807,15 +2816,6 @@ body {
 
 .border-ui-900\/60 {
   border-color: rgb(var(--ui-900) / 0.6);
-}
-
-.border-violet-400 {
-  --tw-border-opacity: 1;
-  border-color: rgb(167 139 250 / var(--tw-border-opacity, 1));
-}
-
-.border-violet-500\/30 {
-  border-color: rgb(139 92 246 / 0.3);
 }
 
 .border-white\/10 {
@@ -3058,6 +3058,15 @@ body {
   background-color: rgb(2 44 34 / 0.4);
 }
 
+.bg-fuchsia-500\/10 {
+  background-color: rgb(217 70 239 / 0.1);
+}
+
+.bg-fuchsia-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(192 38 211 / var(--tw-bg-opacity, 1));
+}
+
 .bg-green-950\/30 {
   background-color: rgb(5 46 22 / 0.3);
 }
@@ -3273,15 +3282,6 @@ body {
 .bg-ui-surface {
   --tw-bg-opacity: 1;
   background-color: rgb(var(--ui-surface) / var(--tw-bg-opacity, 1));
-}
-
-.bg-violet-500\/10 {
-  background-color: rgb(139 92 246 / 0.1);
-}
-
-.bg-violet-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(124 58 237 / var(--tw-bg-opacity, 1));
 }
 
 .bg-white {
@@ -4022,6 +4022,11 @@ body {
   color: hsl(var(--foreground));
 }
 
+.text-fuchsia-300 {
+  --tw-text-opacity: 1;
+  color: rgb(240 171 252 / var(--tw-text-opacity, 1));
+}
+
 .text-green-300 {
   --tw-text-opacity: 1;
   color: rgb(134 239 172 / var(--tw-text-opacity, 1));
@@ -4221,11 +4226,6 @@ body {
 .text-tone-teal-300 {
   --tw-text-opacity: 1;
   color: rgb(var(--tone-teal-300) / var(--tw-text-opacity, 1));
-}
-
-.text-tone-violet-300 {
-  --tw-text-opacity: 1;
-  color: rgb(var(--tone-violet-300) / var(--tw-text-opacity, 1));
 }
 
 .text-ui-100 {
@@ -4472,10 +4472,6 @@ body {
 .ring-\[\#090b0d\] {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(9 11 13 / var(--tw-ring-opacity, 1));
-}
-
-.ring-blue-500\/30 {
-  --tw-ring-color: rgb(59 130 246 / 0.3);
 }
 
 .ring-cyan-500\/50 {
@@ -7986,14 +7982,15 @@ html::-webkit-scrollbar-thumb {
   --jv-warn-soft: rgba(242, 184, 75, .14);
   --jv-crit: #ff6b7a;
   --jv-crit-soft: rgba(255, 107, 122, .14);
-  /* Status hues with no brand meaning: received (indigo), formalization (violet), conditional approval and billing (teal). */
+  /* Status hues with no brand meaning: received (indigo), formalization (magenta), conditional approval and billing (teal). */
   --jv-indigo: #8c93ff;
+  --jv-magenta: #f472d0;
   --jv-violet: #b39bff;
   --jv-teal: #2fd3c0;
   /* Operational lifecycle stages. The one source for orbs, stage dots and the matching status chips. */
   --jv-stage-received: var(--jv-indigo);
   --jv-stage-review: var(--jv-arc);
-  --jv-stage-formalization: var(--jv-violet);
+  --jv-stage-formalization: var(--jv-magenta);
   --jv-stage-billing: var(--jv-teal);
   --jv-stage-closed: var(--jv-good);
   --jv-stage-cancelled: var(--jv-fg-3);
@@ -8118,6 +8115,7 @@ html::-webkit-scrollbar-thumb {
   --jv-crit: #c01f33;
   --jv-crit-soft: rgba(192, 31, 51, .10);
   --jv-indigo: #4c51bf;
+  --jv-magenta: #b5258f;
   --jv-violet: #6a3fc8;
   --jv-teal: #0b7a6e;
   --jv-shadow: 0 8px 30px rgba(20, 40, 60, .10);
@@ -8761,8 +8759,8 @@ body {
   --t: var(--jv-arc);
 }
 
-.jv-status[data-tone="violet"] {
-  --t: var(--jv-violet);
+.jv-status[data-tone="magenta"] {
+  --t: var(--jv-magenta);
 }
 
 .jv-status[data-tone="attention"], .jv-status[data-tone="warning"] {
@@ -8846,8 +8844,8 @@ body {
   --t: var(--jv-arc);
 }
 
-.jv-act[data-tone="violet"] {
-  --t: var(--jv-violet);
+.jv-act[data-tone="magenta"] {
+  --t: var(--jv-magenta);
 }
 
 .jv-act[data-tone="attention"] {
@@ -9828,6 +9826,11 @@ body {
   color: rgb(6 95 70 / var(--tw-text-opacity, 1));
 }
 
+[data-theme=irmen-executive-light] .\[\[data-theme\=irmen-executive-light\]_\&\]\:text-fuchsia-800 {
+  --tw-text-opacity: 1;
+  color: rgb(134 25 143 / var(--tw-text-opacity, 1));
+}
+
 [data-theme=irmen-executive-light] .\[\[data-theme\=irmen-executive-light\]_\&\]\:text-red-800 {
   --tw-text-opacity: 1;
   color: rgb(153 27 27 / var(--tw-text-opacity, 1));
@@ -9846,11 +9849,6 @@ body {
 [data-theme=irmen-executive-light] .\[\[data-theme\=irmen-executive-light\]_\&\]\:text-teal-800 {
   --tw-text-opacity: 1;
   color: rgb(17 94 89 / var(--tw-text-opacity, 1));
-}
-
-[data-theme=irmen-executive-light] .\[\[data-theme\=irmen-executive-light\]_\&\]\:text-violet-800 {
-  --tw-text-opacity: 1;
-  color: rgb(91 33 182 / var(--tw-text-opacity, 1));
 }
 
 [data-theme=irmen-executive-light] .\[\[data-theme\=irmen-executive-light\]_\&\]\:text-zinc-600 {
