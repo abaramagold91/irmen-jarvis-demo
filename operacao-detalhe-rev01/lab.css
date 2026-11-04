@@ -2809,6 +2809,15 @@ body {
   border-color: rgb(var(--ui-900) / 0.6);
 }
 
+.border-violet-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(167 139 250 / var(--tw-border-opacity, 1));
+}
+
+.border-violet-500\/30 {
+  border-color: rgb(139 92 246 / 0.3);
+}
+
 .border-white\/10 {
   border-color: rgb(255 255 255 / 0.1);
 }
@@ -2872,36 +2881,6 @@ body {
 .bg-\[\#111827\] {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#14B8A6\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(20 184 166 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#22C55E\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#22D3EE\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 211 238 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#3B82F6\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#71717A\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(113 113 122 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#A855F7\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(168 85 247 / var(--tw-bg-opacity, 1));
 }
 
 .bg-\[\#ECEEF2\] {
@@ -3294,6 +3273,15 @@ body {
 .bg-ui-surface {
   --tw-bg-opacity: 1;
   background-color: rgb(var(--ui-surface) / var(--tw-bg-opacity, 1));
+}
+
+.bg-violet-500\/10 {
+  background-color: rgb(139 92 246 / 0.1);
+}
+
+.bg-violet-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(124 58 237 / var(--tw-bg-opacity, 1));
 }
 
 .bg-white {
@@ -4235,6 +4223,11 @@ body {
   color: rgb(var(--tone-teal-300) / var(--tw-text-opacity, 1));
 }
 
+.text-tone-violet-300 {
+  --tw-text-opacity: 1;
+  color: rgb(var(--tone-violet-300) / var(--tw-text-opacity, 1));
+}
+
 .text-ui-100 {
   --tw-text-opacity: 1;
   color: rgb(var(--ui-100) / var(--tw-text-opacity, 1));
@@ -4358,48 +4351,6 @@ body {
 .shadow-\[-18px_0_48px_rgba\(0\2c 0\2c 0\2c 0\.18\)\] {
   --tw-shadow: -18px 0 48px rgba(0,0,0,0.18);
   --tw-shadow-colored: -18px 0 48px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-\[0_0_10px_rgba\(113\2c 113\2c 122\2c 0\.35\)\] {
-  --tw-shadow: 0 0 10px rgba(113,113,122,0.35);
-  --tw-shadow-colored: 0 0 10px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-\[0_0_10px_rgba\(113\2c 113\2c 122\2c 0\.4\)\] {
-  --tw-shadow: 0 0 10px rgba(113,113,122,0.4);
-  --tw-shadow-colored: 0 0 10px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-\[0_0_10px_rgba\(168\2c 85\2c 247\2c 0\.5\)\] {
-  --tw-shadow: 0 0 10px rgba(168,85,247,0.5);
-  --tw-shadow-colored: 0 0 10px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-\[0_0_10px_rgba\(20\2c 184\2c 166\2c 0\.5\)\] {
-  --tw-shadow: 0 0 10px rgba(20,184,166,0.5);
-  --tw-shadow-colored: 0 0 10px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-\[0_0_10px_rgba\(34\2c 197\2c 94\2c 0\.5\)\] {
-  --tw-shadow: 0 0 10px rgba(34,197,94,0.5);
-  --tw-shadow-colored: 0 0 10px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-\[0_0_10px_rgba\(34\2c 211\2c 238\2c 0\.55\)\] {
-  --tw-shadow: 0 0 10px rgba(34,211,238,0.55);
-  --tw-shadow-colored: 0 0 10px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-}
-
-.shadow-\[0_0_10px_rgba\(59\2c 130\2c 246\2c 0\.55\)\] {
-  --tw-shadow: 0 0 10px rgba(59,130,246,0.55);
-  --tw-shadow-colored: 0 0 10px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
@@ -8035,9 +7986,17 @@ html::-webkit-scrollbar-thumb {
   --jv-warn-soft: rgba(242, 184, 75, .14);
   --jv-crit: #ff6b7a;
   --jv-crit-soft: rgba(255, 107, 122, .14);
-  /* Status hues that have no brand meaning: analysis (violet) and conditional approval (teal). */
+  /* Status hues with no brand meaning: analysis (blue), formalization (violet), conditional approval and billing (teal). */
+  --jv-blue: #5b8fff;
   --jv-violet: #b39bff;
   --jv-teal: #2fd3c0;
+  /* Operational lifecycle stages. The one source for orbs, stage dots and the matching status chips. */
+  --jv-stage-received: var(--jv-arc);
+  --jv-stage-review: var(--jv-blue);
+  --jv-stage-formalization: var(--jv-violet);
+  --jv-stage-billing: var(--jv-teal);
+  --jv-stage-closed: var(--jv-good);
+  --jv-stage-cancelled: var(--jv-fg-3);
   --jv-shadow: 0 10px 40px rgba(0, 0, 0, .45);
   --jv-radius: 10px;
   --jv-chamfer: 10px;
@@ -8158,6 +8117,7 @@ html::-webkit-scrollbar-thumb {
   --jv-warn-soft: rgba(178, 116, 10, .12);
   --jv-crit: #c01f33;
   --jv-crit-soft: rgba(192, 31, 51, .10);
+  --jv-blue: #1f5fd1;
   --jv-violet: #6a3fc8;
   --jv-teal: #0b7a6e;
   --jv-shadow: 0 8px 30px rgba(20, 40, 60, .10);
@@ -8742,7 +8702,7 @@ body {
 
 /* ── Status chip (design system · StatusBadge appearance="jarvis") ──
    One chip for the bank and internal-credit flow everywhere it appears. Tone comes from --jv-* tokens:
-   Recebida blue, Em análise violet, Pendente amber, Aprovada green, parcial teal, Reprovada red, Inelegível/Cancelado grey.
+   Recebida cyan, Em análise blue (the lifecycle colours), Pendente amber, Aprovada green, parcial teal, Reprovada red, Inelegível/Cancelado grey.
    The icon keeps the meaning readable without colour. Same box as the previous badge (statusBadgeGeometry). */
 
 .jv-status {
@@ -8798,6 +8758,10 @@ body {
 }
 
 .jv-status[data-tone="deep_blue"] {
+  --t: var(--jv-blue);
+}
+
+.jv-status[data-tone="violet"] {
   --t: var(--jv-violet);
 }
 
@@ -8879,6 +8843,10 @@ body {
 }
 
 .jv-act[data-tone="deep_blue"] {
+  --t: var(--jv-blue);
+}
+
+.jv-act[data-tone="violet"] {
   --t: var(--jv-violet);
 }
 
@@ -8910,6 +8878,42 @@ body {
   .jv-act:hover:not(:disabled) {
     transform: none;
   }
+}
+
+/* ── Lifecycle orb (design system · OperationalLifecycleIndicator) ── stage colour from --jv-stage-*, same hue as the matching chip. */
+
+.jv-orb {
+  --o: var(--jv-fg-3);
+  background: var(--o);
+  box-shadow: 0 0 10px color-mix(in srgb, var(--o) 55%, transparent);
+}
+
+.jv-orb--received {
+  --o: var(--jv-stage-received);
+}
+
+.jv-orb--in_review {
+  --o: var(--jv-stage-review);
+}
+
+.jv-orb--formalization {
+  --o: var(--jv-stage-formalization);
+}
+
+.jv-orb--billing {
+  --o: var(--jv-stage-billing);
+}
+
+.jv-orb--closed {
+  --o: var(--jv-stage-closed);
+}
+
+.jv-orb--cancelled {
+  --o: var(--jv-stage-cancelled);
+}
+
+[data-theme="irmen-executive-light"] .jv-orb {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--o) 18%, transparent);
 }
 
 .placeholder\:text-ui-600::-moz-placeholder {
@@ -9842,6 +9846,11 @@ body {
 [data-theme=irmen-executive-light] .\[\[data-theme\=irmen-executive-light\]_\&\]\:text-teal-800 {
   --tw-text-opacity: 1;
   color: rgb(17 94 89 / var(--tw-text-opacity, 1));
+}
+
+[data-theme=irmen-executive-light] .\[\[data-theme\=irmen-executive-light\]_\&\]\:text-violet-800 {
+  --tw-text-opacity: 1;
+  color: rgb(91 33 182 / var(--tw-text-opacity, 1));
 }
 
 [data-theme=irmen-executive-light] .\[\[data-theme\=irmen-executive-light\]_\&\]\:text-zinc-600 {

@@ -43455,7 +43455,8 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     success: "border-emerald-500/30 bg-emerald-500/10 text-tone-emerald-300 [[data-theme=irmen-executive-light]_&]:text-emerald-800",
     warning: "border-amber-500/35 bg-amber-500/10 text-tone-amber-300 [[data-theme=irmen-executive-light]_&]:text-amber-800",
     danger: "border-red-500/30 bg-red-500/10 text-tone-red-300 [[data-theme=irmen-executive-light]_&]:text-red-800",
-    deep_blue: "border-blue-500/25 bg-blue-500/10 text-tone-blue-400 [[data-theme=irmen-executive-light]_&]:text-blue-800"
+    deep_blue: "border-blue-500/25 bg-blue-500/10 text-tone-blue-400 [[data-theme=irmen-executive-light]_&]:text-blue-800",
+    violet: "border-violet-500/30 bg-violet-500/10 text-tone-violet-300 [[data-theme=irmen-executive-light]_&]:text-violet-800"
   };
   var solidToneClasses = {
     neutral: "border-zinc-500 bg-zinc-700 text-white",
@@ -43468,7 +43469,8 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     success: "border-emerald-400 bg-emerald-500 text-emerald-950",
     warning: "border-amber-300 bg-amber-400 text-amber-950",
     danger: "border-red-400 bg-red-500 text-white",
-    deep_blue: "border-blue-400 bg-blue-700 text-white"
+    deep_blue: "border-blue-400 bg-blue-700 text-white",
+    violet: "border-violet-400 bg-violet-600 text-white"
   };
   var icons = {
     inbox: Inbox,
@@ -44472,18 +44474,26 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   var operationalContracts = {
     received: contract("received", "Recebida", "info" /* Info */, "inbox"),
     in_review: contract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "search", "strong"),
-    formalization: contract("formalization", "Formaliza\xE7\xE3o", "conditional" /* Conditional */, "check-partial"),
-    billing: contract("billing", "Faturamento", "attention" /* Attention */, "clock", "strong"),
+    formalization: contract("formalization", "Formaliza\xE7\xE3o", "violet" /* Violet */, "check-partial"),
+    billing: contract("billing", "Faturamento", "conditional" /* Conditional */, "clock", "strong"),
     closed: contract("closed", "Encerrada", "positive" /* Positive */, "check"),
     cancelled: contract("cancelled", "Cancelada", "cancelled" /* Cancelled */, "ban")
   };
+  var lifecycleStageToken = {
+    received: "received",
+    in_review: "review",
+    formalization: "formalization",
+    billing: "billing",
+    closed: "closed",
+    cancelled: "cancelled"
+  };
   var lifecycleContracts = {
-    received: lifecycleContract("received", "Recebida", "info" /* Info */, "#22D3EE", "bg-[#22D3EE] shadow-[0_0_10px_rgba(34,211,238,0.55)]"),
-    in_review: lifecycleContract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "#3B82F6", "bg-[#3B82F6] shadow-[0_0_10px_rgba(59,130,246,0.55)]"),
-    formalization: lifecycleContract("formalization", "Formaliza\xE7\xE3o", "conditional" /* Conditional */, "#A855F7", "bg-[#A855F7] shadow-[0_0_10px_rgba(168,85,247,0.5)]"),
-    billing: lifecycleContract("billing", "Faturamento", "conditional" /* Conditional */, "#14B8A6", "bg-[#14B8A6] shadow-[0_0_10px_rgba(20,184,166,0.5)]"),
-    closed: lifecycleContract("closed", "Encerrada", "positive" /* Positive */, "#22C55E", "bg-[#22C55E] shadow-[0_0_10px_rgba(34,197,94,0.5)]"),
-    cancelled: lifecycleContract("cancelled", "Cancelada", "cancelled" /* Cancelled */, "#71717A", "bg-[#71717A] shadow-[0_0_10px_rgba(113,113,122,0.4)]")
+    received: lifecycleContract("received", "Recebida", "info" /* Info */, "#3FD0FF"),
+    in_review: lifecycleContract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "#5B8FFF"),
+    formalization: lifecycleContract("formalization", "Formaliza\xE7\xE3o", "violet" /* Violet */, "#B39BFF"),
+    billing: lifecycleContract("billing", "Faturamento", "conditional" /* Conditional */, "#2FD3C0"),
+    closed: lifecycleContract("closed", "Encerrada", "positive" /* Positive */, "#34C38F"),
+    cancelled: lifecycleContract("cancelled", "Cancelada", "cancelled" /* Cancelled */, "#8592A0")
   };
   var bankContracts = {
     Recebida: contract("Recebida", "Recebida", "info" /* Info */, "inbox"),
@@ -44573,7 +44583,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   function resolveOperationalLifecyclePresentation(value) {
     const original = safeStatusText(value);
     const canonical = operationalAliases[original];
-    return canonical && Object.prototype.hasOwnProperty.call(lifecycleContracts, canonical) ? lifecycleContracts[canonical] : { ...unknownContract(original), colorHex: "#71717A", orbClassName: "bg-[#71717A] shadow-[0_0_10px_rgba(113,113,122,0.35)]" };
+    return canonical && Object.prototype.hasOwnProperty.call(lifecycleContracts, canonical) ? lifecycleContracts[canonical] : { ...unknownContract(original), colorHex: "#8592A0", cssColor: "var(--jv-fg-3)", orbClassName: "jv-orb" };
   }
   function resolveBankStatusPresentation(value) {
     const original = safeStatusText(value);
@@ -44591,8 +44601,13 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     const original = safeStatusText(value);
     return Object.prototype.hasOwnProperty.call(internalAssessmentContracts, original) ? internalAssessmentContracts[original] : unknownContract(original);
   }
-  function lifecycleContract(canonicalValue, label, tone, colorHex, orbClassName) {
-    return { ...contract(canonicalValue, label, tone, null, "strong"), colorHex, orbClassName };
+  function lifecycleContract(canonicalValue, label, tone, colorHex) {
+    return {
+      ...contract(canonicalValue, label, tone, null, "strong"),
+      colorHex,
+      cssColor: `var(--jv-stage-${lifecycleStageToken[canonicalValue]})`,
+      orbClassName: `jv-orb jv-orb--${canonicalValue}`
+    };
   }
   function unknownContract(original) {
     const label = original || "Status indispon\xEDvel";
@@ -45248,7 +45263,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   }
   function lifecycleTransitionSelectOption(option) {
     const hint = option.command === "cancel" ? "Encerra a opera\xE7\xE3o sem progress\xE3o" : option.command === "close" ? "Conclui a opera\xE7\xE3o" : option.command.startsWith("return_") ? "Volta para a etapa anterior" : option.command.startsWith("reopen_") ? "Reabre a opera\xE7\xE3o" : "Avan\xE7a para a pr\xF3xima etapa";
-    return { value: option.command, label: option.label, hint, color: resolveOperationalLifecyclePresentation(option.target).colorHex, tag: option.reasonRequired ? "Exige motivo" : void 0 };
+    return { value: option.command, label: option.label, hint, color: resolveOperationalLifecyclePresentation(option.target).cssColor, tag: option.reasonRequired ? "Exige motivo" : void 0 };
   }
   function OperationCommunicationSection(props) {
     const [message, setMessage] = (0, import_react29.useState)("");
