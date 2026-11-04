@@ -7986,13 +7986,13 @@ html::-webkit-scrollbar-thumb {
   --jv-warn-soft: rgba(242, 184, 75, .14);
   --jv-crit: #ff6b7a;
   --jv-crit-soft: rgba(255, 107, 122, .14);
-  /* Status hues with no brand meaning: analysis (blue), formalization (violet), conditional approval and billing (teal). */
-  --jv-blue: #3b82f6;
+  /* Status hues with no brand meaning: received (indigo), formalization (violet), conditional approval and billing (teal). */
+  --jv-indigo: #8c93ff;
   --jv-violet: #b39bff;
   --jv-teal: #2fd3c0;
   /* Operational lifecycle stages. The one source for orbs, stage dots and the matching status chips. */
-  --jv-stage-received: var(--jv-arc);
-  --jv-stage-review: var(--jv-blue);
+  --jv-stage-received: var(--jv-indigo);
+  --jv-stage-review: var(--jv-arc);
   --jv-stage-formalization: var(--jv-violet);
   --jv-stage-billing: var(--jv-teal);
   --jv-stage-closed: var(--jv-good);
@@ -8117,7 +8117,7 @@ html::-webkit-scrollbar-thumb {
   --jv-warn-soft: rgba(178, 116, 10, .12);
   --jv-crit: #c01f33;
   --jv-crit-soft: rgba(192, 31, 51, .10);
-  --jv-blue: #1f5fd1;
+  --jv-indigo: #4c51bf;
   --jv-violet: #6a3fc8;
   --jv-teal: #0b7a6e;
   --jv-shadow: 0 8px 30px rgba(20, 40, 60, .10);
@@ -8702,7 +8702,7 @@ body {
 
 /* ── Status chip (design system · StatusBadge appearance="jarvis") ──
    One chip for the bank and internal-credit flow everywhere it appears. Tone comes from --jv-* tokens:
-   Recebida cyan, Em análise blue (the lifecycle colours), Pendente amber, Aprovada green, parcial teal, Reprovada red, Inelegível/Cancelado grey.
+   Recebida indigo, Em análise arc blue (the lifecycle colours), Pendente amber, Aprovada green, parcial teal, Reprovada red, Inelegível/Cancelado grey.
    The icon keeps the meaning readable without colour. Same box as the previous badge (statusBadgeGeometry). */
 
 .jv-status {
@@ -8754,11 +8754,11 @@ body {
 }
 
 .jv-status[data-tone="info"] {
-  --t: var(--jv-arc);
+  --t: var(--jv-indigo);
 }
 
 .jv-status[data-tone="deep_blue"] {
-  --t: var(--jv-blue);
+  --t: var(--jv-arc);
 }
 
 .jv-status[data-tone="violet"] {
@@ -8839,11 +8839,11 @@ body {
 }
 
 .jv-act[data-tone="info"] {
-  --t: var(--jv-arc);
+  --t: var(--jv-indigo);
 }
 
 .jv-act[data-tone="deep_blue"] {
-  --t: var(--jv-blue);
+  --t: var(--jv-arc);
 }
 
 .jv-act[data-tone="violet"] {
@@ -11713,6 +11713,22 @@ body {
   display: grid;
   gap: 6px;
   min-width: 0;
+  --s: var(--jv-arc);
+}
+.odx-track__step[data-stage=received] {
+  --s: var(--jv-stage-received);
+}
+.odx-track__step[data-stage=in_review] {
+  --s: var(--jv-stage-review);
+}
+.odx-track__step[data-stage=formalization] {
+  --s: var(--jv-stage-formalization);
+}
+.odx-track__step[data-stage=billing] {
+  --s: var(--jv-stage-billing);
+}
+.odx-track__step[data-stage=closed] {
+  --s: var(--jv-stage-closed);
 }
 .odx-track__bar {
   height: 6px;
@@ -11725,8 +11741,8 @@ body {
   background: color-mix(in srgb, var(--jv-good) 70%, transparent);
 }
 .odx-track__step[data-state=active] .odx-track__bar {
-  background: var(--jv-arc);
-  box-shadow: 0 0 14px color-mix(in srgb, var(--jv-arc) 60%, transparent);
+  background: var(--s);
+  box-shadow: 0 0 14px color-mix(in srgb, var(--s) 60%, transparent);
 }
 .odx-track__step[data-state=active] .odx-track__bar::after {
   content: "";
@@ -11780,9 +11796,9 @@ body {
   color: var(--jv-fg);
 }
 .odx-track__step[data-state=active] .odx-track__icon {
-  color: var(--jv-arc);
-  border-color: var(--jv-arc);
-  background: var(--jv-arc-soft);
+  color: var(--s);
+  border-color: var(--s);
+  background: color-mix(in srgb, var(--s) 12%, transparent);
 }
 .odx-track__step[data-state=cancelled] .odx-track__label {
   color: var(--jv-crit);
@@ -11800,7 +11816,7 @@ body {
   color: var(--jv-fg-3);
 }
 .odx-track__step[data-state=active] .odx-track__status {
-  color: var(--jv-arc);
+  color: var(--s);
 }
 .odx-track__since {
   display: flex;

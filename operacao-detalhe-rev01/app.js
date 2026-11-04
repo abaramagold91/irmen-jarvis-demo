@@ -44488,8 +44488,8 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
     cancelled: "cancelled"
   };
   var lifecycleContracts = {
-    received: lifecycleContract("received", "Recebida", "info" /* Info */, "#3FD0FF"),
-    in_review: lifecycleContract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "#3B82F6"),
+    received: lifecycleContract("received", "Recebida", "info" /* Info */, "#8C93FF"),
+    in_review: lifecycleContract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "#3FD0FF"),
     formalization: lifecycleContract("formalization", "Formaliza\xE7\xE3o", "violet" /* Violet */, "#B39BFF"),
     billing: lifecycleContract("billing", "Faturamento", "conditional" /* Conditional */, "#2FD3C0"),
     closed: lifecycleContract("closed", "Encerrada", "positive" /* Positive */, "#34C38F"),
@@ -47274,7 +47274,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
           const past = !cancelled && index < currentIndex;
           const active2 = !cancelled && index === currentIndex;
           const status2 = !lifecycle ? "Indispon\xEDvel" : cancelled ? "Interrompida" : active2 ? stage.state === "closed" ? "FIM" : "ATUAL" : past ? "OK" : "Pendente";
-          return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("li", { "aria-current": active2 ? "step" : void 0, className: "odx-track__step", "data-state": active2 ? "active" : past ? "done" : "todo", children: [
+          return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("li", { "aria-current": active2 ? "step" : void 0, className: "odx-track__step", "data-stage": stage.state, "data-state": active2 ? "active" : past ? "done" : "todo", children: [
             /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { "aria-hidden": "true", className: "odx-track__bar" }),
             /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("span", { className: "odx-track__label", children: [
               /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { "aria-hidden": "true", className: "odx-track__icon", children: past ? /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(Check, { size: 11 }) : active2 ? /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(CircleDot, { size: 11 }) : index + 1 }),
