@@ -1,0 +1,24 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Roteiro Operação detalhada REV01</title><style>:root{color-scheme:dark}body{margin:0;font:15px/1.55 system-ui,sans-serif;background:#06080c;color:#e8eef4}main{max-width:860px;margin:0 auto;padding:32px 16px}h1{font-size:24px;margin:0 0 6px}h2{font-size:14px;margin:26px 0 8px;color:#3fd0ff;letter-spacing:.08em;text-transform:uppercase}p,li{color:#a3b0bd}li b,p b{color:#e8eef4}.warn{border:1px solid #f2b84b;background:rgba(242,184,75,.12);color:#e8eef4;padding:10px 14px;border-radius:10px}ul.l{padding:0;list-style:none;display:grid;gap:8px}ul.l a{display:block;padding:12px 14px;border:1px solid rgba(140,190,220,.24);border-radius:10px;color:#3fd0ff;text-decoration:none}ul.l a:hover{border-color:#3fd0ff}small{display:block;color:#8592a0}ol li{margin-bottom:6px}</style></head><body><main>
+<p style="letter-spacing:.18em;text-transform:uppercase;font-size:11px;color:#3fd0ff">Portal IRMEN · JARVIS · Operação detalhada REV01</p>
+<h1>Repaginação da Operação detalhada</h1>
+<p>Tela real do portal (cockpit da operação) montada com os componentes do sistema e dados sintéticos. O topo, o submenu, o relato, o checklist por banco, equipamentos, contatos, histórico e o simulador ficaram como estavam.</p>
+<p class="warn">Demonstração sem servidor: nenhum comando chega ao sistema. Botões que gravam respondem "indisponível no laboratório". Pessoas, empresas e bancos são fictícios.</p>
+<h2>Abrir a tela</h2>
+<ul class="l">
+<li><a href="index.html?theme=dark">Tema escuro<small>Relato curto: o quadro do relato encolhe e as pendências ocupam o resto, sem sobra preta.</small></a></li>
+<li><a href="index.html?theme=slate">Tema claro (Slate)</a></li>
+<li><a href="index.html?theme=dark&relato=longo">Tema escuro · relato longo<small>O relato cresce até 60% da coluna e rola por dentro; as colunas seguem faceadas.</small></a></li>
+<li><a href="index.html?theme=slate&banks=2">Tema claro · só 2 bancos</a></li>
+</ul>
+<h2>O que mudou</h2>
+<ol>
+<li><b>Resultado comercial</b> saiu do meio da página e virou o botão <b>Resultado</b> na barra, ao lado de Imprimir: Marcar como perdida (pede o motivo), Reabrir operação cancelada e Abrir oportunidade e Mesa. Some quando nada se aplica.</li>
+<li><b>Prazos de resposta (SLA)</b> saíram do fluxo e foram para <b>Detalhes técnicos</b>, recolhido no fim da página. Só consultam o servidor quando abertos.</li>
+<li><b>Modalidade</b> e o aviso "a formalização requer aprovação bancária" viraram uma faixa compacta no pé do Workflow: modalidade vigente, aviso em selo âmbar, <b>Trocar modalidade</b> (abre a gaveta lateral JARVIS) e <b>Mesa e validação</b> (abre ali mesmo a fila e a validação).</li>
+<li><b>Bancos</b>: cartões mais enxutos. Nome, status e elegibilidade no topo; Fase, Ação e Quem age em linhas curtas; no pé, à esquerda, o ícone de <b>atualizar pré-elegibilidade</b> (radar azul) e à direita os comandos de aprovar, reprovar e pendência. O botão grande saiu.</li>
+<li><b>Documentos, Dossiê financeiro e Inteligência da Ava</b> viraram um quadro único com abas, lado a lado com a Comunicação, que agora começa e termina na mesma linha. A lista de documentos mostra tipo, nome, classificação da Ava, data, tamanho e baixar; o envio virou uma área de soltar arquivos.</li>
+<li><b>Dossiê financeiro</b> no padrão JARVIS: cabeçalho, contadores e KPIs com barra de tom. Quando não há número, o cartão mostra o estado ("Em revisão") em texto menor, sem quebrar em duas linhas grandes.</li>
+</ol>
+<h2>O que conferir</h2>
+<p>Clique em <b>Resultado</b>, em <b>Trocar modalidade</b> e em <b>Mesa e validação</b>; troque as abas do quadro de documentos; abra <b>Detalhes técnicos</b> no fim. O sol no cabeçalho alterna o tema.</p>
+</main></body></html>
