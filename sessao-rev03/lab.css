@@ -12928,25 +12928,25 @@ select.ja-input {
 .ses-clock__meter {
   position: relative;
   display: block;
-  height: 2px;
-  margin-top: 2px;
-  border-radius: 1px;
+  height: 3px;
+  margin: 4px 4px 1px 0;
+  border-radius: 2px;
   background: var(--jv-line);
-  overflow: hidden;
 }
-.ses-clock__meter i {
-  display: block;
-  height: 100%;
-  transform: scaleX(var(--ses-fill, 1));
-  transform-origin: left;
+.ses-clock__fill {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
   background:
     linear-gradient(
       90deg,
       var(--jv-brand),
       var(--jv-arc));
-  transition: transform 1s linear;
+  clip-path: inset(0 calc((1 - var(--ses-fill, 1)) * 100%) 0 0);
+  transition: clip-path 1s linear;
 }
-.ses-clock__meter::after {
+.ses-clock__fill::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -12954,15 +12954,31 @@ select.ja-input {
     linear-gradient(
       90deg,
       transparent,
-      color-mix(in srgb, var(--jv-brand-ink) 75%, transparent),
+      color-mix(in srgb, var(--jv-brand-ink) 80%, transparent),
       transparent) no-repeat;
-  background-size: 30% 100%;
-  animation: ses-sheen 6s ease-in-out infinite;
-  mix-blend-mode: screen;
+  background-size: 22% 100%;
+  animation: ses-sheen 4.5s ease-in-out infinite;
 }
-:root[data-theme=irmen-executive-light] .ses-clock__meter::after {
-  mix-blend-mode: normal;
-  opacity: .7;
+.ses-clock__tip {
+  position: absolute;
+  top: 50%;
+  left: calc(var(--ses-fill, 1) * 100%);
+  width: 7px;
+  height: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: 50%;
+  background: var(--jv-brand-ink);
+  box-shadow:
+    0 0 0 1.5px var(--jv-arc),
+    0 0 8px 2px color-mix(in srgb, var(--jv-arc) 70%, transparent),
+    0 0 16px 4px color-mix(in srgb, var(--jv-arc) 25%, transparent);
+  transition: left 1s linear;
+}
+:root[data-theme=irmen-executive-light] .ses-clock__tip {
+  box-shadow:
+    0 0 0 1.5px var(--jv-arc),
+    0 0 6px 1px color-mix(in srgb, var(--jv-arc) 55%, transparent),
+    0 0 12px 3px color-mix(in srgb, var(--jv-arc) 15%, transparent);
 }
 .ses-dial {
   position: relative;
@@ -13068,8 +13084,14 @@ select.ja-input {
 .ses-clock--line[data-tone=neutral] .ses-dial::before {
   opacity: 0;
 }
-.ses-clock--line:is([data-tone=attention], [data-tone=critical]) .ses-clock__meter i {
+.ses-clock--line:is([data-tone=attention], [data-tone=critical]) .ses-clock__fill {
   background: currentColor;
+}
+.ses-clock--line:is([data-tone=attention], [data-tone=critical]) .ses-clock__tip {
+  box-shadow: 0 0 0 1.5px currentColor, 0 0 8px 2px currentColor;
+}
+.ses-clock--line:is([data-status=unavailable], [data-status=confirming]) .ses-clock__tip {
+  opacity: 0;
 }
 .ses-clock--line[data-tone=attention] .ses-clock__text {
   color: var(--jv-warn);
@@ -13691,7 +13713,7 @@ select.ja-input {
 :root[data-portal-motion=paused] :is(.ses-emblem__ring, .ses-emblem__orbit, .ses-emblem__mark) {
   animation-play-state: paused;
 }
-:root[data-portal-motion=paused] .ses-clock__meter::after {
+:root[data-portal-motion=paused] .ses-clock__fill::after {
   animation-play-state: paused;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -13707,7 +13729,7 @@ select.ja-input {
   :is(.ses-emblem__ring, .ses-emblem__orbit, .ses-emblem__mark) {
     animation: none !important;
   }
-  .ses-clock__meter::after {
+  .ses-clock__fill::after {
     display: none;
   }
   .ses-emblem__scan {
@@ -13720,7 +13742,7 @@ select.ja-input {
     stroke-dasharray: 100 100;
     opacity: .55;
   }
-  :is(.ses-orb__arc, .ses-dial__arc, .ses-clock__meter i, .ses-clock__bar, .ses-panel__bar i) {
+  :is(.ses-orb__arc, .ses-dial__arc, .ses-clock__fill, .ses-clock__tip, .ses-clock__bar, .ses-panel__bar i) {
     transition: none;
   }
 }

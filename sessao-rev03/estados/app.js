@@ -17186,7 +17186,10 @@
         /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { className: "ses-clock__text", "aria-hidden": "true", children: [
           /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("small", { children: view.eyebrow === "Inatividade" ? "Inatividade" : "Tempo de sess\xE3o" }),
           /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("b", { children: view.status === "counting" ? view.clock : view.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: "ses-clock__meter", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", {}) })
+          /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("span", { className: "ses-clock__meter", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { className: "ses-clock__fill" }),
+            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", { className: "ses-clock__tip" })
+          ] })
         ] })
       ] }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
         /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: "ses-clock__glyph", "aria-hidden": "true", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("i", {}) }),
