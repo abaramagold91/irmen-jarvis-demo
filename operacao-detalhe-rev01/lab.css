@@ -7987,7 +7987,7 @@ html::-webkit-scrollbar-thumb {
   --jv-crit: #ff6b7a;
   --jv-crit-soft: rgba(255, 107, 122, .14);
   /* Status hues with no brand meaning: analysis (blue), formalization (violet), conditional approval and billing (teal). */
-  --jv-blue: #5b8fff;
+  --jv-blue: #3b82f6;
   --jv-violet: #b39bff;
   --jv-teal: #2fd3c0;
   /* Operational lifecycle stages. The one source for orbs, stage dots and the matching status chips. */

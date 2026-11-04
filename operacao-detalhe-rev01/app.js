@@ -44489,7 +44489,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
   };
   var lifecycleContracts = {
     received: lifecycleContract("received", "Recebida", "info" /* Info */, "#3FD0FF"),
-    in_review: lifecycleContract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "#5B8FFF"),
+    in_review: lifecycleContract("in_review", "Em an\xE1lise", "deep_blue" /* DeepBlue */, "#3B82F6"),
     formalization: lifecycleContract("formalization", "Formaliza\xE7\xE3o", "violet" /* Violet */, "#B39BFF"),
     billing: lifecycleContract("billing", "Faturamento", "conditional" /* Conditional */, "#2FD3C0"),
     closed: lifecycleContract("closed", "Encerrada", "positive" /* Positive */, "#34C38F"),
