@@ -43656,7 +43656,7 @@ Set the \`cycles\` parameter to \`"ref"\` to resolve cyclical schemas with defs.
       options.note && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "jv-confirm__note", children: options.note }),
       /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "jv-confirm__acts", children: [
         !options.acknowledge && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DesignButton, { intent: "ghost", disabled: busy, onClick: onCancel, children: options.cancelLabel ?? "Cancelar" }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DesignButton, { intent: "primary", beam: true, loading: busy, disabled: blocked, onClick: () => onConfirm(value.trim()), children: options.confirmLabel })
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(DesignButton, { intent: "primary", loading: busy, disabled: blocked, onClick: () => onConfirm(value.trim()), children: options.confirmLabel })
       ] })
     ] });
   }
