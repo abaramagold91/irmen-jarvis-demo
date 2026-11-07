@@ -82,7 +82,12 @@
     return `<span class="dl4" data-up="${up}" data-good="${good}" title="${esc(o.title || "Comparado com o período escolhido")}">${up ? "▲" : "▼"} ${F.int(Math.abs(d) * 100)}%${o.vs ? ` <small>${o.vs}</small>` : ""}</span>`;
   };
   function periodSeg(key, val, o = {}) {
-    return `<div class="pseg" role="group" aria-label="${esc(o.aria || "Período")}">${C.PERIODS4.map(([id, short, long]) => `<button type="button" data-q="${key}" data-v="${id === o.def ? (o.keepDef ? id : "") : id}" aria-pressed="${val === id}" title="${long}">${short}</button>`).join("")}</div>`;
+    const free = !!val && val.startsWith("d:"); const r = o.r;
+    const seed = r && !r.all ? `d:${r.from}:${r.to}` : `d:${addDays(TODAY, -29)}:${TODAY}`;
+    const seg = `<div class="pseg" role="group" aria-label="${esc(o.aria || "Período")}">${C.PERIODS4.map(([id, short, long]) => `<button type="button" data-q="${key}" data-v="${id === o.def ? (o.keepDef ? id : "") : id}" aria-pressed="${val === id}" title="${long}">${short}</button>`).join("")}<button type="button" data-q="${key}" data-v="${free ? val : seed}" aria-pressed="${free}" title="Escolher no calendário de uma data até outra">${icon("calendar")}Livre</button></div>`;
+    if (!free) return seg;
+    const [, a, b] = val.split(":");
+    return seg + `<div class="pfree" role="group" aria-label="Período livre"><label><span>De</span><input type="date" data-qr="${key}" data-end="a" value="${a}" min="${FIRST}" max="${TODAY}"></label><label><span>até</span><input type="date" data-qr="${key}" data-end="b" value="${b}" min="${FIRST}" max="${TODAY}"></label>${r ? `<small class="mono dim">${F.int(r.days)} ${r.days === 1 ? "dia" : "dias"}</small>` : ""}</div>`;
   }
   const sel = (key, val, kind, label) => `<label class="jv-field pf__f"><span>${label}</span><select class="jv-select" data-q="${key}" data-active="${!!val}" ${kind === "seller" && S.profile === "seller" ? "disabled" : ""}>${V.OPTS[kind]().map(([id, l]) => `<option value="${esc(id)}" ${id === (val || "") ? "selected" : ""}>${esc(l)}</option>`).join("")}</select></label>`;
   function cmpBlock(prefix, f, r, cr, o = {}) {
@@ -115,8 +120,8 @@
       <summary class="pf__btn" aria-label="Filtros deste painel${count ? `: ${count} próprios` : ": segue o filtro geral"}">${icon("filter")}<span class="pf__txt">${count ? "Filtro do painel" : "Filtros"}</span>${count ? `<b class="pf__n">${count}</b>` : ""}${f.cmp ? `<i class="pf__cmp" title="Comparativo ligado"></i>` : ""}</summary>
       <div class="pf__pop" role="dialog" aria-label="Filtros do painel">
         <div class="pf__head"><b>Filtros deste painel</b><span class="dim">Campo vazio segue o filtro geral</span></div>
-        ${o.period === false ? `<p class="dim pf__note">${icon("info")} ${o.periodNote || "Este painel mostra a situação atual; o período não se aplica."}</p>` : `<span class="pf__l">Período ${own("p") ? "" : `<small class="dim">· geral: ${esc((C.PERIODS4.find(x => x[0] === (q.period || o.defPeriod || "90d")) || [])[2] || "")}</small>`}</span>
-        ${periodSeg(pid + ".p", own("p") || "", { aria: "Período do painel" })}
+        ${o.period === false ? `<p class="dim pf__note">${icon("info")} ${o.periodNote || "Este painel mostra a situação atual; o período não se aplica."}</p>` : `<span class="pf__l">Período ${own("p") ? "" : `<small class="dim">· geral: ${esc(C.periodLong(q.period || o.defPeriod || "90d"))}</small>`}</span>
+        ${periodSeg(pid + ".p", own("p") || "", { aria: "Período do painel", r })}
         <span class="pf__range mono">${r.label}</span>`}
         <div class="pf__grid">${fields.includes("b") ? sel(pid + ".b", own("b"), "branch", "Filial") : ""}${fields.includes("g") ? sel(pid + ".g", own("g"), "mgr", "Gerência") : ""}${fields.includes("s") ? sel(pid + ".s", own("s"), "seller", "Vendedor") : ""}</div>
         ${fields.includes("g") ? `<p class="dim pf__note">${icon("info")} Gerência: hoje há uma gerência. Vincular vendedores a gerentes é dependência futura (DASH-DEP-G1).</p>` : ""}
@@ -138,7 +143,7 @@
     const body = C.scenarioBody(o.source === "none" ? "none" : "canonical", () => o.body(ctx));
     const tools = `${o.tools ? o.tools(ctx) : ""}${viewSeg(pid, views, view)}${o.filter === false ? "" : panelFilter(pid, q, f, r, cr, o)}`;
     const ft = filterText(f);
-    const periodTxt = o.period === false ? (o.periodText || "Situação atual") : `<span class="hl">${esc((C.PERIODS4.find(x => x[0] === f.period) || [])[2] || "")}</span> · ${r.label}${f.ownKeys.includes("period") ? ' <span class="own4">do painel</span>' : ""}`;
+    const periodTxt = o.period === false ? (o.periodText || "Situação atual") : `<span class="hl">${esc(C.periodLong(f.period))}</span> · ${r.label}${f.ownKeys.includes("period") ? ' <span class="own4">do painel</span>' : ""}`;
     const strip = cr && o.cmpSummary ? cmpStrip(o.cmpSummary(ctx), r, cr) : "";
     return C.panel({ id: pid, title: o.title, q: o.q, unit: typeof o.unit === "function" ? o.unit(ctx) : o.unit, period: periodTxt, basis: o.basis, filters: ft + (f.own ? ' <span class="own4">filtro do painel</span>' : ' <span class="dim">· segue o geral</span>'), source: o.source || "canonical", sourceId: o.sourceId, hud: o.hud, cls: o.cls, tools, body: strip + body, foot: o.foot });
   }
@@ -165,7 +170,7 @@
     const n = ["branch", "mgr", "seller", "modality", "bank"].filter(k => keys.includes(k) && q[k]).length + (q.period && q.period !== (o.defPeriod || "90d") ? 1 : 0) + (q.cmp ? 1 : 0);
     return `<section class="recorte mf" aria-label="Filtro geral desta tela" data-recorte>
       <div class="mf__row">
-        <div class="mf__per"><span class="mf__l">${icon("calendar")}Período</span>${periodSeg("period", q.period || o.defPeriod || "90d", { def: o.defPeriod || "90d", aria: "Período geral" })}<span class="mf__range mono">${r.label}</span></div>
+        <div class="mf__per"><span class="mf__l">${icon("calendar")}Período</span>${periodSeg("period", q.period || o.defPeriod || "90d", { def: o.defPeriod || "90d", aria: "Período geral", r })}<span class="mf__range mono">${r.label}</span></div>
         <div class="mf__sel">${V.recorte ? "" : ""}${sel("branch", q.branch, "branch", "Filial")}${sel("mgr", q.mgr, "mgr", "Gerência")}${sel("seller", S.profile === "seller" ? SELLER_LOCK : q.seller, "seller", "Vendedor")}${extra.map(k => sel(k, q[k], k, V.LABEL[k])).join("")}</div>
       </div>
       <div class="mf__row mf__row--2">${cmpBlock(null, f, r, cr)}
@@ -192,7 +197,7 @@
     const ids = chosen(sid, catalog, defaults); const open = OPEN === "pick-" + sid;
     const items = ids.map(id => catalog.find(c => c.id === id)).filter(Boolean);
     return `<section class="ks" data-ks="${sid}" aria-label="Indicadores">
-      <div class="ks__bar"><span class="ks__t">${icon("signal")}${o.title || "Indicadores"} <span class="dim">· ${items.length} de ${catalog.length} · ${esc((C.PERIODS4.find(x => x[0] === f.period) || [])[2] || "")}${cr ? " · " + ctx.vs : ""}</span></span>
+      <div class="ks__bar"><span class="ks__t">${icon("signal")}${o.title || "Indicadores"} <span class="dim">· ${items.length} de ${catalog.length} · ${esc(C.periodLong(f.period))}${cr ? " · " + ctx.vs : ""}</span></span>
         <div class="ks__tools">
           <details class="pf ks__pick" data-pf="pick-${sid}" ${open ? "open" : ""}><summary class="pf__btn">${icon("gear")}<span class="pf__txt">Escolher indicadores</span></summary>
             <div class="pf__pop" role="dialog" aria-label="Escolher indicadores"><div class="pf__head"><b>Quais indicadores mostrar</b><span class="dim">A escolha fica salva para você (como no Dashboard do Portal).</span></div>

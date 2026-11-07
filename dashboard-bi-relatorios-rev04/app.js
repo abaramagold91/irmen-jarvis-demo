@@ -210,6 +210,9 @@
     C.go(cur.path, q);
   }
   document.addEventListener("change", e => {
+    // Período livre: as duas datas formam um só valor "d:de:até".
+    const fr = e.target.closest("input[data-qr]");
+    if (fr) { const box = fr.closest(".pfree"); const v = k => (box.querySelector(`[data-end="${k}"]`) || {}).value; let x = v("a"), y = v("b"); if (!x || !y) return; if (x > y) [x, y] = [y, x]; setQ({ [fr.dataset.qr]: `d:${x}:${y}`, [fr.dataset.qr === "period" ? "cmpf" : fr.dataset.qr.replace(/\.p$/, ".cf")]: "" }, fr.closest("[data-recorte]") ? null : fr); return; }
     const s = e.target.closest("select[data-q], input[data-q]"); if (!s) return;
     const v = s.type === "checkbox" ? (s.checked ? "1" : "") : s.value;
     const patch = { [s.dataset.q]: v };

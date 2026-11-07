@@ -103,7 +103,7 @@
     return `<section class="cmd cp" data-panel="${pid}" aria-labelledby="cmd-t"><div class="cp__scan" aria-hidden="true"></div><i class="hud-c" aria-hidden="true"></i>
       <div class="cmd__head"><div><p class="jv-eyebrow">Pulso da operação</p><h2 class="jv-h2" id="cmd-t">Visão geral agora</h2></div>
         <div class="cp__tools">${picker}${IRF.viewSeg(pid, [["radar", "Radar", "target"], ["panel", "Painel", "grid"]], view)}${IRF.panelFilter(pid, q, f, r, cr)}${sourceTag("canonical")}</div></div>
-      ${tele([["Indicadores", "escolhidos por você"], ["Período", (C.PERIODS4.find(x => x[0] === f.period) || [])[2] + " · " + r.label + (cr ? " · " + "vs " + cr.label : "")], ["Radar", "situação atual"], ["Filtros", IRF.filterText(f) + (f.own ? ' <span class="own4">filtro do painel</span>' : "")]])}
+      ${tele([["Indicadores", "escolhidos por você"], ["Período", C.periodLong(f.period) + " · " + r.label + (cr ? " · " + "vs " + cr.label : "")], ["Radar", "situação atual"], ["Filtros", IRF.filterText(f) + (f.own ? ' <span class="own4">filtro do painel</span>' : "")]])}
       <div class="cp__body">${scenarioBody("canonical", body)}</div></section>`;
   }
 

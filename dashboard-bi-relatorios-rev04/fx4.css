@@ -585,3 +585,11 @@ button.dayg__c:hover{border-color:color-mix(in srgb,var(--c) 55%,var(--jv-line))
 @container (max-width:440px){.ts4__x span:nth-child(even):not(.is-end){display:none}.ts4__x span:nth-last-child(2){display:none}}
 .ost4__k{grid-template-columns:repeat(4,minmax(0,1fr))}
 @container (max-width:460px){.ost4__k{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Período livre (calendário de… até…) */
+.pseg button svg{width:13px;height:13px;margin-right:4px;vertical-align:-2px}
+.pfree{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:8px}
+.pfree label{display:inline-flex;align-items:center;gap:6px;font:600 10px var(--jv-f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--jv-fg-3)}
+.pfree input{min-height:32px;padding:0 8px;border:1px solid var(--jv-line-2);border-radius:7px;background:var(--jv-bg-2);color:var(--jv-fg);font:500 12.5px var(--jv-f-mono);color-scheme:dark}
+:root[data-theme="irmen-executive-light"] .pfree input{color-scheme:light}
+.pfree input:focus-visible{outline:2px solid var(--jv-arc);outline-offset:1px}
+@media (max-width:560px){.pseg{display:flex;flex-wrap:wrap;max-width:100%}.pseg button{min-width:0;flex:1 0 auto;padding:0 8px}.mf__per{min-width:0;max-width:100%}}

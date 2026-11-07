@@ -127,13 +127,16 @@
   function periodRange(id) {
     const now = D.NOW; const to = localDate(now.toISOString());
     if (id === "all" || !id) return { from: null, to, label: "Todo o histórico autorizado" };
+    // Período livre escolhido no calendário: "d:AAAA-MM-DD:AAAA-MM-DD".
+    if (id.startsWith("d:")) { let [, a, b] = id.split(":"); if (!b || b > to) b = to; if (!a || a > b) a = b; return { from: a, to: b, label: a.split("-").reverse().join("/") + " a " + b.split("-").reverse().join("/") }; }
     if (id === "ytd") return { from: "2026-01-01", to, label: "01/01/2026 a " + F.date(now.toISOString()) };
     if (id === "mes") { const from = to.slice(0, 8) + "01"; return { from, to, label: from.split("-").reverse().join("/") + " a " + to.split("-").reverse().join("/") }; }
     const p = PERIODS.find(x => x.id === id); const from = localDate(new Date(now.getTime() - (p.days - 1) * 86400000).toISOString());
     return { from, to, label: from.split("-").reverse().join("/") + " a " + to.split("-").reverse().join("/") };
   }
   const inRange = (iso, r) => { if (!iso) return false; const d = localDate(iso); return (!r.from || d >= r.from) && d <= r.to; };
-  const periodLabel = id => (PERIODS.find(p => p.id === id) || PERIODS[4]).label;
+  const periodLabel = id => id && id.startsWith("d:") ? "Período livre" : (PERIODS.find(p => p.id === id) || PERIODS[4]).label;
+  const periodLong = id => id && id.startsWith("d:") ? "Período livre" : ((PERIODS4.find(x => x[0] === id) || [])[2] || "");
   const dmy = iso => iso ? iso.slice(0, 10).split("-").reverse().join("/") : "—";
 
   // ---------- estado global do protótipo ----------
@@ -267,5 +270,5 @@
   // Impressão digital do recorte: a mesma na prévia e na exportação.
   function fingerprint(obj) { const s = JSON.stringify(Object.keys(obj).sort().map(k => [k, obj[k]])); let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return "REC-" + (h >>> 0).toString(16).toUpperCase().padStart(8, "0").slice(0, 6); }
 
-  window.IRC = { tip, D, icon, esc, F, fmt, plural, localDate, monthKey, L, lcChip, oppChip, bsChip, unitTag, sourceTag, LC_ICON, parseHash, buildHash, go, PERIODS, PERIODS4, dmy, periodRange, inRange, periodLabel, S, reduced, SELLER_LOCK, panel, state, skeleton, scenarioBody, kpi, bars, cols, stackBar, gauge, captureValues, animateFrom, tween, announce, toast, csv, download, fingerprint };
+  window.IRC = { tip, D, icon, esc, F, fmt, plural, localDate, monthKey, L, lcChip, oppChip, bsChip, unitTag, sourceTag, LC_ICON, parseHash, buildHash, go, PERIODS, PERIODS4, dmy, periodRange, periodLong, inRange, periodLabel, S, reduced, SELLER_LOCK, panel, state, skeleton, scenarioBody, kpi, bars, cols, stackBar, gauge, captureValues, animateFrom, tween, announce, toast, csv, download, fingerprint };
 })();
