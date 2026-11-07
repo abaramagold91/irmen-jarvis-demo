@@ -170,7 +170,10 @@
     const n = ["branch", "mgr", "seller", "modality", "bank"].filter(k => keys.includes(k) && q[k]).length + (q.period && q.period !== (o.defPeriod || "90d") ? 1 : 0) + (q.cmp ? 1 : 0);
     return `<section class="recorte mf" aria-label="Filtro geral desta tela" data-recorte>
       <div class="mf__row">
-        <div class="mf__per"><span class="mf__l">${icon("calendar")}Período</span>${periodSeg("period", q.period || o.defPeriod || "90d", { def: o.defPeriod || "90d", aria: "Período geral", r })}<span class="mf__range mono">${r.label}</span></div>
+        ${(() => { const pv = q.period || o.defPeriod || "90d", html = periodSeg("period", pv, { def: o.defPeriod || "90d", aria: "Período geral", r }); const i = html.indexOf('<div class="pfree"'); const seg = i < 0 ? html : html.slice(0, i);
+          // Período livre: as datas ficam na linha do rótulo, editáveis, para o período caber na mesma linha das listas.
+          const rng = i < 0 ? `<span class="mf__range mono">${r.label}</span>` : `<span class="mf__range mf__range--free pfree" role="group" aria-label="Período livre"><input type="date" data-qr="period" data-end="a" value="${r.from}" min="${FIRST}" max="${TODAY}" aria-label="De"><span>a</span><input type="date" data-qr="period" data-end="b" value="${r.to}" min="${FIRST}" max="${TODAY}" aria-label="Até"><small>${F.int(r.days)} ${r.days === 1 ? "dia" : "dias"}</small></span>`;
+          return `<div class="mf__per"><span class="mf__l">${icon("calendar")}Período${rng}</span>${seg}</div>`; })()}
         <div class="mf__sel">${V.recorte ? "" : ""}${sel("branch", q.branch, "branch", "Filial")}${sel("mgr", q.mgr, "mgr", "Gerência")}${sel("seller", S.profile === "seller" ? SELLER_LOCK : q.seller, "seller", "Vendedor")}${extra.map(k => sel(k, q[k], k, V.LABEL[k])).join("")}</div>
       </div>
       <div class="mf__row mf__row--2">${cmpBlock(null, f, r, cr)}

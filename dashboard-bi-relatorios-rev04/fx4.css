@@ -56,7 +56,7 @@
 .vseg button:hover{color:var(--jv-fg)}
 .vseg button[aria-pressed="true"]{background:var(--jv-panel-solid);color:var(--jv-fg);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--jv-arc) 45%,transparent),0 2px 8px -4px rgba(0,0,0,.4)}
 .vseg button[aria-pressed="true"] .i{color:var(--jv-arc)}
-@container (max-width:560px){.vseg button span{display:none}.vseg button{padding:0 8px}}
+/* Chave de visões sempre com texto (padrão do sistema); em painel estreito a barra de ferramentas quebra linha. */
 .pf{position:relative}
 .pf>summary{list-style:none}
 .pf>summary::-webkit-details-marker{display:none}
@@ -535,7 +535,7 @@ button.dayg__c:hover{border-color:color-mix(in srgb,var(--c) 55%,var(--jv-line))
 .rd4__c b{display:block;font:600 26px/1 var(--jv-f-display);letter-spacing:-.01em}
 .rd4__c small{display:block;margin-top:3px;font:600 9.5px var(--jv-f-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--jv-fg-3)}
 /* chaves de visão compactas nas colunas do crédito */
-.cr4__h .vseg button span{display:none}
+
 .cr4__h .vseg button{padding:0 8px}
 .ts4__peak b{white-space:nowrap}
 .ts4__peak.is-r{transform:translate(-100%,-130%)}
@@ -593,3 +593,42 @@ button.dayg__c:hover{border-color:color-mix(in srgb,var(--c) 55%,var(--jv-line))
 :root[data-theme="irmen-executive-light"] .pfree input{color-scheme:light}
 .pfree input:focus-visible{outline:2px solid var(--jv-arc);outline-offset:1px}
 @media (max-width:560px){.pseg{display:flex;flex-wrap:wrap;max-width:100%}.pseg button{min-width:0;flex:1 0 auto;padding:0 8px}.mf__per{min-width:0;max-width:100%}}
+
+/* ===== Padrão único de altura dos controles de filtro e de visão (36 px) ===== */
+:root{--ctl-h:36px}
+.jv-select,.jv-input{height:var(--ctl-h)}
+.pseg,.vseg,.jv-seg{min-height:var(--ctl-h);box-sizing:border-box;padding:3px;align-items:stretch}
+.pseg button,.pseg--sm button,.vseg button,.jv-seg button,.jv-seg--xs button{min-height:calc(var(--ctl-h) - 8px)}
+.pf__btn{min-height:var(--ctl-h);box-sizing:border-box}
+:is(.cp,.ks__bar,.mf,.pf,.cmd,.ar4) .ds-button--sm{min-height:var(--ctl-h)}
+.cmp4__cal input,.pfree input{min-height:var(--ctl-h);height:var(--ctl-h);box-sizing:border-box}
+.selchips button{min-height:var(--ctl-h);box-sizing:border-box}
+/* Filtro geral: período, datas livres e listas na mesma linha; datas do período ao lado do rótulo */
+.mf__row:first-child{flex-wrap:wrap;align-items:flex-end}
+.mf__per,.mf__free{display:flex;flex-direction:column;gap:6px;flex:none}
+.mf__l{min-height:14px;white-space:nowrap}
+.mf__l .mf__range{margin-left:8px;padding-left:8px;border-left:1px solid var(--jv-line-2);letter-spacing:0;text-transform:none;font-weight:500;color:var(--jv-fg-2)}
+.mf__free .pfree{margin-top:0;flex-wrap:nowrap}
+.mf__free .pfree label span{display:none}
+.mf__sel{flex:1 1 0;min-width:min(100%,300px);gap:8px}
+.mf__sel .jv-field{flex:1 1 120px;min-width:110px;max-width:240px}
+.mf__sel .jv-field>span{min-height:14px}
+/* Anel: entrada por máscara (sem animar o tracejado das fatias: nada pisca e não sobra ponta entre fatias) */
+.rg4__s{animation:none}
+.rg4__m{animation:rg-reveal 1s var(--jv-x-ease) both}
+@keyframes rg-reveal{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.rg4__m{animation:none}}
+:root[data-motion="reduced"] .rg4__m{animation:none}
+/* Valor central do anel cabe dentro do furo (diâmetro útil ~ 112 px) */
+.rg4__c b{font-size:26px;max-width:108px;text-align:center}
+.rg4__c b.is-long{font-size:19px}
+/* Barras radiais: percentual fica na abertura de baixo, fora dos arcos */
+.rd4__fig{display:flex;flex-direction:column;align-items:center}
+.rd4__c{position:static;transform:none;margin-top:-30px}
+.rd4__c b{font-size:22px}
+.mf__range--free{display:inline-flex;align-items:center;gap:4px;margin-top:0;flex-wrap:nowrap}
+.mf__range--free input{min-height:0;height:20px;padding:0 4px;border:1px solid var(--jv-line-2);border-radius:5px;background:var(--jv-bg-2);font:600 10.5px var(--jv-f-mono);color:var(--jv-fg)}
+.mf__range--free span,.mf__range--free small{font:500 10.5px var(--jv-f-mono);color:var(--jv-fg-3);text-transform:none;letter-spacing:0}
+.mf__range--free small{margin-left:4px}
+.vseg,.jv-seg{flex-wrap:wrap;max-width:100%}.cp__tools{flex-wrap:wrap;min-width:0;max-width:100%}.vseg button{flex:1 0 auto;justify-content:center}
+.eqk--4{grid-template-columns:repeat(auto-fit,minmax(min(100%,108px),1fr))}

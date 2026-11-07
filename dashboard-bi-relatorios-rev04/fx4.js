@@ -115,9 +115,10 @@
     return `<div class="rg4${o.side === false ? " rg4--solo" : ""}"><div class="rg4__fig"><svg width="${size}" height="${size}" viewBox="0 0 210 210" role="img" aria-label="${esc(o.label || "Composição")}">
         <defs><radialGradient id="${gid}" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="var(--jv-arc)" stop-opacity=".16"/><stop offset="1" stop-color="var(--jv-arc)" stop-opacity="0"/></radialGradient><filter id="${gid}-f" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#000" flood-opacity=".35"/></filter></defs>
         <circle cx="105" cy="105" r="${r + sw / 2 + 8}" fill="url(#${gid})"/><circle cx="105" cy="105" r="${r}" fill="none" stroke="var(--jv-bg-2)" stroke-width="${sw}"/>
-        <g transform="rotate(-90 105 105)" filter="url(#${gid}-f)">${arcs}</g>
+        <mask id="${gid}-m" maskUnits="userSpaceOnUse" x="0" y="0" width="210" height="210"><circle class="rg4__m" cx="105" cy="105" r="${r}" pathLength="100" stroke="#fff" stroke-width="${sw + 14}" fill="none" stroke-dasharray="100 100" transform="rotate(-90 105 105)"/></mask>
+        <g mask="url(#${gid}-m)"><g transform="rotate(-90 105 105)" filter="url(#${gid}-f)">${arcs}</g></g>
         <circle cx="105" cy="105" r="${r - sw / 2 - 6}" fill="none" stroke="var(--jv-line-2)" stroke-dasharray="1 3"/>
-      </svg><div class="rg4__c"><b>${o.centerText || F.int(total)}</b><span>${esc(o.center || "total")}</span></div></div>
+      </svg><div class="rg4__c"><b${String(o.centerText || F.int(total)).length > 7 ? ' class="is-long"' : ""}>${o.centerText || F.int(total)}</b><span>${esc(o.center || "total")}</span></div></div>
       ${o.side === false ? "" : `<div class="rg4__leg" role="list">${parts.map(p => `<${p.attrs ? "button type=\"button\"" : "div"} class="rg4__li" role="listitem" style="--c:${p.color}" ${p.attrs || ""}><i></i><span class="rg4__ln">${esc(p.label)}${p.note ? `<small>${p.note}</small>` : ""}</span><span class="rg4__lb"><i style="width:${(p.v / total * 100).toFixed(1)}%"></i></span><b>${f(p.v)}</b><span class="dim mono">${F.pct(p.v / total)}</span>${p.d || ""}</${p.attrs ? "button" : "div"}>`).join("")}</div>`}</div>`;
   }
 
